@@ -1,0 +1,178 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="29/1/2002">
+<meta name="keywords" content="polymorphism, upcasting, downcasting, instantiation, reference, instance, Java, Programming, Guide, Beginner, Basics, Picture, Example, Applet, Servlet, JSP, Links">
+<meta name="description" content="Programming objects at runtime. Interactive Java Programming Guide, play with the Applets, try the example code.">
+<title>Working with objects</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="1" leftmargin="1"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Image Swap Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script --> 
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading --> 
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC">
+      <!-- Basics Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/basics-toc.js">
+	</SCRIPT></td>
+    <td align="left" valign="top"> 
+      <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> 
+            <h4 class="stdPageHeader"> Programming with objects.</h4>
+          </td>
+          <td align="right" valign="top" ><a href="basics_interface.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">programming 
+            interface<img src="../images/nextarrow_off.gif" alt="Next Page!" name="next1" width="40" height="24" border="0"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"> 
+            <p><b>Java allows you to reference an object of one class with an 
+              object variable of a related ‘parent’ class.</b> In essence, you 
+              can reference objects at runtime, as if they were a more generic 
+              but related class. Java can convert between the classes, as long 
+              as one inherits from the other. This is a useful property of Java 
+              objects, called '<i>Polymorphism</i>'. </p>
+            <p>For example you'd probably want to design and code a veterinary 
+              program to work with generic references to a Pet, and not have to 
+              worry about special coding for a Cat or a Dog or a Mouse ..etc <br>
+              If I have a collection of Pets, I can fill that collection with 
+              a Dog object called &quot;Rover&quot;, a Cat called &quot;Fluffy&quot; 
+              and a Mouse called &quot;Mike&quot;. I can treat them all as Pets, 
+              because they all inherit from the Pet object type. When I send each 
+              Pet a message to speak, Rover (the Dog object) will say &quot;Woof!&quot;, 
+              Fluffy will say &quot;Meow!&quot; and Mike the mouse will say &quot;Squeak!&quot;. 
+              <br>
+              This all happens dynamically at runtime because Java has ways of 
+              finding out all about an individual object at runtime, so that the 
+              correct behavior happens.<br>
+            </p>
+            <p><b>Java can automatically convert from a more detailed class (like 
+              <span class="code">Cat</span>) to a more generic parent class (like 
+              <span class="code">Pet</span>).</b> Contained within a subclass 
+              (<span class="code">Cat</span>) are all the properties and methods 
+              of the superclass (<span class="code">Pet</span>), so an assignment 
+              like that shown below is valid, and automatic. </p>
+            <pre class="code"><font color="#999999">//Treat the Cat object like a Pet of some kind</font> 
+<font color="#FF0000">Pet pet = new Cat(&quot;Fluffy&quot;, 12);</font> </pre>
+            <p> This is termed '<i>upcasting</i>'. <br>
+              <b>Note</b>: When referring to an object through the parent class, 
+              you can only 'see' the methods and variables defined in the parent 
+              class. </p>
+            <p><b>However the reverse assignment (termed '<i>downcasting</i>') 
+              is not necessarily valid, and requires an explicit 'class cast', 
+              to pass the compiler checks.</b> To convert an object to a different 
+              class, precede the object variable with the classname in parentheses 
+              as shown below. </p>
+            <pre class="code"><font color="#999999">//Downcast the Pet to a Cat</font>
+<font color="#FF0000">Cat c = (Cat) pet;</font> 
+</pre               >
+            <p><b>Beware</b>: Treating a <span class="code">Pet</span> reference 
+              as if it were a <span class="code">Cat</span> can lead to runtime 
+              errors. <br>
+              Question: What happens if <span class="code">pet</span> refers to 
+              an instance of some other subclass of Pet, such as a Dog or Mouse 
+              when the above statement is executed? <br>
+              Answer: A <span class="code">ClassCastException</span> is generated 
+              at runtime. </p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table width="100%" name="contentTable" border="0" cellspacing="2" cellpadding="2" bgcolor="#FFFFFF">
+  <tr valign="top" align="left"> 
+    <td> 
+      <p class="caption">When you use a generic object reference, you can expect 
+        the correct behavior to happen.</p>
+      <p><img src="images/polymorphism.gif" width="675" height="373"></p>
+    </td>
+  </tr>
+  <tr valign="top" align="left"> 
+    <td> 
+      <ul>
+        <li><b>When you reference a method, the class type of the object itself 
+          determines which method is executed.</b> The blue and green arrows in 
+          the above diagram show that, the class of the object variable you use 
+          to reference an object, does not effect runtime behavior. If you use 
+          a generic reference (such as a Pet variable) to refer to an object of 
+          a subclass (such as a Dog), you still get the behavior of the subclass. 
+          When we run the PetApp the pet.say( ) method returns &quot;Woof!&quot; 
+          when pet refers to a Dog object (the blue arrow) and &quot;Meow!&quot; 
+          when pet refers to a Cat object (the green arrow). 
+          <blockquote> <span class="code"><font color="#999999">//Treat a new 
+            Dog object as if it is a Pet of some kind</font><br>
+            <font color="#FF0000"> Pet pet = new Dog(&quot;Rover&quot;, 6);</font> 
+            <br>
+            <font color="#999999">//The pet.say() method returns the String &quot;Woof 
+            !&quot;</font><br>
+            <font color="#FF0000"> String s2 = pet.say( );</font></span> </blockquote>
+          <p>If you read the paragraph about ClassLoaders, this is intuitively 
+            what you expect should happen. When the Java runtime looks up a method, 
+            it starts with the runtime object (Dog) and works its way up the inheritance 
+            chain to the parent (my.pets.Pet) and grandparent (java.lang.Object) 
+            objects, that were loaded when the new Dog object was constructed.</p>
+        </li>
+        <li><b>However when you reference an overidden variable, the class type 
+          of the object pointer used in the reference determines which value is 
+          returned.</b> In the example, the red arrows show that even though we 
+          are after the <span class="code">name</span> value of the Dog and Cat 
+          objects, we get the <span class="code">name</span> value defined in 
+          the Pet class! 
+          <blockquote> 
+            <p><span class="code"><font color="#999999"> //Use a generic Pet reference 
+              on a Cat object</font> <br>
+              <font color="#FF0000">Pet pet = new Cat(&quot;Fluffy&quot;,10);</font><br>
+              <font color="#999999">//When we reference a member variable in pet 
+              we get the name &quot;Pet&quot; </font> !<br>
+              <font color="#FF0000">String s3 = pet.name;</font> </span></p>
+          </blockquote>
+          <p><b>Gotcha!</b> When we access the <span class="code">name</span> 
+            variable in a Cat using a Pet reference, the value of <span class="code">name</span> 
+            comes from the<span class="code"> Pet</span> class! This isn't so 
+            obvious, and is a strong argument for avoiding direct references to 
+            member variables when working with objects. Generally you should '<i>encapsulate</i>' 
+            your variables (declare them <a href="javascript:popup('keywords.html#private')">private</a> 
+            or protected), and make them available for use through public methods.</p>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr valign="top" align="left">
+    <td><p><b>Java, provides a keyword for runtime type checking.</b> The <a href="javascript:popup('keywords.html#instanceof')">instanceof</a> 
+        keyword can be used to equate an object to a class or an interface. For 
+        example the following if( ) statement only returns true if the Pet pointer 
+        p1, refers to a Cat object at runtime. </p>
+      <blockquote>
+        <pre class="code"><font color="#999999">//Check the object referenced by pet to see if it is a Cat</font>
+<font color="#FF0000">if (pet instanceof Cat)</font> {
+  <font color="#999999">//Now it is safe to downcast the pet to a Cat</font>
+  Cat c2 = (Cat) pet; 
+} </pre>
+      </blockquote></td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: December 2001. &copy;1999 Guy&nbsp;Bellingham-Smith </td>
+    <td align="right" valign="top" ><a href="basics_interface.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">programming 
+      interface<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+</FONT> 
+</BODY>
+</HTML>

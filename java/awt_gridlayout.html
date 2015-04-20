@@ -1,0 +1,113 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="7/20/2002">
+<meta name="keywords" content="Java,AWT,Abstract Windowing Toolkit">
+<meta name="description" content="Introducing the AWT.">
+<title>The Title</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/awt-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader">java.awt.GridLayout</h4></td>
+          <td align="right" valign="top" ><a href="awt_gridbaglayout.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">GridBagLayout<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"><p><FONT class="text">A <span class="stdCode">GridLayout</span> 
+              arranges components in a rectangular grid like a table of cells, 
+              a spreadsheet or calendar. Components occupy cells filling them 
+              from top left to bottom right, in the order they are added to the 
+              container. There is no way to skip over a cell, but you can add 
+              a 'dummy' component (empty panel) to give the appearance of an empty 
+              cell. </FONT></p>
+            <p><span class="stdCode"><FONT class="text">GridLayout</FONT></span> 
+              is useful for containers that are laid out in a regular grid, like 
+              a calendar or spreadsheet. However it ignores the preferred size 
+              of the component, and stretches it to fit the entire cell of the 
+              grid! <br>
+              Buttons, Choices and CheckBoxes look strange when stretched beyond 
+              their minimum size, they should not normally be added directly to 
+              a GridLayout. <br>
+              Similarly TextField and Scrollbars should be nested within a Panel 
+              with a LayoutManager that limits their heights.</p>
+            <p><FONT class="text">The constructors for <span class="stdCode">GridLayout</span> 
+              are as follows :</FONT></p>
+            <table
+        border="0" class="stdCode">
+              <tr> 
+                <td><p>GridLayout(int rows, int cols);</p></td>
+              </tr>
+              <tr> 
+                <td><p>GridLayout(int rows, int cols, int hgap, int vgap);</p></td>
+              </tr>
+            </table>
+            <p><strong>Note</strong>: When you define a new <span class="stdCode">GridLayout</span> 
+              and connect it to a container, you specify the number of rows and 
+              columns in the grid, and the horizontal and vertical gaps you want 
+              between cells of the grid. However GridLayout makes its own calculation 
+              of the number of columns needed to layout all the components in 
+              the container (taking into account the container's height, insets, 
+              vgap and number of rows).</p>
+            <p><strong>Below</strong> is an <span class="stdCode">Applet</span>, 
+              that will show you various GridLayouts.</p></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr>
+    <td><table border="0" cellpadding="2">
+        <tr> 
+          <td valign="top" width="50%" bgcolor="#FFFF80"><font class="text"> 
+            <applet
+        code="gridlayout/Applet1.class" codebase="classes"
+        align="middle" width="400" height="300"
+        archive="gridlayout/Applet1.jar" name="GridApplet">
+            </applet>
+            </font></td>
+          <td valign="top" width="50%"><p><font color="#FF0000" class="text">Click</font><font class="text"> 
+              on the Start button at left, to see various GridLayouts, for the 
+              colored canvases in the applet at left.<br>
+              You construct a GridLayout with four parameters : <font size="-1" face="Courier New, Courier, mono">(rows,columns,hgap,vgap) 
+              </font> which are shown in the label below the grid.</font></p>
+            <p><font class="text"> Notice the grid sizes itself so that it contains 
+              just enough cells to contain the colored squares, if you give it 
+              too few or too many, when you construct it.</font></p></td>
+        </tr>
+      </table> </td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: July 2002. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="awt_gridbaglayout.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">GridBagLayout<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+</FONT> 
+</BODY>
+</HTML>

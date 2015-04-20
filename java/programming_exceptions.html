@@ -1,0 +1,176 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="29/1/2002">
+<meta name="keywords" content="Java, Exception, Error, RuntimeException, try, catch, finally, throw, throws, Programming, Guide, Beginner, Basics, Picture, Example,  Links">
+<meta name="description" content="Working with Java dates. Interactive Java Programming Guide, play with the Applets, try the example code.">
+<title>Java Exception handling</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="1" leftmargin="1"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script --> 
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading --> 
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!-- Programming Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/programming-toc.js">
+	</SCRIPT>
+      <p>&nbsp;</p>
+    </td>
+    <td align="left" valign="top"> 
+      <table border="0" cellpadding="2" width="100%" cellspacing="2">
+        <tr> 
+          <td align="left" valign="top"> 
+            <h4 class="stdPageHeader"> Handling Exceptions.</h4>
+          </td>
+          <td align="right" valign="top" > <a href="programming_example.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">Example 
+            <img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr bgcolor="#FFFFFF"> 
+          <td align="left" valign="top" colspan="2"> 
+            <p><a name="top"></a><b>Java builds exception handling into the language</b>, 
+              and treats error and exception conditions as objects. Instead of 
+              using a return-code with some cryptic value to signal an error of 
+              some kind, Java contains a family of related classes that are used 
+              to build new error and exception objects, that have meaningful properties. 
+              These exception objects, are passed between methods in a very formalized 
+              manner, so that you cannot ‘forget’ to handle the exceptions thrown 
+              back to you by a method call. When you reference a method that might 
+              throw back an exception of some kind, the Java compiler will insist 
+              that you 'handle' that type of exception. </p>
+            <p><b>1.</b>&nbsp;<b>One way to handle an exception </b>is to simply 
+              declare that your method throws that type of exception to its caller. 
+              This is like 'passing the buck'. A method can only throw those exceptions 
+              that are listed after the <a href="javascript:popup('keywords.html#throws')" class="stdCode">throws</a> 
+              keyword in its definition. But because Java treats objects polymorphically, 
+              you can also <a href="javascript:popup('keywords.html#throw')" class="stdCode">throw</a> 
+              objects made from subclasses of those exceptions in the throws clause 
+              of the method.<b><font color="#FF0000"><br>
+              Gotcha!</font></b> When a method in a subclass inherits from and 
+              overrides its counterpart in a parent class, it can only throw those 
+              exceptions listed in the method of the parent class, it cannot add 
+              ‘new’ exception types.</p>
+            <p>In this example the <span class="stdCode">TryCatchApp()</span> 
+              constructor method simply throws any <span class="stdCode">IOException</span> 
+              that might be generated when building a buffered character reader, 
+              back to the statement that called the constructor.</p>
+            <p><img src="images/method_throws.gif" width="492" height="125"></p>
+            <p>Incidentally most computer languages have an internal means of 
+              keeping track of all the 'branching' that goes on during program 
+              execution. Generally they do this by keeping a 'trace' or history 
+              of all the execution branch points in a 'stack'. A stack is a type 
+              of first in first out (FIFO) queue in memory (think of a stack of 
+              pancakes). </p>
+            <p><b>2.</b>&nbsp;<b>The other way to 'handle' exceptions</b> is to 
+              enclose the 'risky' statement in a <span class="stdCode">try … catch 
+              ( );</span> statement (as shown below). </p>
+            <p><img src="images/try_catch.gif" width="520" height="301"></p>
+            <p>The red arrows in the above diagram are showing the possible routes 
+              of execution. <br>
+              <font color="#FF0000">1</font>. As soon as a statement in <strong>the 
+              try block</strong> generates an exception, execution of the block 
+              stops (in some cases execution is rolled back to a safe state), 
+              and proceeds to the nearest catch block for the type of exception 
+              object thrown.<br>
+              <font color="#FF0000">2</font>. <strong>The catch block</strong> 
+              usually contains error handling and reporting for the type of exception 
+              thrown. After the catch block completes, execution always proceeds 
+              to <strong>the finally block</strong>, even if the catch block contains 
+              the return statement.<br>
+              The finally block is always executed and is often used to unconditionally 
+              release any resources used in the try block (such as returning database 
+              connections to a pool).<br>
+              <font color="#FF0000">3</font>. If the exception has been caught 
+              and the catch block does not contain the return statement, then 
+              method execution continues on.<br>
+              <font color="#FF0000">4</font>. If no exception is generated in 
+              the try block, then execution proceeds to the finally block. If 
+              the try block does not return, then execution continues as in 3.</p>
+            <p>If there is no catch block that corresponds to the exception, then 
+              the compiler will ensure that the method in turn, throws that exception 
+              type up the call chain. If an uncaught exception is generated by 
+              the try block, the finally block is still executed, before the exception 
+              is passed back up the calling chain. Obviously in this case, method 
+              execution does not continue.</p>
+            </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr> 
+    <td> 
+      <p><b>Here are some general rules about catching exceptions. </b></p>
+      <ul>
+        <li>Any number of catch ( ) statements can follow a try { } block. </li>
+        <li> A try block must always be paired with a catch ( ) and/or a finally 
+          { } statement, it cannot be used alone.</li>
+        <li>The compiler checks that more specific exception types (like java.io.IOException) 
+          are caught before the more generic or 'catch-all' classes (such as java.lang.Throwable). 
+        </li>
+        <li>The finally block is always executed, you cannot avoid it with a break 
+          or return statement in the try block.</li>
+        <li> If an unhandled Exception or RuntimeException occurs, method execution 
+          does not continue after the finally { block }.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr> 
+    <td> 
+      <p>Like all objects in Java, <b>the various classes of exception are involved 
+        in an inheritance hierarchy</b>. <br>
+        At the top of the family tree, is the <span class="stdCode">java.lang.Throwable</span> 
+        class. It defines two constructor methods, one that takes no arguments 
+        and the other takes a String (the error message) which all exceptions 
+        inherit. <br>
+        Throwable also provides implementations for basic methods like <span class="stdCode">getMessage( 
+        )</span> (which returns the error message as a String) and <span class="stdCode">printStackTrace(PrintStream)</span> 
+        which prints the trace of method calls at the point the Throwable object 
+        was created. </p>
+      <p><img src="images/throwable.gif" width="645" height="534"></p>
+      </td>
+  </tr>
+  <tr> 
+    <td> 
+      <p><b>Checked versus Unchecked Exceptions.</b></p>
+      <p>Classes descended from java.lang.Error and java.lang.RuntimeException, 
+        are really for use by the Java runtime environment. The Java compiler 
+        <i>does not check</i> that these types of system errors or runtime exceptions 
+        are caught, because generally nothing can be done by your code to 'handle' 
+        them. <br>
+        <b><font color="#FF0000">Gotcha!</font></b> Unchecked exceptions like 
+        <span class="stdCode">java.lang.ArithmeticException</span>, can be thrown 
+        by a method without having to declare it in the throws clause! </p>
+      <p><b>Tip!</b> If you want to define your own exceptions, they should be 
+        descended from the ‘checked’ class (<span class="stdCode">java.lang.Exception</span>), 
+        so that the compiler checks that they are declared in the throws clause 
+        of your method definition and caught whenever that method is referenced. 
+      </p>
+      </td>
+  </tr>
+</table>
+</FONT> <FONT class="text"> 
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: January 2002. &copy;1999 Guy&nbsp;Bellingham-Smith</td>
+    <td align="right" valign="top" > <a href="programming_example.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">Example<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+
+</FONT> 
+</BODY>
+</HTML>

@@ -1,0 +1,341 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="29/1/2002">
+<meta name="keywords" content="assignment, equals, compareTo, comparable, Programming, Guide, Beginner, Basics, Picture, Example,  Links">
+<meta name="description" content="Assigning and comparing objects and data. Interactive Java Programming Guide, play with the Applets, try the example code.">
+<title>Java assigning and comparing</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="1" leftmargin="1"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script --> 
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading --> 
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!-- Programming Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/programming-toc.js">
+	</SCRIPT></td>
+    <td align="left" valign="top">
+      <table border="0" cellpadding="2" width="100%" cellspacing="2">
+	  <tr>
+      	<td align="left" valign="top">
+            <h4 class="stdPageHeader"> Assigning and Comparing.</h4>
+      	</td>
+          <td align="right" valign="top" > <a href="programming_conditional.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">if 
+            else and switch<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+      </tr>
+        <tr bgcolor="#FFFFFF"> 
+          <td align="left" valign="top" colspan="2"> 
+            <p><b><a name="assign"></a>The Assignment operator <span class="stdCode">=</span></b>,<b> 
+              </b>is used to copy the value or expression on the right of the 
+              equals sign to the variable on the left. For the primitive dataypes, 
+              this is a straightforward copy of the value on the right into the 
+              variable on the left. The value must be <i>assignment compatible</i> 
+              with the variable to pass the compiler checks. If the variable is 
+              defined as <a href="basics_variables.html#final">final</a>, it must 
+              be assigned a value when it is first declared, thereafter it cannot 
+              be assigned another value.</p>
+            <p class="code"><span class="stdCode">int x = 10; <font color="#999999">//assign 
+              integer literal value 10 to int x</font><br>
+              int y = x; <font color="#999999">//assign the value of x to the 
+              int y</font><br>
+              x = x + 5; <font color="#999999">//x is 15, y is still 10</font><br>
+              x = x * 2.35; <font color="#999999">//error - x is not compatible 
+              with a double value!</font></span><br>
+            </p>
+            <p>When you assign objects to object variables however, you are really 
+              dealing with references to objects. So for example, assigning the 
+              value of one object variable (<span class="stdCode">Point p1</span>) 
+              to another compatible object variable (<span class="stdCode">Point 
+              p2</span>), the two end up referencing the same object in memory. 
+              Changes made to the object through one object variable also effect 
+              the other object variable :</p>
+            <p class="code"> <span class="stdCode"><font color="#999999">//Object 
+              assignment mutable Points</font><br>
+              java.awt.Point p1 = new java.awt.Point(10,10); <br>
+              <font color="#FF0000">java.awt.Point p2 = p1; </font><br>
+              System.out.println("The Point p2=" + p2); <font color="#999999">//p2 
+              is also at 10,10</font><br>
+              <font color="#FF0000">p1.setLocation(15,15);</font> <font color="#999999">//change 
+              p1</font><br>
+              System.out.println("The Point p2=" + p2); <font color="#999999">//p2 
+              also changes to 15,15!</font></span><br>
+            </p>
+            <p><b><a name="comparenumerics"></a>The comparison operators<span class="stdCode"> 
+              &gt;, &gt;=, ==, &lt;=, &lt;</span> and <span class="stdCode">!=</span> 
+              </b>are used to compare numeric variables (including the <span class="code">char</span> 
+              datatype). In addition the equals and not equals operators, work 
+              with the boolean datatype and object references as noted below. 
+              An expression such as (<span class="stdCode">x == y</span>) evaluates 
+              to a boolean <span class="code">true</span> or <span class="code">false</span> 
+              result. They are most often used within the Java conditional <a href="javascript:popup('keywords.html#if')">if 
+              statement</a> to make programming control flow decisions. </p>
+            <pre class="stdCode">public float squared(float f) throws Exception {
+  if ((f * f) &gt; Float.MAX_VALUE) {
+     throw new Exception(&quot;Float squared overflowed!&quot;); 
+  }
+  return f * f;
+} </pre>
+            <p><b><a name="combinebooleans"></a>Use the logical AND (<span class="stdCode">&&</span>) 
+              , and logical OR (<span class="stdCode">||</span>) operators</b> 
+              to combine boolean values. The bitwise operators AND (<span class="stdCode">&amp;</span>) 
+              and OR (<span class="stdCode">|</span>) can also be used as boolean 
+              operators ! However, Java supplies the double symbol, && (AND) and 
+              || (OR) which '<i>short circuit</i>' a compound boolean expression 
+              as soon as the outcome can be determined with certainty. Consider 
+              the following example.</p>
+            <pre class="stdCode">int i = 10; int j = i + 2; 
+<font color="#999999">//the first expression is true so the second is never evaluated! </font>               
+if ((i < j) <b>||</b> <font color="#FF0000">(i += 5)</font> > j) {
+  System.out.println(“i=“ + i); <font color="#999999">//prints i = 10 not 15</font> 
+} </pre>
+            <p>When you combine comparison expressions, they are evaluated from 
+              left to right. It is generally a good idea to use parentheses ( 
+              ) to make the meaning of the conditional test clear. </p>
+            <table width="100%" border="1" cellpadding="2" cellspacing="0" class="stdTableAsGroupBox">
+              <tr valign="top" class="stdTableColumnHeader"> 
+                <td width="56%">Boolean operators</td>
+                <td width="44%">Example</td>
+              </tr>
+              <tr valign="top"> 
+                <td width="56%">The NOT operator is <span class="stdCode">!</span>. 
+                  It negates a boolean.</td>
+                <td width="44%" class="stdCode">if (!(x&gt;y)) {<br> //x is NOT greater than y<br>
+                  } </td>
+              </tr>
+              <tr valign="top"> 
+                <td width="56%">The logical AND operators are <span class="stdCode">& 
+                  , &&</span>. The result of 2 boolean values AND’d together is 
+                  only true if both are also true, such that <br>
+                  <span class="stdCode">false && true == false</span>.</td>
+                <td width="44%" class="stdCode">if ((x&gt;y) &amp;&amp; (x&gt;z)) 
+                  {<br> // x is 
+                  greater than y AND z<br>
+                  }</td>
+              </tr>
+              <tr valign="top"> 
+                <td width="56%">The logical OR operators are <span class="stdCode">| 
+                  , ||</span>. The result of 2 boolean values OR’d together is 
+                  true if either is true, that is <br>
+                  <span class="stdCode">true || false == true.</span></td>
+                <td width="44%" class="stdCode">if ((x&gt;y) || (x&gt;z)) {<br> // x is greater 
+                  than y OR z<br>
+                  }</td>
+              </tr>
+            </table>
+            
+          </td>
+      </tr>
+     </table>
+   </td>
+  </tr>
+</table>
+</font><tr>
+  <td align="left" valign="top"><FONT class="text">&nbsp; </font> <FONT class="text"> 
+    <table border="0" cellpadding="4" cellspacing="4" width="100%">
+      <tr> 
+        <td valign="top" colspan="2"> 
+          <p><a name="compareobjects"></a>When comparing objects, you are really 
+            comparing references to objects. To find out whether or not two object 
+            variables are referencing the same object in memory, you can use the 
+            <span class="stdCode">==</span> and <span class="stdCode">!=</span> 
+            operators. The equals <span class="stdCode">==</span> operator can 
+            be used to test whether the object referred to by one variable is 
+            the exact same object referred to by another. This is sometimes useful, 
+            for example in an event handling method, you may want to find out 
+            which button object generated a user action event.</p>
+          <pre class="stdCode">if (event.target == startButton) {
+  startButtonPressed(event); 
+} </pre>
+          <p>The above example is asking, if the <span class="stdCode">target</span> 
+            variable of the <span class="stdCode">event</span> object, references 
+            the same object in memory as the <span class="stdCode">startButton</span> 
+            object variable. If it does, then it calls the <span class="stdCode">startButtonPressed()</span> 
+            method passing along the <span class="stdCode">event</span> object.<br>
+            <b>More often than not, you want to be able to compare the <u>value</u> 
+            of two objects.</b> For example, you may have two java.awt.Point objects, 
+            and you want to find out whether they contain the same x,y coordinates.</p>
+          <pre class="stdCode">Point p1 = new Point(5,10);
+Point p2 = new Point(5,10); 
+<font color="#FF0000">if (p1.equals(p2))</font> {
+  <font color="#999999">//two seperate but equal Point objects</font>!
+} </pre>
+          <p><b><a name="equals"></a>All Java objects inherit the <span class="stdCode">public 
+            boolean equals(Object other)</span> method from the<span class="stdCode"> 
+            java.lang.Object</span> class.</b> <br>
+            This method is supposed to indicate whether some other object is "equal 
+            to" this one. However the implementation in the <span class="stdCode">Object</span> 
+            class just uses the<span class="stdCode"> ==</span> operator, and 
+            returns <span class="stdCode">true</span> if the other object variable 
+            refers to the same object as this one (occupies the same memory location). 
+            <br>
+            Fortunately, most Java classes are hip to this, and override the default 
+            behavior of this method to compare the properties of the 2 objects 
+            (you should do the same). So, generally you can use the <span class="stdCode">equals( 
+            )</span> method to truly compare the contents of objects at runtime. 
+            The ‘wrapper’ classes for the fundamental data types, <span class="stdCode">Integer, 
+            Long, Float, Double, Character</span>, and <span class="stdCode">Boolean</span> 
+            permit comparisons in this way. <span class="stdCode">Date</span> 
+            objects are equal if they represent the same calendar date, and <span class="stdCode">java.lang.String</span> 
+            objects return true from the <span class="stdCode">equals()</span> 
+            method if they contain the same sequence of characters.</p>
+        </td>
+      </tr>
+      <tr> 
+        <td valign="top" colspan="2"><b><a name="comparable"></a><span class="stdCode">java.lang.Comparable</span> 
+          is an interface</b>, that defines a single method : <span class="code"><br>
+          </span><span class="stdCode">public int compareTo(Object other)</span> 
+          <br>
+          The method is used for comparing this object with another one. When 
+          we cover the Java collections classes, we'll see that this method is 
+          used to establish the 'natural' ordering of objects. The method documentation 
+          strongly recommends that 'natural' orderings be consistent with the 
+          behavior of the <span class="stdCode">equals()</span> method.</td>
+      </tr>
+      <tr> 
+        <td valign="top" colspan="2"> 
+          <p><b>The </b><a href="javascript:popup('keywords.html#instanceof')" class="stdCode"><strong>instanceof</strong></a><b> 
+            operator</b> can be used to test if an object ‘belongs to’ a particular 
+            class type, inherits from a class, or whether it implements an interface. 
+          </p>
+          <p><b><a name="reflection"></a>Java provides another way to 'find out 
+            about' objects at runtime called 'reflection'. </b>This is handy when 
+            you don't have the objects .class file available locally at compile 
+            time (the class may be loaded from the network). It is also essential 
+            for the Java runtime, because classes are only loaded when they are 
+            first referenced (a feature termed <i>late binding</i>). The ClassLoader 
+            builds a <span class="stdCode">java.lang.Class</span> object to represent 
+            the .class file. The <span class="stdCode">java.lang.reflect</span> 
+            package and <span class="stdCode">java.lang.Class</span> class, provide 
+            methods that other objects can use to dynamically discover all sorts 
+            of information about a class of object. For example if I have an object 
+            of some kind called<span class="code"> myObject</span> I can find 
+            out : </p>
+          <table width="100%" border="0" cellpadding="2" cellspacing="2" class="stdTableAsGroupBox">
+            <tr valign="top"> 
+              <td bgcolor="#FFFFCC">1. Whether the .class file represents a class 
+                or interface.</td>
+              <td width="60%" class="stdCode">boolean b = myObject.getClass().isInterface();</td>
+            </tr>
+            <tr valign="top"> 
+              <td bgcolor="#FFFFCC">2. What interfaces the objects Class implements.</td>
+              <td width="60%" class="stdCode">Class[] interfaces = myObject.getClass().getInterfaces();</td>
+            </tr>
+            <tr valign="top"> 
+              <td bgcolor="#FFFFCC">3. Get a reference to the Class object that 
+                describes the parent class of this one.</td>
+              <td width="60%" class="stdCode">Class parent = myObject.getClass().getSuperclass();</td>
+            </tr>
+            <tr valign="top"> 
+              <td bgcolor="#FFFFCC">4. Reference to the ClassLoader that loaded 
+                this Class.</td>
+              <td width="60%" class="stdCode">ClassLoader loader = myObject.getClass().getClassLoader();</td>
+            </tr>
+            <tr valign="top"> 
+              <td bgcolor="#FFFFCC">5. References to all the public class (static) 
+                and instance fields and methods.</td>
+              <td width="60%" class="stdCode">Constructor[] contructors = myObject.getClass().getConstructors();<br>
+                Field[] variables = myObject.getClass().getFields();<br>
+                Method[] methods = myObject.getClass().getMethods(); </td>
+            </tr>
+            <tr valign="top"> 
+              <td bgcolor="#FFFFCC">6. Instantiate another object from the class.</td>
+              <td width="60%" class="stdCode">Object obj = myObject.getClass().newInstance(); 
+              </td>
+            </tr>
+          </table>
+          <p><b>Note</b>: The square brackets <span class="stdCode">[ ]</span> 
+            are used in defining and accessing Java arrays (also known as tables). 
+            We'll cover arrays <a href="programming_arrays.html">on a following 
+            page</a>.</p>
+        </td>
+      </tr>
+      <tr> 
+        <td valign="top" colspan="2"> 
+          <p><b><a name="clone"></a>Here are some other methods from <span class="stdCode">java.lang.Object</span> 
+            that you might need to override in your own classes.</b></p>
+        </td>
+      </tr>
+      <tr> 
+        <td valign="top" bgcolor="#FFFFCC" class="stdCode"> 
+          <p><b>int&nbsp;hashCode(&nbsp;)</b> </p>
+        </td>
+        <td valign="top"> 
+          <p>If instances of your class are to be properly stored in a <span class="stdCode">java.util.Hashtable</span>, 
+            they should implement this method to return an integer that uniquely 
+            identifies them.<br>
+            <b>Note</b>: Two objects that return true from the method <span class="stdCode">object1.equals(object2);</span> 
+            should also return the same <span class="stdCode">hashCode()</span> 
+            value.</p>
+        </td>
+      </tr>
+      <tr> 
+        <td valign="top" bgcolor="#FFFFCC" class="stdCode"> 
+          <p><b>protected Object clone( ) </b></p>
+        </td>
+        <td valign="top"> 
+          <p>Creates and returns a copy of this object. The default implementation 
+            in <span class="stdCode">java.lang.Object</span> throws a <span class="stdCode">CloneNotSupportedException</span> 
+            if the class of this object does not implement the Cloneable interface. 
+            If the object is <span class="stdCode">Cloneable</span>, then the 
+            default implementation creates a new instance of the object and initializes 
+            all of its variables by assigning them the values of the corresponding 
+            variables in this object. The contents of the variables are not themselves 
+            cloned, a '<i>shallow copy</i>' of the existing object is returned.<br>
+            <b>Override the clone( ) method if you want a '<i>deep copy</i>' to 
+            be returned.</b> You will need to create another instance of the current 
+            object. Use a call to <span class="stdCode">super.clone( );</span> 
+            to allow any parent classes to do their own cloning behavior, and 
+            cast the resulting <span class="stdCode">java.lang.Object</span> to 
+            the current class. Then laboriously clone all the objects contained 
+            in this one and assign them to the clone. <br>
+            <b>Tip</b>: See the clone() methods in the non abstract collection 
+            classes of the <span class="stdCode">java.util</span> package to see 
+            how to clone objects.<br>
+            <b>Tip</b>: If your object is <span class="code">Serializable</span> 
+            and contains references to other <span class="code">Serializable</span> 
+            objects only then you can use a code cheat to help do a deep copy:</p>
+          <p class="stdCode">ByteArrayOutputStream baos = new ByteArrayOutputStream(); 
+            <br>
+            ObjectOutputStream oos = new ObjectOutputStream(baos); <br>
+            oos.writeObject(this); <br>
+            ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray()); 
+            ObjectInputStream ois = new ObjectInputStream(bais); <br>
+            Object deepCopy = ois.readObject(); </p>
+        </td>
+      </tr>
+      <tr> 
+        <td valign="top" bgcolor="#FFFFCC" class="stdCode"> 
+          <p><b>public String toString( ) </b></p>
+        </td>
+        <td valign="top"> 
+          <p>You should normally override this method in your own classes to report 
+            the 'key' properties and status of your object for runtime debugging 
+            information.</p>
+        </td>
+      </tr>
+    </table>
+
+    <table border="0" cellpadding="2" width="100%" cellspacing="0">
+      <tr> 
+        <td align="left" valign="top"> Last Updated: January 2002. &copy;1999 Guy&nbsp;Bellingham-Smith</td>
+        <td align="right" valign="top" > <a href="programming_conditional.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">if 
+          else and switch<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+        </td>
+      </tr>
+    </table>
+</FONT>
+</BODY>
+</HTML>

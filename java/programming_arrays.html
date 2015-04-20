@@ -1,0 +1,131 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="29/1/2002">
+<meta name="keywords" content="Java, Array, Arrays, index, table, Programming, Guide, Beginner, Basics, Picture, Example,  Links">
+<meta name="description" content="Defining and handling Java arrays. Interactive Java Programming Guide, play with the Applets, try the example code.">
+<title>Java Array handling</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="1" leftmargin="1"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script --> 
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading --> 
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!-- Programming Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/programming-toc.js">
+	</SCRIPT>
+      <p>&nbsp;</p>
+    </td>
+    <td align="left" valign="top"> 
+      <table border="0" cellpadding="2" width="100%" cellspacing="2">
+        <tr> 
+          <td align="left" valign="top"> 
+            <h4 class="stdPageHeader"> Java Arrays.</h4>
+          </td>
+          <td align="right" valign="top" > <a href="programming_dates.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">Dates<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr bgcolor="#FFFFFF"> 
+          <td align="left" valign="top" colspan="2"> 
+            <p><a name="arrays"></a>An <a href="javascript:popup('keywords.html#array')">Array</a> 
+              is a way of defining space for an internal table of data or object 
+              references. Note that only references to objects are stored in an 
+              array and not the objects themselves. <br>
+              <strong>There are 3 steps in creating an array:</strong></p>
+            <p> <b>&nbsp; 1. Declare the array variable. </b>You start out by 
+              declaring what type of data or object the array can contain.</p>
+            <pre class="stdCode">float myFloatTable[ ];  <font color="#999999">//datatype table</font>
+String [ ] myTextTable; <font color="#999999">//contains references to String objects</font>
+java.awt.Point [ ] [ ] myCoordinatesTable; <font color="#999999">//two dimensional table</font></pre>
+            <p>Notice that square brackets are used to denote an array, and they 
+              can precede or follow the array variable name. At this stage all 
+              we have is a 'handle' to an array. In the last example the array 
+              has two dimensions, and consists of references to Java Point objects. 
+            </p>
+            <p>&nbsp; <b>2.</b> <b>Allocate space for the new array. </b>An array 
+              can be fixed or variable length (x must be a whole number). However 
+              once space is allocated for an array it can only hold a determinate 
+              number of elements. Attempts to access an array beyond its bounds 
+              will lead to a runtime exception (<span class="stdCode">java.lang.ArrayIndexOutOfBoundsException</span>). 
+              <br>
+            </p>
+            <p class="code"><span class="stdCode">myFloatTable = new float[6]; 
+              <br>
+              myTextTable = new String[x]; <br>
+              myCoordinatesTable = new java.awt.Point[2][2]; </span><br>
+            </p>
+            <p><b>Note</b>: <font color="#FF0000">All Arrays have a data variable 
+              called <span class="stdCode"><b class="code">length</b></span></font>, 
+              which you can inspect to find out how many elements can fit into 
+              the array. For multi-dimensional arrays, each dimension has a <span class="code">length</span> 
+              property. This and the fact that you must construct an array with 
+              the keyword new, should give you a clue that arrays are actually 
+              objects in their own right.</p>
+            <p>&nbsp; <b>3.</b> <b>Assign values to the entries in the new array. 
+              </b>Java automatically initializes arrays of numerics to zero, chars 
+              to the unicode null character, and boolean arrays to false. An array 
+              of object references will have null pointer values until you assign 
+              objects to the elements of the array. Java provides a quick way 
+              to initialize an array at the point the new array is created.</p>
+            <pre class="code"><span class="stdCode"><font color="#999999">//all three steps in one!</font>
+float [ ] myFloatTable = {1.2F, 3.0F, 3.5F, -4.25F, 5, 6.18F}; 
+String [ ] myTextTable = {"zero","one","two","three"};<br><font color="#999999">//simple 2D table initialization!</font><br>int [ ][ ] myNumberTable = { {0,1,2}, {3,5,8}, {13,21,34} };
+<br><font color="#999999">//complex 2D tables can use nested loops to init elements</font><br>for (int i=0; i < myCoordinatesTable.length; i++) { <br>  for (int j=0; j < myCoordinatesTable[i].length; j++) { <br>    myCoordinatesTable [i][j] = new Point(i*2,j*2);<br>  }<br>} </span>
+</pre>
+            <b>Note</b>: <font color="#FF0000">Items in an Array start at an index 
+            position of zero</font>, and extend upto 1 less than the number of 
+            rows or columns in the array. </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr> 
+    <td><b>The <span class="stdCode">java.util.Arrays</span> class</b>, has some 
+      useful class (static) methods for comparing, sorting and filling arrays 
+      of datatypes and objects.<br>
+    </td>
+  </tr>
+  <tr> 
+    <td> 
+      <p><b>The <span class="stdCode">java.lang.System</span> class</b>, has a 
+        class (<span class="stdCode">static</span>) method for copying elements 
+        between arrays. The method shown below copies the given number of array 
+        elements (length) from the specified source array (src), beginning at 
+        the specified position (src_position), to the specified position (dst_position) 
+        of the destination array (dst).</p>
+      <p class="stdCode">public static native void arraycopy(Object src, int src_position, 
+        Object dst, int dst_position, int length) {<br>
+        } </p>
+      <p>An <span class="stdCode">IndexOutOfBoundsException</span> may be thrown 
+        if copying would cause access of data outside the bounds of the arrays. 
+        An <span class="stdCode">ArrayStoreException</span> may be thrown, if 
+        an element in the source array is not assignment compatible with the destination 
+        array.</p>
+    </td>
+  </tr>
+</table>
+</FONT> <FONT class="text"> 
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: January 2002. &copy;1999 Guy&nbsp;Bellingham-Smith</td>
+    <td align="right" valign="top" > <a href="programming_dates.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">Dates<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+</FONT> 
+</BODY>
+</HTML>

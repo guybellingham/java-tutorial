@@ -1,0 +1,161 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="7/20/2002">
+<meta name="keywords" content="Java,IO,Reader,Writer,InputStream,OutputStream,Collections,Threads,Networking">
+<meta name="description" content="The Java class libraries and advanced programming topics.">
+<title>Advanced Java</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/advanced-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader">wait() and 
+              notify() </h4></td>
+          <td align="right" valign="top" ><a href="awt_classes.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">AWT 
+            classes<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"><p>We have seen how the <span class="stdCode">Object</span> 
+              lock and use of the keyword <span class="stdCode">synchronized</span>, 
+              can be used to prevent multiple threads from corrupting one anothers' 
+              updates, however there is another problem when writing efficient 
+              multi-threaded code. <br>
+              There are times when one thread cannot do any useful work, until 
+              another thread of execution has reached a certain point or completed 
+              a certain task.<br>
+              A common example is when one thread produces something that is then 
+              consumed by another thread. While we can use a shared flag and have 
+              threads periodically sleeping and checking the flag value, this 
+              is an inefficient use of CPU time.</p>
+            <p>Java provides a much better way of coordinating threads.</p>
+            <table border="0" cellpadding="2" cellspacing="2" class="stdTableAsGroupBox">
+              <tr> 
+                <td valign="top" width="50%"><p><font class="text"><strong>1</strong>. 
+                    All objects in Java, can maintain a 'pool' of waiting threads. 
+                    A thread enters this pool, once it has obtained the lock for 
+                    the object, and executed the object's wait( ) method. Waiting 
+                    threads give up the CPU and the objects' lock.</font></p>
+                  <p><font class="text"><strong>2</strong>. All objects have <span class="stdCode">notify()</span> 
+                    and <span class="stdCode">notifyAll()</span> methods. When 
+                    a thread executes the <span class="stdCode">notify()</span> 
+                    method, one thread in the object's waiting pool, gets moved 
+                    out of the waiting state, and tries to reacquire the lock 
+                    for the object so that it can continue executing.</font></p>
+                  <p><font class="text"><strong>3.</strong> These thread control 
+                    methods must only be used within code that is <span class="stdCode">synchronized</span> 
+                    on this (the current object). That is because they are subject 
+                    to the same corruption by multiple simultaneous updates as 
+                    any read-store-modify operation.<br>
+                    <strong>4</strong>. Waiting threads do not hold onto their 
+                    object lock. Other threads need to be able to execute the 
+                    <span class="stdCode">synchronized</span> code belonging to 
+                    the object, including the call to <span class="stdCode">notify()</span>, 
+                    which wakes threads, waiting upon the object.</font></p></td>
+                <td valign="top"> 
+                  <pre class="stdCode">//Two threads share this object
+class ReadWriteMsg {
+  //flag when new msg is available
+  private boolean flag = false;
+  //no reading while writing 
+  private String msg = &quot;Hi!&quot;;
+    
+  public synchronized void writeMsg(String s ) {
+    //no room for another msg yet
+    while (flag == true) {
+      try {
+        wait();
+      } catch (InterruptedException e) {
+      }
+    }
+    //ready for a new msg
+    this.msg = s;
+    flag = true;
+    //notify waiting readers
+    notify();
+  }
+  
+  public synchronized String readMsg( ) {
+    //no new msg to read
+    while (flag == false) {
+      try {
+        wait();
+      } catch (InterruptedException e) {
+      }
+    }
+    //read the msg and wake any writers
+    flag = false;
+    notify();
+    return.msg;
+  }
+}</pre>
+                  <p><strong>Note</strong>: Because 'waiting' threads may also 
+                    be interrupted, it is necessary to include a <span class="stdCode">while( 
+                    ) { ... }</span> loop around them, to prevent them from executing 
+                    inappropriately.</p></td>
+              </tr>
+            </table>
+            
+          </td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr> 
+    <td><table border="0" cellpadding="2" width="100%">
+        <tr> 
+          <td valign="top"><font class="text">This Applet, contains 2 animated 
+            <span class="stdCode">Threads</span>, that use a common Object to 
+            'monitor' on, using <span class="stdCode">wait()</span> and <span class="stdCode">notify()</span> 
+            methods. </font> 
+            <p><font class="text">Use the buttons to manipulate 
+              the threads as they draw circles. View the Java console, to see 
+              the messages each thread outputs, as it waits, is notified or is 
+              interrupted.</font></p></td>
+          <td valign="top"><font class="text"> 
+            <applet code="thread3.Applet1.class"
+        codebase="classes" align="baseline" width="400"
+        height="175" archive="thread3/Applet1.jar"
+        name="SyncApplet">
+            </applet>
+            </font></td>
+        </tr>
+      </table>
+      <p>figure: 2 threads wait and notify one another.<br>
+        <img src="images/thread-comm3.gif" width="759"
+        height="279"></p></td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: July 2002. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="awt_classes.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">AWT 
+      classes <img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+
+</FONT> 
+</BODY>
+</HTML>

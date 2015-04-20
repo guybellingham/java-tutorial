@@ -1,0 +1,102 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="29/1/2002">
+<meta name="keywords" content="Java,AWT,Abstract Windowing Toolkit">
+<meta name="description" content="Introducing the AWT.">
+<title>The AWT</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/awt-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader"> The Abstract 
+              Windowing Toolkit</h4></td>
+          <td align="right" valign="top" ><a href="awt_classes.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">AWT 
+            classes<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"><p>The AWT provides you with 
+              a library of Java classes that you can use to build a graphical 
+              user interface. The AWT classes essentially wrap the GUI components 
+              of the underlying operating system. They do this through what are 
+              termed 'peers'. Each AWT graphical component (a Button or a Window), 
+              has a corresponding peer class, that does the 'dirty work' of talking 
+              to the native operating system GUI. You can use the AWT classes, 
+              without worrying about the complexities and peculiarities of the 
+              user interface of each operating system. By assembling instances 
+              of the AWT classes, you can build a user interface that looks and 
+              feels just like the native interface of the underlying operating 
+              system.</p>
+            <p>Note, that the AWT is what is termed a 'heavyweight' approach to 
+              building a GUI. That is it relies upon the 'native' user interface 
+              of the operating system. There are some drawbacks to this approach, 
+              in that the AWT can only provide you with the lowest common denominator 
+              of functionality, between all the operating systems. Also performance 
+              and event handling issues in the AWT, prompted the search for a 
+              better solution for a cross platform user interface.</p>
+            <p>The Java Foundation Classes (JFC) were introduced in the 1.1 version 
+              of the JDK, and offerred a 'lightweight' approach to building a 
+              cross platform user interface in Java. A central part of the JFC 
+              are the SWING classes, first delivered as extensions to the core 
+              <font size="-1" face="Courier New, Courier, mono">java.*</font> 
+              classes in the <font size="-1" face="Courier New, Courier, mono">javax.swing.*</font> 
+              packages. SWING is now built-in to the core of the J2SE. SWING components 
+              are an extension of the existing AWT classes, but they add to the 
+              graphical functionality in these main ways : </p>
+            <ol>
+              <li>A new and better performing event handling model, based upon 
+                event listeners.</li>
+              <li>Support for pluggable and custom look and feel, and a 'lightweight' 
+                graphical presentation.</li>
+              <li> Support for drag and drop and some of the more advanced user 
+                interface features, such as custom borders and icons.</li>
+              <li>New more powerful graphical controls such as JTree and JTable 
+                based upon the Model-View-Controller architecture, that seperates 
+                the presentation logic from the data model of a graphical control.</li>
+            </ol>
+			Before we look at the Swing classes, we need to look at the AWT classes upon which they are built.
+			</td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+</FONT> 
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr>
+    <td><p><b> </b></p>
+      </td>
+  </tr>
+</table>
+<FONT class="text"> 
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: December 2001. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="awt_classes.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">AWT 
+      classes <img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+</FONT> 
+</BODY>
+</HTML>

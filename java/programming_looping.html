@@ -1,0 +1,122 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="29/1/2002">
+<meta name="keywords" content="Introduction, Java, looping, for, while, do, break, continue, Programming, Guide, Beginner, Basics, Picture, Example,  Links">
+<meta name="description" content="Iterative execution and the do, while and for statements. Interactive Java Programming Guide, play with the Applets, try the example code.">
+<title>Java looping statements</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="1" leftmargin="1"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!-- Programming Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/programming-toc.js">
+	</SCRIPT> <p>&nbsp;</p></td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="2">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader"> Iterative 
+              statements.</h4></td>
+          <td align="right" valign="top" > <a href="programming_strings.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">Strings<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr bgcolor="#FFFFFF"> 
+          <td align="left" valign="top" colspan="2"> <p><a name="if"></a><b>Loops 
+              in Java continue while an expression is true. </b> The conditional 
+              test in a <span class="stdCode">while (condition) { ... };</span> 
+              statement comes upfront. This means that the block of statements 
+              may not be executed at all, if the condition turns out to be <span class="stdCode">false</span> 
+              first time into the loop (the red arrow in the example below). </p>
+            <table width="100%" border="0" cellspacing="0" cellpadding="2">
+              <tr valign="top"> 
+                <td><img src="images/while_statement.gif" width="425" height="198"></td>
+                <td>&nbsp; </td>
+              </tr>
+            </table>
+            <p>If you always want the statement block to execute at least once, 
+              you can turn a while statement on its head like this (don’t forget 
+              the semicolon at the end!). </p>
+            <pre class="stdCode">// do ... while( ) loop 
+int i = 0;
+<font color="#FF0000">do {</font>
+ int x = getNextYear();
+ if ((x &gt; 0) &amp;&amp; (x % 4 == 0)) {
+   System.out.println(&quot;LeapYear=&quot; + x);
+ } 
+ i++; 
+<font color="#FF0000">} while (</font>i &lt; 500<font color="#FF0000">);</font> </pre>
+            Use the <a href="javascript:popup('keywords.html#continue')" class="stdCode">continue</a> 
+            or <a href="javascript:popup('keywords.html#break')" class="stdCode">break</a> 
+            statements to go to the next loop iteration or break out of a loop. 
+            <b><br>
+            Note</b>: The loop control variable must be defined outside the braces 
+            of the loop because any variable defined inside the loop, goes out 
+            of scope when each loop ends and its value cannot be referenced from 
+            outside the loop (in the while() expression for example). 
+            <p><b><a name="switch"></a>The <span class="stdCode">for</span> statement 
+              </b>has three parts to control looping. The first part (in the green 
+              box), is processed once on first execution of the for statement, 
+              and can serve to define and initialize any loop control variables. 
+              The second part (in the yellow box), is the while condition test. 
+              The body of the for statement is executed while it is true. The 
+              third part is the iteration expression (in the blue box). It is 
+              processed after each execution of the body of the loop (or after 
+              a continue statement) and usually serves to increment the loop control 
+              variables. <br>
+            </p>
+            <pre class="code"><img src="images/for_statement.gif" width="351" height="241">
+</pre> 
+            <p>You may omit any part of the for statement, but the semicolons 
+              are still required. Multiple statements may be seperated by commas, 
+              within each part of a for statement. This example makes use of an 
+              Array of integers.</p>
+            <pre class="stdCode">int [] array = new int[15]; 
+int max = array.length;
+for (<font color="#FF0000">int y = 0,z = max / 2</font>; y < max; y++ ) {<br>  <font color="#999999">//start search of array from z</font>
+} </pre> 
+            <p>You can use the <a href="javascript:popup('keywords.html#continue')" class="stdCode">continue</a> 
+              or <a href="javascript:popup('keywords.html#break')" class="stdCode">break</a> 
+              statements to skip to the end of the current loop or break out of 
+              the loop altogether. </p></td>
+        </tr>
+        <tr bgcolor="#FFFFFF"> 
+          <td align="left" valign="top" colspan="2"> <p><b>Any statement in Java 
+              can be preceded by a label</b>, which takes the form of a name followed 
+              by a colon. Labels can be useful when you want to continue or break 
+              out of a loop that is nested within another loop. The switch statement, 
+              also makes use of the keyword break. </p>
+            <pre class="stdCode"><font color="#FF0000">outer:</font> for (int i = 0 ; i < myArray.length ; i++) {
+  for ( int j = 0 ; j < myArray[i].length; j++) {
+    if (myArray[i][j].equals(‘X’)) break <font color="#FF0000">outer</font>; 
+  } 
+} 
+<font color="#999999">// break out to here once ‘X’ marks the spot</font> </pre></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+      <tr> 
+        <td align="left" valign="top"> Last Updated: January 2002. &copy;1999 Guy&nbsp;Bellingham-Smith</td>
+        
+    <td align="right" valign="top" > <a href="programming_strings.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">Strings<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+      </tr>
+</table>
+
+</FONT>
+</BODY>
+</HTML>

@@ -1,0 +1,117 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="7/20/2002">
+<meta name="keywords" content="Java,AWT,Abstract Windowing Toolkit">
+<meta name="description" content="Introducing the AWT.">
+<title>The Title</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/awt-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader">javax.swing.JLabel</h4></td>
+          <td align="right" valign="top" ><a href="swing_jbutton.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">JButton<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"><p><span class="stdCode">javax.swing.JLabel</span> 
+              is just about the simplest Swing component. Yet the Swing classes 
+              provide a lot more funcionality that the corresponding GUI component 
+              in the AWT . </p>
+            <p>Swing provides a much richer set of constructors and methods in 
+              the <span class="stdCode">JLabel</span> class, than are found in 
+              the AWT Label class. Like the <span class="stdCode">java.awt.Label</span>, 
+              you can set the <span class="stdCode">Font</span> and <span class="stdCode">Color</span> 
+              of a JLabel. <br>
+              However since JLabel extends <span class="stdCode">JComponent</span>, 
+              JLabels also support borders, image icons, and keyboard accelerators.</p>
+            <p>Swing also provides a package called <span class="stdCode">javax.swing.borders</span> 
+              that contains various types of <span class="stdCode">Border</span> 
+              classes. You can also use the <span class="stdCode">javax.swing.BorderFactory</span> 
+              class which has static methods you can call, to 'manufacture' the 
+              most common types of borders. You can create various styles of border 
+              around swing components with code similar to that shown below, which 
+              loads an image and adds it to a <span class="stdCode">JLabel</span> 
+              as an icon and then surrounds the label with a raised bevel border 
+              : </p>
+            <p class="stdCode">Image image1 = getImage(getCodeBase(), &quot;images/blue_ribbon.gif&quot;);<br>
+              ImageIcon icon1 = new ImageIcon(image1);<br>
+              JLabel label1 = new JLabel(&quot;Label1&quot;, icon1, SwingConstants.CENTER);<br>
+              /* It's simpler to use the BorderFactory to do the following <br>
+              &nbsp;&nbsp;&nbsp;BevelBorder border1 = new BevelBorder(BevelBorder.RAISED);<br>
+              &nbsp;&nbsp;&nbsp;label1.setBorder(border1);<br>
+              */<br>
+              label1.setBorder(BorderFactory.createRaisedBevelBorder());</p>
+            <p class="stdCaption">Example - Swing JApplet with JLabels, Icons 
+              and Borders.</p>
+            <p> 
+              <object
+        classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
+        codebase="http://java.sun.com/products/plugin/1.3/jinstall-13-win32.cab#Version=1,3,0,0"
+        align="absbottom" border="0" width="600" height="200"
+        name="Applet">
+                <param name="CODE"
+        value="JLabel/Applet1.class">
+                <param name="CODEBASE"
+        value="classes">
+                <param name="ARCHIVE"
+        value="JLabel/Applet1.jar">
+                <param name="NAME"
+        value="Applet">
+                <param name="type"
+        value="application/x-java-applet;version=1.3">
+                <param
+        name="scriptable" value="false">
+                <param name="imagefile"
+        value="JLabel/blue_ribbon.gif">
+                <comment> 
+                <embed align="absbottom" border="0" width="600" height="200" type="application/x-java-applet;version=1.3" code="JLabel/Applet1.class" codebase="classes" archive="JLabel/Applet1.jar" name="Applet" imagefile="JLabel/blue_ribbon.gif" scriptable="false" pluginspage="http://java.sun.com/products/plugin/1.3/plugin-install.html"></embed></object>
+              <!--
+<APPLET CODE = "JLabel/Applet1.class" CODEBASE = "../classes/" ARCHIVE = "JLabel/Applet1.jar" WIDTH = "600" HEIGHT = "200" NAME = "Applet" ALIGN = "absbottom">
+<PARAM NAME = "imagefile" VALUE ="JLabel/blue_ribbon.gif">
+
+
+</APPLET>
+-->
+              <!--"END_CONVERTED_APPLET"-->
+            </p></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr>
+    <td><p>&nbsp;</p>
+      </td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: July 2002. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="swing_jbutton.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">JButton<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+</FONT> 
+</BODY>
+</HTML>

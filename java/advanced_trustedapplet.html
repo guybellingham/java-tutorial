@@ -1,0 +1,222 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="7/20/2002">
+<meta name="keywords" content="Java,IO,Reader,Writer,InputStream,OutputStream,Collections,Threads,Networking">
+<meta name="description" content="The Java class libraries and advanced programming topics.">
+<title>Advanced Java</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/advanced-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader">Trusted Applet</h4></td>
+          <td align="right" valign="top" ><a href="advanced_policy1.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">Policy 
+            Tool <img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"><p>The Swing <span class="stdCode">JApplet</span> 
+              at the bottom of this page, will only appear in a Java 2 enabled 
+              browser , like the <a href="www.opera.com">Opera browser</a> (or 
+              you may like to install the latest <a href="http://java.sun.com/products/plugin/index.html" target="_blank">Java 
+              plug-in</a> available free from Sun Microsystems). </p>
+            <p>This applet is designed to read <span class="stdCode">html</span> 
+              files, and list all the links on the page. In order to open and 
+              read files on your local computer, it requires you to 'grant' code 
+              signed by me 'read-only' security permissions to the files on your 
+              computer. <br>
+              Setting of Java security policies, is totally under your own control 
+              using the <a href="advanced_policy1.html">policytool</a>.</p>
+            <p>This Applet is 'signed' by me: <strong><span class="stdCode">gus</span></strong>.<br>
+              Here is a link to my digital signature: <a
+        href="guscert.cer">guscert.cer</a><br>
+              this certifies who i am, and what software I publish, so that I 
+              can be held accountable for my programs.</p>
+            <p>To use the applet to read an html file on your computer, you will 
+              need to import my selfsigned certificate into your Java keystore, 
+              using the java <span class="stdCode">keytool</span>.exe program. 
+            </p></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr> 
+    <td> <table border="0" cellpadding="2" width="100%">
+        <tr> 
+          <td valign="top"><font class="text"><strong>#1</strong>. Invoke <a href="advanced_keytool1.html">keytool</a> 
+            at a command line, be sure to set the <span class="stdCode">PATH</span> 
+            environment variable to include the Java runtime binaries.<br>
+            Change to the directory that contains the downloaded certificate file, 
+            and invoke <span class="stdCode">keytool</span> with these parameters:</font> 
+            <p class="stdCode"><font class="text">keytool -printcert -file guscert.cer</font></p>
+            <p><font class="text">Make sure that the MD5 signature printed by 
+              this command, reads like the output shown at right.</font></p></td>
+          <td valign="top"><font class="text"><img src="images/keytool-printcert.gif"
+        width="572" height="359"></font></td>
+        </tr>
+        <tr> 
+          <td valign="top"><font class="text"><strong>#2</strong>. If the signature 
+            is the same, you may import my public-key certificate and trust my 
+            signed java code with the following command:</font> 
+            <p class="stdCode"><font class="text">keytool -import -alias gus -file 
+              guscert.cer</font></p>
+            <p><font class="text">The display shows that I chose a password to 
+              protect my <span class="stdCode">keystore</span>, and that the certificate 
+              was successfully imported and trusted.</font></p></td>
+          <td valign="top"><font class="text"><img src="images/keytool-import.gif"
+        width="572" height="359"></font></td>
+        </tr>
+      </table>
+      <table border="0" cellpadding="2" width="100%">
+        <tr> 
+          <td valign="top"><font class="text"><strong>#3</strong>. Now that you 
+            have an entity called gus in your keystore file, you can grant the 
+            entity <span class="stdCode">'gus'</span> some security permissions, 
+            using the java <a href="advanced_policy1.html">policytool</a>.<br>
+            Find the program called <span class="stdCode">policytool.exe</span> 
+            in the Java runtime libraries. <br>
+            Use it to create a new policy file that allows code <span class="stdCode">signedby 
+            gus</span> the <span class="stdCode">FilePermission</span> on target 
+            <span class="stdCode"> &lt;&lt;ALL FILES&gt;&gt;</span>, the action 
+            <span class="stdCode">read</span>.<br>
+            Or you can copy the contents of this file: <a
+        href="gus.policy">gus.policy</a>&nbsp; into a text file called <span class="stdCode">C:\policy\gus.policy</span> 
+            on your computer. <br>
+            You can see, that this policy grants code signed by gus, permissions 
+            to <span class="stdCode">read</span> files only. The applet also need 
+            permission to read the Java system property called <span class="stdCode">user.home</span>, 
+            and to display a window without a warning banner across the bottom.<br>
+            It is probably <font color="#FF0000">NEVER</font> a good idea to grant 
+            policies that allow other peoples' code, to write to or execute files 
+            on your machine! </font> 
+            <p><font class="text">There are 3 alternative ways to make sure the 
+              Java Virtual Machine, loads the new security policy at runtime (see 
+              below) ! </font></p></td>
+        </tr>
+      </table>
+      <table border="0" cellspacing="1"
+        width="100%">
+        <tr> 
+          <td valign="top"><a name="securityproperties"></a><strong>#4<span class="stdCode">a</span></strong> 
+            To permanently add a new policy file, to the default policy files, 
+            that are loaded by the Java runtime, you have to manually edit the 
+            <span class="stdCode">java.security</span> properties file !<br>
+            Use the Finder on your computer to find this file, it is usually in 
+            the <span class="stdCode">{javahome}\lib\security</span> folder. <br>
+            Make a backup copy before you edit it. <p><strong>Tip!</strong> After 
+              making any policy changes, you need to reboot your machine for some 
+              reason, before the new permissions in the policy file will take 
+              effect! <br>
+              Disabling the java runtime cache has no effect, and is NOT recommended.</p></td>
+          <td valign="top"><img
+                src="images/java-security.gif" width="481"
+                height="329"></td>
+        </tr>
+        <tr> 
+          <td valign="top">The number in red, is important, it must be in contiguous 
+            ascending sequence.</td>
+          <td valign="top">You can open it in notepad, and look for the following 
+            entries :<br>
+            <span class="stdCode">policy.url.<font color="#FF0000">1</font>={java.home}\lib\security\java.policy<br>
+            policy.url.<font color="#FF0000">2</font>={user.home}\.java.policy 
+            <br>
+            </span>Add an entry pointing to your new policy file:<span class="stdCode"><br>
+            policy.url.<font color="#FF0000">3</font>={user.home}\.my.policy </span></td>
+        </tr>
+      </table>
+      <table border="0" cellpadding="2" width="100%">
+        <tr> 
+          <td valign="top">&nbsp;</td>
+        </tr>
+        <tr> 
+          <td valign="top"><p><font class="text"><strong>#4<span class="stdCode">b</span></strong> 
+              To add a new policy file to be loaded just once when running an 
+              Application, use the <span class="stdCode">-D&nbsp;system.property=value</span> 
+              option of the java runtime command like this :<br>
+              &gt;<span class="stdCode">java&nbsp;-Djava.security.policy=file:/C:/policy/new.policy&nbsp;Application1<br>
+              </span></font><font class="text">use a double equals sign, to replace 
+              the default policy files for this run. </font></p>
+            <p><font class="text"> Note: You will need to make sure that a <span class="stdCode">SecurityManager</span> 
+              is loaded at runtime (Java applications don't generally need a <span class="stdCode">SecurityManager</span>). 
+              You can do this with the command line option :<br>
+              <span class="stdCode">-Djava.security.manager</span><br>
+              or the following code in your application initialization method.<br>
+              <span class="stdCode">if (System.getSecurityManager() == null) {<br>
+              &nbsp;&nbsp;System.setSecurityManager(new SecurityManager());<br>
+              }</span></font></p></td>
+        </tr>
+        <tr> 
+          <td><font class="text"><strong>#4<span class="stdCode">c</span></strong> 
+            To add a new policy file to be loaded when running an Applet in the 
+            appletviewer utility, use the command line option <span class="stdCode">-J-D 
+            system.property=value</span> <br>
+            &gt;<span class="stdCode">appletviewer&nbsp;-J-Djava.security.policy=file:/C:/policy/new.policy&nbsp;Applet1</span></font></td>
+        </tr>
+      </table>
+      <table border="0" cellpadding="2" width="100%">
+        <tr> 
+          <td valign="top"><font class="text">&nbsp; 
+            <!--"CONVERTED_APPLET"-->
+            <!-- CONVERTER VERSION 1.0 -->
+            <object
+        classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
+        codebase="http://java.sun.com/products/plugin/1.2/jinstall-12-win32.cab#Version=1,2,0,0"
+        align="middle" border="0" width="400" height="300"
+        name="SecurityApplet">
+              <param name="CODE"
+        value="appletsecurity.Applet1.class">
+              <param
+        name="CODEBASE" value="classes">
+              <param name="ARCHIVE"
+        value="appletsecurity/Applet1.jar,com/spiritone/gus/component/FileTreeDialog.jar,com/spiritone/gus/io/FileFilter.jar">
+              <param
+        name="NAME" value="SecurityApplet">
+              <param name="type"
+        value="application/x-java-applet;version=1.2">
+              <COMMENT> 
+              <embed align="middle" border="0" width="400" height="300" type="application/x-java-applet;version=1.2" java_code="appletsecurity.Applet1.class" java_codebase="classes" " java_archive="appletsecurity/Applet1.jar,com/spiritone/gus/component/FileTreeDialog.jar,com/spiritone/gus/io/FileFilter.jar" name="SecurityApplet" pluginspage="http://java.sun.com/products/plugin/1.2/plugin-install.html"></embed></object>
+            </font> <object
+        classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
+        codebase="http://java.sun.com/products/plugin/1.2/jinstall-12-win32.cab#Version=1,2,0,0"
+        align="middle" border="0" width="400" height="300"
+        name="SecurityApplet">
+            </object></td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: July 2002. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="advanced_policy1.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">Policy 
+      Tool <img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+
+</FONT> 
+</BODY>
+</HTML>

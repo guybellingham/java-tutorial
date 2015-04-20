@@ -1,0 +1,236 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="7/20/2002">
+<meta name="keywords" content="Java,IO,Reader,Writer,InputStream,OutputStream,Collections,Threads,Networking">
+<meta name="description" content="The Java class libraries and advanced programming topics.">
+<title>Advanced Java</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/advanced-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader">Object Serialization</h4></td>
+          <td align="right" valign="top" ><a href="advanced_streamtokenizer.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">StreamTokenizer<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"><p><a name="objectstreams"></a>The 
+              <span class="stdCode">ObjectInputStream</span> and <span class="stdCode">ObjectOutputStream</span> 
+              classes define methods to read and write Objects. <br>
+              In object-oriented languages such as Java, data and code are tightly 
+              bound together so that one does not exist without the other. To 
+              support permanent information in an object-oriented manner, you 
+              need a scheme to preserve the qualities of an object-oriented language 
+              when the object instances are temporarily written to a file and 
+              later restored. </p>
+            <p>'Persistence' in an object-oriented programming language deals 
+              with the capability of objects to exist beyond the lifetime of the 
+              program that created them. <br>
+              No longer is object persistence a task each programmer must independently 
+              implement for himself or herself. JDK 1.1 adds the following persistence-related 
+              classes for you to use:</p>
+            <table border="1" cellpadding="2"
+        cellspacing="0" width="100%">
+              <tr class="stdTableColumnHeader"> 
+                <td>Class</td>
+                <td>Description</td>
+              </tr>
+              <tr> 
+                <td class="stdCode">ObjectOutputStream</td>
+                <td>Use this output stream to convert objects from the in-memory 
+                  form to serial form. This stream implements the ObjectOutput 
+                  interface. </td>
+              </tr>
+              <tr> 
+                <td class="stdCode">ObjectInputStream</td>
+                <td>Use this input stream to restore objects from the serial form. 
+                  This stream implements the ObjectInput interface.</td>
+              </tr>
+              <tr> 
+                <td class="stdCode">Serializable</td>
+                <td>Implement this interface to indicate that the class can be 
+                  converted to a serial form and to define methods that can be 
+                  overridden to control the encoding of the class.</td>
+              </tr>
+              <tr> 
+                <td class="stdCode">Externalizable</td>
+                <td>Implement this subclass of Serializable to define methods 
+                  that provide complete control over the encoding process of the 
+                  object. </td>
+              </tr>
+            </table>
+            
+          </td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr> 
+    <td><p>The JDK support for serialization allows versioning of serialized objects, 
+        and interoperation with previous versions of a stored object, as long 
+        as you follow some simple rules. When you store an object in an <span class="stdCode">ObjectOutputStream</span>, 
+        the serialVersionUID of the class is written to the stream to ensure that 
+        the correct class is found when the object is restored. The serialVersionUID 
+        is a hash computed over various attributes of the class, including the 
+        class name, implemented interface names, field names, and method names. 
+        When the object is restored, the class is loaded by name and then verified 
+        to be identical by comparing the serialVersionUID of the class from the 
+        stream with the serialVersionUID computed for the class just loaded. If 
+        you add fields, interfaces, or methods to a class definition, the serialVersionUID 
+        changes and the new class is assumed to be incompatible with the old. 
+        To provide for interoperation between different versions of the same class, 
+        you must explicitly declare the serialVersionUID of the class you are 
+        compatible with and follow some simple rules in creating the new version:</p>
+      <ul>
+        <li> 
+          <p>Do not delete a field or change it to be transient or static </p>
+        </li>
+        <li> 
+          <p>Do not change a field's built-in type (for example, do not change 
+            ashort to an int)</p>
+        </li>
+        <li> 
+          <p>Do not change a class from Serializable to Externalizable or vice 
+            versa </p>
+        </li>
+      </ul>
+      <p>You can add fields, add methods, change access modifiers, and implement 
+        new interfaces. However, in all cases, you must deal with the consequences 
+        of class change, such as missing fields when restoring an object saved 
+        by an earlier version of the class. </p>
+      <p><strong>JDK 1.1 uses a manually controlled object persistence scheme</strong>. 
+        The storage and retrieval of persistent Java objects is completely under 
+        your control. To make an object persistent, you create an <span class="stdCode">ObjectOutputStream</span> 
+        and serialize the object by calling the <span class="stdCode">writeObject()</span> 
+        method on it. You specify where the output of the ObjectOutputStream goes, 
+        and hence where the object is serialized. When you wrap the ObjectOutputStream 
+        around a FileOutputStream, and you write the state of the object to a 
+        file as shown in the following code: </p>
+      <p class="stdCode">FileOutputStream fout = new FileOutputStream(filename);<br>
+        ObjectOutputStream out = new ObjectOutputStream(fout);<br>
+        out.writeObject(obj);</p>
+      <p>Wrap the ObjectOutputStream around an OutputStream retrieved from a socket 
+        (using getOutputStream()), and you transfer the state of the object across 
+        the Internet to another machine as shown here: </p>
+      <p class="stdCode">Socket s = new Socket(remotehost, remoteport);<br>
+        ObjectOutputStream out = new ObjectOutputStream(s.getOutputStream());<br>
+        out.writeObject(obj);</p>
+      <p>Conversely, to restore an object, you create an <span class="stdCode">ObjectInputStream</span> 
+        and call the <span class="stdCode">readObject()</span> method. You wrap 
+        ObjectInputStream around various types of input streams in a way similar 
+        to what you did with the ObjectOutputStream and the various types of output 
+        streams. The next object in the stream is reconstituted and returned from 
+        the readObject() call. </p>
+      <p>Because the returned type of readObject() is <span class="stdCode">java.lang.Object</span>, 
+        you usually want to cast the returned object to another type. Java's type-safe 
+        casting ensures that you do not cast the object to an incorrect type. 
+        You can also use <a
+        href="../2.0_Java_programming/comparisons4.htm">instanceof</a> or methods 
+        in the object reflection package to determine the type of received objects. 
+      </p>
+      <p><strong>The <span class="stdCode">Serializable</span> interface</strong> 
+        defines no methods but is an indication that the class is compatible with 
+        serialization and may have private<span class="stdCode"> readObject()</span> 
+        and <span class="stdCode">writeObject()</span> methods to control serialization. 
+        For many classes, you simply add <span class="stdCode">implements Serializable</span> 
+        to the class definition to use the default Java runtime serialization 
+        format to serialize your objects. All subtypes of a serializable class 
+        are themselves serializable. </p>
+      <p>Only the data in the objects and the declarations of the classes are 
+        encoded in the byte stream. The Java virtual machine bytecodes that implement 
+        the methods of the classes are not stored when an object is serialized. 
+        When an object is retrieved from the stream, the class declaration is 
+        read and the normal class-loading mechanisms (for example, searching through 
+        the CLASSPATH) are used to load the code. If a matching class is not found, 
+        <span class="stdCode">readObject()</span> throws <span class="stdCode">ClassNotFoundException</span>. 
+      </p>
+      <p>The JDK support for persistence does not deal with the issues of code 
+        distribution (which must be addressed if you are going to build Java agents 
+        that can migrate from machine to machine). When you store an object or 
+        send it across the Internet, the object must include a copy of all the 
+        objects it references, all the objects those objects reference, and so 
+        on. The object has to include all these other objects because all these 
+        objects are part of the total state of the one object you explicitly serialized. 
+        <br>
+        <strong>Note</strong>: The <span class="stdCode">writeObject()</span> 
+        method does not explicitly synchronize on the object being serialized. 
+        If you have multiple threads using the same object, and one thread can 
+        possibly be serializing an object while another thread is manipulating 
+        fields of the same object, you must take steps to be thread safe: You 
+        can either add explicit synchronization code or make a 'clone' of the 
+        object before serialization. </p>
+      <p>Generally, objects that are tied to system resources (such as process 
+        identifiers, file descriptors, network sockets, and so on) are not candidates 
+        for serialization. Another clue to potential serialization problems is 
+        <span class="stdCode">native</span> methods. Such methods often interact 
+        with external software whose state is not automatically captured by serialization. 
+        <br>
+        See the <a href="../keywords.htm#transient" class="stdCode">transient</a> 
+        keyword for how to exclude properties and object references from the serialization 
+        process.</p>
+      <p><a name="externalizable"></a><strong><span class="stdCode">The Externalizable 
+        interface</span></strong> extends Serializable, and is useful in situations 
+        where the class requires complete control over the encoding process. Only 
+        the class identification of the object being serialized is automatically 
+        written to the output stream. By implementing <span class="stdCode">Externalizable</span>, 
+        your class can control whether or not the state of superclasses is stored 
+        in the stream and exactly which fields are stored. For an Externalizable 
+        class, you must implement the following public methods: </p>
+      <table
+        width="100%" border="1" cellpadding="2" cellspacing="0">
+        <tr class="stdTableColumnHeader"> 
+          <td>Method</td>
+          <td>Description</td>
+        </tr>
+        <tr> 
+          <td class="stdCode">void&nbsp;readExternal(ObjectInput) </td>
+          <td>The object implements the readExternal() method to restore its contents 
+            by calling the methods of DataInput for primitive types and readObject() 
+            for objects, strings, and arrays. </td>
+        </tr>
+        <tr> 
+          <td class="stdCode">void&nbsp;writeExternal(ObjectOutput)</td>
+          <td>The object implements the writeExternal() method to save its contents 
+            by calling the methods of DataOutput for its primitive values or calling 
+            the writeObject() method of ObjectOutput for objects, strings, and 
+            arrays.</td>
+        </tr>
+      </table>
+      <p>The<span class="stdCode"> writeExternal()</span> method obviously must 
+        encode the data of the object in a form and sequence supported by <span class="stdCode">readExternal()</span>. 
+        Unlike <span class="stdCode">Serializable</span>, the <span class="stdCode">Externalizable</span> 
+        interface does not handle code versioning automatically; you must provide 
+        your own versioning approach. </p></td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: July 2002. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="advanced_streamtokenizer.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">StreamTokenizer<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+</FONT> 
+</BODY>
+</HTML>

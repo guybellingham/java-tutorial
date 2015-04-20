@@ -1,0 +1,131 @@
+Let's see what we know about Cascading Style Sheets (CSS) so far: 
+
+1. We can specify CSS declarations in the STYLE attribute that applies to most elements 
+2. The value of the STYLE attribute is a series of semicolon-separated CSS declarations 
+3. Each declaration consists of a property and a value, separated by a colon .
+
+
+A Style Sheet is a file that contains information about how a document should be rendered, and consist of CSS statements. The most commonly used type of statement is a rule set, consists of a selector and any number of directives enclosed in a block.
+
+For example:
+H1 {
+ text-align: center;
+ color: red;
+ font: bold italic 150% sans-serif;
+}
+P {
+ text-align: justify;
+ color: blue;
+ margin-left: 2cm;
+ border-left: 2px solid green;
+}
+
+The H1 part in the example is the selector. The selector indicates which elements the style directives apply to. In its simplest form, a selector is simply an element name, as above, where the elements referred to are all H1 elements. Following the selector, inside braces ({ and }), are the directives that we wish to apply to these elements. 
+
+
+What we need is a way of linking this stylesheet to the document itself. The easiest way to do this is by using the STYLE element. The STYLE element is another document head element. 
+
+<HTML>
+<HEAD>
+<TITLE>Acme Computer Corp.: Who We Are</TITLE>
+<STYLE TYPE="text/css" MEDIA="screen">
+BODY {
+ background-color: #E0DD06;
+ color: #027002;
+}
+H1 {
+ text-align: right;
+ font: bold italic 150% sans-serif;
+ color: red;
+}
+P {
+ text-align: justify;
+ margin-left: 2cm;
+}
+</STYLE>
+</HEAD>
+
+
+CSS Selector syntax is actually very complex. There are very powerful ways of assigning styles to specific elements. 
+One way this can be accomplished, is by using two new attributes that apply to all elements in HTML. These attributes are ID and CLASS. 
+
+
+For example given this page:
+<BODY>
+<H1 ID="first">Acme Computer Corp.</H1>
+<H1 ID="second">Global Presence, Global 
+Thinking</H1>
+</BODY>
+
+the first H1 element has an ID of "first", and the second H1 element has an ID of "second".
+Now, we can use a special CSS selector syntax to refer to these elements specifically, like this: 
+
+H1#first { ...declarations... }
+H1#second { ...declarations... }
+
+We can also write them like this: 
+
+#first { ...declarations... }
+#second { ...declarations... }
+
+These selectors mean "the element that has an ID of 'first'" and "the element that has an ID of 'second'". 
+
+
+When we want to group two or more elements and assign the same style to them, you can have more than one element in your document with the same CLASS, so you can refer to them as a group.
+
+
+For example:
+<BODY>
+<H1>Acme Computer Corp.</H1>
+<P CLASS=special>Acme Computer Corporation is atechnology-based company</P>
+<H1>Global Presence, Global Thinking</H1>
+<P CLASS=news>Dr. Arnold D. Propellerhead'sbest-selling book, <cite>TransfirbulationTechnology</cite>, is now <a href="books/OTP/">available online</A><P>
+</BODY>
+
+And here's a stylesheet for it: 
+
+.special {
+ font-size: bigger;
+}
+.news {
+ font-family: sans-serif;
+ color: #0000A0;
+}
+
+
+The link pseudoclass refers to A elements that are hyperlink heads that have not been visited. The visited pseudoclass refers to A elements that are hyperlink heads and have been visited. So, the following stylesheet: 
+
+A:link { color: green; }
+A:visited { color: red; }
+
+Makes all unvisited links green and all visited links red. Notice the syntax, which is similar to class syntax, but uses a colon (:) instead of a period. 
+
+
+
+The DIV and SPAN elements have no semantics at all; they just separate a piece of your document into an element. Usually you'll assign them an ID or CLASS so you can refer to them in a stylesheet. Here's an example of their usage: 
+<DIV CLASS="WhatsNew">
+
+ <H1>What's New</H1>
+ <P CLASS=news>Dr. Arnold D. Propellerhead's 
+best-selling book.<P>
+<SPAN CLASS="CompanyName">Acme Computer Corp.</SPAN>
+
+</DIV>
+
+
+You have seen how you can use a style sheet in the document head to affect the presentation of your entire document. However, if you have a large number of documents, it would be nice to be able to use a single style sheet for all of them. This is indeed possible, and the easiest way to use CSS with HTML. 
+
+All you have to do is put the style sheet into a separate file and use the LINK element to link to it, like this: 
+
+<LINK
+ REL="Stylesheet"
+ TITLE="Default Stylesheet"
+ MEDIA="Screen"
+ HREF="style/default.css"
+>
+
+
+
+ 
+
+

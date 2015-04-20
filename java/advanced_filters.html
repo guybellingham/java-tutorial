@@ -1,0 +1,226 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="7/20/2002">
+<meta name="keywords" content="Java,IO,Reader,Writer,InputStream,OutputStream,Collections,Threads,Networking">
+<meta name="description" content="The Java class libraries and advanced programming topics.">
+<title>Advanced Java</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/advanced-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader">DataInput and 
+              DataOutput</h4></td>
+          <td align="right" valign="top" ><a href="advanced_readers.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">Readers 
+            &amp; Writers<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"><p><a name="filterstreams"></a><strong>The 
+              <span class="stdCode">FilterInputStream</span> and <span class="stdCode">FilterOutputStream</span></strong> 
+              classes define abstract methods of filtering incoming or outgoing 
+              streams of bytes.</p>
+            <p>Filter stream classes, always require some other <span class="stdCode">InputStream</span> 
+              or <span class="stdCode">OutputStream</span> (as appropriate), to 
+              provide the stream of incoming or outgoing bytes.</p>
+            <p>You can chain together as many stream filters as you need, each 
+              one just attaches to the last, and continues adding processing to 
+              the stream of incoming or outgoing bytes.</p>
+            <p class="stdCaption">figure: How filter Stream classes attach to 
+              Input or OutputStream classes.</p>
+            <p><img
+        src="images/datainputstream.gif" width="363" height="312"
+        naturalsizeflag="3"></p></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr> 
+    <td><p><span class="stdCode"><strong>DataInput</strong></span> and <span class="stdCode"><strong>DataOutput</strong></span> 
+        are two interfaces which layout methods for reading and writing the fundamental 
+        datatypes.</p>
+      <p>Dealing with bytes of data is cumbersome, java programs usually need 
+        to read or write highly structured data. Another problem with bytes is 
+        that the 8-bit encoding schemes used, do not accommodate international 
+        character sets. </p>
+      <p><span class="stdCaption">figure: The Input and Output Filter Stream classes 
+        in the java.io package.</span><br>
+        <br>
+        <img src="images/filter-streams.gif" width="640"
+        height="240" naturalsizeflag="3"></p>
+      <p>Of the many different classes which specialize in filtering streams, 
+        the <span class="stdCode">DataInputStream</span> and <span class="stdCode">DataOutputStream</span> 
+        are important, because they implement 2 interfaces (shown in red), which 
+        declare methods for dealing with the fundamental Java datatypes, short, 
+        integer, long, float, double, char, and boolean in addition to plain old 
+        byte. <span class="stdCode">PrintStream</span> and <span class="stdCode">RandomAccessFile</span>, 
+        also define these methods.</p>
+      <p><strong>Note</strong>: Java 1.1 introduced two new character based (16-bit) 
+        Input and Output streams, called <span class="stdCode">Reader</span> and 
+        <span class="stdCode">Writer</span>, which are faster at retrieving blocks 
+        of data, and make it easier to develop programs in foreign languages.</p>
+      <p><a name="datainput"></a><span class="stdCode"><strong>DataInput</strong></span> 
+        and <span class="stdCode"><strong>DataOutput</strong></span> define the 
+        following abstract methods.</p>
+      <table width="100%" border="0" cellpadding="2" class="stdTableAsGroupBox">
+        <tr class="stdTableColumnHeader"> 
+          <td valign="top"><font class="text">method</font></td>
+          <td valign="top"><font class="text">description</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">boolean 
+            readBoolean( ) throws IOException ;</font></td>
+          <td valign="top"><font class="text">Reads a true/false value</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">byte 
+            readByte( ) throws IOException ;</font></td>
+          <td valign="top"><font class="text">Reads a signed (2&#146;s complement) 
+            byte.</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">int 
+            readUnsignedByte( ) throws IOException ;</font></td>
+          <td valign="top"><font class="text">Returns an unsigned byte of data, 
+            as an int.</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">short 
+            readShort( ) throws IOException ;</font></td>
+          <td valign="top"><font class="text">Reads a signed 2-byte numeric value. 
+            The first byte read is the &#145;high-order&#146; byte.</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">char 
+            readChar( ) throws IOException ;</font></td>
+          <td valign="top"><font class="text">Reads a 2 byte Unicode character.</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">int 
+            readInt( ) throws IOException ;</font></td>
+          <td valign="top"><font class="text">Reads a signed 4 byte integer value.</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">long 
+            readLong( ) throws IOException ;</font></td>
+          <td valign="top"><font class="text">Reads a signed 8 byte long integer 
+            value.</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">float 
+            readFloat( ) throws IOException ;</font></td>
+          <td valign="top"><font class="text">Reads a 4 byte representation of 
+            a signed decimal number.</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">double 
+            readDouble( ) throws IOException ;</font></td>
+          <td valign="top"><font class="text">Reads an 8 byte representation of 
+            a signed decimal number.</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">String 
+            readLine( ) throws IOException ;</font></td>
+          <td valign="top"><font class="text">Reads a sequence of bytes and converts 
+            them to a string of Unicode characters, with the high-order 8 bits 
+            set to zero. Reading continues until a newline char (&#145;\n&#146;), 
+            carriage return (&#145;\r&#146;) char or end-of-file condition is 
+            read.</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">void 
+            readFully(byte dest[ ]) throws IOException ;</font></td>
+          <td valign="top"><font class="text">Fills the byte array called dest, 
+            from the input stream. An EOFException can be thrown if the stream 
+            ends before the array is filled.</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">void 
+            skipBytes(int num) throws IOException ;</font></td>
+          <td valign="top"><font class="text">Attempts to read and discard num 
+            bytes from the input stream.</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">void 
+            writeBoolean(boolean b) throws IOException ;</font></td>
+          <td valign="top"><font class="text">Writes boolean values, such that 
+            (byte)0 represents true, and (byte)1 represents false.</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">void 
+            writeByte(int i) throws IOException ;</font></td>
+          <td valign="top"><font class="text">Writes the high-order byte of integer 
+            i.</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">void 
+            writeShort(int i) throws IOException ;</font></td>
+          <td valign="top"><font class="text">Writes the two low-order bytes of 
+            integer i (bits 8 &#150; 15 first followed by bits 0 &#150; 7).</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">void 
+            writeInt(int i) throws IOException ;</font></td>
+          <td valign="top"><font class="text">Writes all four bytes of integer 
+            i. Starting with the high-order byte (bits 24 &#150; 31). </font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">void 
+            writeLong(long l) throws IOException ;</font></td>
+          <td valign="top"><font class="text">Writes eight bytes of long l. Starting 
+            with the high-order byte (bits 56 &#150; 63). </font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">void 
+            writeFloat(float f) throws IOException ;</font></td>
+          <td valign="top"><font class="text">Writes the 4 byte representation 
+            of a floating point number f.</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">void 
+            writeBytes(String s) throws IOException ;</font></td>
+          <td valign="top"><font class="text">Writes the String s, as a series 
+            of bytes. Only the low-order byte of each Unicode character is written.</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">void 
+            writeChars(String s) throws IOException ;</font></td>
+          <td valign="top"><font class="text">Writes the String s, as a series 
+            of chars. Two bytes are written for each Unicode character.</font></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: July 2002. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="advanced_readers.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">Readers 
+      &amp; Writers<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+
+</FONT> 
+</BODY>
+</HTML>

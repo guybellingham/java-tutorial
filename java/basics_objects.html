@@ -1,0 +1,123 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="29/1/2002">
+<meta name="keywords" content="object, class, instance, new, type, Java, Programming, Guide, Beginner, Basics, Picture, Example, Applet, Servlet, JSP, Links">
+<meta name="description" content="What are Objects? Interactive Java Programming Guide, play with the Applets, try the example code.">
+<TITLE>Java Objects</TITLE>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="1" leftmargin="1"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Image Swap Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script --> 
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading --> 
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC">
+      <!-- Basics Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/basics-toc.js">
+	</SCRIPT></td>
+    <td align="left" valign="top">
+     <table border="0" cellpadding="2" width="100%" cellspacing="0"> 
+      <tr>
+      <td align="left" valign="top">
+      <h4 class="stdPageHeader"> What is a Java Object?</h4>
+      </td>
+          <td align="right" valign="top" > <a href="basics_objectadvantages.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">Advantages 
+            of Objects<img src="../images/nextarrow_off.gif" alt="Next Page!" name="next1" width="40" height="24" border="0"></a> 
+          </td>
+      </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"> 
+            <p><b>Everything in Java is an object</b>, a Java program is a type 
+              of object, and in essence contains a collection of other <a
+        href="javascript:popup('keywords.html#object')">objects</a>, which send 
+              and receive messages telling one another what needs to be done. 
+              The complexity of a conventional 'program' is broken up into interactions 
+              between self contained packets of Java code and data (objects). 
+            </p>
+            <p><b>An object exists at runtime in computer memory</b>, and respresents 
+              a particular <i>instance</i> of an object definition. Objects have 
+              code (also termed <i>behaviors</i>) and data (also known as <i>properties)</i>. 
+              Objects generally serve a single functional purpose. Java refers 
+              to objects, using their address in memory. Objects exist only when 
+              a Java program is running. Objects are loaded at runtime, from definition 
+              files that have a <span class="code">.class</span> extension. These 
+              'class files' contain all the information needed to construct an 
+              object, initialize its data and define the things that it can then 
+              do at runtime. </p>
+            <p><b>Objects, have a number of essential characteristics</b>, the 
+              most important of which are : </p>
+            <ul>
+              <li><b>encapsulation</b> - the ability to hide their data and logic 
+                away, and to be self contained and portable.</li>
+              <li><b>inheritance</b> - the ability to base one object type upon 
+                an existing object type, and extend its functionality in some 
+                desired way. </li>
+              <li><b>polymorphism</b> - this is a tricky one to explain, and we'll 
+                cover it in more detail on a later page. Essentially it means 
+                that you can handle an object as if it were its more generic parent 
+                or grandparent object. This is very useful when you want your 
+                code to be able to work with a variety of objects that all inherit 
+                from a generic parent object type. </li>
+            </ul>
+          </td>
+      </tr>
+     </table>
+   </td>
+  </tr>
+</table>
+<table width="100%" name="contentTable" border="0" cellspacing="2" cellpadding="2" bgcolor="#FFFFFF">
+  <tr align="left" valign="top"> 
+                <td><img src="images/encapsulation.gif" width="199" height="176"></td>
+                <td> 
+                  
+      <p>This is a common way of depicting an object, with its variables (or 'properties') 
+        protected inside a 'shell' that consists of the public methods (the 'behaviors').</p>
+                  
+      <p>Other objects can act on the variables of this object, but only in a 
+        controlled way, through the available methods. The ideal is to advertise 
+        <b>what</b> an object can do but hide <b>how</b> it does it. As we'll 
+        see in a later page, Java has keywords that let you control access to 
+        methods and variables inside an object. </p>
+                  <p>&nbsp;</p>
+                </td>
+              </tr>
+  <tr valign="top" align="left"> 
+    <td valign="top" colspan="2"> 
+      <p><b>Objects can contain other objects.</b> So that in addition to being 
+        able to derive new object types from existing ones, you can also build 
+        new types of objects, by assembling other existing objects, much like 
+        building with Lego bricks.</p>
+    </td>
+  </tr>
+  <tr valign="top" align="left"> 
+    <td valign="top"> <a href="applet_circleslider.html"><img src="images/applet-circle-slider.gif" width="207" height="212" border="0"></a></td>
+    <td valign="top">
+      <p>Click on the image at left to load the example Applet shown.</p>
+      </td>    
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0"> 
+      <tr>
+      <td align="left" valign="top">
+      Last Updated: December 2001. &copy;1999 Guy&nbsp;Bellingham-Smith 
+      </td>
+          <td align="right" valign="top" > <a href="basics_objectadvantages.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">Advantages 
+            of Objects<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+      </tr>
+</table>
+
+</FONT> 
+</BODY>
+</HTML>

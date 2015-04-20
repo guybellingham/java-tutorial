@@ -1,0 +1,28 @@
+
+http://groups.google.com/groups?hl=us&group=comp.lang.java - newsgroups on googles website.
+
+http://java.sun.com/docs/faqindex.html  - The collections of frequently asked questions (FAQs) listed below provide brief answers to many common questions about Java Software and our products. 
+
+http://java.sun.com/docs/books/tutorial/java/problems/index.html  - Beginners Common problems and some solutions.
+
+http://www.jsurfer.org/ - Java Forums and Links
+
+
+http://www.javable.com/ - News, Reviews, Russian site. Check out Tools reviews
+
+http://javaboutique.internet.com/tutorials/ 
+
+http://robocode.alphaworks.ibm.com/home/home.html - battling Java Robots
+
+http://www.osdn.com/  - Open Source news, jobs, Linux stuff
+
+http://www.gjt.org/ - Giant Java Tree, checkout the downloads, and the MySql JDBC driver and checkout http://www.mysql.com .
+
+http://www.jars.com/ - reviews, extensive ratings, applets & widgets
+
+http://www.jguru.com/ - famous FAQs and Forums, links to articles.
+
+http://junit.org/ - OpenSource Java Unit Testing Framework.
+
+http://jakarta.apache.org/ - Apache license software. Checkout the Tomcat JSP/Servlet server, and the various web application frameworks and template languages under development (Struts, Turbine, Velocity).
+

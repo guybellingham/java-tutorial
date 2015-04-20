@@ -1,0 +1,179 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="29/1/2002">
+<meta name="keywords" content="object, method, parameter, reference, pointer, handle, by value, instance, variable, Java, Programming, Guide, Beginner, Basics, Picture, Example, Applet, Servlet, JSP, Links">
+<meta name="description" content="Working with objects. Interactive Java Programming Guide, play with the Applets, try the example code.">
+<title>Referencing methods in objects</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="1" leftmargin="1"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script --> 
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading --> 
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC">
+      <!-- Basics Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/basics-toc.js">
+	</SCRIPT></td>
+    <td align="left" valign="top"> 
+      <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> 
+            <h4 class="stdPageHeader"> Working with methods and variables.</h4>
+          </td>
+          <td align="right" valign="top" >
+		  <a href="basics_summary.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">summary<img src="../images/nextarrow_off.gif" alt="Next Page!" name="next1" width="40" height="24" border="0" id="next1"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"> 
+            <p>Now we need to look at what happens when you reference the member 
+              methods and variables within an object at runtime.</p>
+            <p><b>To reference a member variable in another object.</b> Use the 
+              object variable that addresses the other object, followed by a fullstop 
+              and the name of the <i>instance </i>variable. You cannot directly 
+              reference <i>local </i>variables, defined inside method blocks. 
+              Remember that generally you can only reference variables in other 
+              classes and packages that are defined as <a href="javascript:popup('keywords.html#public')">public</a>. 
+            </p>
+            <p><b>A static variable belongs to the class as a whole.</b> If you 
+              define a variable with the <a href="javascript:popup('keywords.html#null')">static</a> 
+              keyword, you should use the class name instead of an object variable, 
+              to reference that variable. <br>
+              <span class="caption">For example the java.lang.System class has 
+              a static variable called <font color="#FF0000">out</font> that Java 
+              applications can use to print standard system console messages :</span> 
+            </p>
+            <pre class="code"><font color="#999999">/**
+ * The "standard" output stream. This stream is already 
+ * open and ready to accept output data. Typically this stream 
+ * corresponds to display output or another output destination 
+ * specified by the host environment or user. 
+ * For simple stand-alone Java applications, a typical way to write
+ * a line of output data is:
+ * <font color="#333333">System.out.println(data);</font>
+ * @see java.io.PrintStream#println(java.lang.String) 
+ */ </font>
+ <font color="#000000">public final <font color="#FF0033">static</font> PrintStream <font color="#FF0000">out</font> = nullPrintStream();</font></pre>
+            <b>To reference a member method in another object.</b> 
+              Use the object variable that addresses the other object, followed 
+              by a fullstop and the method name followed by the parameters in 
+              parentheses. Remember that java finds methods by their 'signature'. 
+              <br>
+            
+            <pre class="code"><font color="#999999">//DepositAccount extends the generic Account class</font> 
+<font color="#FF0000">Account account = new DepositAccount();</font>
+<font color="#999999">//Reference the method with the 'deposit(double)' signature</font>
+<font color="#FF0000">account.deposit(512.50);</font> </pre>
+            <p> The parameters you pass to the method (in parentheses), must match 
+              the ‘signature’ of a method definition in the object class (or in 
+              the classes it inherits from). If the java compiler can't find the 
+              method in the object variable class (or its inheritance hierarchy) 
+              you will get a compile time error, saying the method is not defined.</p>
+            <p> <b>Gotcha!</b> When you reference an object by a more generic 
+              parent class, you only have access to the member methods and variables 
+              of that parent class. So to get the above example to compile, the 
+              Account class must have a definition for the deposit(double amt) 
+              method, which the DepositAccount class should <i>override</i> : 
+            </p>
+            <pre class="code">public class Account {
+<font color="#999999">  //All Accounts have some sort of deposit() method</font> 
+  void <font color="#FF0000">deposit(double amt)</font> { <font color="#999999">
+    //credit the account here</font> 
+  }
+} </pre>
+            <p><b>A static method or variable belongs to the class as a whole.</b> 
+              If you define a method with the <a href="javascript:popup('keywords.html#null')">static</a> 
+              keyword, you should use the class name instead of an object variable, 
+              to reference that variable or method. <br>
+              <span class="caption">For example the java.lang.Integer class has 
+              a static method that can turn a String into an integer value like 
+              this :</span> </p>
+            <pre><span class="code">public <font color="#FF0000">static int parseInt(String s)</font> throws NumberFormatException {<br></span><span class="code">}</span></pre>
+            <p>Don't worry about the 'throws NumberFormatException' statement 
+              for now, we'll cover Exceptions in the programming section. This 
+              method takes a String <font color="#FF0000"><span class="code">s</span></font> 
+              as a parameter and returns an <font color="#FF0000">int</font> (integer 
+              datatype). You can reference this method through the class name 
+              (without creating a new Integer object) like this : </p>
+            <pre class="code">String s = &quot;42&quot;;
+int x = <font color="#FF0000">Integer.parseInt( s )</font>;</pre>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table width="100%" name="contentTable" border="0" cellspacing="3" cellpadding="2" bgcolor="#FFFFFF">
+  <tr valign="top" align="left"> 
+    <td><img src="images/member_access2.gif" width="569" height="904"></td>
+    <td> 
+      <p><b>The fundamental datatypes are passed ‘by value’ to a method.</b><br>
+        Data variables differ from object variables in that they reserve memory 
+        for data values, as opposed to storing a reference to an object in memory. 
+        The term '<i>by value</i>', means that a copy of the original data variable 
+        is automatically made by Java and passed to the target method as a parameter. 
+        <font color="#FF0000">Any changes are made to that copy and not the original 
+        variable.</font> When the method returns, the data variable’s value remains 
+        unchanged!</p>
+      <p> The example at left shows a Java application called <span class="code">BankApp</span>, 
+        whose main() method, accepts an account number as a command line argument. 
+        <br>
+        It converts the command line argument from a String object into an integer 
+        data variable called <span class="code">nbr</span>. <br>
+        Then it passes the integer variable and another numeric data variable 
+        called <span class="code">bal</span>, to a method called getAccount(). 
+        <br>
+        The called method, gets copies of the values of the two data variables. 
+        It uses the account <span class="code">nbr</span> value to get an <span class="code">Account</span> 
+        object.<br>
+        It sets the <span class="code">bal</span> variable to the balance of the 
+        Account object, and returns a String which is the account name.<br>
+        Now the problem is that the main method, gets the account name value returned, 
+        but the <span class="code">bal</span> data variable remains unchanged.</p>
+      </td>
+  </tr>
+  <tr valign="top" align="left"> 
+    <td> <img src="images/member_access.gif" width="577" height="842"></td>
+    <td> 
+      <p><b>Objects are passed ‘by reference’ to a method.</b> The term 'by reference' 
+        means that a 'pointer' to the objects location in memory is passed into 
+        the method. To be more accurate, a copy of the object variable (automatically 
+        made by the JVM) is passed to the target method. This has a couple of 
+        consequences : </p>
+      <ol>
+        <li>Any changes made through the (copied) object variable in the target 
+          method, impacts the original object in memory, and remain after the 
+          method returns ! In the example, the juggle() method can make the red 
+          ball bigger.<br>
+        </li>
+        <li> However any changes made to the value of the object variable itself 
+          inside the target method block, are only made to the copy, and are 'lost' 
+          as soon as the method returns.<br>
+          In the example, the main() method doesn't see any change to the <span class="code">ball</span> 
+          object variable.</li>
+      </ol>
+    </td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: December 2001. &copy;1999 Guy&nbsp;Bellingham-Smith </td>
+    <td align="right" valign="top" ><a href="basics_summary.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">summary<img src="../images/nextarrow_off.gif" alt="Next Page!" name="next2" width="40" height="24" border="0" id="next2"></a> 
+    </td>
+  </tr>
+</table>
+</FONT> 
+</BODY>
+</HTML>

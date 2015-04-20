@@ -1,0 +1,95 @@
+<html>
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="7/20/2002">
+<meta name="keywords" content="Java,AWT,Abstract Windowing Toolkit">
+<meta name="description" content="Introducing the AWT.">
+<title>The Title</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/awt-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader">java.awt.Canvas</h4></td>
+          <td align="right" valign="top" ><a href="awt_checkbox.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">Checkbox<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"><table border="0" cellpadding="4" cellspacing="4" width="100%">
+              <tr> 
+                <td valign="top" colspan="3"><font class="text"><img
+        src="images/awt-canvas.gif" alt="Canvas class!"
+        width="169" height="168" naturalsizeflag="3"> </font></td>
+                <td valign="top" colspan="3" bgcolor="#FFFF80"><font class="text">Like 
+                  all awt Components, a Canvas has its own Graphics object. <br>
+                  Use the <font size="-1" face="Courier New, Courier, mono">getGraphics( 
+                  )</font> method to get a handle on a Component's Graphics context. 
+                  <br>
+                  You can control the drawing color with the <font size="-1" face="Courier New, Courier, mono">setColor(Color 
+                  c)</font> method of the Graphics class.</font></td>
+              </tr>
+            </table>
+            <table border="0" width="100%">
+              <tr> 
+                <td valign="top"><font class="text"> 
+                  <applet
+        code="psychocanvas.Applet1.class" codebase="classes"
+        align="baseline" width="400" height="300"
+        archive="psychocanvas/Applet1.jar" name="PsychoApplet">
+                  </applet>
+                  </font></td>
+                <td valign="top"><font class="text">The Applet at left contains 
+                  a subclass of Canvas, that has a thread that continuously draws 
+                  Ripple objects wherever you click the mouse. </font> <p><font class="text">Try 
+                    clicking while a Ripple is still drawing. The Canvas subclass 
+                    can handle more than one Ripple at a time.</font></p>
+                  <p><font class="text">Note: If you scroll the Applet offscreen, 
+                    the drawing on the Canvas is lost whenever the canvas component 
+                    has to be redrawn by the AWT thread that handles painting 
+                    and events. <br>
+                    That is because the Ripples are not properties of the canvas 
+                    object, they are just drawn into the Graphics context of the 
+                    canvas and then 'forgotten', the Applet 'remembers' nothing 
+                    about the drawing you do, and so it is lost, whenever the 
+                    screen area needs repainting.</font></p></td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: July 2002. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="awt_checkbox.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">Checkbox<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+</FONT> 
+</BODY>
+</HTML>

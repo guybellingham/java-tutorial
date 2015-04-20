@@ -1,0 +1,148 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="29/1/2002">
+<meta name="keywords" content="class, package, classpath, Java, Programming, Guide, Beginner, Basics, Picture, Example, Applet, Servlet, JSP, Links">
+<meta name="description" content="Packaging your classes and the classpath. Interactive Java Programming Guide, play with the Applets, try the example code.">
+<title>The package statement</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="1" leftmargin="1"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Image Swap Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script --> 
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading --> 
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC">
+      <!-- Basics Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/basics-toc.js">
+	</SCRIPT></td>
+    <td align="left" valign="top"> 
+      <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> 
+            <h4 class="stdPageHeader"> The package statement.</h4>
+          </td>
+          <td align="right" valign="top" ><a href="basics_encapsulation.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">protecting 
+            classes<img src="../images/nextarrow_off.gif" alt="Next Page!" name="next1" width="40" height="24" border="0"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"> 
+            <p><b>You should use the statement <span class="code">package package-name;</span> 
+              at the top of your source file</b>. It must be the first statement, 
+              and is used to group classes that share a common purpose. The <span class="code">package-name</span> 
+              often has several parts, separated by a full-stop. Here are some 
+              <a href="javascript:popup('keywords.html#package')">packages</a> 
+              that come with Java: </p>
+            <ul>
+              <li><b>java.lang</b> - is a special package that is automatically 
+                made available to any Java class you code. You don't have to <a href="javascript:popup('keywords.html#import')">import</a> 
+                this package. It contains the foundations of the language itself, 
+                with classes like <span class="code">String</span>, <span class="code">Object</span> 
+                and <span class="code">System</span> (see also <b>java.lang.ref</b> 
+                and <b>java.lang.reflect</b>).</li>
+              <li><b>java.util</b> - this package contains 'utility' classes like 
+                Date, Calendar and the famous Java collection classes and interfaces.</li>
+              <li><b>java.io</b> - contains classes for reading and writing byte 
+                and character streams, including <span class="code">InputStream</span>, 
+                <span class="code">OutputStream</span>, <span class="code">FileReader</span> 
+                and <span class="code">FileWriter</span>.</li>
+              <li><b>java.net</b> - contains classes that help you program with 
+                network protocols, such as <span class="code">Socket</span> and 
+                <span class="code">URL</span>.</li>
+              <li><b>java.applet</b> - this package contains the generic <span class="code">Applet</span> 
+                class, which you can extend to build your own Applets.</li>
+            </ul>
+            <p><b>Packages allow you to organize and 'share' your classes.</b> 
+              With a statement of the form <span class="code">import package-name.classname;</span> 
+              you can make a class in another package, available to the class 
+              you are coding. You don't have to do this for other classes that 
+              are in the same package as the one you are coding, they are automatically 
+              available to the Java compiler. <br>
+              If you replace the classname with an asterisk, it acts as a 'wildcard' 
+              and makes all the public classes in the other package available 
+              for use.<br>
+              An <a href="javascript:popup('keywords.html#import')">import</a>, 
+              statement saves you from having to spell-out the fully qualified 
+              name of a class (which is <span class="code">package-name.Class-name</span>), 
+              that is required by the Java compiler to unambiguously and uniquely 
+              identify that class. <br>
+              <span class="caption">So for example the Shape class shown below 
+              uses an import statement to reference the java.awt.Rectangle class.</span> 
+            </p>
+            <pre class="code"><font color="#FF0000">package my.shapes;
+import java.awt.*;</font> 
+abstract class Shape { 
+  <font color="#999999">// A Shape has a bounding box</font>
+  Rectangle box;
+  <font color="#999999">// ..etc</font> 
+} 
+</pre>
+            <p><b>Note: </b>The Java compiler actually only imports the classes 
+              it needs, an import with an asterisk does not lead to large executable 
+              (.class) files.<b><br>
+              Gotcha!</b> Now there is a potential problem with the above example. 
+              If I define my own class called Rectangle, and put it in the same 
+              package as the Shape class, I will get an error when compiling the 
+              Shape class, saying that the definition of the variable box is using 
+              an ambiguous class called Rectangle ? The compiler doesn't know 
+              which Rectangle class to use, because it has 2 to choose from, java.awt.Rectangle 
+              and my.shapes.Rectangle. <br>
+              <span class="caption">In cases of ambiguity I need to use the fully 
+              qualified class name shown below.</span> </p>
+            <pre class="code">  <font color="#999999">// A Shape has a bounding box</font>
+  java.awt.Rectangle box;</pre>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table width="100%" name="contentTable" border="0" cellspacing="2" cellpadding="2" bgcolor="#FFFFFF">
+  <tr valign="top" align="left"> 
+    <td><font class="text"><img src="images/javac.gif" width="351" height="356"></font></td>
+    <td> 
+      <ul>
+        <li> <b>Packages allow you to organize classes into libraries and control 
+          access to their member methods and variables</b>. On the following page, 
+          we will discuss <a href="basics_encapsulation.html">object encapsulation</a>, 
+          and we will find out that classes within the same package, have access 
+          to each others variables and methods (unless they are defined with the 
+          <a href="javascript:popup('keywords.html#private')">private</a> keyword). 
+          Access between classes in different packages is much more restricted.</li>
+        <li><b>The package name tells Java where to find the executable file at 
+          runtime.</b> Package names actually represent the 'path' (file folder 
+          structure) to the executable .class file, that Java loads at runtime. 
+          For example, if you define the Shape and Circle classes with the first 
+          statement <span class="code">package my.shapes;</span> At runtime the 
+          JVM will expect the Shape class file to be in this location <b>my/shapes/Shape.class</b> 
+          (relative to the current working directory which is also known as the 
+          'codebase'). If you do not explicitly assign a package name to a class, 
+          it will be assigned to the 'default' package, which represents the current 
+          working directory for your Java program or applet.<br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: December 2001. &copy;1999 Guy&nbsp;Bellingham-Smith </td>
+    <td align="right" valign="top" ><a href="basics_encapsulation.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">protecting 
+      classes<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+</FONT> 
+</BODY>
+</HTML>

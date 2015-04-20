@@ -1,0 +1,96 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="7/20/2002">
+<meta name="keywords" content="Java,IO,Reader,Writer,InputStream,OutputStream,Collections,Threads,Networking">
+<meta name="description" content="The Java class libraries and advanced programming topics.">
+<title>Advanced Java</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/advanced-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <p class="stdPageHeader">Character I.O</p></td>
+          <td align="right" valign="top" ><a href="advanced_serializable.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">Serialization<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"><p><a name="filterstreams"></a>Dealing 
+              with bytes of data is cumbersome, java programs usually need to 
+              read or write highly structured data. Another problem with bytes 
+              is that the 8-bit encoding schemes used, do not accommodate international 
+              character sets. </p>
+            <p>Java 1.1 introduced two new character based (16-bit) Input and 
+              Output streams, called <span class="stdCode">Reader</span> and <span class="stdCode">Writer</span>, 
+              which are faster at retrieving blocks of data, and make it easier 
+              to develop programs in foreign languages. </p>
+            <p><span class="stdCaption">figure: The character stream classes.</span><br>
+              <img src="images/reader-writer.gif" width="603"
+        height="455"></p></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr> 
+    <td><p><span class="stdCode"><strong>Reader</strong></span><strong> and <span class="stdCode">Writer</span></strong> 
+        are abstract classes, that are extended by classes you can use to read 
+        or write Strings and character arrays to files, buffers and arrays in 
+        memory, byte streams, and pipes, for example:</p>
+      <p class="stdCode">BufferedReader br = new BufferedReader(new FileReader(&quot;foobar.txt&quot;)); 
+        <br>
+        String s = br.readLine(); </p>
+      <p>The primary advantage of character streams is that they make it easy 
+        to write programs that are not dependent upon a specific character encoding, 
+        and are therefore easy to internationalize. Java stores strings in Unicode, 
+        an international standard character encoding that is capable of representing 
+        most of the world's written languages. Typical user-readable text files, 
+        however, use encodings that are not necessarily related to Unicode, or 
+        even to ASCII, and there are many such encodings. Character streams hide 
+        the complexity of dealing with these encodings by providing two classes 
+        that serve as bridges between byte streams and character streams. </p>
+      <p>The <span class="stdCode">InputStreamReader</span> class implements a 
+        character-input stream that reads bytes from a byte-input stream and converts 
+        them to characters according to a specified encoding. Similarly, the <span class="stdCode">OutputStreamWriter</span> 
+        class implements a character-output stream that converts characters into 
+        bytes according a specified encoding and writes them to a byte-output 
+        stream. </p>
+      <p>A second advantage of character streams is that they are potentially 
+        much more efficient than byte streams. The implementations of many of 
+        Java's original byte streams are oriented around byte-at-a-time read and 
+        write operations. The character-stream classes, in contrast, are oriented 
+        around buffer-at-a-time read and write operations. This difference, in 
+        combination with a more efficient locking scheme, allows the character 
+        stream classes to make up for the added overhead of encoding conversion 
+        in many cases. </p></td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: July 2002. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="advanced_serializable.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">Serialization<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+</FONT> 
+</BODY>
+</HTML>

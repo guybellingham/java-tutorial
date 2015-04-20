@@ -1,0 +1,340 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="7/20/2002">
+<meta name="keywords" content="Java,IO,Reader,Writer,InputStream,OutputStream,Collections,Threads,Networking">
+<meta name="description" content="The Java class libraries and advanced programming topics.">
+<title>Java Collections</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/advanced-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader">Java Collections</h4></td>
+          <td align="right" valign="top" ><a href="advanced_collection2.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">Collection 
+            classes<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"><p>It is often very useful 
+              to keep track of a collection of Objects in Java. From Java version 
+              1.2 onwards the <span class="stdCode">java.util</span> package contains 
+              an assortment of interfaces and class definitions, that extend the 
+              very basic support for collections of previous versions of the class 
+              libraries (<span class="stdCode">java.util.Vector</span> and <span class="stdCode">java.util.HashTable</span>) 
+              .</p>
+            <p>The basic idea of a collection is laid out in the <span class="stdCode">java.util.Collection</span> 
+              interface, which provides for the following methods of building 
+              and manipulating a collection of Objects.</p>
+            <table border="0" class="stdTableAsGroupBox">
+              <tr> 
+                <td bgcolor="#FFFF80" class="stdCode"> <p>boolean add(Object o)</p></td>
+                <td>returns true if the <span class="stdCode">Object</span> can 
+                  be and was added to the collection.</td>
+              </tr>
+              <tr> 
+                <td bgcolor="#FFFF80" class="stdCode"> <p>boolean remove(Object 
+                    o)</p></td>
+                <td>returns true if the <span class="stdCode">Object</span> can 
+                  be removed from the collection.</td>
+              </tr>
+              <tr> 
+                <td bgcolor="#FFFF80" class="stdCode"> <p>boolean&nbsp;contains(Object&nbsp;o)</p></td>
+                <td>returns true if the collection contains that <span class="stdCode">Object</span>.</td>
+              </tr>
+              <tr> 
+                <td bgcolor="#FFFF80" class="stdCode"> <p>Iterator iterator()</p></td>
+                <td>returns an <a href="#iterator" class="stdCode">Iterator</a> 
+                  which can be used to 'visit' each element in the collection.</td>
+              </tr>
+              <tr> 
+                <td bgcolor="#FFFF80" class="stdCode"> <p>Object[] toArray()</p></td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr> 
+                <td bgcolor="#FFFF80" class="stdCode"> <p>int size()</p></td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr> 
+                <td bgcolor="#FFFF80" class="stdCode"> <p>int hashCode()</p></td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr> 
+                <td bgcolor="#FFFF80" class="stdCode"> <p>boolean equals(Object 
+                    o)</p></td>
+                <td>&nbsp;</td>
+              </tr>
+            </table>
+            <table width="100%" border="0" cellspacing="2" cellpadding="2">
+              <tr align="left" valign="top"> 
+                <td> <p class="stdCaption">figure: The collections Interfaces. 
+                  </p>
+                  <p><img
+        src="images/java-util-collection.gif" width="265"
+        height="300"></p></td>
+                <td><p>&nbsp;</p>
+                  <p>Note: Performance (accessing and adding elements) is much 
+                    faster in a <a href="programming_arrays.html">java array</a>. 
+                    If you can make do with a simple array in your design, do 
+                    so.</p></td>
+              </tr>
+            </table>
+            <p>&nbsp;</p></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr> 
+    <td><p><a name="list"></a>A <span class="stdCode"><strong>List</strong></span> 
+        is usually represented by an ordered sequence of Objects. Usually duplicates 
+        are allowed. The ordering in a List is zero based, like java arrays.<br>
+        <span class="stdCode">java.util.List</span> extends the basic definition 
+        of a collection with these methods :</p>
+      <table border="0" class="stdTableAsGroupBox">
+        <tr> 
+          <td bgcolor="#FFFF80" class="stdCode"> <p>boolean add(Object o)</p></td>
+          <td>appends the object to the end of the collection and returns true.</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFF80" class="stdCode"> <p>void add(int index, Object 
+              o)</p></td>
+          <td>inserts the Object into the collection at the index position.</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFF80" class="stdCode"> <p>boolean contains(Object o)</p></td>
+          <td>returns true if the collection contains that Object.</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFF80" class="stdCode"> <p>ListIterator listIterator()</p></td>
+          <td>returns an object that implements the <span class="stdCode">ListIterator</span> 
+            interface, and which can be used to 'visit' and update each element 
+            in the collection.</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFF80" class="stdCode"> <p>Object remove(int index)</p></td>
+          <td>returns the Object removed from the index position. </td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFF80" class="stdCode"> <p>Object set(int index, Object 
+              o)</p></td>
+          <td>returns the Object replaced at index position with another Object.</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFF80" class="stdCode"> <p>Object get(int index)</p></td>
+          <td>&nbsp;</td>
+        </tr>
+      </table>
+      <p><a name="set"></a>A <span class="stdCode"><strong>Set</strong></span>, 
+        is a collection that represents a mathematical set. A Set allows no duplicates, 
+        and once you add an Object to a Set, you must not then change its value.</p>
+      <p>In order for a <span class="stdCode">SortedSet</span> to add a sort order 
+        to a collection of Objects, those Objects must either be <span class="stdCode">Comparable</span> 
+        (they must implement the <span class="stdCode">Comparable</span> interface 
+        and the<span class="stdCode"> compareTo()</span> method) or you must supply 
+        a <span class="stdCode">Comparator</span> object when constructing the 
+        SortedSet. SortedSet, adds the following methods :</p>
+      <table border="0" class="stdTableAsGroupBox">
+        <tr> 
+          <td bgcolor="#FFFF80" class="stdCode"> <p>Object first()</p></td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFF80" class="stdCode"> <p>Object last( )</p></td>
+          <td>&nbsp;</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFF80" class="stdCode"> <p>Comparator comparator()</p></td>
+          <td>returns an object that implements the <span class="stdCode">Comparator</span> 
+            interface, and which is used to 'sort' the collection.</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFF80" class="stdCode"> <p>SortedSet&nbsp;headSet(Object&nbsp;from)</p></td>
+          <td>returns a subset</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFF80" class="stdCode"> <p>SortedSet tailSet(Object to)</p></td>
+          <td>returns a subset</td>
+        </tr>
+      </table>
+      <table width="100%" border="0" cellspacing="2" cellpadding="2">
+        <tr align="left" valign="top"> 
+          <td><p><a name="map"></a>A <strong><span class="stdCode">Map</span></strong> 
+              represents matched pairs of key -&gt; value Objects. One key to 
+              one value. No duplicate keys are allowed, and the value of a key 
+              must not change after it has been added to the collection.<br>
+              A Map supports the following methods :</p>
+            <table border="0" class="stdTableAsGroupBox">
+              <tr> 
+                <td width="55%" bgcolor="#FFFF80" class="stdCode"> <p>boolean 
+                    put(Object key, <br>
+                    Object value)</p></td>
+                <td width="45%">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td width="55%" bgcolor="#FFFF80" class="stdCode"> <p>boolean 
+                    containsKey<br>
+                    (Object key)</p></td>
+                <td width="45%">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td width="55%" bgcolor="#FFFF80" class="stdCode"> <p>boolean 
+                    containsValue<br>
+                    (Object value)</p></td>
+                <td width="45%">&nbsp;</td>
+              </tr>
+              <tr> 
+                <td width="55%" bgcolor="#FFFF80" class="stdCode"> <p>Object get<br>
+                    (Object key)</p></td>
+                <td width="45%">returns the value corresponding to a key</td>
+              </tr>
+              <tr> 
+                <td width="55%" bgcolor="#FFFF80" class="stdCode"> <p>Set entrySet()</p></td>
+                <td width="45%">returns a set of the inner class <span class="stdCode">Map.Entry</span></td>
+              </tr>
+              <tr> 
+                <td width="55%" bgcolor="#FFFF80" class="stdCode"> <p>Set keySet()</p></td>
+                <td width="45%">returns a set of the keys</td>
+              </tr>
+              <tr> 
+                <td width="55%" bgcolor="#FFFF80" class="stdCode"> <p>Collection 
+                    values()</p></td>
+                <td width="45%">get an <span class="stdCode">Iterator</span> to 
+                  visit all the values in the Map.</td>
+              </tr>
+            </table>
+            
+          </td>
+          <td><p class="stdCaption">figure: The Map interfaces.</p>
+            <p><img src="images/java-util-map.gif" width="193"
+        height="252"></p></td>
+        </tr>
+      </table>
+      <p>A <span class="stdCode"><strong>SortedMap</strong></span> adds support 
+        for ordering a <span class="stdCode">Map</span> by ascending key sequence, 
+        when the keys are <span class="stdCode">Comparable</span>, or if you supply 
+        a <span class="stdCode">Comparator</span> when constructing the collection. 
+        A <span class="stdCode">SortedMap</span> adds the following methods : 
+      </p>
+      <table border="0" class="stdTableAsGroupBox">
+        <tr> 
+          <td width="55%" bgcolor="#FFFF80" class="stdCode"> <p>Object firstKey()<br>
+              Object lastKey()</p></td>
+          <td width="45%">returns the first / last keys in the <span class="stdCode">SortedMap</span></td>
+        </tr>
+        <tr> 
+          <td width="55%" bgcolor="#FFFF80" class="stdCode"> <p>Comparator comparator()</p></td>
+          <td width="45%">returns an <span class="stdCode">Object</span> that 
+            can be used to compare keys.</td>
+        </tr>
+        <tr> 
+          <td width="55%" bgcolor="#FFFF80" class="stdCode"> <p>SortedMap headMap(Object 
+              toKey)<br>
+              SortedMap tailMap(Object fromKey)</p></td>
+          <td width="45%">return subsets of the <span class="stdCode">SortedMap</span> 
+            collection.</td>
+        </tr>
+      </table>
+      <table width="100%" border="0" cellspacing="2" cellpadding="2">
+        <tr align="left" valign="top"> 
+          <td><p>The <span class="stdCode"><strong>Iterator</strong></span> interface 
+              defines a way to 'visit' elements in a collection in a way independent 
+              from the type of collection. In Java 1.2 it replaces the older <span class="stdCode">Enumerator</span> 
+              interface, with better method names and functionality to remove 
+              elements that have been visited. <br>
+              Iterators are 'fail fast' which means that, if a collection is structurally 
+              modified by another iterator or thread of execution, after this 
+              iterator is constructed, it will raise a <span class="stdCode">ConcurrentModificationException</span>. 
+              You can think of an Iterator as a sort of 'cursor' between elements 
+              in a collection. </p>
+            <p class="stdCaption">figure: Iterators have a position.</p>
+            <p><img
+                src="images/iterator-position.gif" width="198"
+                height="172"></p>
+            </td>
+          <td><p class="stdCaption">figure: The Iterator interfaces.</p>
+            <p><img src="images/java-util-iterator.gif" width="241"
+        height="240"></p></td>
+        </tr>
+      </table>
+      <p>The basic methods supported by an <span class="stdCode">Iterator</span> 
+        are :</p>
+      <table border="0" class="stdTableAsGroupBox">
+        <tr> 
+          <td width="55%" bgcolor="#FFFF80" class="stdCode"> <p>Object next()</p></td>
+          <td width="45%">jumps over the next element and returns it.</td>
+        </tr>
+        <tr> 
+          <td width="55%" bgcolor="#FFFF80" class="stdCode"> <p>boolean hasNext()</p></td>
+          <td width="45%">returns true while there is a next element.</td>
+        </tr>
+        <tr> 
+          <td width="55%" bgcolor="#FFFF80" class="stdCode"> <p>void remove()</p></td>
+          <td width="45%">removes the element last visited from the underlying 
+            collection.</td>
+        </tr>
+      </table>
+      <table border="0" width="100%">
+        <tr> 
+          <td valign="top"><p><font class="text">A <span class="stdCode"><strong>ListIterator</strong></span> 
+              adds methods for lists that have some inherent order :</font></p>
+            <table border="0" class="stdTableAsGroupBox">
+              <tr> 
+                <td width="55%" bgcolor="#FFFF80" class="stdCode"> <p><font class="text">void 
+                    add(Object o)</font></p></td>
+                <td width="45%"><font class="text">inserts the Object before the 
+                  current Iterator position in the list.</font></td>
+              </tr>
+              <tr> 
+                <td width="55%" bgcolor="#FFFF80" class="stdCode"><font class="text">Object 
+                  set(Object o)</font></td>
+                <td width="45%"><font class="text">updates the Object last 'visited' 
+                  </font></td>
+              </tr>
+              <tr> 
+                <td width="55%" bgcolor="#FFFF80" class="stdCode"> <p><font class="text">boolean 
+                    hasPrevious()</font></p></td>
+                <td width="45%"><font class="text">returns <span class="stdCode">true</span> 
+                  while there is a previous element.</font></td>
+              </tr>
+              <tr> 
+                <td width="55%" bgcolor="#FFFF80" class="stdCode"> <p><font class="text">Object 
+                    previous()</font></p></td>
+                <td width="45%"><font class="text">jumps back through the list, 
+                  returning the element jumped over.</font></td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: July 2002. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="advanced_collection2.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">Collection 
+      classes <img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+</FONT> 
+</BODY>
+</HTML>

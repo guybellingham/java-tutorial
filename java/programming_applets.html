@@ -1,0 +1,321 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="29/1/2002">
+<meta name="keywords" content="Applet, JAR, plugin, param, AWT, paint, repaint, tag, init, start, stop, destroy, Programming, Guide, Beginner, Basics, Picture, Example,  Links">
+<meta name="description" content="Working with Java Applets. Interactive Java Programming Guide, play with the Applets, try the example code.">
+<title>Java Applets</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="1" leftmargin="1"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!-- Programming Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/programming-toc.js">
+	</SCRIPT> 
+      <p>&nbsp;</p></td>
+    <td align="left" valign="top" width="85%"> <table border="0" cellpadding="2" width="100%" cellspacing="2">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader"> How Java Applets 
+              work.</h4></td>
+          <td align="right" valign="top" > <a href="programming_applet_example.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">A 
+            simple Applet<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr bgcolor="#FFFFFF"> 
+          <td align="left" valign="top" colspan="2"> <p><a name="top"></a><b>The 
+              <span class="stdCode">java.applet.Applet</span> class, defines a 
+              Java program that can be embeded in a web page</b>. An applet is 
+              designed to execute within a 'Java enabled' Web Browser. Sun now 
+              recommends that you <a href="http://java.sun.com/getjava/" target="_blank">download</a> 
+              and install their <a href="http://java.sun.com/products/plugin/index.html" target="_blank">Java 
+              plug-in</a> in order to 'Java enable' your in web browser. An Applet 
+              is embedded in an HTML web page, with the <span class="stdCode">&lt;APPLET&gt;</span> 
+              tag (examples shown below), and is downloaded across the Internet 
+              when you open that web page. Running an Applet, sometimes involves 
+              waiting for downloading to occur across a slow Internet connection. 
+            </p>
+            <p><b>Tip!</b> To help reduce the download time, you should normally 
+              package your applet class files in .jar files, which are similar 
+              to the compressed .zip files you are probably familiar with. The 
+              J2SE development kit includes a <a href="http://java.sun.com/j2se/1.3/docs/guide/jar/index.html">jar 
+              command line tool</a>, and you can use the archive parameter (example 
+              below) in the Applet tag to reference your jar files.<br>
+            </p>
+            <p><b>For security reasons</b>, applets that are downloaded over the 
+              network have several restrictions. One is that an applet can't read 
+              or write files on the 'host' computer that it is executing on. Another 
+              is that an applet can't make network connections except back to 
+              the web server that it came from. </p></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr valign="top"> 
+    <td> <table width="100%" border="0" cellspacing="0" cellpadding="2">
+        <tr valign="top"> 
+          <td> <P><b><a name="applettag"></a>Some example Applets and their &lt;Applet&gt; 
+              tags. <br>
+              </b>Amongst other things the <span class="stdCode">&lt;APPLET&gt;</span> 
+              tag is used to reserve screen space on a web page and to point to 
+              the executable class file of a Java Applet. The simple example below, 
+              embeds an applet whose class file is Clock2.class, and resides in 
+              the same directory as this web page. 
+            <p class="stdCode">&lt;APPLET CODE=&quot;Clock2.class&quot; WIDTH=&quot;170&quot; 
+              HEIGHT=&quot;150&quot;> &lt;/APPLET&gt; </p>
+            Here's the source code for the applet <a href="Clock2.java">Clock2.java</a>. 
+          </td>
+          <td> <applet code="Clock2.class" codebase="classes" width=170 height=150>
+              <param name="bgcolor"  value="ffffff">
+              alt="Your browser understands the &lt;APPLET&gt; tag but isn't running 
+              the applet, for some reason." Your browser is completely ignoring 
+              the &lt;APPLET&gt; tag! </applet></td>
+        </tr>
+        <tr valign="top"> 
+          <td colspan="2"> <p><b><a name="archive"></a></b>In this more complex 
+              example I'm using the codebase=pathname parameter in the tag to 
+              direct the Java plugin to load the applet from some directory other 
+              than the one in which this web page was downloaded from. I have 
+              also JAR'd all the files the applet needs together, and have used 
+              the <span class="stdCode">archive=&quot;filename.jar&quot;</span> 
+              parameter to direct the browser to download that archive file. Actually 
+              most web browsers recognize multiple jar files in the archive parameter 
+              (they can be listed by seperating the filenames with commas). </p>
+            <p class="stdCode">&lt;APPLET CODE="neko.Applet1.class" <br>
+              ARCHIVE="neko.Applet1.jar" <br>
+              CODEBASE="../classes/" <br>
+              WIDTH="400" HEIGHT="40" ALIGN="TOP"><br>
+              &lt;/APPLET&gt; </p>
+            <p> 
+              <applet code="neko.Applet1.class" codebase="classes" 
+              width="400" height="40" align="TOP" archive="NekoApplet.jar">
+              </applet>
+            </p></td>
+        </tr>
+        <tr valign="top"> 
+          <td> <p><b><a name="param"></a></b>You can pass runtime parameters to 
+              an applet, by specifying <span class="code">name=value</span> pairs 
+              within the &lt;PARAM&gt; tag, as shown below.</p>
+            <p class="stdCode">&lt;APPLET CODE="NervousText.class" WIDTH=&quot;200&quot; 
+              HEIGHT=&quot;50&quot;> <br>
+              &nbsp;&lt;param name=&quot;text&quot; value=&quot;Nervous!&quot;&gt; 
+              <br>
+              &lt;/APPLET&gt; </p>
+            <p>Parameters are to applets what command-line arguments are to applications. 
+              They allow the user to customize the applet's operation. All Applets 
+              have a <span class="stdCode">public String getParameter(String name) 
+              </span>method, that allows them to get the value of a named parameter 
+              at runtime.</p></td>
+          <td> <applet code="NervousText.class" codebase="classes" width=200 height=50>
+              <param name="text" value="Nervous!">
+            </applet></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr valign="top"> 
+    <td> <p><b><a name="lifecycle"></a></b>Now that you've seen some Applets in 
+        action, you need some background information, <b>before you can go on 
+        to write a simple Applet.</b></p>
+      <p><b>#1.</b> <b>First you need to understand that all applets must extend 
+        the <span class="stdCode">java.applet.Applet </span>class.</b> <br>
+        If you are writing an applet that uses the newer SWING user interface 
+        classes, then your applet should extend the <span class="stdCode">javax.swing.JApplet 
+        </span>class (which inherits from the java.awt.Applet class). By extending 
+        the Applet class, your applet will inherit all the standard methods and 
+        behaviors that allow it to run within the web browser. <br>
+        &nbsp; Applets have a sort of 'lifecycle' which corresponds to the standard 
+        Applet methods that are called by the web browser as the applet is loaded 
+        and made visible, or hidden and finally unloaded, when the user moves 
+        on to another web page. Listed below are the standard methods that are 
+        called by the browser :</p>
+      <table border="0">
+        <tr> 
+          <td valign="top" bgcolor="#FFFFCC" class="stdTableColumnHeader"> 
+            <p>public void init() </p></td>
+          <td valign="top">The <span class="stdCode">init()</span> method is called 
+            once, when the HTML page that references the applet is opened in the 
+            browser.</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFFCC" class="stdTableColumnHeader"> 
+            <p>public void start()</p></td>
+          <td valign="top">The <span class="stdCode">start()</span> method is 
+            called whenever the browser returns to the web page containing the 
+            applet. <br>
+            You can add code to resume doing whatever was stopped in the stop( 
+            ) method (see below). Some browsers call this method when the window 
+            is restored from the task bar.</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFFCC" class="stdTableColumnHeader"> 
+            <p>public void stop() </p></td>
+          <td valign="top">This method is called whenever the browser moves on 
+            to another web page. Use this method to stop processing while the 
+            applet is no longer visible. Some browsers call this method when the 
+            window is restored from the task bar.</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFFCC" class="stdTableColumnHeader"> 
+            <p>public void destroy() </p></td>
+          <td valign="top">This method is called when the applet is terminated, 
+            (the browser closes down) this method is called to allow the applet 
+            to do 'cleanup' processing. </td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFFCC" class="stdTableColumnHeader"> 
+            <p>public void paint(Graphics g) 
+            </p></td>
+          <td valign="top">This is a method common to all Abstract Windowing Toolkit 
+            (AWT) Components. It is called by the 'AWT thread' whenever the applet 
+            needs to display or re-display itself. The <span class="stdCode">Graphics</span> 
+            object represents the screen painting area for this applet.</td>
+        </tr>
+      </table>
+      <p><b>Tip!</b> Usually when extending another class, and overriding its 
+        methods, you have to be careful to invoke the 'behavior' in the super 
+        class. However these are 'do nothing' methods in the Applet class, so 
+        in this case there is no need to pass the method call on to the <span class="stdCode">super</span> 
+        class.</p>
+      <p><b>#2</b>. <b>The java.applet.Applet class</b> inherits directly from 
+        the <a href="awt_panel.html"><span class="stdCode">java.awt.Panel</span></a> 
+        class. A Panel is basically a rectangular container (it <i>contains</i> 
+        and groups other windowing components). However most of an applets methods 
+        are inherited from the <a href="awt_container.html"><span class="stdCode">java.awt.Container</span></a> 
+        (its grandparent) and <a href="awt_component.html"><span class="stdCode">java.awt.Component</span></a> 
+        classes (its great-grandparent). These 2 fundamental classes of the <a href="awt_intro.html">Abstract 
+        Windowing Toolkit</a> (AWT) will be covered in more detail in the graphical 
+        user interface (GUI) section.<br>
+        &nbsp; The Applet class, also adds some interesting methods of its own 
+        :</p>
+      <table width="100%" border="0" cellpadding="0" class="stdTableAsGroupBox">
+        <tr> 
+          <td valign="top" bgcolor="#FFFFCC" class="stdCode"> 
+            <p>getAudioClip(URL u) , play(URL 
+              u)</p></td>
+          <td valign="top">- methods to load or play a sound file (.au or .wav)</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFFCC" class="stdCode"> 
+            <p>URL getCodeBase( )</p></td>
+          <td valign="top">- method returns the URL to the applets' class file.</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFFCC" class="stdCode"> 
+            <p>URL getDocumentBase( )</p></td>
+          <td valign="top">- returns the URL to the web page html file.</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFFCC" class="stdCode"> 
+            <p>Image getImage(URL)</p></td>
+          <td valign="top">- returns an Image object from the URL of the .gif 
+            or .jpg file.</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFFCC" class="stdCode"> 
+            <p>String getParameter(String)</p></td>
+          <td valign="top">- returns the named parameter, supplied in the &lt;PARAM&gt; 
+            tag of the web page. Beware: parameters are always returned as Strings, 
+            number literals will have to be 'parsed' into numbers.</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFFCC" class="stdCode"> 
+            <p>AppletContext getAppletContext( 
+              ) </p></td>
+          <td valign="top">- returns an object that represents the containing 
+            browser.<br>
+            It has a couple of useful methods such as showDocument(URL u) and 
+            showStatus(String msg).</td>
+        </tr>
+      </table>
+      <p><b>#3</b>. <b>You need to know a little background about how Java provides 
+        window based GUI services</b>, before you can write an Applet of your 
+        own. <br>
+        &nbsp; Basically your applet 'borrows' an area of screen real estate from 
+        the web browser. This area is the graphics context in which your applet 
+        and its AWT components are displayed. User input (mouse gestures and keyboard 
+        input) into this area are passed from the underlying operating system 
+        to the browser program which forwards them to the Java runtime and finally 
+        to your applet. <br>
+        &nbsp; The AWT provides a 'framework' of services that support painting 
+        and event handling for your applet (the AWT also supports graphical Java 
+        applications). The AWT has a 'thread' of execution that runs continuously 
+        in the background, and ensures that the AWT components in your applet 
+        get a chance to paint (and repaint) themselves in the right place on the 
+        screen and receive any user input directed at them. You do not need to 
+        call the <span class="stdCode">paint(Graphics g)</span> method of your 
+        graphical AWT components, the AWT 'thread' looks after this for you. It 
+        travels down through all the visible components that you add to your applet 
+        container, and tells each component to draw itself on the screen. <br>
+        &nbsp; So you DO NOT directly call the paint(Graphics g) methods of the 
+        GUI controls in your applet this is all done for you! Typically not much 
+        happens in the paint(Graphics g) method, unless you are drawing into the 
+        components graphics region, or displaying images. <br>
+        &nbsp; You can request that the AWT thread 'refresh' the display of your 
+        Applet, by calling the repaint( ) method, which 'schedules' a call to 
+        the paint(Graphics g) methods for all the visible AWT components in the 
+        applet, usually within a very short period of time. </p>
+      <p><b>Note:</b> The AWT GUI components 'map' to native windowing components 
+        (buttons, labels, drop-downs, text input boxes, lists ..etc) and use operating 
+        system calls (behind the scenes) to build and operate your GUI. The <a href="swing.html">SWING</a> 
+        components are based on a newer 'lightweight' architecture, that bypasses 
+        the windowing components of the underlying operating system. SWING widgets 
+        actually draw themselves onto the screen, and they have very flexible 
+        and modular architecture. SWING GUI widget classes all start with the 
+        letter <font color="#FF0000">J</font>, so for example the SWING equivalent 
+        of the java.awt.Button class is a javax.swing.<font color="#FF0000">J</font>Button.</p>
+      <p> <font color="#FF0000">Question?</font> Why must you never write code 
+        in the<span class="stdCode"> paint( )</span> method that loops indefinitely, 
+        such as a clock that updates every second?<br>
+        <font color="#009900">Answer!</font> <font color="#999999">The 'AWT thread' 
+        that is responsible for event handling and screen painting for your applet, 
+        executes the paint(Graphics g) method. It would get 'stuck' in the loop, 
+        and your applet would stop responding to input!</font><br>
+        <font color="#FF0000">Question?</font> Why does the <span class="stdCode">repaint( 
+        )</span> method 'schedule' an update of the display ?<br>
+        <font color="#009900">Answer!</font> <font color="#999999">Repainting 
+        is handled by a seperate 'thread' of execution. To prevent the 'AWT thread' 
+        from being inundated with painting tasks, the repaint( ) method merely 
+        sets a flag, which signals the background thread, that at the next opportunity, 
+        it should paint(Graphics g) all the visible AWT components in the applet.</font></p></td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr valign="top" bgcolor="#CCFFFF"> 
+    <td>See also: <a href="http://java.sun.com/docs/books/tutorial/applet/TOC.html">Suns 
+      Applet Tutorial.</a></td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+</FONT> <FONT class="text"> 
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" width="75%"> Last Updated: January 2002. &copy;1999 
+      Guy&nbsp;Bellingham-Smith</td>
+    <td align="right" valign="top" width="25%" > <a href="programming_applet_example.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">A 
+      simple Applet<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+<!-- Hiermenu Loader --> 
+<SCRIPT LANGUAGE="JavaScript1.2"
+        SRC="../scripts/HM_Java_Loader.js"
+        TYPE='text/javascript'></SCRIPT>
+</FONT> 
+</BODY>
+</HTML>

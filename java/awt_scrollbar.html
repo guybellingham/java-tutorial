@@ -1,0 +1,105 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="7/20/2002">
+<meta name="keywords" content="Java,AWT,Abstract Windowing Toolkit">
+<meta name="description" content="Introducing the AWT.">
+<title>The Title</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/awt-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader">java.awt.Scrollbar</h4></td>
+          <td align="right" valign="top" ><a href="awt_textfield.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">TextField<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"><p>Scrollbars, can be oriented 
+              either horizontally or vertically. They are often used to scroll 
+              text areas, but can be used to select a numeric value from a range 
+              of possibilities, from a minimum to a maximum integer value.</p>
+            <p>&nbsp;</p>
+            <table
+        border="0" cellpadding="2" cellspacing="2">
+              <tr align="left" valign="top"> 
+                <td> <img src="images/awt-scrollbar.gif"
+                width="349" height="264">&nbsp;</td>
+                <td><p>Here are some of the more useful <span class="stdCode">Scrollbar</span> 
+                    methods. </p>
+                  <p class="stdCode">int getValue()<br>
+                    int getMaximum()<br>
+                    int getMinimum()<br>
+                    void setBlockIncrement(int x)<br>
+                    void setLineIncrement(int x)<br>
+                    void setOrientation(int x)</p></td>
+              </tr>
+            </table>
+            <table border="0" cellpadding="4" cellspacing="2" width="100%">
+              <tr> 
+                <td valign="top" colspan="3" height="386"> <p><font class="text"> 
+                    <applet code="scrollbar.Applet1.class"
+        codebase="classes" align="top" width="400"
+        height="300" archive="scrollbar/Applet1.jar">
+                    </applet>
+                    </font></p></td>
+                <td valign="top" colspan="3" bgcolor="#FFFF80"> <p><font class="text">Try 
+                    dragging and clicking beside the Scrollbars in the Applet 
+                    at left. </font></p>
+                  <p><font class="text">You'll see that they generate an <span class="stdCode">AdjustmentEvent</span> 
+                    with a number of specialized ids, depending on how you use 
+                    them.</font></p>
+                  <p><font class="text"> Dragging the box to a new location generates 
+                    Events with an <span class="stdCode">id</span> equal to <span class="stdCode">AdjustmentEvent.TRACK</span>.<br>
+                    While clicking the arrows at either end scroll the bar up 
+                    or down a line at a time, see <span class="stdCode">AdjustmentEvent.UNIT_INCREMENT</span> 
+                    and <span class="stdCode">UNIT_DECREMENT</span>.<br>
+                    If you click ahead or behind the box, the bar scrolls a block 
+                    at a time. see <span class="stdCode">AdjustmentEvent.BLOCK_INCREMENT</span> 
+                    and <span class="stdCode">BLOCK_DECREMENT</span>. </font></p>
+                  <p><font class="text">The <span class="stdCode">maximum</span>, 
+                    &amp; <span class="stdCode">minimum</span> values are defined 
+                    when a new scrollbar is constructed, as is the orientation.</font></p>
+                  <p><font class="text">However you can get and set the size of 
+                    the Line or Page increment in a <span class="stdCode">Scrollbar</span> 
+                    at any time.</font></p></td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr> 
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: July 2002. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="awt_textfield.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">TextField<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+</FONT> 
+</BODY>
+</HTML>

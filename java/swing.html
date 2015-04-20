@@ -1,0 +1,144 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="7/20/2002">
+<meta name="keywords" content="Java,AWT,Abstract Windowing Toolkit">
+<meta name="description" content="Introducing the AWT.">
+<title>The Title</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/awt-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader">SWING</h4></td>
+          <td align="right" valign="top" ><a href="swing_jcomponent.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">JComponent<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"><p>The Swing classes were 
+              introduced with Java version 1.1 (as a seperate download in the 
+              com.sun.java.swing packages). They were part of an effort by Sun, 
+              IBM and Netscape to develop a more mature set of class libraries, 
+              collectively called the Java Foundation Classes (JFC). The current 
+              version of swing resides in a new set of language extension packages 
+              that begin with <span class="stdCode">javax.swing</span>.&nbsp;To 
+              view the Swing Applets on these pages, I suggest you visit the <strong><a href="http://www.opera.com">Opera</a></strong> 
+              website for a FREE, powerful, small and fast browser, that has up 
+              to date Java support as standard! </p>
+            <p>The Swing classes deal with graphical user interfaces, and are 
+              built upon the AWT classes. They add a lot of functionality that 
+              was 'missing' from the AWT, like support for keyboard input, copy 
+              &amp; paste, drag and drop and focus traversal. Swing adds a more 
+              sophisticated set of events, and more advanced interface controls 
+              like an editor and scrolling panes, a tree view and a table. </p>
+            <p>Swing has its own versions of the <a href="awt_classes.html">AWT 
+              components</a>, with class names that begin with the letter<font color="#FF0000"><span class="stdCode"> 
+              </span><strong>J</strong></font>.</p>
+            <p>The Swing graphical controls are based upon a different architecture 
+              than AWT. They are termed 'lightweight' components, because instead 
+              of relying upon the underlying user interface widgets of the operating 
+              system (peers), they handle much of the screen drawing and behavior 
+              themselves (however this is not true for the Swing containers which 
+              still rely upon the underlying operating system 'windows'). </p>
+            <p>To see how powerful the new Swing classes are, <a href="swing_appletmenu.html" class="stdCode">try 
+              this painting Applet</a>. </p>
+            <p>Swing makes use of the 'Model-View-Controller' architecture (borrowed 
+              from the SmallTalk language). MVC separates the presentation of 
+              a component (the 'look and feel') from the underlying data model. 
+              In practice the interactions between the 'View' and 'Controller' 
+              parts are very complex (they are tightly coupled), so they are combined 
+              into a single class called the 'delegate' or <span class="stdCode">UI</span>. 
+              <br>
+              The mother of all Swing user interfaces is the <span class="stdCode">ComponentUI</span> 
+              class, from which all others are descended. For example the <span class="stdCode">JButton</span> 
+              component has a user interface called <span class="stdCode">ButtonUI</span> 
+              class, which extends <span class="stdCode">ComponentUI</span> and 
+              is responsible for painting the button shape, icon, label and reporting 
+              back the preferred and minimum sizes etc. </p>
+            <table border="0" cellpadding="2" width="100%">
+              <tr> 
+                <td valign="top"><font class="text"><a name="mvc"></a>&nbsp;<span class="stdCaption">figure 
+                  - swing components are based upon the Model - View - Controller 
+                  architecture.</span><br>
+                  </font></td>
+                <td valign="top"> <p><font class="text"><img src="images/model-view-controller.gif"
+        width="313" height="215"></font> </p></td>
+              </tr>
+              <tr> 
+                <td valign="top"><p>At right is a very simple Swing <span class="stdCode">JApplet</span>. 
+                    You will need a browser that supports Java version 1.1 or 
+                    greater to see it.</p>
+                  <p>You can see that it has a very different look and feel to 
+                    the AWT based Applets.</p>
+                  <p>&nbsp;</p></td>
+                <td valign="top"><p> 
+                    <!--"CONVERTED_APPLET"-->
+                    <!-- CONVERTER VERSION 1.3 -->
+                    <object
+        classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
+        codebase="http://java.sun.com/products/plugin/1.3/jinstall-13-win32.cab#Version=1,3,0,0"
+        align="absbottom" border="0" width="400" height="80"
+        name="SwingButtonApplet">
+                      <param name="CODE"
+        value="swingbutton/Applet1.class">
+                      <param name="CODEBASE"
+        value="classes">
+                      <param name="ARCHIVE"
+        value="swingbutton/Applet1.jar">
+                      <param name="NAME"
+        value="SwingButtonApplet">
+                      <param name="type"
+        value="application/x-java-applet;version=1.3">
+                      <param
+        name="scriptable" value="false">
+                      <COMMENT> 
+                      <embed align="absbottom" border="0" width="400" height="80" type="application/x-java-applet;version=1.3" code="swingbutton/Applet1.class" codebase="classes" archive="swingbutton/Applet1.jar" name="SwingButtonApplet" scriptable="false" pluginspage="http://java.sun.com/products/plugin/1.3/plugin-install.html"></embed></object>
+                    <object
+        classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
+        codebase="http://java.sun.com/products/plugin/1.3/jinstall-13-win32.cab#Version=1,3,0,0"
+        align="absbottom" border="0" width="400" height="80"
+        name="SwingButtonApplet">
+                    </object>
+                  </p>
+                  </td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr> 
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: July 2002. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="swing_jcomponent.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">JComponent<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+
+</FONT>
+</BODY>
+</HTML>

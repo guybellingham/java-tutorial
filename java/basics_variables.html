@@ -1,0 +1,241 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="29/1/2002">
+<meta name="keywords" content="instance, class, local, variable, datatype, member, scope, Java, Programming, Guide, Beginner, Basic, Picture, Example, Link">
+<meta name="description" content="Defining variables. Interactive Java Programming Guide, play with the Applets, try the example code.">
+<title>Object variables</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="1" leftmargin="1"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script --> 
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading --> 
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC">
+      <!-- Basics Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/basics-toc.js">
+	</SCRIPT></td>
+    <td align="left" valign="top">
+     <table border="0" cellpadding="2" width="100%" cellspacing="0"> 
+      <tr>
+      <td align="left" valign="top">
+            <h4 class="stdPageHeader"> Member variables.</h4>
+      </td>
+          <td align="right" valign="top" ><a href="basics_constructors.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">creating 
+            objects <img src="../images/nextarrow_off.gif" alt="Next Page!" name="next1" width="40" height="24" border="0"></a> 
+          </td>
+      </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"> 
+            <p><b>You can declare variables within a class or method block.</b> 
+              Variables must be defined to be of a particular type. You declare 
+              variables to reserve memory for some data (text, numbers, arrays...etc) 
+              or to reference another object. <br>
+              Variables must have a name so that you can refer to them, and you 
+              should give them an initial value. <span class="caption">For example 
+              :</span> </p>
+            <pre class="code">package my.plants; 
+public class Tree extends Plant {
+<font color="#999999">  //The number of sap rings for this tree </font> <br><font color="#FF0000">  int rings = 25;</font>
+  public boolean isReadyToCut( ) {
+    <font color="#999999">//Whether this tree is ready for harvest true/false</font>
+    <font color="#FF0000">boolean b = false;</font>
+    if (rings &gt; 30) {
+      b = true;
+    }
+    return b;
+  }
+}
+</pre>
+            <p><b>There are 3 basic uses for variables</b> : </p>
+            <ul>
+              <li>Variables can be used to <b>declare one of the <a href="javascript:popup('keywords.html#datatypes')">data 
+                types</a></b> built into the Java language. 
+                <pre><span class="code"><span class="code">int yourAge = 0;<br>float taxRate = 0.28F; <br>char newLine = '\n'; <br>boolean myFlag = false;</span></span></pre>
+              </li>
+              <li>You can use an object variable <b>to refer to any class of object</b> 
+                such as a Cat or a Circle object. By default an object reference 
+                is <a href="javascript:popup('keywords.html#null')">null</a> , 
+                until you assign it to the correct type of object.<br>
+                <br>
+                <span class="code"><span class="code">Color myColor; <font color="#999999">//Beware 
+                is null initially!</font><br>
+                Font myBigFont = new Font("Helvetica",Font.BOLD,36); <br>
+                Cat puss = new Cat(&quot;puss&quot;,12);</span></span></li>
+            </ul>
+            <ul>
+              <li>Variables can also be used to <b>refer to an Array</b> of datatypes 
+                or an Array of a class of object. <br>
+                <br>
+                <span class="code">int [] monthsStartingWithJ = new int[3];<br>
+                Shape [] shapeList = new Shape[64];</span> </li>
+            </ul>
+            </td>
+      </tr>
+     </table>
+   </td>
+  </tr>
+</table>
+<table width="100%" name="contentTable" border="0" cellspacing="2" cellpadding="2" bgcolor="#FFFFFF">
+  <tr valign="top" align="left"> 
+    <td> 
+      <p><b>Variables have different scopes</b>, depending upon where in a class 
+        they are defined: </p>
+      <ul>
+        <li><b>Class variables</b>, do not depend upon the existence of any one 
+          object. Class variables are defined within the body of the class statement 
+          (outside of any member method) using the <a href="javascript:popup('keywords.html#static')">static</a> 
+          keyword. <b>Class variables should be referenced using the class name.</b> 
+          They are 'shared' across all instances of the class in which they are 
+          declared. For example the <span class="code">java.lang.Math</span> class 
+          has a class variable called <span class="code">PI</span> declared like 
+          this : 
+          <pre class="code">public final class Math {<font color="#999999">
+ /** <br>  * The <code>double</code> value that is closer than any other to 
+  * <i>pi</i>, the ratio of the circumference of a circle to its diameter.              
+  */ </font>
+ public <font color="#FF0000">static</font> final double PI = 3.14159265358979323846;
+
+}</pre>
+          <p>The keyword <a href="javascript:popup('keywords.html#static')">static</a>, 
+            can be used to declare both variables and methods as belonging to 
+            a class as a whole, instead of new objects built from that class. 
+            The keyword <a href="javascript:popup('keywords.html#final')">final</a> 
+            makes the value of <span class="code">PI</span> a constant. To get 
+            the value of <span class="code">PI</span> in your classes, you can 
+            reference this class constant like this :</p>
+          <p class="code">double circumference = 2 * <font color="#FF0000">Math.PI</font> 
+            * radius;</p>
+          <p>Notice that the value PI is not dependent upon the existence of a 
+            Math object, we did not have to construct a Math object to reference 
+            PI, we just used the class name. </p>
+        </li>
+        <li><b>Instance or object variables</b>, belong to a particular object, 
+          (their existence is tied to a single runtime instance of a class) and 
+          they have a lesser scope. They can only be referenced through an object 
+          variable. They are usually declared just after the class statement (outside 
+          of any member method). The Java compiler does not force you to assign 
+          an initial value. Java automatically initializes numeric variables to 
+          zero, character variables to unicode '\u0000' and booleans to false. 
+          Uninitialized object variables are <a href="javascript:popup('keywords.html#null')">null</a>. 
+          For example the java.lang.String class, represents a sequence (or string) 
+          of character text, it defines a private instance variable called <span class="code">count</span>, 
+          which is defined thus : 
+          <pre class="code">public final class <font color="#FF0000">String</font> implements java.io.Serializable, Comparable {
+ <font color="#999999">/** The count is the number of characters in the String. */</font>
+ <font color="#FF0000">private int count;</font>
+<font color="#999999"> /** Returns the length of this string.
+  * The length is equal to the number of 16-bit
+  * Unicode characters in the string.
+  * @return  the length of the sequence of characters represented by this
+  *          object.
+  */</font>
+ public int length() {
+  return <font color="#FF0000">count</font>;
+ }
+} 
+</pre>
+          <p>Obviously the <span class="code">count</span> of characters in a 
+            String, depends upon the particular text in a String object, and so 
+            it makes sense to have a different <span class="code">count</span> 
+            variable, for each instance of a String. Therefore you want to call 
+            the length() method only on a particular String object :</p>
+          <pre class="code">String s1 = new String(&quot;Java&quot;);
+String s2 = new String(&quot;&quot;);<br><font color="#FF0000">s1.length();</font> //returns integer 4
+<font color="#FF0000">s2.length();</font> //returns integer 0
+          </pre>
+        </li>
+        <li><b>Local or method variables</b>, are defined within a method or code 
+          block (within curly braces). The compiler ensures that they must be 
+          given an initial value when declared. They exist only for as long as 
+          the method or code block is executing in memory. Take a look at the 
+          compareTo( ) method in the java.lang.String class, there's some stuff 
+          here you may not understand, but the method makes good use of local 
+          variables. 
+          <pre class="code">
+public int compareTo(String anotherString) {
+ <font color="#999999">//These method variables only exist while compareTo is executing</font>
+ int <font color="#FF0000">len1</font> = this.count;
+ int <font color="#FF0000">len2</font> = anotherString.count;
+ int n = Math.min(len1, len2);
+ char v1[] = value;
+ char v2[] = anotherString.value;
+ int i = offset;
+ int j = anotherString.offset;
+             
+ while (n-- != 0) {
+    //Variables c1 and c2 only exist during each while loop iteration
+    char <font color="#FF0000">c1</font> = v1[i++];
+    char <font color="#FF0000">c2</font> = v2[j++];
+    if (c1 != c2) {
+     return c1 - c2;
+    }
+ }
+ return len1 - len2;
+}
+           </pre>
+        </li>
+      </ul>
+      <p>There are a <b>couple of rules to remember</b> about defining variables 
+        : </p>
+      <ul>
+        <li>By convention member variables have meaningful names, and the first 
+          word is in lowercase. Names cannot begin with a number or contain spaces. 
+          <br>
+          <b>Note</b>: Names can begin with the special characters $ and _ (underscore), 
+          but most special characters have other uses in Java, so it is better 
+          to use meaningful alphabetic names.</li>
+        <li><font color="#FF0000">Names are case sensitive !</font></li>
+        <li>You cannot define 2 variables with the same name, in the same code 
+          block.</li>
+        <li>Local variables must be declared before they can be used.</li>
+        <li>Local variables, must be initialized when they are first declared. 
+          If the initial values are not available at the point you need to declare 
+          a local variable, you can use 0 for integer datatypes, 0.0F for float 
+          and 0.0 for double datatypes, '\u0000' for the char datatype and null 
+          for object variables. </li>
+        <li>If you declare a local variable with the same name as an instance 
+          variable, the local variable (while it exists) will 'mask' the instance 
+          variable. To use a masked instance variable you can refer to it using 
+          the special Java keyword <a href="javascript:popup('keywords.html#this')">this</a> 
+          as shown below. Avoid naming clashes, they make your code hard to understand. 
+          <pre class="code">public class Rectangle {
+  <font color="#999999">//Instance variable called x</font>
+  private int x = 0;
+  <font color="#999999">//Set the instance variable x using local variable x</font>
+  public void setX(int x) {
+    <font color="#FF0000">this.x = x;</font>
+  }             
+} </pre>
+        </li>
+        <li>Avoid using Java <a href="javascript:popup('keywords.html#top')">keywords</a> 
+          in your variable names. </li>
+      </ul>
+    </td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0"> 
+      <tr>
+      <td align="left" valign="top">
+        Last Updated: December 2001. &copy;1999 Guy&nbsp;Bellingham-Smith 
+      </td>
+          
+    <td align="right" valign="top" ><a href="basics_constructors.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">creating 
+      objects <img src="../images/nextarrow_off.gif" alt="Next Page!" name="next2" width="40" height="24" border="0" id="next2"></a> 
+    </td>
+      </tr>
+</table>
+
+</FONT> 
+</BODY>
+</HTML>

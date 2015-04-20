@@ -1,0 +1,147 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="7/20/2002">
+<meta name="keywords" content="Java,IO,Reader,Writer,InputStream,OutputStream,Collections,Threads,Networking">
+<meta name="description" content="The Java class libraries and advanced programming topics.">
+<title>Advanced Java</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/advanced-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader">policytool 
+              and Permissions</h4></td>
+          <td align="right" valign="top" ><a href="awt_classes.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">AWT 
+            classes<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"><p><a name="policytool"></a>The 
+              <span class="stdCode">policytool.exe</span> program is a Java application, 
+              that allows you to manage <span class="stdCode">policy</span> files. 
+              A policy file is a plain text file that contains a list of Java 
+              security 'permissions' that are associated with various 'sources' 
+              of code. </p>
+            <p>In order for an applet (or an application running under a security 
+              manager) to be allowed to perform secured actions (such as reading 
+              or writing a file), the applet (or application) must be granted 
+              permission for that particular action. In the default Policy implementation, 
+              that permission must be granted by a <span class="stdCode">grant</span> 
+              entry in a policy configuration file. </p>
+            <p>By default there is a single 'system' level policy file, located 
+              at <span class="stdCode">{java.home}\lib\security\java.policy</span><br>
+              There may also be a single 'user' level policy file located at <span class="stdCode">{user.home}\.java.policy</span>.</p>
+            <p><span class="stdCaption">Here is a picture of the main policytool 
+              window.</span><br>
+              <img
+        src="images/policytool-policyentry.gif" width="435"
+        height="304"></p></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr> 
+    <td>
+<p>The default policy implementation, stores policies in flat files, with 
+        a particular format :<br>
+        <strong>#1</strong>. A policy file, is associated with a single <a
+        href="keytool1.htm#keystore">keystore file</a>, where the keys of a signer 
+        may be stored. A single keystore entry, points to the keystore file to 
+        be consulted when verifying signed code sources. The URL uses forward 
+        slashes in the path, and is the file: URL relative to the location of 
+        the policy file. The type defaults to Sun's &quot;JKS&quot; keystore format.<br>
+        <span class="stdCode">keystore &quot;URL_to_keystore&quot;, &quot;keystore_type&quot;;</span></p>
+      <p><strong>#2</strong>. One or more <span class="stdCode">grant</span> statements, 
+        that associate code from a particular source and / or code signed by a 
+        trusted individual with one or more <span class="stdCode">Permissions</span>.</p>
+      <p class="stdCode">grant signedBy &quot;gus&quot; {<br>
+        &nbsp;permission&nbsp;java.io.FilePermission(&quot;${user.home}${/}*&quot;,&quot;read&quot;);<br>
+        &nbsp;permission&nbsp;java.io.FilePermission(&quot;${user.home}${/}temp${/}*.tmp&quot;,&quot;write&quot;);<br>
+        }</p>
+      <p><a name="propertyexpansion"></a><strong>Note</strong>: By enclosing system 
+        properties, such as <span class="stdCode">java.home, user.home</span> 
+        or <span class="stdCode">file.separator</span> within special syntax (curly 
+        braces, preceded with a dollar sign) the runtime value of that system 
+        property is substituted into your policy files :</p>
+      <table width="100%" border="1" cellpadding="2" cellspacing="0">
+        <tr> 
+          <td width="40%" valign="top" class="stdCode">file:${java.home}/lib/ext/-</td>
+          <td valign="top" width="60%">specifies a codeBase URL of all class and 
+            jar files in all subfolders in the lib\ext folder of the Java home 
+            (installation) directory.</td>
+        </tr>
+        <tr> 
+          <td width="40%" valign="top" class="stdCode">file:${user.home}/myclasses/*</td>
+          <td valign="top" width="60%">URL refers to all class and jar files in 
+            the myclasses subfolder, of the user home directory (usually <a
+                href="C:\Windows\">C:\Windows\</a> on a Win32 machine).</td>
+        </tr>
+        <tr> 
+          <td width="40%" valign="top" class="stdCode">file:/home/adam</td>
+          <td valign="top" width="60%">all class files (not jar) in the home/adam 
+            folder on a Unix machine.</td>
+        </tr>
+      </table>
+      <p><span class="stdCaption">figure: granting permissions to a code source 
+        in policytool.</span><span class="stdCode"><br>
+        <img src="images/policytool-permissionentry.gif"
+        width="600" height="500"></span></p>
+      <p><strong>A 'source' of code</strong>, is the combination of the <span class="stdCode">URL</span> 
+        of the class file (the 'codebase' where the .class or .jar file is), and 
+        the <span class="stdCode">'alias'</span> associated with the digital signature 
+        of signed code (<a
+        href="jarsigner.htm">Java archives may be signed</a> using a private key). 
+      </p>
+      <p>If you specify more than one alias in the <span class="stdCode">SignedBy</span> 
+        textfield, the code must be signed by both parties (signatures are AND'd 
+        together), in order to qualify for the permissions listed. The <span class="stdCode">SignedBy</span> 
+        field is optional in that, if it is omitted, it signifies &quot;any signer&quot;. 
+        It doesn't matter whether the code is signed or not or by whom. </p>
+      <p><strong>Note</strong>: When specifying a codebase <span class="stdCode">URL</span>, 
+        the symbol &quot;*&quot; can be used as a wildcard for all the class or 
+        jar files in a particular folder. The symbol &quot;-&quot; can be used 
+        as a placeholder for all files in the folder and all subfolders. <br>
+        The codebase <span class="stdCode">URL</span> should follow the form <span class="stdCode">protocol:path</span>. 
+        <br>
+        For example &quot;http://java.sun.com/*&quot; or &quot;file:/C:/somepath/&quot; 
+        or even &quot;ftp://ftp.domain.com/-&quot; . A codebase value is a <span class="stdCode">URL</span>, 
+        and uses <em>forward slashes</em> not back slashes.</p>
+      <p><span class="stdCaption">figure: editing a Permission in a Policy file 
+        entry.</span><br>
+        <img src="images/policytool-editpermission.gif"
+        width="700" height="250"></p></td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: July 2002. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="awt_classes.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">AWT 
+      classes <img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+
+</FONT> 
+</BODY>
+</HTML>

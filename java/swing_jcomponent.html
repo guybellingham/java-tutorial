@@ -1,0 +1,86 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="7/20/2002">
+<meta name="keywords" content="Java,AWT,Abstract Windowing Toolkit">
+<meta name="description" content="Introducing the AWT.">
+<title>The Title</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/awt-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader">javax.swing.JComponent</h4></td>
+          <td align="right" valign="top" ><a href="swing_jlabel.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">JLabel<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"><p>All Swing components are 
+              compatible with the Java 1.1 Java Beans architecture. That means 
+              basically that they use <span class="stdCode">EventListeners</span> 
+              to handle events and they have consistent property API (using get 
+              and set methods).</p>
+            <p>Since <span class="stdCode">JComponent</span> inherits from <a
+        href="awt_container.html" class="stdCode">java.awt.Container</a>, all 
+              Swing components can contain other Components for example a <span class="stdCode">JTable</span> 
+              can contain <span class="stdCode">JButtons</span> and <span class="stdCode">JLabels</span> 
+              etc.</p>
+            <p>All these user interface controls, seperate the user interface 
+              (View and Controller) from the underlying data model. This means 
+              that you can customize just the look and feel of a control while 
+              reusing the underlying data model. Actually the reverse situation 
+              is more normal, where you want to 'extend' the default data model 
+              of a control, while reusing the existing presentation logic.</p>
+            <p><span class="stdCode">JComponent</span> is an abstract class, its 
+              constructor method is only used by derived classes when they are 
+              instantiated. Functionality common to all Swing components can be 
+              found in the <span class="stdCode">JComponent</span> class. This 
+              important class is responsible for managing the pluggable look-and-feel, 
+              handling accelerator keystrokes and actions, supporting borders 
+              and the sizing of all components. <br>
+              In addition <span class="stdCode">JComponent</span> adds support 
+              for accessibility, internationalization &amp; locales, tooltips, 
+              auto-scrolling, focus and double buffering for fast repainting.</p>
+            <p><span class="stdCaption"><a name="swing components"></a>&nbsp;figure 
+              - JComponent is the 'mother' of all swing components.</span><br>
+              <img src="images/swing-components.gif" width="601"
+        height="958"></p></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr>
+    <td><p>&nbsp;</p>
+      </td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: July 2002. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="swing_jlabel.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">JLabel<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+</FONT> 
+</BODY>
+</HTML>

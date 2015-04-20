@@ -1,0 +1,1854 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="29/1/2002">
+<meta name="Description"
+content="Java Programming Keywords">
+<meta name="KeyWords"
+content="Java, programming, keywords, syntax, class, interface, abstract, array, arithmetic, operators, looping, do, while, for, break, continue, conditional, it, else, switch, behavior, UML, static, final, public, protected, private, application, applet, program, methods, class, interface, object, properties, jargon, Programming, Guide to Java">
+<title>Java - keywords</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+<base target="_parent">
+</head>
+
+<body bgcolor="#FFFFFF" link="#0000EE" vlink="#551A8B"
+topmargin="2" leftmargin="2">
+<FONT class="text"> </FONT> 
+<table border="0" cellpadding="2" width="100%" cellspacing="2">
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"> 
+      <p><b><a name="top"></a>Java keywords </b>are shown in yellow boxes below<b>.<br>
+        </b><font class="text"><font class="text" color="#FF0000">Note: You should 
+        avoid using these words in your own method and variable names !</font></font></p>
+      </td>
+    <td valign="top" bgcolor="#CCFFCC"><b>Java classes and OOP terminology</b> 
+      are shown in green boxes. </td>
+    <td valign="top" bgcolor="#CCFFFF"> 
+      <p><b>Java <font color="#FF0000">gotchas</font></b> are shown in blue boxes.</p>
+    </td>
+  </tr>
+</table>
+<FONT class="text"> 
+<table border="0" cellpadding="2">
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"> 
+      <p><a name="abstract"></a><b>abstract</b> </p>
+      <p>&nbsp;</p>
+    </td>
+    <td valign="top"> 
+      <p> A modifier keyword for classes and their member methods.<br>
+        An abstract <a href="#method">method</a> definition, contains only the 
+        name, parameters, return type and any exceptions thrown, no body {in brackets} 
+        or processing is defined. </p>
+      <p class="code">public abstract void rotate(Shape s, float I, int axis) 
+        <br>
+        throws Exception;</p>
+      <p>You cannot create a new instance of an abstract <a href="#class">class</a>, 
+        it is only meant to be extended by subclasses.</p>
+      <p class="code">public <font color="#FF0000">abstract</font> class Shape 
+        {.. }</p>
+      <p>A class must be abstract when :</p>
+      <ul>
+        <li>it contains an abstract method definition </li>
+        <li>it extends an abstract class, but does not define processing for the 
+          abstract methods in that super class </li>
+        <li>it implements an interface but does not define processing for all 
+          of its&#146; methods</li>
+      </ul>
+      <table width="100%" border="0" cellspacing="0" cellpadding="2" bgcolor="#CCCCFF">
+        <tr bgcolor="#CCFFFF"> 
+          <td><b><font color="#FF0000">Gotcha!</font> </b> <br>
+            <b>1</b>. If a method is defined as abstract, the class it belongs 
+            to must also be abstract. <br>
+            <b>2</b>. An abstract method has no implementation and cannot also 
+            be <a href="#private">private</a>, <a href="#static">static</a>, <a href="#native">native</a> 
+            or <a href="#final">final</a>.<br>
+            <b>3</b>. A class can be abstract even if none of its member methods 
+            are abstract (e.g java.awt.Component). <br>
+            <b>4</b>. A class must be abstract if it implements an <a href="#interface">interface</a> 
+            without providing behavior for all the methods laid out in the interface. 
+            <br>
+            <b>5</b>. An abstract class cannot be instantiated (made into an object), 
+            does not have a constructor method, and is meant to be subclassed 
+            (it cannot also be <a href="#final">final</a>).</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#CCFFCC"> 
+      <p><a
+        name="access modifier"></a><b>access modifier</b> </p>
+      <p><font color="#FF0000">Note</font>: only 1 access modifier can be applied 
+        to a method or variable at a time.&nbsp;</p>
+    </td>
+    <td valign="top">&nbsp;&nbsp;Access modifiers are keywords that can be applied 
+      to the member variables or methods in a class, and act to restrict references 
+      to members from outside the class.&nbsp;<br>
+      <br>
+      <a href="#public">public</a> - a public member can be accessed by any outside 
+      class that has access to the member&#146;s class. A public class, is accessible 
+      to classes in other packages, this is the only access modifier that applies 
+      to a class as a whole.<br>
+      <a href="#protected">protected</a> - a protected member can only be accessed 
+      from classes within the same package, or by subclasses of the member&#146;s 
+      own class in the same or a different package. <br>
+      <a href="#private">private</a> - a private member can only be referenced 
+      from within the class it is defined in. <br>
+      <a href="#package">package</a> level access is the default ( if no access 
+      modifier is defined ), and permits access within the same package, but prevents 
+      access from outside the package to which the class belongs.</td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#CCFFCC"><a name="applet"></a><b>Applet</b>&nbsp;</td>
+    <td valign="top"> 
+      <p>&nbsp;An Applet is a Java object, whose class extends either <span class="code">java.applet.Applet</span> 
+        or <span class="code">javax.swing.JApplet</span> classes. </p>
+      <ul>
+        <li>Applets based upon the former class make use of the older 'Abstract 
+          Windowing Toolkit' classes (in packages with names beginning <span class="code">java.awt.*</span>) 
+          for the GUI. These types of Applets are more widely supported by the 
+          Java Virtual Machines, built into web browsers.</li>
+        <li>The 1.1 version of the Java runtime, included the Java Foundation 
+          Classes, and libraries of GUI objects based upon a more efficient and 
+          flexible architecture known as Model-View-Controller or MVC for short. 
+          These newer GUI classes are in packages with names beginning <span class="code">javax.swing.*</span> 
+          and became known as the 'swing' classes. They provided a much improved 
+          event handling process, and instead of relying upon the GUI controls 
+          of the underlying operating system the newer controls basically draw 
+          themselves onto the screen. <br>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#CCFFCC"><b><a name="arithmetic"></a>Arithmetic 
+      operators.</b></td>
+    <td valign="top"> 
+      <table border="1"
+        cellpadding="4" cellspacing="0">
+        <tr> 
+          <td>Type </td>
+          <td>Operators</td>
+        </tr>
+        <tr> 
+          <td>Unary</td>
+          <td> 
+            <p>++ -- + - <br>
+              !&nbsp;(Boolean&nbsp;NOT), ~&nbsp;(Bitwise&nbsp;inversion)</p>
+          </td>
+        </tr>
+        <tr> 
+          <td rowspan="2">Arithmetic</td>
+          <td> 
+            <p>*, /, % (Modulus)</p>
+          </td>
+        </tr>
+        <tr> 
+          <td> 
+            <p>+, -</p>
+          </td>
+        </tr>
+        <tr> 
+          <td>Bit Shift</td>
+          <td> 
+            <p>&gt;&gt; (preserves the sign), <br>
+              &gt;&gt;&gt;, &lt;&lt; (destroy the sign)</p>
+          </td>
+        </tr>
+        <tr> 
+          <td>Comparison</td>
+          <td> 
+            <p>&lt;, &lt;=, &gt;, &gt;=, ==, !=, instanceof</p>
+          </td>
+        </tr>
+        <tr> 
+          <td>Bitwise</td>
+          <td> 
+            <p>&amp;, ^ (XOR), |</p>
+          </td>
+        </tr>
+        <tr> 
+          <td>Boolean</td>
+          <td> 
+            <p>&amp;&amp;, &amp; (AND), ||, | (OR)</p>
+          </td>
+        </tr>
+        <tr> 
+          <td>Ternary</td>
+          <td> 
+            <p>? :</p>
+          </td>
+        </tr>
+        <tr> 
+          <td>Assignment</td>
+          <td> 
+            <p>=, op= (+=, -=, *= ..etc)</p>
+          </td>
+        </tr>
+      </table>
+      <table width="100%" border="0" cellspacing="0" cellpadding="2">
+        <tr bgcolor="#CCFFFF"> 
+          <td><b><font color="#FF0000">Gotcha!</font></b> <br>
+            <b>1</b>. Integer division and modulus can generate a runtime ArithmeticException 
+            (divide by zero), floating point numbers do not have this problem 
+            since they can represent Infinity and 'Not a Number' (see the static 
+            value NaN and static method isNaN( ) in the Float and Double classes). 
+            <br>
+            <b>2</b>. NaN is not equal to any number it cannot even be equated 
+            to itself !<br>
+            <b>3</b>. If the result of an arithmetic expression overflows (is 
+            too big for) the receiving data type, the answer is simply truncated 
+            silently! Integer data types cannot represent fractional values and 
+            lose precision whenever an arithmetic operation yields a fraction.</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#CCFFCC"><b><a name="array"></a>Arrays</b></td>
+    <td valign="top"> 
+      <p><b>Arrays are objects in Java</b>, you must use the keyword new to allocate 
+        space for an array. <br>
+        <b>Row and Column occurence, starts from zero</b> (not 1) and extend upto 
+        1 less than the length. Although an array is fixed in size, space is not 
+        allocated until runtime, so you can use an integer variable to set an 
+        array length.<br>
+        When declaring an array, the square brackets can go either side of the 
+        variable name. For example: </p>
+      <p><span class="code">float weightArray []; <br>
+        float [] weightArray;</span></p>
+      <p><span class="code"><font color="#999999">//2 character Array pointers</font><br>
+        char [] ar1, ar2;<br>
+        <font color="#999999">//1 character array and 1 char !</font><br>
+        char ar3[], ch1;<br>
+        <br>
+        <font color="#999999">//Now we reserve storage for the array<br>
+        //chars are initialized to 'u\0000'</font><br>
+        ar4 = new char[26];</span></p>
+      <p><span class="code"><font color="#999999">//Array of 3 object reference 
+        initialized to nulls </font> <br>
+        MyClass[] ar5 = new MyClass[3]; <br>
+        <font color="#999999">//Array of 3 MyClass object references</font><br>
+        MyClass[] ar6 = {new MyClass(0), new MyClass(1), new MyClass(2)};</span></p>
+      <p>You can think of a multi-dimensional array, as an 'array of arrays'. 
+        For example to define 4 arrays with null object references of type int[] 
+        : </p>
+      <p><span class="code">int vertexArray [][] = new int [4][]; <font color="#999999">//4 
+        rows, no cols yet!</font><br>
+        <font color="#999999">//Now fill in those null array references</font><br>
+        vertexArray [0] = new int[2]; <font color="#999999">//now vertexArray[0].length 
+        = 2</font><br>
+        vertexArray [1] = new int[4];<br>
+        vertexArray [2] = new int[8];<br>
+        vertexArray [3] = new int[16]; <font color="#999999">//Non rectangular 
+        array!</font><br>
+        <br>
+        int goodArray [][] = new int [4][5]; <font color="#999999">//for rectangular 
+        array</font><br>
+        int badArray [][] = new int [][4]; <font color="#FF0000">//NOT LEGAL!</font></span></p>
+      <p><span class="code"><font color="#999999">//Declare and construct a 2D 
+        array</font><br>
+        String beverageArray [][] = { {&quot;coffee&quot;, &quot;tea&quot;, &quot;lemonade&quot;},<br>
+        {&quot;sugar&quot;, &quot;cream&quot;, &quot;ice&quot;} };</span></p>
+      <p>Arrays are fixed length, so the <span class="code">java.lang.System</span> 
+        class has a handy method for <br>
+        copying one array to another :</p>
+      <p class="code">System.arraycopy(fromArray, startAt, toArray, startAt, length);</p>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#CCFFCC"><a name="behavior"></a><b>behavior</b>&nbsp;</td>
+    <td valign="top">&nbsp;A behavior, is a generic term for all the 'things' 
+      an object can do at run time. You manipulate objects in Java by referencing 
+      their member methods and variables. The behaviors are the manifestations 
+      of the <a
+        href="#method">methods</a> coded into the object, as opposed to <a href="#properties">properties</a> 
+      which is another name for the <a
+        href="#variables">variable</a> data coded into the object.</td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="boolean"></a><b>boolean</b></td>
+    <td valign="top" bgcolor="#FFFFFF">A fundamental datatype of the Java language, 
+      which can only be assigned the values <a
+        href="#true">true</a> or <a href="#false">false</a>. Unlike some languages, 
+      you cannot test a boolean variable for the integer values 0 (false) or 1 
+      (true). The default value for a boolean variable is false.</td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="break"></a><b>break</b></td>
+    <td valign="top" bgcolor="#FFFFFF"> 
+      <p>&nbsp;A keyword that affects execution flow.break is used from within 
+        <a href="#for">for </a>loops or the <a href="#switch">switch </a>statement 
+        to &#145;break out&#146; of the iteration or case construct. It can be 
+        used in combination with a label, to control execution in a manner similar 
+        to the goto statement : </p>
+      <pre class="code">outer:for (int x = 0; x &lt; 8; x++) { 
+        for (int y = 0; y &lt; 8; y++) { 
+          if (myArray[x][y] == &#145;X&#146;) { 
+           system.out.println(&quot;X at&quot; + x + &quot;,&quot; + y);
+           //break out of both loops
+           break outer;<br>          }
+        }<br>      }</pre>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="byte"></a><b>byte</b></td>
+    <td valign="top" bgcolor="#FFFFFF"> 
+      <p>A fundamental datatype of the Java language, that occupies 8 bits of 
+        storage </p>
+      <p>A byte can be assigned integer values between negative 2 <sup>7 </sup>(2 
+        to the power of 7 or -128) and positive (2 <sup>7</sup>) - 1 (2 to the 
+        power of 7 minus 1 or +127) . <br>
+        The default value for a byte variable is zero.</p>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="case"></a><b>case</b></td>
+    <td valign="top">&nbsp;A keyword that affects execution flow.It is a part 
+      of the <a
+        href="#switch">switch </a>statement, and executes a block of statements 
+      depending upon the value of the variable tested and which case is true.</td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#CCFFCC"><b><a name="cast"></a>casting</b></td>
+    <td valign="top"> 
+      <p>When you assign an object reference to a variable of a different type, 
+        or when you reference a method with the 'wrong' types or arguments, the 
+        Java compiler performs automatic conversion of the class, if it is legal. 
+      </p>
+      <table border="0">
+        <tr> 
+          <td><b>The rules for automatic object reference conversion are :</b></td>
+        </tr>
+        <tr> 
+          <td> 
+            <ul>
+              <li>An interface may only be converted to another class of interface 
+                from which it inherits (up the inheritance hierarchy), or to java.lang.Object.</li>
+              <li>A class may be converted to another class from which it inherits 
+                (up the inheritance hierarchy) or to an interface which it implements.</li>
+              <li>An Array may be converted to java.lang.Object, or the interfaces 
+                Cloneable and Serializable. <br>
+                Only an Array of object references may be converted to another 
+                array, and the 'old' element class must be convertible to the 
+                new element class.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr> 
+          <td> 
+            <p><span class="code">float [] a1 = {0.55F, 0.80F, 1.25F};<br>
+              Vector v1 = new Vector( );<br>
+              <font color="#999999">//automatic cast from Array to Object</font><br>
+              v1.addElement(a1);</span></p>
+          </td>
+        </tr>
+      </table>
+      <p>While an objects class is unchanging, it may be referenced by variables 
+        of different types. Casting up from a subclass to a more generic super 
+        class is automatically handled at runtime, however you must explicitly 
+        cast down the inheritance hierarchy to a more detailed subclass, in order 
+        to cleanly compile. <br>
+        Some of the rules for explicitly 'casting' between class types can be 
+        enforced by the Java compiler, however others cannot be checked until 
+        runtime, and may throw a ClassCastException.</p>
+      <table border="0">
+        <tr> 
+          <td><b>The compile-time rules can be summarized :</b></td>
+        </tr>
+        <tr> 
+          <td> 
+            <ul>
+              <li>You may explicitly 'cast' classes up and down the inheritance 
+                hierarchy, you cannot cast across the hierarchy between 'sibling' 
+                classes. </li>
+              <li>When casting Arrays, both must contain object references (not 
+                primitive data types), and it must be legal to cast between the 
+                class types of the objects they contain.</li>
+              <li>You can cast between an interface and any type of (non final) 
+                class.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr> 
+          <td><b>At runtime the rules are :</b></td>
+        </tr>
+        <tr> 
+          <td> 
+            <ul>
+              <li>When casting to a 'new' type of class, the 'old' class must 
+                equal the 'new' or must inherit from the 'new' class.</li>
+              <li>If the 'new' type is an interface, then the 'old' class must 
+                implement that interface.</li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="catch"></a><b>catch</b></td>
+    <td valign="top"> 
+      <p>&nbsp;A keyword that affects execution flow.The catch statements can 
+        follow the <a href="#try">try </a>construct for handling Exception or 
+        Error objects, thrown by methods that cannot complete processing. The 
+        keyword is followed by the type of Throwable exception object in parentheses, 
+        that is handled by the statement block that follows. </p>
+      <pre class="code">catch (IOException e) {
+  // statements to handle the Exception object here
+}</pre>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="char"></a><b>char</b></td>
+    <td valign="top">&nbsp;A fundamental datatype of the Java language, that stores 
+      characters using the 16 bit Unicode character set.<br>
+      The ASCII character constants are quoted such as char a = &#145;a&#146;;<br>
+      Characters can be represented using the escape sequence &#145;\uxxxx&#146; 
+      , where xxxx represents a four digit hexadecimal value.<br>
+      The 256 characters of the ASCII character set are represented in the range 
+      &#145;\u0000&#146; to &#145;\u00FF&#146;, the default value for a char variable 
+      is the character &#145;\u0000&#146; (which is not a space character).<br>
+      Special escape sequences can be used to represent non-printable characters 
+      (&#145;\n&#146; newline is shorthand for &#145;u\000A&#146;, and &#145;\r&#146; 
+      carriage return is &#145;\u000D&#146; ..etc).</td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#CCFFCC"> 
+      <p>&nbsp;<a name="class"></a><b>class</b> </p>
+      <p>A <a href="#switch">class definition</a> is a kind of 'template' for 
+        objects which are built and manipulated at runtime. &nbsp;</p>
+    </td>
+    <td valign="top"> 
+      <p>The class statement in Java is used to define a new type of object. Class 
+        names are capitalized by convention, to distinguish them from package 
+        and method names. </p>
+      <p class="code">class MyClass extends SuperClass <br>
+        implements Interface1, Interface2 {<br>
+        }</p>
+      <p>A class always inherits from and extends another 'parent' or <a href="#super">super</a> 
+        class. Shown at left is the inheritance tree of the Window class, which 
+        is in the <span class="code">java.awt</span> package. </p>
+      <p>Java, uses the keyword <a
+                href="#extends">extends</a> in a class definition, to signify 
+        this relationship, and name the parent class.<br>
+        Java includes built-in libraries of classes that are packaged together, 
+        to give you ready made objects that you can use to build graphical interfaces, 
+        handle events and errors, read from and write to files, connect to network 
+        resources and more.</p>
+      <p>By default a class is only accessible to other classes in the same package.<br>
+        If a class is preceded by the <a href="#public">public</a> access modifier, 
+        it can be referenced from outside its package.<br>
+        You cannot create new instances of an <a
+        href="#abstract">abstract</a> class, your objects should be based upon 
+        subclasses of that class. <br>
+        A <a href="#final">final</a> class, cannot be extended by subclasses, 
+        it is &#145;fixed&#146; in its behaviour and properties.</p>
+      <p>See also <a href="#innerclass">inner classes.</a></p>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC">&nbsp;<a name="const"></a><b>const</b></td>
+    <td valign="top">&nbsp;Reserved for future use (in the C language it is used 
+      much as final is used in Java to define a variable with an unchanging value).</td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#CCFFCC"> <b>&nbsp;<a name="constructor"></a>constructor</b></td>
+    <td valign="top">Constructors are methods that <b>have the same name as the 
+      class</b>, but have <b>no return type </b>(not even <a href="#void">void</a>). 
+      <br>
+      Constructor methods are not inherited by any subclasses, they are specific 
+      to the class after which they are named.<br>
+      If you do not define your own constructors for a class, Java implicitly 
+      makes use of a default 'no arguments' constructor, whose sole purpose is 
+      to invoke the 'no-args' constructor of the super class like this : <span class="code">super( 
+      );</span>. <br>
+      <b>Note</b>: The no-args constructor of the parent class is always implicitly 
+      called by Java at the beginning of a class's constructor, unless a different 
+      super class constructor is explicitly invoked as the first statement. This 
+      is how the inheritance hierarchy is built at runtime.<br>
+      Constructors may be <a href="#overload">overloaded</a>, and you may invoke 
+      another constructor for the current object using a method reference : <span class="code">this( 
+      parameter-list );</span> <br>
+      You can use the statement <span class="code">super(&nbsp;parameter-list&nbsp;);</span> 
+      to explicitly invoke a constructor method in the parent class. <br>
+      If you invoke an alternate constructor method, it must be the first statement 
+      in the method block (to prevent access to un-initialized objects).</td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#CCFFCC">&nbsp;<a name="classdiagram"></a><b>class 
+      diagram</b></td>
+    <td valign="top"> 
+      <p>A class diagram is one of the major modelling diagram conventions in 
+        the Unified Modelling Language (UML). Class diagrams are 'static', that 
+        is, they display what types of objects interact but not what happens when 
+        they do interact. <br>
+        UML class notation is a rectangle divided into three parts: </p>
+      <ol>
+        <li>The class name at the top</li>
+        <li>Class attributes (member variables)</li>
+        <li>Class operations (member methods)</li>
+      </ol>
+      <p>Names of <a href="#abstract">abstract</a> classes, such as a <i>Payment</i>, 
+        are written in italics. Relationships between classes are the connecting 
+        links, and can be made up of, associations, aggregation and generalization 
+        (aka <a href="#inheritance">inheritance</a>). These links may have explanatory 
+        role names on each end, may be directional, and can indicate the multiplicity 
+        (the number of possible instances of the class associated with a single 
+        instance of the other end).</p>
+      <p><img src="images/diagram_key.gif" width="388" height="740"></p>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="continue"></a><b>continue</b></td>
+    <td valign="top"> 
+      <p>A keyword that affects execution flow. It is used in <a
+        href="#for">for</a> loops to continue with the next iteration of the loop 
+        : </p>
+      <pre class="code">for (int i = 0; i &lt; shapeArray.length; i++) {
+  if (shapeArray[i] instanceof Line) {
+    continue;  
+  } else {
+    shapeArray[i].draw(); //draw 2D Shapes
+  }
+}</pre>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#CCFFCC"> 
+      <p><a name="datatypes"></a><b>data types</b><br>
+      </p>
+    </td>
+    <td valign="top"> 
+      <table border="0" cellpadding="2"
+        cellspacing="4" width="100%" height="299">
+        <tr bgcolor="#CCCCCC" align="left" valign="bottom"> 
+          <td width="26%"
+                height="32">data type</td>
+          <td width="22%">size / precision</td>
+          <td width="42%">range of values</td>
+          <td width="10%">default</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFF80" height="32">&nbsp;<a href="#byte">byte</a>&nbsp;</td>
+          <td>8-bit signed integer</td>
+          <td>-128 to +127</td>
+          <td>0</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF80" height="32">&nbsp;<a
+                href="#short">short</a></td>
+          <td>16-bit signed integer</td>
+          <td>-32,768 to +32,767</td>
+          <td>0</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF80" height="52">&nbsp;<a href="#int">int</a></td>
+          <td>32-bit signed integer</td>
+          <td>-2 billion to +2 billion</td>
+          <td>0</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF80" height="52">&nbsp;<a
+                href="#long">long</a></td>
+          <td>64-bit signed integer</td>
+          <td>huge whole numbers</td>
+          <td>0L</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF80" height="32">&nbsp;<a
+                href="#float">float</a></td>
+          <td>32-bit floating point</td>
+          <td>- infinity to + infinity and Not A Number (NaN)</td>
+          <td>0.0F</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF80" height="32">&nbsp;<a
+                href="#double">double</a></td>
+          <td>64-bit floating point</td>
+          <td>high precision - infinity to + infinity and Not A Number</td>
+          <td>0.0D</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFF80">&nbsp;<a
+                href="#boolean">boolean</a></td>
+          <td>n/a</td>
+          <td>true or false</td>
+          <td>false</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFF80">&nbsp;<a
+                href="#char">char</a></td>
+          <td>16-bit unicode</td>
+          <td>a single character or escape sequence in single quotes 'A' or '\n'</td>
+          <td>'u\0000'</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="default"></a><b>default</b></td>
+    <td valign="top">A keyword that affects execution flow.<br>
+      It is a part of the <a href="#switch">switch</a> statement, and executes 
+      a block of statements as a &#145;catch-all&#146; or default case, if none 
+      of the cases above it are true.</td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="do"></a><b>do</b></td>
+    <td valign="top"> 
+      <p>A keyword that affects execution flow. Used to iterate or loop through 
+        a block of statements, at least once, and thereafter <a href="#while">while</a> 
+        some condition is true. </p>
+      <pre><span class="code">do {
+   //do this block of statements at least once 
+} while (taxDeductionArray[i] != null);</span> &nbsp;</pre>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#CCFFCC"><a name="javadoc"></a><b>documenting code</b></td>
+    <td valign="top"> 
+      <ul>
+        <li>Single line comments are preceded by a double slash <br>
+          <span class="code">//This is a single line comment</span> </li>
+        <li> Multi-line comments are enclosed within slash asterisk delimiters, 
+          like this <br>
+          <span class="code">/* This is a long comment block <br>
+          &nbsp;*&nbsp;that spans multiple lines! <br>
+          &nbsp;*/</span></li>
+        <li>Javadoc comments, can be pulled out of your code by <a href="http://java.sun.com/j2se/javadoc/index.html">the 
+          javadoc tool</a>, and formatted as html. Javadoc comments can precede 
+          the class statement, or any member variable or member method definition. 
+          Javadoc comments start with the characters <span class="code">/**</span> 
+          and end with <span class="code">*/</span>. <br>
+          <span class="caption">Here is an example that might precede a class 
+          statement : </span> 
+          <pre class="code">/** 
+ * This class defines the properties and behaviors 
+ * that are common to all &lt;code&gt;Shape&lt;/code&gt; objects. 
+ * It contains a center {@link Point} object.
+ * @author: Guy Bellingham-Smith 
+ * @see my.shapes.Rotatable 
+ */</pre>
+        </li>
+      </ul>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="double"></a><b>double</b></td>
+    <td valign="top"> 
+      <p>A fundamental datatype of the Java language, that stores signed 64 bit 
+        floating point numbers.<br>
+        The default value for a double variable is 0.0 </p>
+      <p class="code">double d = 1.0245678 E+12</p>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="else"></a><b>else</b></td>
+    <td valign="top"> 
+      <p>A keyword that that effects execution flow. It can follow the <a
+        href="#if">if</a> conditional statement, and marks where processing should 
+        proceed from, if the condition is false. </p>
+      <pre class="code"><span class="code">if (year &gt; 50)
+  century = 19;
+else
+  century = 20;</span>&nbsp;</pre>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#CCFFCC"><a name="encapsulation"></a><b>encapsulation</b>&nbsp;</td>
+    <td valign="top"> 
+      <p>&nbsp;Encapsulation, is an OOP design principle, where the internal workings 
+        of an object (the member variables and methods) are hidden from other 
+        objects or software. This is useful because you can seperate the 'how' 
+        from the 'what'. Outside clients of the object can only interact with 
+        the public interface presented by the object, and they can be prevented 
+        from seeing what goes on inside. Encapsulation isn't always practical 
+        in the real world, but it does provide benefits :</p>
+      <ul>
+        <li><b>Modularity</b>: The source code for an object can be written and 
+          maintained independently of the source code for other objects. Also, 
+          an object can be easily passed around in the system and it will still 
+          work. </li>
+        <li><b>Information hiding</b>: An object has a public interface that other 
+          objects can use to communicate with it. The object can maintain private 
+          information and methods that can be changed at any time without affecting 
+          the other objects that depend on it. You don't need to understand how 
+          an object works to use it. </li>
+      </ul>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#CCFFCC"><b><a name="equals"></a>equals( ) method</b></td>
+    <td valign="top">By default both the equivalence operator <b>==</b> and the 
+      <b>public boolean equals(Object other)</b> method (inherited from <span class="code">java.lang.Object</span>), 
+      when applied to 2 object variables, actually compare the references to see 
+      if they point to the same location in memory. However many classes override 
+      the equals( ) method to compare the properties of the objects referenced 
+      to see if the objects themselves are equivalent e.g String, Date and the 
+      datatype 'wrapper' classes do this.</td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="exception"></a><b>Exception</b></td>
+    <td valign="top"> 
+      <p><b>All Exceptions are derived from the java.lang.Throwable class. </b><br>
+        Java does not force you to catch or declare 'unchecked' or 'runtime' exceptions 
+        (subclasses of java.lang.RuntimeException like NullPointerException) or 
+        'runtime' errors (subclasses of java.lang.Error) in the <a href="#throws">throws</a> 
+        clause of your methods.</p>
+      <p>Methods can only <a href="#throw">throw</a> (or let go uncaught) exceptions 
+        listed in the methods throws clause (or subclasses of the Exceptions listed 
+        there). <br>
+        <br>
+        When you override a method inherited from a parent class, you cannot add 
+        new exception types to the throws clause. But you can choose to throw 
+        a subset (or subclass) of those exceptions listed in the throws clause 
+        of the method in the super class.</p>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="extends"></a><b>extends</b></td>
+    <td valign="top"> 
+      <p>&nbsp;A keyword in the <a href="#class">class</a> statement, that can 
+        be used to specify which <a
+        href="#super">super</a> class the current class extends (or inherits from). 
+        By default, all classes are descended from the generic <span class="code">java.lang.Object</span> 
+        class. </p>
+      <pre class="code">public class Circle extends AbstractShape {
+  // member variables and methods here ..
+}</pre>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="false"></a><b>false</b>&nbsp;</td>
+    <td valign="top">&nbsp;A <a
+        href="#boolean">boolean</a> value (that is not <a
+        href="#true">true</a>).</td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"> 
+      <p><a name="final"></a><b>final</b> </p>
+      <p>&nbsp;</p>
+    </td>
+    <td valign="top"> 
+      <p>&nbsp;A modifier keyword, that can be applied to classes, or member variables 
+        and methods, to prevent them from being changed (overridden) by subclasses. 
+        <br>
+        The Java compiler can replace a reference to a final variable with a constant 
+        value, and a reference to a final method with &#145;inline&#146; code. 
+        Marking a method as final, guarantees that its &#145;behaviour&#146; cannot 
+        be changed by a subclass. </p>
+      <pre class="code">final int ROTATE_CLOCKWISE = 1;
+final UserID getUserID() {
+  //do secure processing 
+}
+</pre>
+      <table width="100%" border="0" cellspacing="0" cellpadding="2">
+        <tr bgcolor="#CCFFFF"> 
+          <td><b><font color="#FF0000">Gotchas!</font></b><br>
+            <b>A final variable</b> - is a constant that must be initialized when 
+            it is first defined. Thereafter its value cannot be changed. (Java 
+            optimizes final variables by inserting the constant value in its place). 
+            <br>
+            For example java.lang.Math.PI is final.<br>
+            <b>A final object reference</b> - the reference cannot be reassigned 
+            (the object variable cannot 'point to' a different object than the 
+            one initially assigned). However, the properties of the object itself 
+            CAN change.<br>
+            <b>A final method</b> - cannot be overidden by a method in any subclass. 
+            Therefore it cannot be abstract and must have a body of code. (Java 
+            optimizer inserts 'in-line' code in place of a final method) Use final 
+            to guarantee a method and prevent subclasses from changing its' behavior 
+            (e.g java.lang.Object.getClass( ) is final)<br>
+            <b>A final class </b>- All the member methods and variables become 
+            final as well. You cannot subclass a final class (e.g java.lang.String 
+            is final). </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="finally"></a><b>finally</b></td>
+    <td valign="top">&nbsp;A keyword that that effects execution flow. It can 
+      follow the <a href="#try">try</a> {&#133;} <a href="#catch">catch</a> {&#133;} 
+      statement, and delimits a statement block that is always executed , regardless 
+      of the outcome of the try and catch blocks.</td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="float"></a><b>float</b></td>
+    <td valign="top"> 
+      <p>&nbsp;A fundamental datatype of the Java language, that stores signed 
+        32 bit floating point numbers.<br>
+        The default value for an float variable is 0.0F. </p>
+      <p class="code">float rotateAngle = mouseDrag / 100 * 360;</p>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="for"></a><b>for</b></td>
+    <td valign="top"> 
+      <p>A keyword that that effects execution flow.<br>
+        The for statement is used to iterate through a block of statements, while 
+        a condition is true. <br>
+        It consists of three parts, each seperated by semi-colons. </p>
+      <pre class="code">for (int x = 0, int y = myArray.length(); x &lt; y; x++) {
+  // do some repetitive task involving myArray here ..
+}</pre>
+      <ul>
+        <li>The first part is used to define and initialize any counters or flags 
+          that are used to control the loop. As you can see, there are 2 statements 
+          in the first part of the above for statement, seperated by a comma, 
+          you can do this also in the other parts of the for statement. </li>
+        <li>The second part is a condition test, and while it is true, the loop 
+          continues. </li>
+        <li>The third part, is used to increment the control counter/s. </li>
+      </ul>
+      <p>You can use the <a
+        href="#break">break</a> statement, to break out of a for loop , and the 
+        <a href="#continue">continue</a> statement to goto the next loop around. 
+        You can also nest for loops, one within another, which is often useful 
+        for scanning two or three dimensional arrays.</p>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="goto"></a><b>goto</b></td>
+    <td valign="top">&nbsp;Reserved for future use.</td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="implements"></a><b>implements</b></td>
+    <td valign="top"> 
+      <p>&nbsp;A keyword in the <a href="#class">class</a> statement, that can 
+        follow the <a href="#extends">extends</a> clause, to indicate which <a
+        href="#interface">interfaces</a>, this class will provide methods for. 
+      </p>
+      <p class="code">class Rectangle extends AbstractShape <br>
+        implements Rotatable {<br>
+        }</p>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="import"></a><b>import</b></td>
+    <td valign="top"> 
+      <p>&nbsp;Use any number of import statements after the <a
+        href="#package">package</a> statement in your java source file, to make 
+        classes in other packages available. </p>
+      <p class="code">import java.awt.Point;</p>
+      <p>To make all classes in a package available :</p>
+      <p class="code">import java.util.*;</p>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#CCFFCC"><a name="inheritance"></a><b>inheritance</b></td>
+    <td valign="top"> 
+      <p>One of the big advantages of Object Oriented Programming (OOP), is the 
+        ability to base a type of object on an existing object definition. Java 
+        <a href="#class">classes</a> can inherit from a parent class (termed the 
+        <a href="#super">super</a> class), and reuse its properties and behaviors.<br>
+        Java classes may also be designed to override the behaviors of the super 
+        class.<br>
+        Java permits a single super class, and if one is not specified (by using 
+        the <a href="#extends">extends</a> keyword in the class statement), then 
+        the <span class="code">java.lang.Object</span> class is automatically 
+        assigned the job of parent. </p>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#CCFFCC"><b><a name="initialization"></a>initialization</b></td>
+    <td valign="top"> 
+      <p>If you do not explicitly initialize the instance variables that 'belong 
+        to' a class, Java guarantees that they are initialized to their default 
+        values, shown below.</p>
+      <table border="1" cellpadding="3"
+        cellspacing="0">
+        <tr> 
+          <td valign="top" bgcolor="#666666"><font color="#FFFFFF"><b>type</b></font></td>
+          <td valign="top"><b>value</b></td>
+          <td valign="top" bgcolor="#666666"><font color="#FFFFFF"><b>type</b></font></td>
+          <td valign="top"><b>value</b></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#666666"><font color="#FFFFFF">numerics</font></td>
+          <td valign="top">0</td>
+          <td valign="top" bgcolor="#666666"><font color="#FFFFFF">char</font></td>
+          <td valign="top">'u\0000'</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#666666"><font color="#FFFFFF">boolean</font></td>
+          <td valign="top">false</td>
+          <td valign="top" bgcolor="#666666"><font color="#FFFFFF">float</font></td>
+          <td valign="top">0.0</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#666666"><font color="#FFFFFF">Arrays[ ]</font></td>
+          <td valign="top">null</td>
+          <td valign="top" bgcolor="#666666"><font color="#FFFFFF">Object<br>
+            references</font></td>
+          <td valign="top">null</td>
+        </tr>
+      </table>
+      <table width="100%" border="0" cellspacing="0" cellpadding="2">
+        <tr bgcolor="#CCFFFF"> 
+          <td><font color="#FF0000"><b>Gotcha!</b></font> 'Local' variables in 
+            methods are not automatically initialized, and must be explicitly 
+            initialized before first use!</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#CCFFCC"><b><a name="innerclass"></a>inner classes</b></td>
+    <td valign="top">Inner classes were introduced in Java 1.1 and can be defined 
+      inside other classes.<br>
+      A class defined within another class scope, can have any access modifier 
+      <a href="#keyword usage">keyword</a> (public, protected or private). However 
+      a class defined within a statement block (within a method) must not have 
+      any access modifier (such a class is effectively private to the statement 
+      block). A class defined within a statement block cannot also be <a
+        href="#static">static</a>.<br>
+      Inner classes (unless they are static) have an implicit reference to the 
+      instance of the enclosing class, therefore <a href="#this">this</a> (the 
+      current instance) must be available before a new instance of the inner class 
+      can be constructed. The enclosing class must be constructed before the inner 
+      class. <br>
+      Inner classes (unless they are <a href="#static">static</a>) can access 
+      all the members (even private ones) of the enclosing class. Additionally 
+      inner classes defined within a method, can access any <a
+        href="#final">final</a> variables and parameters (constants only) of the 
+      enclosing method block.<br>
+      <a name="anonymous "></a>Anonymous inner classes, have no name, no constructors, 
+      and must be instantiated in the same statement in which they are defined 
+      for example: 
+      <pre class="code">button1.addActionListener ( <br> <font color="#FF0000">new ActionListener( ) {</font> 
+  public void actionPerformed(ActionEvent e) {
+   System.out.println(&quot;button1 hit!&quot;);
+  }
+ <font color="#FF0000">} </font><br>)</pre>
+      <p>Anonymous inner classes, may implement interfaces or extend other classes 
+        (such as adapter classes), but not do both.</p>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="instanceof"></a><b>instanceof</b></td>
+    <td valign="top"> 
+      <p>&nbsp;An operator that can be used to test whether a particular object 
+        is an instance of a <a href="#class">class</a>, inherits from that class, 
+        or implements an <a href="#interface">interface</a>. </p>
+      <pre class="code">Shape s = new Circle(x,y,radius,Color.blue);
+if (s instanceof Circle)
+   system.out.println(&quot;Shape is a Circle!&quot;);
+if (s instanceof Rotatable)
+   system.out.println(&quot;Shape is Rotatable&quot;);</pre>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="int"></a><b>int</b></td>
+    <td valign="top"> 
+      <p>A fundamental datatype of the Java language, that occupies 32 bits of 
+        storage.<br>
+        Therefore an integer can be assigned values between negative 2 <sup>31</sup> 
+        (2 to the power of 31 or -2,147,483,648) and positive (2 <sup>31</sup>) 
+        - 1 (2 to the power of 31 minus 1 or 2,147,483,647).<br>
+        The default value for an int variable is zero. </p>
+      <p>The capacities for integer data types are given by the formulae :<br>
+        The largest positive integer value is given 2 <sup>(number of bits - 1)</sup> 
+        - 1<br>
+        The largest negative integer value is given 2 <sup>(number of bits - 1)</sup></p>
+      <p class="code">int IncomeYTD = 75,250;</p>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"> 
+      <p><a name="interface"></a><b>interface</b> </p>
+      <p>&nbsp;</p>
+    </td>
+    <td valign="top"> 
+      <p>Java enforces a single inheritance structure for classes, but you can 
+        define interfaces to encapsulate chosen properties and behaviours, and 
+        implement these in your classes, without impacting inheritance. </p>
+      <p>An interface, defines class constants (that is <a href="#static">static</a> 
+        <a href="#final">final</a> variables) and <a href="#abstract">abstract</a> 
+        methods only.</p>
+      <pre class="code">Interface Rotatable extends Transform {
+  //all member variables are static and final 
+  //all member methods are abstract
+}</pre>
+      <p>Note: You should not code the <a
+        href="#static">static</a>, <a href="#final">final</a> or <a href="#abstract">abstract</a> 
+        keywords in an interface, these are the defaults. Interfaces can inherit 
+        from one another, just as classes do.</p>
+      <p>The 'tree' structure of java class inheritance at first, lends simplicity 
+        and structure to your own classes. However, it can become limiting in 
+        complex designs, where you want to 'cross fertilize' ideas from different 
+        branches of the hierarchy. You can inherit behaviours and properties not 
+        necessarily integral to your class, by <a
+        href="#implements">implementing</a> any number of interfaces.</p>
+      <p>Interfaces give your software more flexibility and are often useful in 
+        the following situations:</p>
+      <ul>
+        <li>Capturing similarities among unrelated classes without artificially 
+          forcing a class relationship. </li>
+        <li>Declaring methods that one or more classes are expected to implement. 
+        </li>
+        <li>Revealing an object's programming interface without revealing its 
+          class.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#CCFFCC"><a name="instance"></a><b>instance</b></td>
+    <td valign="top"> 
+      <p>An instance, refers to a particular occurrence of a class at runtime 
+        (an <a href="#object">object</a>), with its' own unique properties. <br>
+        Instance variables, are those variables that are defined to 'belong' to 
+        the object as a whole.<br>
+        Their scope is bounded by the braces that enclose the class statement, 
+        and not braces around some local block of statements.</p>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><b><a name="keywords"></a>keywords</b></td>
+    <td valign="top"><font class="text"> 
+      <table border="0" cellpadding="4" cellspacing="4" width="100%">
+        <tr> 
+          <td valign="top"><b>byvalue&nbsp;</b></td>
+          <td valign="top"><b>cast</b></td>
+          <td valign="top"><b>const</b></td>
+          <td valign="top"><b>future</b></td>
+          <td valign="top"><b>generic</b></td>
+          <td valign="top"><b>&nbsp;inner</b></td>
+          <td valign="top" rowspan="2">These Java keywords are reserved for future 
+            use.</td>
+        </tr>
+        <tr> 
+          <td valign="top"><b>outer</b></td>
+          <td valign="top"><b>operator</b></td>
+          <td valign="top"><b>rest</b></td>
+          <td valign="top"><b>var</b></td>
+          <td valign="top"><b>goto</b></td>
+          <td valign="top"><b></b></td>
+        </tr>
+      </table>
+      </font> 
+      <p><b>This is how Java modifier keywords apply to classes and members.</b></p>
+      <p> 
+      <table border="0"
+                cellpadding="4">
+        <tr> 
+          <td valign="top" bgcolor="#C0C0C0"><b>keyword</b></td>
+          <td valign="top" bgcolor="#C0C0C0">class</td>
+          <td valign="top" bgcolor="#C0C0C0">inner<br>
+            class</td>
+          <td valign="top" bgcolor="#C0C0C0">variables</td>
+          <td valign="top" bgcolor="#C0C0C0">methods</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#C0C0C0"><b>public</b></td>
+          <td valign="top">yes</td>
+          <td valign="top">yes</td>
+          <td valign="top">yes</td>
+          <td valign="top">yes</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#C0C0C0"><b>protected</b></td>
+          <td valign="top">no</td>
+          <td valign="top">yes*</td>
+          <td valign="top">yes</td>
+          <td valign="top">yes</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#C0C0C0"><b>(package)</b></td>
+          <td valign="top">yes</td>
+          <td valign="top">yes</td>
+          <td valign="top">yes</td>
+          <td valign="top">yes</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#C0C0C0"><b>private</b></td>
+          <td valign="top">no</td>
+          <td valign="top">yes*</td>
+          <td valign="top">yes</td>
+          <td valign="top">yes</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#C0C0C0"><b>abstract</b></td>
+          <td valign="top">yes</td>
+          <td valign="top">yes</td>
+          <td valign="top">no</td>
+          <td valign="top">yes</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#C0C0C0"><b>final</b></td>
+          <td valign="top">yes</td>
+          <td valign="top">yes</td>
+          <td valign="top">yes</td>
+          <td valign="top">yes</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#C0C0C0"><b>static</b></td>
+          <td valign="top">no</td>
+          <td valign="top">yes*</td>
+          <td valign="top">yes</td>
+          <td valign="top">yes</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#C0C0C0"><b>synchronized</b></td>
+          <td valign="top">no</td>
+          <td valign="top">no</td>
+          <td valign="top">no</td>
+          <td valign="top">yes</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#C0C0C0"><b>native</b></td>
+          <td valign="top">no</td>
+          <td valign="top">no</td>
+          <td valign="top">no</td>
+          <td valign="top">yes</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#C0C0C0"><b>transient</b></td>
+          <td valign="top">no</td>
+          <td valign="top">no</td>
+          <td valign="top">yes</td>
+          <td valign="top">no</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#C0C0C0"><b>volatile</b></td>
+          <td valign="top">no</td>
+          <td valign="top">no</td>
+          <td valign="top">yes</td>
+          <td valign="top">no</td>
+        </tr>
+      </table>
+      <p><b>Note</b>: 'Static initializer' blocks also make use of the keyword 
+        static followed by statements in curly braces, that are executed once 
+        at class load time. <br>
+        * see <a
+                        href="#innerclass">inner classes</a> for their definition 
+        rules.</p>
+      <table width="100%" border="0" cellspacing="0" cellpadding="2">
+        <tr bgcolor="#CCFFFF"> 
+          <td><font color="#FF0000"><b>Gotchas!</b></font> For keyword usage :<br>
+            <b>1</b>. A class or member cannot be both abstract and final.<br>
+            <b>2</b>. A class or member can only have a single access keyword 
+            (public, protected or private). <br>
+            <b>3</b>. A static method may not be overidden to be non static. <br>
+            <b>4</b>. A static method may only access static data variables and 
+            other static methods. <br>
+            <b>5</b>. A method may not be overidden with a more restrictive (more 
+            private) access keyword.</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="long"></a><b>long</b></td>
+    <td valign="top"> 
+      <p>&nbsp;A fundamental datatype of the Java language, that occupies 64 bits 
+        of storage.<br>
+        A long variable can be assigned values between negative 2 <sup>63</sup> 
+        (2 to the power of 63 ) and positive (2 <sup>63</sup>) - 1 (2 to the power 
+        of 63 minus 1).<br>
+        The default value for an long variable is zero.<br>
+        A long value is suffixed with an L in Java, such as </p>
+      <p class="code">long l = 9,223,372,036,854,775,808L;</p>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#CCFFCC"><a name="member"></a><b>member</b></td>
+    <td valign="top">&nbsp;This is a general term that encompasses the variables 
+      and methods, that are defined within the class definition, and which &#145;belong&#146; 
+      to the class as a whole (<a
+        href="#static">static</a> members) or to objects based upon that class.&nbsp;&nbsp;</td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="method"></a><b>method</b></td>
+    <td valign="top">&nbsp;&nbsp;A method is defined with a unique &#145;signature&#146; 
+      that is it&#146;s name and the parameters it accepts and the type of variable 
+      or object it returns to it&#146;s invoker.&nbsp;<br>
+      A <a href="#static">static</a> member method &#145;belongs&#146; to the 
+      class as a whole and not to any one instance of the class. References to 
+      a static method or variable are preceded with the class name, as opposed 
+      to the name of an object pointer (or instance variable). A static method 
+      cannot be overridden.<br>
+      A <a href="#final">final</a> method cannot be overridden by any method in 
+      a subclass. <br>
+      When 'overriding' a method, the subclass must define it's own version with 
+      the same 'signature' and return-type, as that in the super class.<br>
+      When 'overloading' a method, a class defines several alternative versions 
+      of the method with different parameter lists ( the return-type plays no 
+      part in the 'signature' of a method ).</td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#CCFFCC"><b><a name="methodparameters"></a>method 
+      parameters</b></td>
+    <td valign="top"><b>Fundamental datatypes (like int and boolean) are passed 
+      'by value' </b>(a copy of the data is made and passed into the method), 
+      so that any changes made in the method do not effect the original value. 
+      <br>
+      <b>Objects are passed 'by reference' into a method.</b> When passing an 
+      object variable to a method, a copy of the object reference is made and 
+      passed to the method. Any changes made in the method, through the reference, 
+      are reflected back in the original object itself (in Java you only ever 
+      deal with object 'handles' or 'references'). <br>
+      <table width="100%" border="0" cellspacing="0" cellpadding="2">
+        <tr bgcolor="#CCFFFF"> 
+          <td><b><font color="#FF0000">Gotcha!</font></b> Because a copy of the 
+            'pointer' is passed to the method, any change made to an object variable 
+            (assigning it to another object), is not reflected outside that method 
+            once it returns.</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="native"></a><b>native</b></td>
+    <td valign="top"> 
+      <p>Declaring a method as native, means that it is implemented in a compiled 
+        language that is 'native' to the operating system. A native method cannot 
+        also be <a
+        href="#abstract" target="_self">abstract</a>. A native method does not 
+        have an implementation. For example the <span class="code">java.lang.Math</span> 
+        class makes use of native methods:<br>
+        <span class="code">public static native double log(double a);</span></p>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="new"></a><b>new</b></td>
+    <td valign="top"> 
+      <p>&nbsp;To create an object (an <a href="#instanceof">instanceof </a>a 
+        class) from a class, follow new by the <a href="#class">class </a>name, 
+        and any parameters required by the constructor method for that class. 
+      </p>
+      <p class="code">Point p = new Point(20, 40);<br>
+        Circle c = new Circle(p, radius, Color.black);</p>
+      <p>A reference to the new object is returned by new. You do not have to 
+        use new for the fundamental data types and Strings, which are built-in 
+        to Java.</p>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="null"></a><b>null</b></td>
+    <td valign="top"> 
+      <p>&nbsp;Represents a non-existent reference to an object. If you try to 
+        access a null reference as if were an object, you will get the dreaded 
+        NullPointerException at runtime. This usually means you have forgotten 
+        to properly initialize your object references or you should test for null.</p>
+      <pre class="code">//Passed a reference to a Circle object
+public void move(Shape s, int x, int y) {
+  //Check we have a Shape object
+  if (s != null) {
+   s.erase();
+   s.setX(x);
+   s.setY(y);
+  }
+}</pre>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"> 
+      <p><a name="object"></a><b>object</b> </p>
+      <p>&nbsp;</p>
+    </td>
+    <td valign="top">An object is a particular 'runtime' representation of a class.<br>
+      The <a href="#new">new</a> statement, serves to create an <a
+        href="#instance">instance</a> of a class (an object) at runtime. The methods 
+      and variables in an object are referenced through an object pointer variable, 
+      and objects are passed by reference when used as parameters.&nbsp;</td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#CCFFCC"><b><a name="overload"></a>overloading methods.</b></td>
+    <td valign="top">A class may define <b>more than one version of a method</b>, 
+      with the same method name but different parameters. Overloaded methods are 
+      useful when performing the same functions with different sets of data.<br>
+      Java tries to find the method with the 'best fit' for a particular method 
+      reference, and will automatically '<a
+        href="#promote">promote</a>' the parameter types, provided information 
+      is not lost in the process. <br>
+      In contrast to the situation for <a href="override">overiding a method</a>, 
+      a difference in return-type does not play any part in overloading methods 
+      (return-type is not part of a methods' signature). <br>
+      Overloaded methods are effectively independent members, there are no restrictions 
+      upon return-type, access modifier keywords or the Exceptions they can throw.</td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#CCFFCC"><b><a name="override"></a>overriding methods.</b></td>
+    <td valign="top">A subclass can '<i>override</i>' the implementation of a 
+      method that it inherits from its super class, by defining its own version 
+      of that same method with identical parameters and return-type. <br>
+      The special object reference keyword <a href="#super">super</a> is used 
+      to reference the version of the method in the parent class for example : 
+      <span class="code">super.MyMethod(parameter);</span><br>
+      <b>Note</b>: The overiding version of the method in the subclass cannot 
+      have an access keyword that is more <a
+        href="#private" target="_self">private</a> than the overidden method definition 
+      (although it can be more <a href="#public"
+        target="_self">public</a>). <br>
+      As noted below in <a href="#exceptions" target="_self">exceptions</a>, the 
+      overiding method can choose to throw a subset of the exceptions listed by 
+      the overidden method, but cannot add new types of exception.<br>
+      As noted in <a href="#polymorphism">polymorphism</a> (point 2), the method 
+      invoked at runtime, depends upon the class of the object and not the class 
+      of the object variable used to reference that object.</td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"> 
+      <p><a name="package"></a><b>package</b> </p>
+      <p>&nbsp;</p>
+    </td>
+    <td valign="top"> 
+      <p>Use the package keyword followed by a package name, as the first statement 
+        in your java source file, to help you organize your classes. </p>
+      <p class="code">package com.mydomain.shapes;</p>
+      <p>At runtime, Java will expect your class to be in the com/mydomain/shapes 
+        folder, relative to the codebase (the current working directory of the 
+        class file).</p>
+      <p>All classes come in packages, which serve to organize them in a way similar 
+        to files in a file system. Packages also serve as a basis on which to 
+        control access to classes from other 'outside' classes. References to 
+        classes and their member methods and variables inside other packages is 
+        generally only allowed if they are defined with the <a
+        href="#public">public</a> access modifier keyword.</p>
+      <p>Package names can be 'nested' with a dot notation like <span class="code">java.awt.event</span>, 
+        and are lowercase by convention.<br>
+        Without a package statement, java classes are put into a 'default' package 
+        (the current working directory).</p>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#CCFFCC"><b><a name="polymorphism"></a>polymorphism</b></td>
+    <td valign="top"> 
+      <p>Because a subclass inherits all the properties and behaviors of its parent 
+        class, objects of the subclass can be treated as instances of the more 
+        generic super class. For example : </p>
+      <p class="code"> Shape s = new Circle( ); <font color="#999999">// a Circle 
+        'is a' Shape</font></p>
+      <table border="0" cellpadding="2" width="100%">
+        <tr> 
+          <td valign="top"> 
+            <p class="code">class&nbsp;Shape {<br>
+              &nbsp;int i = 1;<br>
+              &nbsp;String&nbsp;getInfo(&nbsp;){<br>
+              &nbsp;&nbsp;return &quot;Shape&quot;;<br>
+              &nbsp;}<br>
+              }<br>
+              <br>
+              class&nbsp;Circle&nbsp;extends&nbsp;Shape{ <br>
+              &nbsp;int i = 2;<br>
+              &nbsp;String&nbsp;getInfo(&nbsp;){<br>
+              &nbsp;&nbsp;return &quot;Circle&quot;;<br>
+              &nbsp;}<br>
+              }</p>
+          </td>
+          <td valign="top">1. References to instance variables depends upon the 
+            type of the object reference. Using the generic Shape object reference 
+            s to get to the instance variable i<br>
+            <span class="code"><font color="#999999">// Prints &quot;1&quot; from 
+            Shape</font><br>
+            System.out.println(s.i); </span> 
+            <p>2. In contrast, the method reference depends upon the class of 
+              the underlying object. So using the same generic Shape handle to 
+              invoke the getInfo( ) method<br>
+              <span class="code"><font color="#999999">// Prints &quot;Circle&quot;</font><br>
+              System.out.println(s.getInfo( ));</span></p>
+          </td>
+        </tr>
+      </table>
+      <p>&nbsp;</p>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"> 
+      <p><a name="public"></a><b>public</b> </p>
+      <p>&nbsp;</p>
+    </td>
+    <td valign="top"> 
+      <p>&nbsp;An access modifier keyword, that can be applied to both classes 
+        and member variables and methods. A public class can be accessed from 
+        outside the <a
+        href="#package">package</a> in which it is defined. <br>
+        A public member can be accessed by any class which has access to the class 
+        that contains it. </p>
+      <pre class="code">/* any outside class can create a new Rectangle */
+public class Rectangle extends TwoDShape {
+  public boolean fillRect = true;
+  public void draw(Graphics g) {
+   // draw the Rectangle into the Graphics context
+   g.fillRect(x,y,width,height); 
+&nbsp;&nbsp;}
+}</pre>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"> 
+      <p><a name="private"></a><b>private</b> </p>
+      <p>&nbsp;</p>
+    </td>
+    <td valign="top"> 
+      <p>&nbsp;An access modifier keyword, that can be applied to member variables 
+        and methods (classes cannot be private). It restricts access to the class 
+        in which the private variable or method is defined. </p>
+      <p class="code">/* no outside classes can change the security privileges 
+        */<br>
+        private final UserID user;<br>
+        private final String password; <br>
+        private final setPassword(UserID user, String pass) {<br>
+        }</p>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"> 
+      <p><a name="protected"></a><b>protected</b> </p>
+      <p>&nbsp;</p>
+    </td>
+    <td valign="top"> 
+      <p>An access modifier keyword, that can be applied to member variables and 
+        methods (classes cannot be protected).<br>
+        A protected variable or method is accessible to any class within the same 
+        package, and to classes that extend the owning class, no matter which 
+        package they belong to. </p>
+      <pre class="code">protected Object clone() {
+  // code here to make a copy of this object ..
+}</pre>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#CCFFCC"><a name="promotion"></a><b>promotion</b></td>
+    <td valign="top">
+      <p><font size="2" face="Arial">Fundamental dataypes may be automatically 
+        converted to another datatype by the Java compiler. This may happen as 
+        result of an assignment, a method call or during arithmetic <strong>promotion</strong>.</font></p>
+      <table width="100%" border="0" cellspacing="0" cellpadding="2">
+        <tr valign="top"> 
+          <td> 
+            <p><b>When doing assignment:</b></p>
+            <p><font size="2" face="Courier" color="#999999">//Error no commas 
+              in a numeric literal </font><font size="2" face="Courier"><br>
+              int bad = 32,041;<br>
+              <font color="#999999">//Error assign a double to an int </font><br>
+              int rad = 2.217;<br>
+              <font color="#999999">//Illegal 3.141 is a double !</font></font> 
+              <font size="2" face="Courier"> <br>
+              float f = 3.141; </font></p>
+          </td>
+          <td> 
+            <p><b>1</b>. A boolean cannot be converted to any other type.<br>
+              <b>2</b>. Numeric and char datatypes may be converted to another 
+              data type, as long as the conversion involves a 'widening' and no 
+              information is lost. However, the byte and short numeric types are 
+              not automatically converted to the char datatype.<br>
+              <b>3</b>. If the change involves a narrowing or loss of precision, 
+              it must be an explicit type cast to pass the compiler checks. <br>
+              <b>4.</b> To explicitly cast a variable, prefix it with the desired 
+              datatype in parentheses.</p>
+            </td>
+        </tr>
+        <tr valign="top"> 
+          <td><b>When referencing a method.</b><br>
+            When passing an argument to a method that accepts a different data 
+            type the above rules also hold true.</td>
+          <td> 
+            <table border="0">
+              <tr> 
+                <td>&nbsp;In the example below, the Math.cos( ) method is expecting 
+                  a double precision value, however a lesser precision argument 
+                  is automatically converted to a double by the Java compiler. 
+                  <br>
+                  &nbsp;The last statement will fail to compile because an int 
+                  is needed to index an Array, and it involves a loss of precision 
+                  and requires an explicit cast (from double -&gt; int) to compile.</td>
+              </tr>
+              <tr> 
+                <td> 
+                  <p class="code"> byte[] ar1 = {1, 3, 5};<br>
+                    float f = 3.142F;<br>
+                    //f promoted to double<br>
+                    double d = Math.cos(f);<br>
+                    //Error integer expected!<br>
+                    ar1[d] = 0;</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr valign="top"> 
+          <td><b>Arithmetic expressions.</b><br>
+            In expressions involving various numeric datatypes, the Java compiler 
+            automatically widens or 'promotes' the data types.</td>
+          <td> 
+            <p><b>For unary operators.</b> If arguments are of type byte, short 
+              or char, they are promoted to an int.</p>
+            <p><b>For binary operations including comparisons</b> :<br>
+              <b>1</b>. If one of the operands is a double the other is converted 
+              to a double.<br>
+              <b>2</b>. Else If one of the operands is a float the other is converted 
+              to a float.<br>
+              <b>3</b>. Else If one of the operands is a long the other is converted 
+              to a long.<br>
+              <b>4</b>. Else both operands are converted to type int.</p>
+            </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#CCFFCC"><a name="properties"></a><b>properties</b>&nbsp;</td>
+    <td valign="top"> 
+      <p>&nbsp;A property, 'belongs' to an object and is another name for the 
+        <a href="#variables">variable</a> data coded into the object.&nbsp;For 
+        example a Circle object might have radius, and area properties : </p>
+      <pre class="code">public class Circle extends Shape {
+  // instance data
+  double radius;
+  double area;
+
+  public setRadius(double r) {
+
+    radius = r;
+    area = Math.PI * Math.pow(r, 2.0);
+  }
+}</pre>
+      <p>Properties may also refer to a set of key = value system properties. 
+        see the System class.</p>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="return"></a><b>return</b></td>
+    <td valign="top"> 
+      <p>&nbsp;A keyword that returns control from a method (with an optional 
+        argument), to the &#145;calling&#146; statement. If a method is defined 
+        with a return type of <a
+        href="#void">void</a>, no argument can be passed back to the statement 
+        that made the reference to it. </p>
+      <pre class="code">public float getArea(float radius) {
+  return math.PI * (r * r);
+}</pre>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="short"></a><b>short</b></td>
+    <td valign="top"> 
+      <p>&nbsp;A fundamental datatype of the Java language, that occupies 16 bits 
+        of storage.A byte can be assigned integer values between negative 2 <sup>15</sup> 
+        (2 to the power of 15 or -32,768) and <br>
+        positive (2 <sup>15</sup>) - 1 (2 to the power of 15 minus 1 or 32,767).<br>
+        The default value for a short variable is zero. </p>
+      <p class="code">short TVchannels = 500;</p>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#CCFFCC"><b><a name="shortcircuit"></a>short circuit</b></td>
+    <td valign="top">If you use the short circuiting boolean operators <b>&amp;&amp; 
+      </b>(AND) , <b>||</b> (OR) in an if(&nbsp;) statement, Java halts execution 
+      as soon as the outcome can be determined for certain:<br>
+      <table border="0" cellpadding="2">
+        <tr> 
+          <td bgcolor="#666666"><b><font color="#FFFFFF">OR</font></b></td>
+          <td class="code">if (expression1 || expression2)</td>
+          <td>if expression1 is true, the whole logical expression will be true, 
+            so expression2 is not evaluated !</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#666666"><b><font color="#FFFFFF">AND</font></b></td>
+          <td class="code">if (expression1 &amp;&amp; expression2)</td>
+          <td>if expression1 is false, the result is bound to be false, so expression2 
+            is not evaluated !</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"> 
+      <p><a name="static"></a><b>static</b> </p>
+      <p>&nbsp;</p>
+    </td>
+    <td valign="top"> 
+      <p>&nbsp;Precede a member variable or method with this keyword, to indicate 
+        that it &#145;belongs&#146; to the class as a whole, and not to any one 
+        instance of the class. You cannot reference variables that belong to an 
+        object instance, from within a static method. </p>
+      <p class="code">static int employeeCount = 0;<br>
+        public static void main(String[] args) {<br>
+        }</p>
+      <table width="100%" border="0" cellspacing="0" cellpadding="2">
+        <tr bgcolor="#CCFFFF"> 
+          <td><b><font color="#FF3300">Gotchas!</font></b><br>
+            <b>1</b>. <b>static variables &amp; methods</b> exist exactly once 
+            at runtime regardless of how many instances of the class exist. Static 
+            members, belong to the class itself, and not to any one object created 
+            from that class.<br>
+            <b>2</b>. You cannot refer to 'instance' variables or methods from 
+            within a static method!<br>
+            <b>3</b>. A static method cannot be overidden by any 'instance' of 
+            a subclass, and therefore cannot also be <a href="#abstract">abstract</a>, 
+            it must have a body of code.<br>
+            <b>4</b>. <b>Inner classes</b>, cannot define static methods or variables, 
+            they must use those defined in the 'top level' class. If you define 
+            an inner class to be static, it stops being an inner class, and becomes 
+            a 'top level' class, and loses its ability to access the variables 
+            of the 'local' scope.</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#CCFFCC"><a name="string"></a><b>String</b></td>
+    <td valign="top"> 
+      <p>The java.lang.String class is <a href="#final">final</a> and cannot be 
+        subclassed. Strings are given certain unusual privileges in Java : <br>
+        1. You do not have to use the new keyword to create a String object, you 
+        simply assign a String variable a value : <br>
+        <span class="code"><font color="#999999">// create a new String object 
+        from a literal</font><br>
+        String s1 = new String(&quot;abc&quot;); <br>
+        String s2 = &quot;abc&quot;; <font color="#999999">// is the same as the 
+        above </font></span></p>
+      <p>2. The operators + and += are <i>overloaded</i> for Strings : they do 
+        the same as the append( ) method for Strings. When the compiler sees that 
+        one of the arguments in an expression is a String, it knows to use append( 
+        ) instead of arithmetic. <br>
+        <span class="code">String s1 = &quot;abc&quot; <font color="#FF0000">+</font> 
+        123;<br>
+        </span></p>
+      <p><b>Note</b>: Java does not allow <i>you </i>to 'overload' the operators 
+        of the language.</p>
+      <p>3. You cannot change a String object after it has been created, String 
+        objects are <i>immutable</i>. The concatenation operation shown above, 
+        creates an entirely new String object &quot;abc123&quot; and assigns it 
+        to s1. For the most part, all the methods in the String class also return 
+        an entirely new String object ! Java provides the <span class="code">java.lang.StringBuffer</span> 
+        class for mutable strings of characters.</p>
+      <table border="0" cellpadding="2" cellspacing="1"
+        width="100%">
+        <tr> 
+          <td valign="top" width="25%"> 
+            <p class="code">String s1 = &quot;xyz&quot;;<br>
+              <br>
+              String s2 = &quot;xyz&quot;;<br>
+              <br>
+              if (s1 == s2) <br>
+              &nbsp;&nbsp;print(&quot;equal&quot;);</p>
+          </td>
+          <td valign="top" width="75%">String literals are enclosed by quotes. 
+            The compiler puts all String literals into a pool, and if it encounters 
+            the same literal twice it reuses the first instance. So in the example 
+            at left, s1 and s2 actaully refer to the same address in memory, and 
+            the if statement evaluates to true.</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"> 
+      <p><a name="super"></a><b>super</b> </p>
+      <p>&nbsp;</p>
+    </td>
+    <td valign="top"> 
+      <p>&nbsp;A special variable available to all Java objects to use to refer 
+        to their immediate superclass. It is often used to pass method processing 
+        up the inheritance hierarchy: </p>
+      <p class="code">// allow the parent init() method to process<br>
+        super.init();</p>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="switch"></a><b>switch</b></td>
+    <td valign="top"> 
+      <p>&nbsp;The switch statement is Javas case construct, which provides a 
+        convenient way to pick from a variety of possible values in an integer 
+        datatype. </p>
+      <PRE class="code">switch (marital) {<br>    case &#145;s&#146;:<br>      tax.calcSingle();<br>      break;<br>    case &#145;m&#146;:<br>      tax.calcMarried();<br>      break;<br>    default:<br>      throw new IllegalMaritalException();<br>}
+</PRE>
+      The switch statement can only operate with an argument of types, <strong>byte</strong>, 
+      <strong>short</strong>, <strong>char</strong> or <strong>int</strong> (you 
+      cannot test long, float, double or object references). <br>
+      The arguments to the case clauses, must be constants or constant expressions 
+      that can be determined at compile time (no variables are allowed). </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"> 
+      <p><a name="synchronized"></a><b>synchronized</b> </p>
+      <p>&nbsp;</p>
+    </td>
+    <td valign="top"> 
+      <p>&nbsp;Only one thread at a time can access the synchronized methods for 
+        a particular object or class. </p>
+      <pre class="code">synchronized void criticalCode() {
+  /* this code must be processed to completion before 
+  another thread can begin processing it */
+}</pre>
+      <p>If you precede a block of statements with synchronized and an object 
+        reference or class name , a lock will be taken upon that object or class, 
+        as a thread enters the code, that will prevent other threads executing 
+        synchronized code in the object or class.</p>
+      <p class="code">synchronized (this) {<br>
+        // thread safe statement block here &#133;<br>
+        }</p>
+      <p>When <a href="#override">overriding</a> a method, the subclass may include 
+        or exclude the synchronized keyword, as it sees fit.</p>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="this"></a><b>this</b></td>
+    <td valign="top"> 
+      <p>&nbsp;A &#145;special&#146; variable, that is available to all Java objects 
+        to use to refer to themselves. It is often used to get to instance variables, 
+        when local variables &#145;mask&#146; their names, or to pass the current 
+        instance to another object or method. </p>
+      <p><span class="code">int radius = 0;<br>
+        Point center;</span></p>
+      <pre><span class="code">public void init(Point center, int radius) {
+ this.radius = radius;
+ this.center = center;
+}</span></pre>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="throw"></a><b>throw</b></td>
+    <td valign="top"> 
+      <p>&nbsp;A keyword that affects execution flow. A method uses this keyword 
+        to create an instance of an Exception, and return it to the <a href="#try">try</a> 
+        { &#133; } <a href="#catch">catch</a> {&#133;} statement that called it. 
+        <br>
+        Java insists that you list all the possible exceptions that a method <a href="#throws">throws</a>, 
+        in the method definition. </p>
+      <pre class="code">URL getURL(URL u, String s) throws MalformedURLException {
+  // if processing fails to read from the URL passed
+  throw new MalformedURLException();
+}</pre>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="throws"></a><b>throws</b></td>
+    <td valign="top"> 
+      <p>&nbsp;Java keyword in a method definition, that lists all the &#145;checked&#146; 
+        Exceptions a method can throw. When you reference this method, the Java 
+        compiler ensures that you specify a try {&#133;} catch {&#133;} block, 
+        to handle all the Exceptions that might be thrown back to you. </p>
+      <p class="code">public void myMethod(InputStream I, File f) <br>
+        throws IOException, FileException {<br>
+        }</p>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="transient"></a><b>transient</b>&nbsp;</td>
+    <td valign="top">Use this keyword in front of a variable, to indicate to the 
+      Java runtime that this variable is NOT a part of the persistent state of 
+      an object. Transient properties are not serialized when an object is written 
+      out to a file. </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="true"></a><b>true</b></td>
+    <td valign="top">&nbsp;The <a
+        href="#boolean">boolean</a> value (that is not <a
+        href="#false">false</a>).</td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"> 
+      <p><a name="try"></a><b>try</b> </p>
+      <p>&nbsp;</p>
+    </td>
+    <td valign="top"> 
+      <p>&nbsp;A keyword that is used to handle Exceptions and effect execution 
+        flow.<br>
+        The try statement surrounds references to any method that might <a href="#throw">throw</a> 
+        an <a href="#exception">Exception</a> or Error at runtime. In effect you 
+        try to execute the method, and if it fails, Java gracefully backs out, 
+        and hands you an Exception object of some kind. You can follow the try 
+        statement with any number of <a href="#catch">catch</a> statements and 
+        optionally a <a href="#finally">finally</a> statement block as a &#145;catch-all&#146;. 
+      </p>
+      <p class="code">try {<br>
+        &nbsp; <font color="#999999">// the getURL() method can throw a MalformedURLException</font><br>
+        &nbsp; this.getURL(myCodeBase, &quot;/data/contents.txt&quot;);<br>
+        } catch (MalformedURLException e) {<br>
+        &nbsp; system.out.println(e.toString());<br>
+        } finally {<br>
+        &nbsp; <font color="#999999">// always do this ..</font><br>
+        }</p>
+      <p><b>Note</b>: The finally { } block is optional and is always executed, 
+        even if an 'unchecked' or 'runtime' exception is raised, or if you <a href="#return">return</a> 
+        from the method within the try { } block.<br>
+        Once a 'checked' exception is raised, execution proceeds to the first 
+        catch ( ) block for that type of Exception, then the finally { } block 
+        is executed. <br>
+        If an exception is not caught, execution of the method does not continue 
+        after the finally block is executed, and the exception is thrown to the 
+        calling statement.</p>
+      <table width="100%" border="0" cellspacing="0" cellpadding="2">
+        <tr bgcolor="#CCFFFF"> 
+          <td><font color="#FF0000"><b>Gotcha!</b></font> When catching multiple 
+            types of exceptions, more specific classes like MalformedURLException, 
+            must be caught before the more generic classes of exceptions like 
+            IOException or Exception. </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#CCFFCC"><a name="uml"></a><b>UML</b></td>
+    <td valign="top"> 
+      <p>Is an acronym for the Unified Modelling Language. <BR>
+        UML gives everyone involved in software design (from the business analyst 
+        to the programmer) a common vocabulary to talk about software design. 
+        It is an Object Oriented methodology and a tool, for constructing a MODEL 
+        of a business function or problem, in terms of types (or classes) of objects. 
+        UML defines several major types of diagrams<br>
+        At the core of the UML are a variety of different modeling diagrams.</p>
+      <ul>
+        <li><b>Use Case Diagram</b> - describes what a system does from the standpoint 
+          of an external observer. The emphasis is on what a system does rather 
+          than how.</li>
+        <li><b>Class Diagram</b> - <a href="#classdiagram">described above</a>.</li>
+        <li><b>Sequence diagram</b> - are interaction diagrams that detail how 
+          operations are carried out, what messages are sent and when.</li>
+      </ul>
+    </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#CCFFCC"><a name="variable"></a><b>variable</b></td>
+    <td valign="top">&nbsp;A variable is defined to be either one of the <a
+        href="#datatypes">fundamental data-types</a> of the Java language, or 
+      a reference to another type of object, such as a Font object or String object. 
+      <br>
+      A variable has a scope , and can be defined as 'belonging to' the class 
+      as a whole, or to just a member method within the class, or even to just 
+      a block of statements, enclosed within { } braces. <br>
+      A <a href="#static">static</a> variable exists only once across all instances 
+      of the class, all objects of that class, share the same value in that static 
+      variable.<br>
+      A <a href="#final">final</a> variable cannot be changed after it is defined, 
+      it has a constant value.&nbsp;</td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="void"></a><b>void</b></td>
+    <td valign="top">Is used as a kind of &#145;placeholder&#146; in a method 
+      definition, that has no <a href="#return">return</a> type.</td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="volatile"></a><b>volatile</b></td>
+    <td valign="top">You can use this keyword with a variable definition, to alert 
+      the compiler to the possibility that the value of this variable, may be 
+      changed asynchronously (by another thread), and that the compiler should 
+      not try to optimize references to this variable, by replacing them with 
+      a constant value.volatile long populationCounter;</td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFFCC"><a name="while"></a><b>while</b></td>
+    <td valign="top"> 
+      <p>A keyword that affects execution flow. Used to repeatedly execute a block 
+        of code, but only while a condition is true. </p>
+      <p class="code">while (seconds &gt; 0 &amp;&amp; seconds &lt;= 30) {<br>
+        &nbsp; // countdown from 30 seconds ..<br>
+        &nbsp;&nbsp;seconds--;<br>
+        }</p>
+    </td>
+  </tr>
+</table>
+</FONT> &copy;1999 Guy&nbsp;Bellingham-Smith 
+</body>
+</html>

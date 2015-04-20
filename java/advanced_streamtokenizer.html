@@ -1,0 +1,128 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="7/20/2002">
+<meta name="keywords" content="Java,IO,Reader,Writer,InputStream,OutputStream,Collections,Threads,Networking">
+<meta name="description" content="The Java class libraries and advanced programming topics.">
+<title>Advanced Java</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/advanced-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader">Other java.io 
+              classes </h4></td>
+          <td align="right" valign="top" ><a href="advanced_threads1.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">Threads<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"><p><a name="File"></a><strong>The<span class="stdCode"> 
+              java.io.File</span> class</strong> takes pathname and filename arguments 
+              in its constructor methods. The <span class="stdCode">File</span> 
+              class, is not used to create (write) a new file, for that use a 
+              <span class="stdCode">FileOutputStream</span> or <span class="stdCode">RandomAccessFile</span> 
+              object. The <span class="stdCode">File</span> class, allows you 
+              to work with directories and files in a hardware and file system 
+              independent way. You can rename and delete files, create directories, 
+              and find out if a file already exists, using methods defined in 
+              a File object. <br>
+              Note: Windows uses the backslash separator '\' in filenames, while 
+              Unix uses '/'. The <span class="stdCode">java.io.File</span> class 
+              defines a <span class="stdCode">public final static</span> variable 
+              called <span class="stdCode">separator</span>, which you can use 
+              to construct portable filenames. </p>
+            <p><a
+        name="File"></a><strong>The<span class="stdCode"> java.io.RandomAccessFile</span> 
+              class </strong>allows you to both read from and write to a file. 
+              By implementing both the <span class="stdCode">DataInput</span> 
+              and <span class="stdCode">DataOutput</span> interfaces, and not 
+              treating a file as a sequence of bytes only for input or output, 
+              the <span class="stdCode">RandomAccessFile</span> class, trancends 
+              the notion of streams. You contruct a RandomAccessFile around a 
+              file 'path' String and a permission String. The permission must 
+              be either <span class="stdCode">&quot;r&quot;</span> for read only, 
+              or <span class="stdCode">&quot;rw&quot;</span> for both read and 
+              write. A <span class="stdCode">File</span> object may be passed 
+              in place of the path String argument to the constructor method. 
+              In addition to the methods defined by <span class="stdCode">DataInput</span> 
+              and <span class="stdCode">DataOutput</span>, a RandomAccessFile 
+              has the following methods to support positioning a pointer within 
+              a file. </p>
+            <ul>
+              <li><span class="stdCode">void seek(long newposition);</span> Sets 
+                the file's pointer to the new position relative to the start of 
+                the file. </li>
+              <li><span class="stdCode">long length( );</span> Returns the current 
+                length of the file in bytes. </li>
+              <li><span class="stdCode">long getFilePointer( );</span> Returns 
+                the current RBA (relative byte address) of the file's pointer. 
+              </li>
+            </ul>
+            <p><a name="File"></a><strong>The <span class="stdCode">java.io.StreamTokenizer</span> 
+              class</strong> makes it easy to extract 'tokens' from a text file. 
+              A typical application first constructs an instance of this class, 
+              sets up the syntax tables, and then repeatedly loops calling the 
+              nextToken method in each iteration of the loop until it returns 
+              the value <span class="stdCode">StreamTokenizer.TT_EOF</span>. After 
+              a call to the <span class="stdCode">nextToken()</span> method, the 
+              <span class="stdCode">ttype</span> field contains the type of the 
+              token just read. For a single character token, its value is the 
+              single character, converted to an integer. For a quoted string, 
+              its value is the quote character. Otherwise, its value is one of 
+              the following: </p>
+            <ul>
+              <li><span class="stdCode">TT_WORD</span> indicates that the token 
+                is a word. </li>
+              <li><span class="stdCode">TT_NUMBER</span> indicates that the token 
+                is a number. </li>
+              <li><span class="stdCode">TT_EOL</span> indicates that the end of 
+                line has been read. The field can only have this value if the 
+                eolIsSignificant method has been called with the argument true. 
+              </li>
+              <li><span class="stdCode">TT_EOF</span> indicates that the end of 
+                the input stream has been reached. </li>
+            </ul>
+            <p class="stdCode">Reader r = new BufferedReader(new InputStreamReader(is)); 
+              <br>
+              StreamTokenizer st = new StreamTokenizer(r); <br>
+              do { int ttype = st.nextToken( ); } while (type != TT_EOF); </p></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr>
+    <td><p>&nbsp;</p>
+      </td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: July 2002. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="advanced_threads1.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">Threads<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+
+</FONT> 
+</BODY>
+</HTML>

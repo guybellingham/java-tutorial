@@ -1,0 +1,277 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="29/1/2002">
+<meta name="keywords" content="java, javac, application, main, method, static, command line, arguments, Programming, Guide, Beginner, Basics, Picture, Example,  Links">
+<meta name="description" content="Writing a simple Java application. Interactive Java Programming Guide, play with the Applets, try the example code.">
+<title>Java Programming Example</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="1" leftmargin="1"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script --> 
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading --> 
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!-- Programming Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/programming-toc.js">
+	</SCRIPT>
+      <p>&nbsp;</p>
+    </td>
+    <td align="left" valign="top"> 
+      <table border="0" cellpadding="2" width="100%" cellspacing="2">
+        <tr> 
+          <td align="left" valign="top"> 
+            <h4 class="stdPageHeader"> Writing a Java application.</h4>
+          </td>
+          <td align="right" valign="top" > <a href="programming_applets.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">Applets 
+            <img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr bgcolor="#FFFFFF"> 
+          <td align="left" valign="top" colspan="2"> 
+            <p><a name="top"></a><b>STEP#1.</b> In this first program, we are 
+              going to write an application that has no graphical user interface. 
+              GUI programming in java is a complicated subject involving the large 
+              and complex <a href="awt_intro.html">AWT</a> and <a href="swing.html">SWING</a> 
+              class libraries. This command line application will build upon the 
+              subjects covered in the programming section, and assumes you have 
+              already read the <a href="basics_example.html">instructions on downloading 
+              the J2SE development kit</a> and run the ExampleProgram to verify 
+              the install.</p>
+            <p><a name="main"></a> As noted in the downloading instructions, the 
+              Java runtime, looks for a method with the signature : <font color="#FF0000"><span class="stdCode">public 
+              static void main(String[] arg)</span></font> to start executing 
+              an application. <br>
+              Now you need to understand that this a <a href="javascript:popup('keywords.html#static')" class="stdCode">static</a> 
+              method, which means it is not associated with the world of objects, 
+              it is 'outside' the realm of individual objects and constructors 
+              and inheritance. Instead this method is associated with the class 
+              as a whole, and is built when the class file is first loaded into 
+              memory. The thing about static methods, is that you are limited 
+              to referencing other static methods and variables, you cannot reference 
+              an individual object, unless someone else passes you a reference 
+              to one.<br>
+              To program in the object world, we need to do a sort of 'bootstrap' 
+              maneuver (pulling yourself up by your own bootstraps) to construct 
+              an object based upon the applications class (an instance of ourself) 
+              as shown below.</p>
+            
+            </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr valign="top"> 
+    <td> 
+      <table width="100%" border="0" cellspacing="0" cellpadding="2">
+        <tr valign="top"> 
+          <td> 
+            <P><b><a name="class"></a>STEP#2. This class definition is the start 
+              of our application.</b> 
+            <pre class="stdCode">package examples; 
+import java.io.*; 
+import java.text.*; 
+import java.util.*;  <br><font color="#999999">/** 
+ * A command line App, demonstrates Strings. 
+ * @author: Guy Bellingham-Smith <br> * @see java.io.BufferedReader 
+ * @see java.lang.System 
+ */ </font>
+public class Example1 { 
+  <font color="#999999">//class variable </font>
+  private static String s0 = "Point"; 
+  <font color="#999999">//instance variable </font>
+  private String s1 = "Point"; 
+  <font color="#999999">//Character IO Reader </font>
+  BufferedReader buf;
+               
+<font color="#999999">  /**
+   * Example1 constructor.
+   * @exception IOException
+   */</font>
+  public Example1() throws IOException {
+    super();
+    <font color="#999999">//local input stream reader</font>
+    InputStreamReader isr = new InputStreamReader(System.in);
+    <font color="#999999">//instance buffered reader wraps isr</font>
+    buf = new BufferedReader(isr);
+  }
+<font color="#999999">  /**
+   *  Entry point of runnable app.
+   */</font>
+  public static void main(String[] args) throws IOException {
+    <font color="#999999">//bootstrap the app object</font>
+    Example1 app = new Example1();
+  }
+} </pre>
+			</td>
+          <td> 
+            <p>Notice that the class name is <b>Example1</b>.<br>
+              I have included a <span class="stdCode"><b>package</b></span> statement 
+              (as the first statement), after which I used the <span class="stdCode"><b>import</b></span> 
+              statements to make it easy to reference classes in other java packages. 
+              <br>
+              This source code includes some javadoc comments (between<span class="stdCode"> 
+              /**</span> and <span class="stdCode">*/</span>). <br>
+              The class contains a static String variable called <b>s0</b>, and 
+              an instance <span class="stdCode">String</span> variable called 
+              <b>s1</b>. It also contains an instance variable of the <span class="stdCode">java.io.BufferedReader</span> 
+              class called <b>buf</b>, which is assigned to a new BufferedReader 
+              object in the class constructor method.<br>
+              The class contains a single <b>constructor method</b> (with no return 
+              type), that invokes its parent class constructor with the super( 
+              ); statement. This enables any parent classes to do their own thing, 
+              during object construction and is not strictly necessary, since 
+              the java compiler inserts this statement if you forget it. The constructor 
+              method goes on to build a <span class="stdCode">java.io.InputStreamReader 
+              </span>object called isr. Note that this statement and the following 
+              one can both throw a <span class="stdCode">java.io.IOException</span>, 
+              but that this method simply passes the buck, by declaring that it 
+              can also throw this type of exception up the calling chain.<br>
+              Lastly a <span class="stdCode">main( )</span> method is the entry 
+              point into our application. The first thing it does is create an 
+              object based upon our class. Because this involves calling the constructor 
+              method which can <span class="stdCode">throw</span> an <span class="stdCode">IOException</span>, 
+              our main method must either catch such exceptions or re-throw them, 
+              in this case it simply throws any exception generated back to the 
+              java runtime.</p>
+            </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr> 
+    <td>
+      <table width="100%" border="0" cellspacing="0" cellpadding="2">
+        <tr valign="top"> 
+          <td width="47%"> 
+            <p><b><a name="package"></a>STEP#3.</b> You will need to save this 
+              class definition with a filename of <b>Example1.java</b>. </p>
+            <p><img src="images/java_example1.gif" width="324" height="116"></p>
+          </td>
+          <td width="53%"> 
+            <p> Because I have chosen the package name, <span class="code">examples</span>, 
+              I must ensure that the executable class file ends up in a folder 
+              called <b>\examples</b> with respect to my java home folder. Actually 
+              it can be with respect to any folder that I have included in the 
+              Java CLASSPATH.</p>
+          </td>
+        </tr>
+        <tr valign="top"> 
+          <td width="47%"> 
+            <p><b><a name="javac"></a>STEP#4.</b> To compile our class you'll 
+              need to run the <b>javac</b> tool from the command line.</p>
+            <p><img src="images/java_example1_2.gif" width="368" height="245"></p>
+          </td>
+          <td width="53%"> 
+            <p>&nbsp; </p>
+            <p>Once the <span class="code">.java</span> source file has successfully 
+              compiled, you should see a corresponding <span class="code">.class</span> 
+              file in the <b>\examples</b> folder.</p>
+            <p><b>A Java application can be run from the command line, by invoking 
+              the java executable and passing it the name of the main class.</b><br>
+              At the moment our application doesn't do anything very exciting, 
+              so if you try running it you won't see any output. If you get a 
+              <span class="stdCode">java.lang.NoClassDefFoundError</span> its 
+              probably because you're trying to run <span class="code">Example1</span>, 
+              you need to specify the fully qualified class name. Try changing 
+              directory to your java home folder, and typing<br>
+              <span class="stdCode">&gt; java examples.Example1 </span></p>
+          </td>
+        </tr>
+        <tr valign="top">
+          <td  colspan="2">
+			<p><b>STEP#5</b>. Now we're going to add a method that makes use of 
+              the buffered character reader called <span class="code">buf</span>. 
+              Copy and paste this method into your Example1.java class definition. 
+            <pre  class="code"><span class="stdCode"><font color="#999999">/** 
+* get user input as a String. 
+*/ </font>
+public String getUserInput() throws IOException { 
+   return buf.readLine(); 
+}</span>
+</pre> 
+<p>The <span class="code">buf</span> object was built in our constructor 
+              method, by 'wrapping' a local InputStreamReader object called <span class="code">isr</span>. 
+              This is a common technique for adding layers around an object. You'll 
+              see that when we constructed the InputStreamReader object, we wrapped 
+              yet another object called <span class="code">System.in</span>.</p>
+            <p>Next copy and paste the statements in red into the main( ) method 
+              of your Example1.java class definition. Notice that to reference 
+              instance variables or methods of our class, we must use the <span class="code">app</span> 
+              object, as in <span class="stdCode">app.getUserInput(); </span>
+            <pre class="stdCode">public static void main(String[] args)              
+  throws IOException { 
+  <font color="#999999">//bootstrap the app object </font>
+  Example1 app = new Example1(); 
+  <font color="#FF0000">//Prompt the user 
+  System.out.print("Please enter a phrase: "); 
+  //Get the user input 
+  StringBuffer sb = new StringBuffer(app.getUserInput()); 
+  //Echo the input backwards <br>  System.out.println("Backwards that is " + sb.reverse());</font> 
+}</pre>
+            <p><b>Note:</b> <span class="stdCode">System.in</span> is an object 
+              that the java runtime environment provides for you. It corresponds 
+              to the system console (or command line) input stream. We'll talk 
+              more about Streams when we look at the Java IO (input and output) 
+              classes. There is also a <span class="stdCode">System.out</span> 
+              object available to you, and it provides a number of useful <span class="stdCode"><b>print( 
+              )</b></span> and <span class="stdCode"><b>println( )</b></span> 
+              methods for printing text to the command line. </p>
+            </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+	<td>
+      <p><b>STEP#6</b>. Recompile your Example1.java file as shown in <a href="#javac">STEP#4</a> 
+        above. Run your <span class="code">examples.Example1</span> application 
+        as shown below. </p>
+
+      <table width="100%" border="0" cellspacing="2" cellpadding="2">
+        <tr valign="top"> 
+          <td > 
+
+            <p><img src="images/java_example1_3.gif" width="364" height="155"></p>
+          </td>
+          <td> 
+            <p>Congratulations! <br>
+              You now have a basic command line application which you can copy 
+              and change. </p>
+            <p>The one thing we haven't covered is the mysterious String <a href="programming_arrays.html">array</a> 
+              called <span class="code">args</span>, that is passed as an argument 
+              to the main( ) method. <br>
+              Well it contains any command line parameters that are specified 
+              when the application is run. See if you can figure out how to change 
+              the example to accept a command line argument.</p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</FONT> <FONT class="text"> 
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: January 2002. &copy;1999 Guy&nbsp;Bellingham-Smith</td>
+    <td align="right" valign="top" > <a href="programming_applets.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">Applets<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+</FONT> 
+</BODY>
+</HTML>

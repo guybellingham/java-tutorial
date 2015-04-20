@@ -1,0 +1,324 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="29/1/2002">
+<meta name="keywords" content="Java,AWT,Abstract Windowing Toolkit">
+<meta name="description" content="Introducing the AWT.">
+<title>The AWT</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="1" leftmargin="1"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/awt-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader"> java.awt.Component</h4></td>
+          <td align="right" valign="top" ><a href="awt_button.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">Button<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top"><strong>The Component&nbsp; class</strong> 
+            is an abstract class that represents a generic user interface &#145;component&#146;, 
+            which can be anything from a window to a button. <BR>
+            <img src="images/awt_component.gif" width="387" height="625"> 
+		  </td>
+		  <td align="left" valign="top"><p>All Components can have a 'parent' 
+              which is a Container.</p>
+            <p>All Components have a physical onscreen size, and location.</p>
+            <p>All Components can notify 'event listeners', when certain kinds 
+              of events happen, such as when a key is pressed or the mouse is 
+              moved or clicked over them. See the methods described below for 
+              the Java 1.1 event model.</p>
+            <p>In addition Components have graphical attributes such as Colors, 
+              Fonts and whether or not they are visible.</p>
+            <p>In the table below are some descriptions of the methods that all 
+              AWT Components inherit. Note that a few of these methods are not 
+              public, and are therefore not for use by you. Some others have been 
+              'deprecated' and you should use the newer alternative methods that 
+              they refer you to. </p></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+
+  
+<table width="100%" border="0" cellpadding="2" cellspacing="0">
+  <tr>
+    <td> 
+      <table border="0" cellpadding="4" cellspacing="4" width="100%">
+        <tr> 
+          <td valign="top" class="stdTableColumnHeader">method&nbsp;</td>
+          <td valign="top" class="stdTableColumnHeader">&nbsp;description</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99"><p><font size="-1" face="Courier New, Courier, mono">public 
+              void addNotify( ) ;</font></p></td>
+          <td valign="top" bgcolor="#CCFFFF">method that is used by the AWT toolkit 
+            to build the &#145;peer&#146; for this Component in the native windowing 
+            system, making it displayable by the operating system.</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99"><p><font size="-1" face="Courier New, Courier, mono">public 
+              Rectangle bounds( ) ;<br>
+              public Rectangle getBounds( );</font></p></td>
+          <td valign="top" bgcolor="#CCFFFF">both methods return the Rectangle 
+            x, y, width and height that encompasses this component. The bounds( 
+            ) method has been replaced (or deprecated) by the getBounds( ) method 
+            for Java 1.1.</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99"><font size="-1" face="Courier New, Courier, mono">public 
+            void setBounds(int x, int y, int width, int height);</font></td>
+          <td valign="top" bgcolor="#CCFFFF">moves and resizes this component. 
+            The new location of the top-left corner is specified by x and y, and 
+            the new size is specified by width and height.<br>
+            Used by LayoutManagers to layout this component. <br>
+            Replaces the older reshape( ) method.</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99"><p><font size="-1" face="Courier New, Courier, mono">public 
+              void resize(int height, int width ) ;<br>
+              public void setSize(int height, int width ) ;</font></p></td>
+          <td valign="top" bgcolor="#CCFFFF">the resize( ) method has been replaced 
+            by the setSize( ) method in Java 1.1.<br>
+            This method attempts to dictate the size of a component. This is usually 
+            futile, because a LayoutManager will determine the true display size 
+            of a component (an exception is made for the <a href="awt_frame.html">Frame 
+            Component</a>).</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99"><p><font size="-1" face="Courier New, Courier, mono">public 
+              Point getLocation();&nbsp;<br>
+              public void setLocation(Point p);</font></p></td>
+          <td valign="top" bgcolor="#CCFFFF">gets the location of this component 
+            in the form of a point specifying the component's top-left corner. 
+            The location will be relative to the parent's coordinate space.<br>
+            attempts to move this component, so that its top, left corner is at 
+            the point specified. setLocation( ) replaces the move( ) method for 
+            Java 1.1</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99"><p><font size="-1" face="Courier New, Courier, mono">public 
+              boolean contains(int x, int y) ;<br>
+              public boolean inside(int x, int y) ;<br>
+              public boolean contains(Point p) ;</font></p></td>
+          <td valign="top" bgcolor="#CCFFFF">all these methods return true if 
+            the coordinates x and y fall within the bounds of the component. Also 
+            accepts a Point object as an argument.</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99"><p><font size="-1" face="Courier New, Courier, mono">public 
+              void disable( );&nbsp;<br>
+              public void enable( );</font></p></td>
+          <td valign="top" bgcolor="#CCFFFF">Deprecated methods, see the newer 
+            versions of this method below. <br>
+            A disabled component does not respond to input, and often paints itself 
+            &#145;greyed out&#146;.</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99"><p><font size="-1" face="Courier New, Courier, mono">public 
+              void setEnabled(boolean b);</font></p></td>
+          <td valign="top" bgcolor="#CCFFFF">if the argument b is true, the component 
+            is enabled and displays a normal appearance, otherwise it displays 
+            'greyed out'. <br>
+            Replaces the older Java 1.0 enable( ) and disable( ) methods.</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99"><p><font size="-1" face="Courier New, Courier, mono">public 
+              boolean isEnabled( );&nbsp;</font></p></td>
+          <td valign="top" bgcolor="#CCFFFF">tests to see whether the component 
+            is enabled.&nbsp;</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99"><p><font size="-1" face="Courier New, Courier, mono">public 
+              Color getBackground( );&nbsp;<br>
+              public Color getForeground( );</font></p></td>
+          <td valign="top" bgcolor="#CCFFFF">returns the background and foreground 
+            colors of the component as an object of the java.awt.Color class. 
+          </td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99"><p><font size="-1" face="Courier New, Courier, mono">public 
+              void setBackground(Color c);<br>
+              public void setForeground(Color c);</font></p></td>
+          <td valign="top" bgcolor="#CCFFFF">sets the background and foreground 
+            colors of the component.&nbsp;If you do not explicitly set these, 
+            the component uses the background and foreground of its immediate 
+            container.</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99"><p><font size="-1" face="Courier New, Courier, mono">public 
+              Font getFont( );&nbsp;<br>
+              public void setFont(Font f);</font></p></td>
+          <td valign="top" bgcolor="#CCFFFF">returns the Font currently used by 
+            the component.&nbsp;<br>
+            sets the font that the component will use for rendering any text. 
+            If you do not explicitly set the font, the component uses the font 
+            of its container.</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99"><p><font size="-1" face="Courier New, Courier, mono">public 
+              Graphics getGraphics( );</font></p></td>
+          <td valign="top" bgcolor="#CCFFFF">returns the Graphics context object 
+            for drawing or painting onto this component.&nbsp;</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99"><p><font size="-1" face="Courier New, Courier, mono">public 
+              String getName( );</font></p></td>
+          <td valign="top" bgcolor="#CCFFFF">gets the &#145;name&#146; of this 
+            component object.</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99"><p><font size="-1" face="Courier New, Courier, mono">public 
+              Container getParent( );&nbsp;</font></p></td>
+          <td valign="top" bgcolor="#CCFFFF">gets the container in which this 
+            component resides.&nbsp;</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99"><p><font size="-1" face="Courier New, Courier, mono">public 
+              Dimension getSize( );</font></p></td>
+          <td valign="top" bgcolor="#CCFFFF">returns the current size of this 
+            component as a Dimension object, with public members width and height. 
+            Replaces the older size( ) method.</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99"><p><font size="-1" face="Courier New, Courier, mono">public 
+              Dimension preferredSize( ) ;&nbsp;<br>
+              public Dimension getPreferredSize( );</font></p></td>
+          <td valign="top" bgcolor="#CCFFFF">a component returns its preferred 
+            display size, given its current layout, contents and insets ..etc 
+            Used by LayoutManagers to correctly size a component. preferredSize( 
+            ) method has been replaced by getPreferredSize( ).</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99"><p><font size="-1" face="Courier New, Courier, mono">public 
+              Dimension getMinimumSize( );<br>
+              public Dimension getMaximumSize( );</font></p></td>
+          <td valign="top" bgcolor="#CCFFFF">returns the minimum or maximum dimensions 
+            tolerated by this component to display correctly on the screen.&nbsp;<br>
+            Used by LayoutManagers to correctly size a component.<br>
+            These methods replace the older minimumSize( ) method.</td>
+        </tr>
+        <tr class="stdTableRow2"> 
+          <td valign="top"> <p><font size="-1" face="Courier New, Courier, mono">public 
+              boolean handleEvent(Event e) ;</font></p></td>
+          <td valign="top">a generic event handling method used by Java 1.02<br> 
+            <a href="awt_event.html">see Java 1.02 Event model.</a></td>
+        </tr>
+        <tr class="stdTableRow2"> 
+          <td valign="top"><font size="-1" face="Courier New, Courier, mono">public 
+            boolean action(Event e, Object what );<br>
+            <br>
+            public boolean gotFocus(Event e) ;<br>
+            public boolean lostFocus(Event e);<br>
+            public boolean mouseDown(Event e);<br>
+            public boolean mouseUp(Event e);<br>
+            public boolean mouseEnter(Event e);<br>
+            public boolean mouseExit(Event e);<br>
+            public boolean mouseDrag(Event e);&nbsp;</font></td>
+          <td valign="top">more specific event handlers which are called by the 
+            handleEvent( ) method, depending upon the type of event and the type 
+            of component.<br> <a href="awt_event.html">see Java 1.02 Event model.</a></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99"><font size="-1" face="Courier New, Courier, mono">public 
+            synchronized void addComponentListener (ComponentListener c);<br>
+            <br>
+            public synchronized void addActionListener (ActionListener a);<br>
+            <br>
+            public synchronized void addFocusListener (FocusListener f);<br>
+            <br>
+            public synchronized void addKeyListener (KeyListener k);<br>
+            <br>
+            public synchronized void addMouseListener (MouseListener m);</font></td>
+          <td valign="top" bgcolor="#CAFFFF"><a
+        href="awt_eventnew.html">see Java 1.1 Event model.</a></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99"><p><font size="-1" face="Courier New, Courier, mono">public 
+              void show( );&nbsp;<br>
+              public void hide( );</font></p></td>
+          <td valign="top" bgcolor="#CCFFFF">Deprecated for Java 1.1. Can be called 
+            to make the component visible / invisible. &nbsp;</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99"><p><font size="-1" face="Courier New, Courier, mono">public 
+              void setVisible(boolean b);</font></p></td>
+          <td valign="top" bgcolor="#CCFFFF">this method replaces the show( ) 
+            and hide( ) methods. If the argument b is true the component is visible 
+            else it does not display.</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99"><p><font size="-1" face="Courier New, Courier, mono">public 
+              boolean isShowing( );<br>
+              public boolean isVisible( );&nbsp;</font></p></td>
+          <td valign="top" bgcolor="#CCFFFF">tests to see whether the component 
+            is currently visible on the screen.</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99"><p><font size="-1" face="Courier New, Courier, mono">public 
+              void invalidate( ) ;&nbsp;</font></p></td>
+          <td valign="top" bgcolor="#CCFFFF">marks the Component as needing laying 
+            out by the LayoutManager.</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99"><p><font size="-1" face="Courier New, Courier, mono">public 
+              void layout( );<br>
+              public void doLayout( );&nbsp;</font></p></td>
+          <td valign="top" bgcolor="#CCFFFF">if this component is also a container, 
+            this method prompts the LayoutManger to lay out this component. layout( 
+            ) has been replaced by doLayout( ) in Java 1.1.</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99"><p><font size="-1" face="Courier New, Courier, mono">public 
+              void repaint() ;&nbsp;</font></p></td>
+          <td valign="top" bgcolor="#CCFFFF">requests that at the next opportunity 
+            the AWT thread should update( ) this component (see update method 
+            below).</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99"><p><font size="-1" face="Courier New, Courier, mono">public 
+              void update(Graphics g) ;&nbsp;</font></p></td>
+          <td valign="top" bgcolor="#CCFFFF">the AWT thread calls this method, 
+            which by default clears the graphics area of the component to the 
+            background color and in turn calls the paint( ) method below, passing 
+            the Graphics area.</td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99"><p><font size="-1" face="Courier New, Courier, mono">public 
+              void paint(Graphics g) ;&nbsp;</font></p></td>
+          <td valign="top" bgcolor="#CCFFFF">the AWT thread calls this method 
+            to allow the component to paint itself on the screen.</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: December 2001. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="awt_button.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">Button<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+</FONT>
+</BODY>
+</HTML>

@@ -1,0 +1,201 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="7/20/2002">
+<meta name="keywords" content="Java,IO,Reader,Writer,InputStream,OutputStream,Collections,Threads,Networking">
+<meta name="description" content="The Java class libraries and advanced programming topics.">
+<title>Advanced Java</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/advanced-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader">Thread methods</h4></td>
+          <td align="right" valign="top" ><a href="advanced_threads4.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">Multi-threading<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"><p><strong>Java support for 
+              threads, resides in 3 places : </strong></p>
+            <ol>
+              <li> The 'mother of all objects' the <span class="stdCode">java.lang.Object</span> 
+                class provides methods for object locking and <span class="stdCode">wait()</span> 
+                and<span class="stdCode"> notify()</span> methods.</li>
+              <li> The <span class="stdCode">java.lang.Thread </span>class provides 
+                the methods listed below.</li>
+              <li> The Java Virtual Machine provides the runtime environment for 
+                threads.</li>
+            </ol>
+            <p>The <span class="stdCode">java.lang.Thread </span>class supports 
+              the following methods.</p>
+            <table border="0" class="stdTableAsGroupBox">
+              <tr> 
+                <td valign="top" class="stdTableColumnHeader"><font class="text">Thread&nbsp;constructors&nbsp;- 
+                  </font></td>
+                <td valign="top"><font class="text">There are several ways to 
+                  create a new <span class="stdCode">Thread</span> instance, all 
+                  of which require an instance of <span class="stdCode">Runnable</span> 
+                  as the first argument. Other constructors allow you to name 
+                  the thread, and to assign the thread to a <span class="stdCode">ThreadGroup</span>.</font></td>
+              </tr>
+              <tr> 
+                <td valign="top" class="stdTableColumnHeader"><font class="text">start( 
+                  )</font></td>
+                <td valign="top"><font class="text">Is invoked on a thread instance, 
+                  and 'registers' the thread with the system scheduler. The thread 
+                  is 'ready' to run. Some time thereafter, the thread will be 
+                  put in control of the CPU and its' <span class="stdCode">run()</span> 
+                  method will execute.</font></td>
+              </tr>
+              <tr> 
+                <td valign="top" class="stdTableColumnHeader"><font class="text">stop( 
+                  )</font></td>
+                <td valign="top"><font class="text">This method forcibly stops 
+                  a thread from executing. Because it can cause problems if you 
+                  stop a thread while it is in a 'critical section' of code, <strong>it 
+                  has been deprecated</strong> (since JDK 1.2 is no longer in 
+                  use).<br>
+                  A better way to stop a thread, is to send it a signal of some 
+                  kind so that it's run method terminates normally.</font></td>
+              </tr>
+              <tr> 
+                <td valign="top" class="stdTableColumnHeader"><font class="text">suspend( 
+                  ) <br>
+                  resume( )</font></td>
+                <td valign="top"><font class="text">This pair of methods, used 
+                  to serve as a way to temporarily halt and resume execution of 
+                  a thread. <br>
+                  Again <strong>these methods can cause deadlocks when used improperly</strong>, 
+                  and are deprecated. <br>
+                  You should use the <span class="stdCode">wait() </span>and <span class="stdCode">notify()</span> 
+                  methods (discussed later) instead.</font></td>
+              </tr>
+              <tr> 
+                <td valign="top" class="stdTableColumnHeader"><font class="text">sleep( 
+                  )</font></td>
+                <td valign="top"><font class="text">This is a <span class="stdCode">static</span> 
+                  method of the <span class="stdCode">Thread</span> class, which 
+                  causes the currently executing thread to release the CPU for 
+                  'at least' a certain period. The period is specified in milliseconds 
+                  as the first argument to this method.<br>
+                  It can throw an <span class="stdCode">InterruptedException</span> 
+                  under certain circumstances (so you should normally surround 
+                  it with a try .. catch( ) statement).<br>
+                  You should avoid using <span class="stdCode">sleep()</span> 
+                  as a way to coordinate execution for cooperating threads as 
+                  it can lead to all threads sleeping for cooperative reasons, 
+                  which wastes CPU time. The <span class="stdCode">yield( ), wait( 
+                  )</span> and <span class="stdCode">notifyAll( )</span> methods 
+                  are better used for thread coordination.<br>
+                  Note: the length of sleeping is non-deterministic. After the 
+                  thread awakes, it is dependent upon the system scheduler when 
+                  it will regain control of the CPU again.</font></td>
+              </tr>
+              <tr> 
+                <td valign="top" class="stdTableColumnHeader"><font class="text">yield( 
+                  )</font></td>
+                <td valign="top"><font class="text">Is another <span class="stdCode">static</span> 
+                  method of the <span class="stdCode">Thread</span> class, and 
+                  causes the currently executing thread to give up control of 
+                  the CPU. This can be useful if the thread has a long running 
+                  task, and wants to periodically give other threads a chance 
+                  to execute. If thread priorities are implemented meaningfully, 
+                  this can prevent the kind of unresponsiveness that some programs 
+                  exhibit while they are busy.</font></td>
+              </tr>
+              <tr> 
+                <td valign="top" class="stdTableColumnHeader"><font class="text">join( 
+                  )</font></td>
+                <td valign="top"><font class="text">Invoking this on a thread 
+                  object, causes the currently executing thread to wait until 
+                  the thread for which the method was invoked, stops executing. 
+                  You can force threads to queue up for execution with this method.</font></td>
+              </tr>
+              <tr> 
+                <td valign="top" class="stdTableColumnHeader"><font class="text">interrupt( 
+                  )</font></td>
+                <td valign="top"><font class="text">A <span class="stdCode">static</span> 
+                  method of <span class="stdCode">Thread</span>, can be used to 
+                  interrupt a 'sleeping' thread.</font></td>
+              </tr>
+              <tr> 
+                <td valign="top" class="stdTableColumnHeader"><font class="text">setPriority(10)</font></td>
+                <td valign="top"><font class="text">Every thread has a priority. 
+                  By default a thread inherits the priority of the thread which 
+                  'spawned' it. <br>
+                  The priority is considered by the scheduler when it picks which 
+                  thread gets control of the CPU. <br>
+                  The Thread class has some class constants defined which you 
+                  can use to set the priority of a thread :<br>
+                  <span class="stdCode">Thread.MIN_PRIORITY</span> is 1, <span class="stdCode">Thread.NORM_PRIORITY</span> 
+                  (5), and <span class="stdCode">Thread.MAX_PRIORITY</span> (10).<br>
+                  How the system scheduler interprets priorities is dependent 
+                  upon the operating system.</font></td>
+              </tr>
+              <tr> 
+                <td valign="top" class="stdTableColumnHeader"><font class="text">setDaemon(true)</font></td>
+                <td valign="top"><font class="text">Threads can be marked as either 
+                  'user' or 'daemon' threads. Daemon threads are usually system 
+                  related threads that offer support services to the user threads 
+                  in some way. The Java runtime treats daemon threads differently. 
+                  The JVM will exit as soon as there are no user threads alive, 
+                  automatically stopping all the daemon threads, since they are 
+                  of no value in the absence of 'user' threads.<br>
+                  Use this method after creating but before starting the thread.</font></td>
+              </tr>
+              <tr> 
+                <td valign="top" class="stdTableColumnHeader"><font class="text">ThreadGroup</font></td>
+                <td valign="top"><font class="text">ThreadGroups can be used to 
+                  associate groups of related threads. A <span class="stdCode">ThreadGroup</span> 
+                  can 'contain' any number of <span class="stdCode">Thread</span> 
+                  objects, and other ThreadGroup objects. <br>
+                  By default a new thread belongs to the same ThreadGroup as the 
+                  thread which spawned it.<br>
+                  You can control groups of related threads with a single call 
+                  to methods in their ThreadGroup.<br>
+                  In some web browsers the <span class="stdCode">SecurityManager</span>, 
+                  uses <span class="stdCode">ThreadGroup</span> to judge whether 
+                  a thread should control another thread. If the threads belong 
+                  to the same ThreadGroup or a parent ThreadGroup the call on 
+                  another thread is probably appropriate.</font></td>
+              </tr>
+            </table> </td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: July 2002. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="advanced_threads4.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">Multi-threading<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+
+</FONT> 
+</BODY>
+</HTML>

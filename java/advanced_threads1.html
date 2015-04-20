@@ -1,0 +1,172 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="7/20/2002">
+<meta name="keywords" content="Java,IO,Reader,Writer,InputStream,OutputStream,Collections,Threads,Networking">
+<meta name="description" content="The Java class libraries and advanced programming topics.">
+<title>Advanced Java</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/advanced-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader">The java.lang.Thread 
+              class </h4></td>
+          <td align="right" valign="top" ><a href="advanced_threads2.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">Thread 
+            Lifecycle <img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"><p>Java allows you write 'multi-threaded' 
+              programs. <br>
+              What this means, is your applet or application can 'spawn' separate 
+              threads of execution, seeming to do more than one task at a time. 
+              If your computer only has a single CPU it cannot really do more 
+              than one thing at a time. However all modern operating systems are 
+              'multi-tasking' and can handle more than one program executing at 
+              a time. They have a mechanism built in, called a scheduler, whose 
+              job is to switch the CPU between all the competing 'threads' waiting 
+              to execute. This happens so rapidly, that is seems as though multiple 
+              things are going on at once.</p>
+            <table width="100%" border="0" cellspacing="2" cellpadding="2">
+              <tr align="left" valign="top"> 
+                <td> <p class="stdCaption">figure: A Thread object represents 
+                    a unit of work for the CPU.</p>
+                  <p><img
+        src="images/thread.gif" width="289" height="157"></p></td>
+                <td>The <span class="stdCode">java.lang.Thread</span> class encapsulates 
+                  the properties and behaviors of a thread of execution. An interface 
+                  called <span class="stdCode">Runnable</span> lays out the <span class="stdCode">run( 
+                  )</span> method, where the real work of a thread is done.</td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr> 
+    <td><p><strong>There are 3 steps to take when creating a new thread of work:</strong></p>
+      <table border="0" cellpadding="2" width="100%">
+        <tr> 
+          <td valign="top" width="60%"><font class="text"><strong>1</strong>. 
+            Create an instance of some work you want to do in a seperate thread 
+            you can define a class that extends <span class="stdCode">Thread</span> 
+            and overrides its' empty <span class="stdCode">run( )</span> method. 
+            <br>
+            &nbsp;However a better way, is to implement the <span class="stdCode">Runnable</span> 
+            interface in your own class and provide a method with the signature<span class="stdCode"> 
+            public void run( )</span> to do the actual work :</font></td>
+          <td valign="top" class="stdCode"> 
+		  <pre>public class MyRunner <font color="#FF0000">implements Runnable</font> {
+ // this is where the Thread runs
+<font color="#FF0000"> public void run( )</font> {
+   //do something useful
+  }
+}</pre></td>
+        </tr>
+        <tr> 
+          <td valign="top" width="60%"><font class="text"><strong>2</strong>. 
+            Create a new <span class="stdCode">Thread</span> of work using the 
+            <span class="stdCode">Runnable</span> instance. Java will automatically 
+            assign a unique name to each new thread, or you can supply your own 
+            name. This helps with debugging, you can use the Thread instance method 
+            <span class="stdCode">getName( ) </span>to retrieve the name of a 
+            thread.</font></td>
+          <td valign="top" class="stdCode"> <p><font class="text">Runner r1 = 
+              new Runner( );<br>
+              Thread t1 = new Thread(r1, &quot;thread1&quot;);</font></p></td>
+        </tr>
+        <tr> 
+          <td valign="top" width="60%"><font class="text"><strong>3</strong>. 
+            Call the thread objects' <span class="stdCode">start( )</span> method, 
+            to make the thread 'ready' to execute in the CPU. Once a thread has 
+            been started it is considered to be 'alive' (the thread method<span class="stdCode"> 
+            isAlive( ) </span>returns <span class="stdCode">true</span>), until 
+            it stops.<br>
+            Notice, that you do not call the <span class="stdCode">run( )</span> 
+            method in the thread object; that would just execute the threads' 
+            method in the current (your programs') thread.</font></td>
+          <td valign="top" class="stdCode"> <p><font class="text">t1.start( );<br>
+              </font></p></td>
+        </tr>
+      </table>
+      <p><strong>Multiple threads can share both code and data:</strong></p>
+      <table width="100%" border="0" cellpadding="2" cellspacing="2" class="stdTableAsGroupBox">
+        <tr align="left" valign="top"> 
+          <td width="50%"><font class="text">In the example at right, threads 
+            <span class="stdCode">t1</span> and <span class="stdCode">t2</span> 
+            execute the same <span class="stdCode">run() </span>method, but share 
+            different sets of data (they run in the context of different instances 
+            of the <span class="stdCode">MyRunner</span> class).</font></td>
+          <td width="50%" class="stdCode"><font class="text">MyRunner r1 = new 
+            MyRunner(50);<br>
+            MyRunner r2 = new MyRunner(200);<br>
+            Thread t1 = new Thread(r1, &quot;thread1&quot;);<br>
+            Thread t2 = new Thread(r2, &quot;thread2&quot;);<br>
+            t1.start();<br>
+            t2.start();</font></td>
+        </tr>
+        <tr align="left" valign="top"> 
+          <td><font class="text">It is also possible for threads that execute 
+            different Runnable classes of object, to be passed references to data 
+            which they can share. </font></td>
+          <td class="stdCode"><font class="text">//MyData encapsulates 'shared' 
+            data<br>
+            Runner r1 = new MyLoader(MyData);<br>
+            Runner r2 = new MyRunner(MyData);<br>
+            Thread t1 = new Thread(r1, &quot;thread1&quot;);<br>
+            Thread t2 = new Thread(r2, &quot;thread2&quot;);</font></td>
+        </tr>
+        <tr align="left" valign="top">
+          <td><font class="text">By making the <span class="stdCode">run( )</span> 
+            method, provide different execution paths depending upon the currently 
+            executing thread, you can create threads that share data, but execute 
+            different functions.<br>
+            <strong>Note</strong>: This is an example of poor design (multiple 
+            behaviors in a method), and is not recommended.</font></td>
+          <td class="stdCode"><pre><font class="text">public void run( ) {<br>  if&nbsp;(Thread.currentThread()&nbsp;==&nbsp;t1)&nbsp;{<br>    // do thread1 work <br>  } else {<br>    // do thread2 work <br>  } <br>}</font></pre></td>
+        </tr>
+      </table>
+      <p><strong>Note</strong>: There is a sizable overhead involved in allocating 
+        a new Thread. If your program has to handle multiple requests for the 
+        same type of task, it is more efficient to reuse the threads you create, 
+        instead of allowing them to die and having to recreate them.<br>
+        There are <font color="#FF0000">dangers in using multiple threads</font>, 
+        <a
+        href="threads4.htm">see this page</a> for the start of multi threading 
+        topics.</p>
+      </td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: July 2002. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="advanced_threads2.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">Thread 
+      Lifecycle <img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+
+</FONT> 
+</BODY>
+</HTML>

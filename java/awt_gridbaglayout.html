@@ -1,0 +1,170 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="7/20/2002">
+<meta name="keywords" content="Java,AWT,Abstract Windowing Toolkit">
+<meta name="description" content="Introducing the AWT.">
+<title>The Title</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/awt-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader">java.awt.GridBagLayout</h4></td>
+          <td align="right" valign="top" ><a href="awt_cardlayout.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">CardLayout<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"><p>This is the most complex 
+              of the <span class="stdCode">LayoutManagers</span>, and offers the 
+              most control. It arranges components in a table of cells, using 
+              a complex set of rules that are packaged as an associated object 
+              of the class <span class="stdCode">java.awt.GridBagConstraints</span>. 
+              The constraints, determine how the components fill and align within 
+              cells and whether the preferred size of the component in a cell, 
+              is respected.</p>
+            <p>When a component is added to the container, you construct the GridBagConstraints 
+              object, and set the instance variables of the GridBagConstraints 
+              object to specify :</p>
+            <ul>
+              <li> The size and location within the container of the components' 
+                cell, width and height may span multiple cells (variables gridx, 
+                gridy, gridwidth and gridheight).</li>
+              <li>The size and location within that 'virtual' cell of the component 
+                (fill and anchor).</li>
+              <li>What happens to the cell when the container is resized (weightx 
+                and weighty).</li>
+            </ul>
+            <p>You associate the constraints with the component when you add it 
+              to a container. This method takes a 'clone' of the constraints, 
+              so you are free to change and associate the GridBagConstraints object 
+              with another component. You can also use the following method of 
+              the GridBagLayout manager. </p>
+            <p class="stdCode">myGridBagLayout.setConstraints(myButton, myGridBagConstraints);<br>
+            </p>
+            <table border="0" cellpadding="4" cellspacing="4">
+              <tr> 
+                <td valign="top" colspan="3" bgcolor="#FFFF80"><font class="text">The 
+                  <span class="stdCode">fill</span> instance variable, determines 
+                  whether the component's width and height will take their preferred 
+                  values or completely fill the cell. You can use the constants 
+                  defined within <span class="stdCode">GridBagConstraints</span> 
+                  to set this value :<br>
+                  </font> <table border="1" cellpadding="2" cellspacing="0">
+                    <tr class="stdTableColumnHeader"> 
+                      <td><font class="text">Fill </font></td>
+                      <td><font class="text">Width </font></td>
+                      <td><font class="text">Height </font></td>
+                    </tr>
+                    <tr> 
+                      <td class="stdCode"><font class="text">NONE (default) </font></td>
+                      <td><font class="text">preferred</font></td>
+                      <td><font class="text">preferred</font></td>
+                    </tr>
+                    <tr> 
+                      <td class="stdCode"><font class="text">HORIZONTAL</font></td>
+                      <td><font class="text">Cell width</font></td>
+                      <td><font class="text">preferred</font></td>
+                    </tr>
+                    <tr> 
+                      <td class="stdCode"><font class="text">VERTICAL</font></td>
+                      <td><font class="text">preferred</font></td>
+                      <td><font class="text">Cell height</font></td>
+                    </tr>
+                    <tr> 
+                      <td class="stdCode"><font class="text">BOTH</font></td>
+                      <td><font class="text">Cell width</font></td>
+                      <td><font class="text">Cell height</font></td>
+                    </tr>
+                  </table></td>
+                <td valign="top"><table border="1" cellpadding="2"
+        cellspacing="0">
+                    <tr class="stdTableColumnHeader"> 
+                      <td><font class="text">Anchor</font></td>
+                      <td><font class="text">Component&nbsp;placement</font></td>
+                    </tr>
+                    <tr> 
+                      <td class="stdCode"><font class="text">CENTER (default) 
+                        </font></td>
+                      <td><font class="text">center of the cell</font></td>
+                    </tr>
+                    <tr> 
+                      <td class="stdCode"><font class="text">NORTHWEST, NORTHEAST, 
+                        SOUTHWEST, SOUTHEAST</font></td>
+                      <td><font class="text">corners of the cell</font></td>
+                    </tr>
+                    <tr> 
+                      <td class="stdCode"><font class="text">NORTH, SOUTH, EAST, 
+                        WEST</font></td>
+                      <td><font class="text">center of the cells edges</font></td>
+                    </tr>
+                  </table></td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr> 
+    <td><p><FONT class="text"><img
+src="images/awt-gridbaglayout.gif" width="625" height="431"></FONT></p>
+      <table border="0" cellpadding="4" cellspacing="4">
+        <tr> 
+          <td width="50%"><font class="text"> 
+            <applet
+        code="gridbagconstraints/Applet1.class"
+        codebase="classes" align="middle" width="640"
+        height="480" archive="gridbagconstraints/Applet1.jar"
+        name="GridBagApplet">
+            </applet>
+            </font></td>
+          <td valign="top" width="50%" bgcolor="#FFFF99"><font class="text">This 
+            applet, allows you to change the constraints of 4 buttons in a <span class="stdCode">GridBagLayout</span>. 
+            </font> 
+            <p><font class="text">Try changing the <span class="stdCode">gridx</span> 
+              and <span class="stdCode">gridy</span> values to make all four buttons 
+              fit together in a square.</font></p>
+            <p><font class="text">Then try changing the <span class="stdCode">gridwidth</span> 
+              and <span class="stdCode">fill</span> values to line up buttons 
+              1, 2 and 3 above button 4 which should span all threee buttons in 
+              the line above.</font></p>
+            <p><font class="text">Note: The <span class="stdCode">align</span> 
+              value will only make a noticeable difference when <span class="stdCode">fill</span> 
+              is not equal to BOTH.</font></p></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: July 2002. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="awt_cardlayout.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">CardLayout<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+
+<p>&nbsp;</p>
+
+</FONT> 
+</BODY>
+</HTML>

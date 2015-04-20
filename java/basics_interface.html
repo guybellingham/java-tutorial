@@ -1,0 +1,141 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="29/1/2002">
+<meta name="keywords" content="Object, interface, implements, Java, Programming, Guide, Beginner, Basic, Picture, Example, Link">
+<meta name="description" content="Defining a programming interface. Interactive Java Programming Guide, play with the Applets, try the example code.">
+<title>Defining a programming interface</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="1" leftmargin="1"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script --> 
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading --> 
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC">
+      <!-- Basics Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/basics-toc.js">
+	</SCRIPT></td>
+    <td align="left" valign="top">
+     <table border="0" cellpadding="2" width="100%" cellspacing="0"> 
+      <tr>
+      <td align="left" valign="top">
+            <h4 class="stdPageHeader"> Defining an interface.</h4>
+      </td>
+          <td align="right" valign="top" ><a href="basics_example.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">compile 
+            and run examples<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+      </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"> 
+            <p><b>An interface definition serves as a 'protocol' of behavior, 
+              which objects can share.</b> An interface is a way of ‘laying out’ 
+              the variables and methods of a class, but not actually implementing 
+              the code that gives them ‘life’ when they are executed. You define 
+              an interface, in a manner similar to a class that defines only abstract 
+              methods, and constant class variables.<br>
+              <span class="caption">For example here is a simple interface for 
+              Shape objects that want to be able to rotate about their center 
+              points, in a standard manner :</span> </p>
+            <pre class="code">public <font color="#FF0000">interface Rotatable</font> {
+  <font color="#999999">/* variables are implicitly public, static and final */</font>
+  public int CLOCKWISE = 1;
+  public int ANTICLOCKWISE = 0;
+  <font color="#999999">/* an abstract method with no { body of code } */</font>
+  public void rotate(float angle, int direction);
+}
+</pre>
+
+            <p>Notice that you do not use the <a href="javascript:popup('keywords.html#abstract')">abstract</a> 
+              keyword on the methods and <a href="javascript:popup('keywords.html#final')">final</a> 
+              <a href="javascript:popup('keywords.html#static')">static</a> keywords 
+              on the variables, since these are the automatic defaults for an 
+              interface.</p>
+            <p><b>An interface can be implemented by any class without forcing 
+              an inheritance relationship.</b> In fact Java allows classes to 
+              implement as many interfaces as they choose without having to extend 
+              them. A class does not ‘inherit’ any behaviors from an interface; 
+              instead a class <a href="javascript:popup('keywords.html#implements')">implements</a> 
+              an interface, by providing appropriate behavior for the methods 
+              described in that interface.<br>
+              <span class="caption">A Rectangle implements the standard Rotatable 
+              interface like this :</span> 
+            <pre class="code">public class Rectangle extends Shape <font color="#FF0000">implements Rotatable</font> {
+  <font color="#999999">/* member variables and methods here */</font>
+  
+  <font color="#999999">/* Rectangle must provide an implementation for the rotate( ) method */</font>
+  <font color="#FF0000">public void rotate(float angle, int direction){
+    //DO rotation calculations here
+  }</font>
+}
+</pre>
+            <p><b>An interface is similar to a class, in that it defines a new 
+              object type.</b> An interface can be used in a variable definition 
+              and passed as a parameter to a method. Any class that implements 
+              an interface is considered to be an <a href="javascript:popup('keywords.html#instanceof')">instanceof</a> 
+              that type of interface. The previous discussion of Polymorphism, 
+              applies equally to class and interface definitions. </p>
+            </td>
+      </tr>
+     </table>
+   </td>
+  </tr>
+</table>
+<table width="100%" name="contentTable" border="0" cellspacing="2" cellpadding="2" bgcolor="#FFFFFF">
+  <tr valign="top" align="left"> 
+    <td> 
+      <p><b>Interfaces are needed, because Java was designed to allow only single 
+        inheritance.</b> <br>
+        A class of object in Java can have only 1 parent (super) class. This avoids 
+        some of the ambiguities of multiple inheritance that plague languages 
+        like C++. However, some designs are best served when an object can ‘behave 
+        like’ more than one other type of object. Java keeps the inheritance hierarchy 
+        simple, but has a separate and more flexible mechanism (interfaces) to 
+        provide for those classes of object that need to implement the properties 
+        and behaviors of more than one other class of object. </p>
+      <p><b>Interfaces can extend other interfaces.</b> Just like classes, you 
+        can define a new type of interface, by extending (inheriting from) an 
+        existing interface. Unlike classes, interfaces can inherit from more than 
+        one other interface type. So rather confusingly, multiple inheritance 
+        is permitted when defining interfaces. This is because, interfaces do 
+        not define any implementation, so ambiguous situations, like inheriting 
+        the same method (the behavior) from two different parent classes, cannot 
+        occur.</p>
+      <p><font color="#FF0000">Warning!</font> It makes no sense to use the <a href="javascript:popup('keywords.html#private')">private</a> 
+        or protected access modifiers within an interface. The whole point of 
+        an interface, is to layout public method signatures. Similarly you cannot 
+        specify <a href="javascript:popup('keywords.html#synchronized')">synchronized</a> 
+        or <a href="javascript:popup('keywords.html#volatile')">volatile</a> members 
+        within an interface, since it does not define an implementation.</p>
+      <p><font color="#FF0000">Warning!</font> Once you have defined an interface, 
+        you cannot change the methods or add new ones, without changing every 
+        class that implements that interface ! Remember an interface is an agreed 
+        upon 'protocol' which classes must implement fully.</p>
+      </td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0"> 
+      <tr>
+      <td align="left" valign="top">
+        Last Updated: December 2001. &copy;1999 Guy&nbsp;Bellingham-Smith 
+      </td>
+          
+    <td align="right" valign="top" ><a href="basics_example.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">compile 
+      and run examples<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+      </tr>
+</table>
+
+</FONT>
+</BODY>
+</HTML>

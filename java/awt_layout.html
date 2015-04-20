@@ -1,0 +1,128 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="7/20/2002">
+<meta name="keywords" content="Java,AWT,Abstract Windowing Toolkit">
+<meta name="description" content="Introducing the AWT.">
+<title>The Title</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/awt-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader">AWT Layout 
+              Managers</h4></td>
+          <td align="right" valign="top" ><a href="awt_flowlayout.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">FlowLayout<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"><p><strong>Default LayoutManagers.</strong><br>
+              All the AWT Containers have a default <span class="stdCode">LayoutManager</span>, 
+              for the <span class="stdCode">Panel</span> and <span class="stdCode">Applet</span>, 
+              it is the <span class="stdCode">FlowLayout</span>. For a <span class="stdCode">Frame</span> 
+              it is the <span class="stdCode">BorderLayout</span>.</p>
+            <p><strong>Nesting Containers and LayoutManagers.</strong><br>
+              On their own, none of the standard LayoutManagers will be able to 
+              cope with the demands of a complex interface. As you design more 
+              complex programs, you will need to 'nest' containers and their associated 
+              LayoutManagers, inside one another.</p>
+            <table border="0" cellpadding="4" cellspacing="4" height="490">
+              <tr> 
+                <td valign="top" colspan="3" bgcolor="#FFFF80"><font class="text"><a
+        name="insets"></a><strong>INSETS</strong>.<br>
+                  The standard LayoutManagers, supplied with the AWT, are careful 
+                  not to place components, anywhere within a margin around the 
+                  inside of all Containers. Access to the size and arrangement 
+                  of this margin is provided by all Containers, with the following 
+                  method :</font> <p class="stdCode"><font class="text">public 
+                    Insets getInsets() { ...return the insets of this Container 
+                    }</font></p>
+                  <p><font class="text">Containers, don't supply a method to change 
+                    or set the value of their Insets, you must extend a class 
+                    derived from Container and override this method, with your 
+                    own, if you want to make use of this margin.</font></p>
+                  <p><font class="text"><strong>Note</strong>: The <span class="stdCode">Frame</span> 
+                    container, makes use of Insets, that by default include a 
+                    margin for a MenuBar at the top.<br>
+                    Beware: While the AWT LayoutManagers obey a containers Insets, 
+                    there is nothing stopping you from drawing anywhere you please 
+                    within a container's Graphics area, and that might include 
+                    the area beneath the MenuBar of a Frame!</font></p></td>
+              </tr>
+              <tr> 
+                <td valign="top" colspan="3"><p><font class="text"><a name="preferred"></a><strong>PREFERRED 
+                    SIZES.</strong><br>
+                    LayoutManagers are called upon to calculate a container's 
+                    'preferred size', with the <span class="stdCode">preferredLayoutSize()</span> 
+                    method. Typically, the method cycles through every component 
+                    within the container, and determines the components' own, 
+                    preferred or minimum sizes.<br>
+                    LayoutManagers do not always honor a components' preferred 
+                    size, in fact some layout managers like the <span class="stdCode">GridLayout</span> 
+                    and <span class="stdCode">BorderLayout</span> will ignore 
+                    the preferred sizes returned by components, and will stretch 
+                    a component to fill a layout requirement.</font></p>
+                  <p><font class="text"> For example : a <span class="stdCode">FlowLayout</span> 
+                    honors the preferred width and height of components, but a 
+                    <span class="stdCode">GridLayout</span> ignores the preferred 
+                    size, and stretches the width and height of components to 
+                    fit the grid. A <span class="stdCode">BorderLayout</span> 
+                    honors the preferred height of components added to the NORTH 
+                    and SOUTH, but stretches the width to fill the container. 
+                    Components placed to the EAST and WEST, keep their preferred 
+                    width but are stretched to fill the vertical space between 
+                    north and south components. A component added to the CENTER 
+                    of a BorderLayout is stretched in both directions to fill 
+                    any empty space left over.</font> </p>
+                  <p><font
+        color="#FF0000" class="text">Beware</font><font class="text">: The default 
+                    <span class="stdCode">getPreferredSize()</span> for the <span class="stdCode">Canvas</span> 
+                    component is 0,0 (width, height), and you will not see a Canvas, 
+                    if you place it within a container, that has a LayoutManager 
+                    that respects both horizontal and vertical preferredSizes! 
+                    You can get around this, by extending Canvas with your own 
+                    class, and overriding the getPreferredSize() method, to give 
+                    more sensible defaults. Also see the <a href="awt_frame.html">Frame 
+                    container</a>.</font></p></td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr>
+    <td><p>&nbsp;</p>
+      </td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: July 2002. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="awt_flowlayout.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">FlowLayout<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+
+</FONT> 
+</BODY>
+</HTML>

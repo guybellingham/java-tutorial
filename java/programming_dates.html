@@ -1,0 +1,196 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="29/1/2002">
+<meta name="keywords" content="Java, Date, java.util.Date, java.sql.Date, java.text.DateFormat, DateFormat, SimpleDateFormat, Calendar, GregorianCalendar, Programming, Guide, Beginner, Basics, Picture, Example,  Links">
+<meta name="description" content="Working with Java dates. Interactive Java Programming Guide, play with the Applets, try the example code.">
+<title>Java Date handling</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="1" leftmargin="1"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script --> 
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading --> 
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!-- Programming Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/programming-toc.js">
+	</SCRIPT>
+      <p>&nbsp;</p>
+    </td>
+    <td align="left" valign="top"> 
+      <table border="0" cellpadding="2" width="100%" cellspacing="2">
+        <tr> 
+          <td align="left" valign="top"> 
+            <h4 class="stdPageHeader"> Java Dates.</h4>
+          </td>
+          <td align="right" valign="top" > <a href="programming_exceptions.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">Handling 
+            Exceptions <img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr bgcolor="#FFFFFF"> 
+          <td align="left" valign="top" colspan="2"> 
+            <p><a name="top"></a><b>The <span class="stdCode">java.util.Date</span> 
+              class</b> can be used to construct objects that represent a specific 
+              point in time, with millisecond accuracy. Obviously to interpret 
+              a point in time correctly, you also need to know what calendar and 
+              what timezone is appropriate. There are classes in the <span class="stdCode">java.util</span> 
+              package that provide this frame of reference. </p>
+            <table width="100%" border="0" cellpadding="2" cellspacing="2" class="stdTableAsGroupBox">
+              <tr valign="top"> 
+                <td bgcolor="#FFFFCC" class="stdCode"><b>java.util.Calendar</b></td>
+                <td>is an abstract class that provides the basic functionality 
+                  common to calendars, such as setting, getting and comparing 
+                  dates. <br>
+                  It provides static (class) 'factory' methods (<span class="stdCode">Calendar.getInstance()</span>), 
+                  that return a concrete implementation of a calendar, appropriate 
+                  for a locale and timezone.</td>
+              </tr>
+              <tr valign="top"> 
+                <td bgcolor="#FFFFCC" class="stdCode"><b>java.util.GregorianCalendar</b></td>
+                <td>provides the standard calendar implementation, with two eras 
+                  BC and AD. This is a concrete subclass of <span class="stdCode">Calendar</span>, 
+                  see the javadoc for tips about this class.</td>
+              </tr>
+              <tr valign="top"> 
+                <td bgcolor="#FFFFCC" class="stdCode"><b>java.util.TimeZone</b></td>
+                <td>is another abstract class that represents a time zone offset, 
+                  and also figures out daylight savings. It too has <span class="stdCode">static</span> 
+                  helper methods and a 'factory' method (<span class="stdCode">getDefault()</span>) 
+                  that returns a <span class="stdCode">TimeZone</span> object 
+                  appropriate for the location of the Java runtime.</td>
+              </tr>
+              <tr valign="top"> 
+                <td bgcolor="#FFFFCC" class="stdCode"><b>java.util.SimpleTimeZone</b></td>
+                <td>is a concrete subclass of <span class="stdCode">TimeZone</span>, 
+                  and supplies methods to get and set timezone offsets and daylight 
+                  savings time start and end dates.</td>
+              </tr>
+              <tr valign="top"> 
+                <td bgcolor="#FFFFCC" class="stdCode"><b>java.sql.Date</b></td>
+                <td> 
+                  <p>is a specialized subclass of <span class="stdCode">java.util.Date</span> 
+                    that maps more closely to the Date types used by most databases. 
+                    The SQL date type lacks the millisecond precision of a regular 
+                    Date. You can construct a sql Date from a util Date like this:</p>
+                  <p class="stdCode">java.util.Date today = new java.util.Date();<br>
+                    java.sql.Date sqlDate = new java.sql.Date(today.getTime());</p>
+                </td>
+              </tr>
+              <tr valign="top">
+                <td bgcolor="#FFFFCC" class="stdCode"><b>java.sql.TimeStamp</b></td>
+                <td> 
+                  <p>A wrapper around <span class="stdCode">java.util.Date</span>, 
+                    that represents a JDBC TimeStamp with a seperate nanosecond 
+                    value. A TimeStamp literal is expressed as a String of the 
+                    form yyyy-mm-dd hh:mm:ss.fffffffff.</p>
+                  <p class="stdCode">java.sql.Timestamp timestamp = new java.sql.Timestamp(today.getTime());</p>
+                </td>
+              </tr>
+            </table>
+            <p><b>There are several ways to construct a Date object.<br>
+              </b>The default no arguments constructor, builds a Date object that 
+              represents 'now'. Date also has a number of <i>deprecated</i> (obsolete) 
+              methods for getting a date at a specific point in time.</p>
+            <pre class="stdCode">Date dt1 = new Date(); <font color="#999999">//defaults to now</font>
+Date dt2 = new Date(100,01,29); <font color="#999999">//deprecated! year + 1900,month + 1,day</font>
+Date dt3 = new Date("02/30/2000");  <font color="#999999">//deprecated! parses a String</font>
+DateFormat df = DateFormat.getDateInstance(); <font color="#999999">//factory for a SimpleDateFormat</font>
+System.out.println("Date1=" + df.format(dt1)); <font color="#999999">//prints todays date</font>
+System.out.println("Date2=" + df.format(dt2)); <font color="#999999">//prints Feb 29, 2000</font>
+System.out.println("Date3=" + df.format(dt3)); <font color="#999999">//prints Mar 1, 2000</font>!
+</pre>
+            <p>The java compiler will warn you if you use methods marked with 
+              the javadoc <span class="stdCode">@deprecated</span> statement in 
+              your own classes, as a rule the javadoc should refer you to the 
+              newer or better alternative method to use.</p>
+            </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr> 
+    <td> 
+      <p><b>The preferred way to get specific Dates is by manipulating a <span class="stdCode">Calendar</span>.</b> 
+        <br>
+        A Calendar provides 3 methods <span class="stdCode">set() add()</span> 
+        and<span class="stdCode"> roll()</span> that you can use to change a 'field' 
+        in the Calendar, and a <span class="stdCode">get()</span> method you can 
+        use to retrieve the value of a field. If you look at the <span class="stdCode">java.util.Calendar</span> 
+        class, you'll notice it defines a bunch of integer class constants, with 
+        names like <span class="stdCode">DAY_OF_MONTH</span> and <span class="stdCode">MONTH</span>. 
+        You use these to identify to the methods, which field you are changing, 
+        for example</p>
+      <p class="stdCode"><font color="#999999">//Get a default (Gregorian) Calendar 
+        set to now </font><br>
+        Calendar cal = Calendar.getInstance(); <br>
+        <font color="#999999">//Set the DAY field to 1 and get the date</font> 
+        <br>
+        java.util.Date today = cal.getTime(); <br>
+        cal.set(java.util.Calendar.DAY_OF_MONTH, 1); <br>
+        java.util.Date firstOfMonth = cal.getTime();<br>
+        <font color="#999999">//Add 1 month to the calendar - may also change 
+        the year!</font><br>
+        cal.add(Calendar.MONTH, 1); </p>
+      <p>You'll want to read the javadoc for the Calendar class, which explains 
+        the difference between the add() and roll() methods, and the various rules 
+        and side effects to manipulating a Calendar.</p>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <p><span class="stdCode"><b>java.text.DateFormat</b></span> is an abstract 
+        class that is extended by the <span class="stdCode"><b>java.text.SimpleDateFormat</b></span> 
+        class. You can use both these classes to display <span class="stdCode">java.util.Date 
+        </span>objects in various String formats and parse String representations 
+        of dates into Date objects. </p>
+      <p class="stdCode">java.util.Date today = new java.util.Date(); <br>
+        DateFormat df1 = DateFormat.getDateInstance(); <font color="#999999">//get 
+        default format for current Locale</font> <br>
+        DateFormat df2 = new SimpleDateFormat("MMMM, yyyy"); <font color="#999999">//display 
+        month and year</font> <br>
+        DateFormat df3 = new SimpleDateFormat("MM/dd/yyyy"); <font color="#999999">//standard 
+        mdy format</font><br>
+        System.out.println(df1.format(today)); <font color="#999999">//prints 
+        &quot;Jan 31, 2002&quot;</font><br>
+        System.out.println(df2.format(today)); <font color="#999999">//prints 
+        &quot;January, 2002&quot;</font><br>
+        System.out.println(df3.format(today)); <font color="#999999">//prints 
+        &quot;01/31/2002&quot;</font></p>
+      <p>Again, you'll want to see the javadoc for the SimpleDateFormat class 
+        for more details. Here is an example of how to parse a String into a java.util.Date.</p>
+      <pre class="stdCode">java.util.Date reportDate = null;
+java.text.SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy"); <br><font color="#999999">//Beware date literals without centuries!</font><br>String newReportDate = &quot;02/28/02&quot;;  <font color="#999999">//Feb 28th 0002 AD</font>
+try { <br><font color="#999999">  //turn a String into a Date object</font>
+  reportDate = df.parse(newReportDate); 
+} 
+catch (java.text.ParseException e1) {
+  System.out.println("Invalid date entered = " + newReportDate); 
+}</pre>
+    </td>
+  </tr>
+</table>
+</FONT> <FONT class="text"> 
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: January 2002. &copy;1999 Guy&nbsp;Bellingham-Smith</td>
+    <td align="right" valign="top" > <a href="programming_exceptions.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">Handling 
+      Exceptions<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+</FONT> 
+</BODY>
+</HTML>

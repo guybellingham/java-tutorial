@@ -1,0 +1,132 @@
+<HTML>
+<HEAD>
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="29/1/2002">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="keywords" content="Objects, Encapsulation, Classes, Java, Programming, Guide, Beginner, Basics, Picture, Example, Applet, Servlet, JSP, Links">
+<meta name="description" content="What is Object encapsulation? Interactive Java Programming Guide, play with the Applets, try the example code.">
+<TITLE>Encapsulating Java Objects</TITLE>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="1" leftmargin="1"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script --> 
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading --> 
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC">
+      <!-- Basics Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/basics-toc.js">
+	</SCRIPT></td>
+    <td align="left" valign="top">
+     <table border="0" cellpadding="2" width="100%" cellspacing="0"> 
+      <tr>
+      <td align="left" valign="top">
+            <h4 class="stdPageHeader"> Object Encapsulation.</h4>
+      </td>
+          <td align="right" valign="top" >
+<a href="basics_methods.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">member 
+            methods<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+      </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"> 
+            <p><b>Java helps you to encapsulate your objects.</b> This means you 
+              can hide the inner workings (the implementation) and only expose 
+              the public interface you want other objects to see. </p>
+            <ul>
+              <li>This creates a clear understanding of how your object is to 
+                be used (through the public interface).</li>
+              <li>It prevents other objects from delving into the workings of 
+                your object and messing things up (avoiding nasty side effects).</li>
+              <li>It allows you to change the way your object works while maintaining 
+                the same interface (avoiding a ripple effect of changes). </li>
+            </ul>
+            <p><b>Java uses the keywords</b> <b><a href="javascript:popup('keywords.html#public')">public</a></b>, 
+              <b><a href="javascript:popup('keywords.html#protected')">protected</a></b> 
+              <b>and</b> <b><a href="javascript:popup('keywords.html#private')">private</a></b> 
+              to declare different levels of access to the variables and methods 
+              inside a class of object. We'll look at member methods and variables 
+              on the next pages. </p>
+            <p><b>You can also use the </b><a href="javascript:popup('keywords.html#public')"><b>public</b></a> 
+              <b>keyword on your object definition</b>, to signify that it is 
+              generally accessible to other types of objects, in other packages 
+              (in other libraries). For example most of the built in Java classes 
+              are defined as public, and allow you to import them, and create 
+              objects from them and refer to their methods and variables from 
+              within your own classes and packages. </p>
+            <p><b>These keywords</b>, control access to variables and methods 
+              in the following general way (going from least to most restricted) 
+              : </p>
+            <ul>
+              <li><b>public</b> - a public variable or method is accessible from 
+                any class that can access the class that contains that member 
+                variable or method. </li>
+              <li><b>protected</b> - a protected member variable or method can 
+                be accessed from any class within the same package and by classes 
+                defined in other packages that inherit from the members class. 
+              </li>
+              <li><b>private</b> - You can only reference a private member from 
+                within the class in which it is defined. </li>
+            </ul>
+          </td>
+      </tr>
+     </table>
+   </td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr align="left" valign="top"> 
+    <td> 
+      <span class="caption">Diagram, showing access to member variables and methods 
+        across packages.</span><br>
+       
+        <img src="images/access_across_packages.gif" width="519" height="374">
+      </td>
+    <td> 
+      <p>This diagram shows the effect that putting classes in different packages 
+        has upon access rights.</p>
+      <p>Notice that the Cat class is <em>not</em> defined as <b>public</b>. This 
+        means that classes in other packages cannot even 'see' the Cat class.</p>
+      <p>The Dog class is <b>public</b>, and classes in other packages do have 
+        access to its public members (all classes can reference rovers name). 
+        However, the yellow arrow means that only classes in other packages that 
+        inherit from Dog, can access protected members, like rovers bark.</p>
+      <p>Members with no access modifier, and those that are declared private 
+        are not accessible to classes in other packages. </p>
+    </td>
+  </tr>
+  <tr align="left" valign="top">
+    <td><span class="caption">Diagram, showing access to member variables and 
+      methods within a package.</span><br>
+      <img src="images/access_within_package.gif" width="483" height="386"></td>
+    <td>
+      <p>Classes within the same package, have much less restrictions on access 
+        to one anothers member variables and methods.</p>
+      <p>From this example, you can see that only those methods or variables with 
+        the private keyword are inaccessible to other classes.</p>
+    </td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0"> 
+      <tr>
+      <td align="left" valign="top">
+          Last Updated: December 2001. &copy;1999 Guy&nbsp;Bellingham-Smith   
+      </td>
+          
+    <td align="right" valign="top" > <a href="basics_methods.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">member 
+      methods <img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+      </tr>
+</table>
+</FONT> 
+</BODY>
+</HTML>

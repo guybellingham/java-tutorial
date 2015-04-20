@@ -1,0 +1,369 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="29/1/2002">
+<meta name="keywords" content="Java, String, StringBuffer, Format, intern, Tokenizer, Immutable,  Programming, Guide, Beginner, Basics, Picture, Example,  Links">
+<meta name="description" content="String and character handling in Java. Interactive Java Programming Guide, play with the Applets, try the example code.">
+<title>Java String and StringBuffer</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="1" leftmargin="1"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT> 
+<!-- Popup Window Script --> 
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading --> 
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!-- Programming Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/programming-toc.js">
+	</SCRIPT>
+      <p>&nbsp;</p>
+    </td>
+    <td align="left" valign="top"> 
+      <table border="0" cellpadding="2" width="100%" cellspacing="2">
+        <tr> 
+          <td align="left" valign="top"> 
+            <h4 class="stdPageHeader"> String handling in Java.</h4>
+          </td>
+          <td align="right" valign="top" > <a href="programming_arrays.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">Arrays<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr bgcolor="#FFFFFF"> 
+          <td align="left" valign="top" colspan="2"> 
+            <p><a name="string"></a><b>A String is a ‘read only’ sequence of characters</b>, 
+              once you supply a value for a String it cannot be changed. If you 
+              perform some operation on a String object, the result is an entirely 
+              new String object. A String is said to be <i>immutable</i>.</p>
+            <p>Because Strings are an essential type of data, the<span class="code"> 
+              java.lang.String</span> class has some special handling built into 
+              the Java compiler and runtime: <br>
+              &nbsp; <b>1.</b> <b>The Java compiler can automatically create String 
+              objects for you.</b><br>
+              Unlike other classes, when you define a String, you do not have 
+              to use the <a href="javascript:popup('keywords.html#new')">new</a> 
+              statement, and reference a constructor method. Java has a quick 
+              way of defining Strings (illustrated in the examples below). </p>
+            <p class="code"><span class="stdCode">// quick String object<br>
+              <font color="#FF0000">String s = "The Walrus";</font><br>
+              // the long way<br>
+              String t = new String(" and the Carpenter");<br>
+              // String from a number<br>
+              String x = String.valueOf(3.1416F); <br>
+              String y = String.valueOf(3891687290L);<br>
+              // String "false" from a boolean<br>
+              boolean b;<br>
+              String z = String.valueOf(b);<br>
+              // String from an object <br>
+              String s2 = myObject.toString(); </span><br>
+            </p>
+            <p><b>Note</b>: There is a useful <a href="javascript:popup('keywords.html#static')">static</a> 
+              method in the <span class="stdCode">java.lang.String</span> class 
+              <span class="stdCode">String.valueOf(x)</span>, that allows you 
+              to get a String from any of the other fundamental data types. In 
+              addition all classes of object inherit the <span class="stdCode">toString( 
+              )</span> method from <span class="stdCode">java.lang.Object</span>. 
+            </p>
+            <p>&nbsp; <b>2.</b> <b>The + and += operators are <i>overloaded</i> 
+              to work with Strings.</b> <br>
+              Normally the + operator is used to add two numeric values. Java 
+              also allows you to ‘add’ Strings together, and the result is a new 
+              String, which is the concatenation of the arguments. </p>
+            <p class="stdCode">// ‘add’ 2 Strings together<br>
+              String myName = text1.getText(); <br>
+              String greeting = "Hello " <font color="#FF0000">+</font> myName; 
+              <br>
+              // ‘add’ a newline char<br>
+              greeting <font color="#FF0000">+=</font> ‘\n’;<br>
+              // and a number <br>
+              greeting = " you have " + 5 + " emails"; <br>
+            </p>
+            <p>When you add other data types to a String, the toString( ) method 
+              is invoked automatically to convert that data into a String.</p>
+            <p><b>Note</b>: This is the only case where Java uses <i>operator 
+              overloading</i>. Unlike other languages, Java does not allow you 
+              to programmatically overload the operators of the language. </p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr> 
+    <td> 
+      <p><b>A String object, contains some useful methods:</b></p>
+    </td>
+  </tr>
+</table>
+<table border="0" cellpadding="4" cellspacing="4" class="stdTableAsGroupBox">
+  <tr class="stdTableColumnHeader"> 
+    <td valign="top">method</td>
+    <td width="345" valign="top">description</td>
+    <td width="332" valign="top">myString = &quot;examples&quot;;</td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFF99" class="stdCode"> 
+      <p>length( )</p></td>
+    <td valign="top" width="345" bgcolor="#FFFFCC">returns an integer, containing 
+      the number of characters in this String.</td>
+    <td valign="top" width="332" class="code"> <p>int i = myString.length(); <br>
+        // i = 8</p></td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFF99" class="stdCode"> 
+      <p>toUpperCase(&nbsp;)</p></td>
+    <td valign="top" width="345" bgcolor="#FFFFCC">&nbsp;returns a new String, 
+      representing the Upper-case equivalent of this String.</td>
+    <td valign="top" width="332" class="code"> <p>String upper = myString.toUpperCase(); 
+        <br>
+        // upper == &quot;EXAMPLES&quot;&nbsp;</p></td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFF99" class="stdCode"> 
+      <p>toLowerCase(&nbsp;)</p></td>
+    <td valign="top" width="345" bgcolor="#FFFFCC">&nbsp;returns a new String, 
+      representing the lower-case equivalent of this String.</td>
+    <td valign="top" width="332" class="code"> <p>String lower = myString.toLowerCase();<br>
+        // &quot;examples&quot;&nbsp;</p></td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFF99" class="stdCode"> 
+      <p>equals(Object other)</p></td>
+    <td valign="top" width="345" bgcolor="#FFFFCC">&nbsp;returns true if the argument 
+      has the same length, and sequence of characters as this String.</td>
+    <td valign="top" width="332" class="code"> <p>// false<br>
+        if (myString.equals(&quot;Yes&quot;) )</p></td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFF99" class="stdCode"> 
+      <p>charAt(int index )</p></td>
+    <td valign="top" width="345" bgcolor="#FFFFCC">&nbsp;returns the character 
+      (char) at a specific position in this String, where the first character 
+      is at index position 0.</td>
+    <td valign="top" width="332" class="code"> <p>// index pos starts at 0<br>
+        char c = myString.charAt(6);<br>
+        // c = &#145;e&#146;</p></td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFF99" class="stdCode"> 
+      <p>indexOf( )<br>
+        lastIndexOf(&nbsp;)</p></td>
+    <td valign="top" width="345" bgcolor="#FFFFCC">&nbsp;finds the first / last 
+      occurrence of a character or substring within the string object, and returns 
+      the index position as an integer. If the target substring or char is notfound 
+      -1 is returned.</td>
+    <td valign="top" width="332" class="code"> <p>// index of &quot;amp&quot; 
+        is 2<br>
+        int i; <br>
+        i = myString.indexOf(&quot;amp&quot;);<br>
+        // returns -1 and is false<br>
+        if (myString.indexOf(&quot;Y&quot;) &gt; 0)</p></td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFF99" class="stdCode"> 
+      <p>substring(int from, int 
+        to)</p></td>
+    <td valign="top" width="345" bgcolor="#FFFFCC">&nbsp;returns a part of the 
+      original String as a new String object. Notice the substring starts at the 
+      from index and extends upto but does not include the to index.</td>
+    <td valign="top" width="332" class="code"> <p>// returns &quot;ample&quot; 
+        and &quot;les&quot;<br>
+        String s;<br>
+        s = myString.substring(2, 7);<br>
+        s = myString.substring(5);</p></td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFF99" class="stdCode"> 
+      <p>toString( )</p></td>
+    <td valign="top" width="345" bgcolor="#FFFFCC">you can override this method 
+      in your own objects to return a String representation of the object, for 
+      printing. For a String object it just returns a reference to itself.</td>
+    <td valign="top" width="332" class="code">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFF99" class="stdCode"> 
+      <p>trim( )</p></td>
+    <td valign="top" width="345" bgcolor="#FFFFCC">returns a new String, produced 
+      by removing any whitespace characters from the beginning and end of the 
+      original string.Whitespace characters have a Unicode representation of &#145;u\0020&#146; 
+      (space) or less.&nbsp;</td>
+    <td valign="top" width="332" class="code">&nbsp;</td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFF99" class="stdCode"> 
+      <p>valueOf( )</p></td>
+    <td valign="top" width="345" bgcolor="#FFFFCC">is a static method, that is 
+      overloaded for all the basic data types, and returns a String representation 
+      of the argument.</td>
+    <td valign="top" width="332" class="code"> <p>// numbers to Strings &quot;3.14&quot;<br>
+        String n;<br>
+        n = String.valueOf(3.14F);</p></td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFF99" class="stdCode">compareTo(String other)</td>
+    <td valign="top" width="345" bgcolor="#FFFFCC">Performs a lexical comparison.<br>
+      Returns an int that is zero, if the 2 strings are the same, less than zero 
+      if this string is lexicographically less than the other string argument, 
+      and greater than zero if the string is greater than the other string argument.</td>
+    <td valign="top" width="332" class="code">// shorter String precedes the longer<br>
+      // x = 2<br>
+      int x = myString.compareTo(&quot;Examp&quot;);</td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr> 
+    <td> 
+      <p><b>The java.lang.StringBuffer class, </b>allows you to define mutable 
+        and variable length sequences of characters. If you are going to do String 
+        manipulation, then you should use an object of this class. A StringBuffer 
+        contains an internal 'buffer' (a character array) of a certain length, 
+        if this buffer overflows, it is automatically made larger. A StringBuffer 
+        object provides a number of methods that are useful for adding, removing 
+        and updating characters in the buffer.</p>
+      <p><b>Note</b>: StringBuffers do not inherit from String, so if you need 
+        a String from a StringBuffer object, you must call the toString( ) method. 
+        Also StringBuffer does not implement the Comparable interface (it has 
+        no compareTo(Object other) method).</p>
+    </td>
+  </tr>
+</table>
+<table border="0" cellpadding="4" cellspacing="4" class="stdTableAsGroupBox">
+  <tr class="stdTableColumnHeader"> 
+    <td valign="top">method</td>
+    <td width="345" valign="top">description</td>
+    <td width="332" valign="top">example</td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFF99" class="stdCode"> 
+      <p>append(x)</p></td>
+    <td valign="top" width="345" bgcolor="#FFFFCC">Adds the String representation 
+      of the parameter x (as if by calling String.valueOf(x)) to the end of the 
+      buffer. This method is overloaded to take most of the fundamental dataypes 
+      as well as objects. Returns a reference to this StringBuffer object.</td>
+    <td valign="top" width="332" class="stdCode"> 
+      <p>// store String in a StringBuffer 
+        object<br>
+        StringBuffer buf = new StringBuffer(&quot;Point=&quot;);<br>
+        Point p1 = new Point(10,20);<br>
+        // append an object <br>
+        buf.append( p );<br>
+        // append a number<br>
+        buf.append(&quot; x=&quot; + p.getX());</p></td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFF99" class="stdCode">substring(int start, int 
+      end)</td>
+    <td valign="top" width="345" bgcolor="#FFFFCC">Returns a String that contains 
+      the characters from the start index up to but not including the character 
+      at the end index.</td>
+    <td valign="top" width="332" class="stdCode">// s = &quot;int&quot;<br>
+      String s = buf.substring(2,5);</td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFF99" class="stdCode">delete(int start, int end)</td>
+    <td valign="top" width="345" bgcolor="#FFFFCC">Returns the StringBuffer after 
+      deleting characters from the start index up to but not including the character 
+      at the end index.</td>
+    <td valign="top" width="332" class="stdCode">// delete the o in Point<br>
+      buf.delete(1,2); </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFF99" class="stdCode">insert(int offset, x)</td>
+    <td valign="top" width="345" bgcolor="#FFFFCC">Inserts the String representation 
+      of the parameter x into this StringBuffer at the offset.</td>
+    <td valign="top" width="332" class="stdCode">// insert an a to make Paint<br>
+      buf.insert(1,'a'); </td>
+  </tr>
+  <tr> 
+    <td valign="top" bgcolor="#FFFF99" class="stdCode">setLength(int newLength)</td>
+    <td valign="top" width="345" bgcolor="#FFFFCC">Truncates or expands the buffer 
+      (with null characters) to the specified newLength.</td>
+    <td valign="top" width="332" class="stdCode">&nbsp;</td>
+  </tr>
+</table>
+</FONT>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr> 
+    <td><font class="text"><b>Note</b>: A <span class="stdCode">StringIndexOutOfBoundsException</span> 
+      object may be <a href="javascript:popup('keywords.html#throws')">thrown</a> 
+      by some of these methods to indicate that an index is either negative or 
+      greater than or equal to the size of the String or StringBuffer.</font></td>
+  </tr>
+  <tr> 
+    <td> 
+      <p><b>The java.util.StringTokenizer class</b>, can be used to extract 'tokens' 
+        (usually words) from a String. <br>
+        By default the space character, the tab character, the newline character, 
+        the carriage-return character, and the form-feed character (" \t\n\r\f") 
+        are treated as delimiter characters. When constructing a StringTokenizer 
+        around a String, you can specify your own list of delimiters and also 
+        flag whether you want the delimiters in the String returned to you as 
+        tokens. See also <span class="stdCode">java.io.StreamTokenizer</span>. 
+      </p>
+      <pre class="stdCode">StringTokenizer st = new StringTokenizer("this is a test");
+//StringTokenizer acts like an Enumeration
+while (<font color="#FF0000">st.hasMoreElements()</font>) { 
+  System.out.println(<font color="#FF0000">st.nextElement()</font>); //prints each word on a new line
+}</pre>
+      <pre class="stdCode">//space and comma are delimiters, do not return delimiters as tokens <br>StringTokenizer st2 = new StringTokenizer("25.64, 78.52, 100, 99.9", <font color="#FF0000">&quot; ,&quot;</font>, false); 
+int max = st2.countTokens();<br>//Array of Strings to hold the tokens 
+String[] strArray = new String[max];
+for (int i = 0; i &lt; max; i++) { 
+  strArray[i] = <font color="#FF0000">st2.nextToken()</font>;<br>  System.out.println("Token#" + i + "=" + strArray[i]); 
+}</pre>
+    </td>
+  </tr>
+  <tr>
+    <td> 
+      <p><b><a name="intern"></a>The Java compiler keeps an internal 'pool' of 
+        String literals.</b> All literal strings and string-valued constant expressions 
+        are <i>interned</i>. When you declare a String value, the compiler goes 
+        to its pool and if it finds an existing String with the same contents 
+        (equals() returns true), it is free to substitute the String from its 
+        internal pool. Remember that Strings are <i>immutable</i>, so this makes 
+        sense from a space saving perspective. <br>
+        Notice in the following example, that s0, s1 and s2 all refer to the same 
+        String object in memory, however s2 and s3 are <i>not</i> the same object 
+        even though they contain the same value. The call to s3.intern(); returns 
+        the &quot;Point&quot; String from the internal pool : </p>
+      <pre class="stdCode">public class StringApp { <br> <font color="#999999">//class String variable</font>
+ private static String <font color="#FF0000">s0</font> = "Point";<br> <font color="#999999">//instance String variable</font>
+ private String <font color="#FF0000">s1</font> = "Point";
+ public static void main(String[] args){ 
+  <font color="#999999">//instantiate an non static app object</font> 
+  StringApp app = new StringApp(); 
+  <font color="#999999">//local Strings</font> 
+  String <font color="#FF0000">s2</font> = "Point"; 
+  String <font color="#FF0000">s3</font> = new String("Point"); 
+  <font color="#FF0000">System.out.println("s0 == s1 " + (s0 == app.s1)); </font>              <font color="#999999">//true!</font>
+  System.out.println("s0.equals(s1) " + (s0.equals(app.s1)));     <font color="#999999">//true</font>
+  System.out.println("s1 == s2 " + (app.s1 == s2));               <font color="#999999">//true</font>
+  System.out.println("s1.equals(s2) " + (app.s1.equals(s2)));     <font color="#999999">//true</font>
+  <font color="#FF0000">System.out.println("s2 == s3 " + (s2 == s3)); </font>                  <font color="#999999">//false!</font>
+  System.out.println("s2.equals(s3) " + (s2.equals(s3)));         <font color="#999999">//true</font>
+  <font color="#FF0000">System.out.println("s2 == s3.intern() " + (s2 == s3.intern()));</font> <font color="#999999">//true!</font>
+ }
+} </pre>
+      </td>
+  </tr>
+</table>
+<FONT class="text">
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: January 2002. &copy;1999 Guy&nbsp;Bellingham-Smith</td>
+    <td align="right" valign="top" > <a href="programming_arrays.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">Arrays<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+</FONT> 
+</BODY>
+</HTML>

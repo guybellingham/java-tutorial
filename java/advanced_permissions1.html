@@ -1,0 +1,185 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>Java security - Permissions</title>
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="2" leftmargin="2">
+<script language="JavaScript"><!--
+
+if (document.images) {
+  nexton = new Image();
+  nexton.src = "../gif/arrows/nextarrow_on.gif";
+
+  nextoff = new Image();
+  nextoff.src = "../gif/arrows/nextarrow_off.gif";
+
+  backon = new Image();
+  backon.src = "../gif/arrows/backarrow_on.gif";
+
+  backoff = new Image();
+  backoff.src = "../gif/arrows/backarrow_off.gif";
+
+}
+function turnOn(imageName) {
+  if (document.images) {
+    document[imageName].src = eval(imageName + "on.src");
+  }
+}
+
+function turnOff(imageName) {
+  if (document.images) {
+    document[imageName].src = eval(imageName + "off.src");
+  }
+}
+
+// --></script>
+
+<table border="0" cellpadding="2" cellspacing="0" width="100%">
+    <tr>
+        <td valign="top" width="42"><a
+        href="../contents.htm#4.0_advanced"
+        onmouseover="turnOn('back')" onmouseout="turnOff('back')"><img
+        src="../gif/arrows/backarrow_off.gif" alt="contents!"
+        align="right" border="0" hspace="0" width="40"
+        height="24" name="back"></a></td>
+        <td valign="top" width="25%"><font size="2" face="Arial">Java
+        contents.</font></td>
+        <td align="center" valign="top" width="50%"><font
+        color="#000099" size="3" face="Arial"><strong>Permissions</strong></font></td>
+        <td align="right" valign="top" width="25%"><font size="2"
+        face="Arial">Next - JAR signer</font></td>
+        <td valign="top" width="42"><a href="jarsigner.htm"
+        onmouseover="turnOn('next')" onmouseout="turnOff('next')"><img
+        src="../gif/arrows/nextarrow_off.gif" alt=" "
+        align="right" border="0" hspace="0" width="40"
+        height="24" name="next"></a></td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="2" width="100%">
+    <tr>
+        <td valign="top"><font size="2" face="Arial">A permission
+        represents the ability to do something (the 'action') to
+        something else (the 'target'). The Java libraries contain
+        abstract classes <strong>java.security.Permission</strong>
+        and PermissionCollection classes. However the built-in
+        implementations of various permissions are scattered
+        throughout the java packages: here are some examples<br>
+        &nbsp;</font></td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="4" cellspacing="0" width="100%">
+    <tr>
+        <td valign="top" bgcolor="#FFFFCC"><pre><font
+face="Courier"><strong>java.io.FilePermission</strong></font></pre>
+        <pre><font face="Courier">//Win32 only, read all files in C:\temp
+FilePermission&nbsp;(&quot;C:\\Temp\\</font><font color="#0000FF"
+face="Courier">*</font><font face="Courier">&quot;,&nbsp;&quot;read&quot;);</font></pre>
+        <pre><font face="Courier">//read&nbsp;the&nbsp;folder&nbsp;not&nbsp;the&nbsp;files in it!
+FilePermission&nbsp;(&quot;C:\\Temp&quot;,&nbsp;&quot;read&quot;);</font></pre>
+        <pre><font face="Courier">//read all subfolders and files!
+FilePermission&nbsp;(&quot;C:\\Temp\\</font><font color="#0000FF"
+face="Courier">-</font><font face="Courier">&quot;,&nbsp;&quot;read&quot;);</font></pre>
+        <table border="0">
+            <tr>
+                <td valign="top" bgcolor="#FFFFFF"><font
+                color="#FF0000" size="2" face="Arial">Note</font><font
+                size="2" face="Arial">: Code implicitly has
+                &quot;read&quot; permission on files and
+                subdirectories of the <strong>codebase</strong> (current
+                working directory). The &quot;write&quot;
+                privilege also includes the &quot;create&quot;
+                privilege.</font></td>
+            </tr>
+        </table>
+        </td>
+        <td valign="top"><font size="2" face="Arial">Used to
+        grant read / write privileges on a file or folder.
+        Construct a FilePermission with 2 strings : a file
+        pathname, and a list of 'actions' such as &quot;read,
+        write, delete, execute&quot;. <br>
+        Note: On Win32 platforms, file pathnames must use a <strong>double
+        backslash</strong> as a separator (double because \ is
+        used as the escape character in Java). <br>
+        System property substitution also works in the filepath,
+        the </font><font face="Courier">${/}</font><font size="2"
+        face="Arial"> can be used for a platform independent
+        filename : </font><table border="0" cellpadding="4"
+        cellspacing="0" width="100%">
+            <tr>
+                <td valign="top" bgcolor="#D2FFFF"><pre><font
+size="2" face="Courier"><strong>${user.home}${/}</strong></font></pre>
+                </td>
+                <td valign="top"><font face="Courier">${/}</font><font
+                size="2" face="Arial"> is shorthand for </font><font
+                face="Courier">${file.separator}</font><font
+                size="2" face="Arial"> and can be used to specify
+                a file path in an operating system independent
+                way.</font></td>
+            </tr>
+            <tr>
+                <td valign="top" bgcolor="#D2FFFF"><pre><font
+size="2" face="Courier"><strong>&lt;&lt;ALL FILES&gt;&gt;</strong></font></pre>
+                </td>
+                <td valign="top"><font size="2" face="Arial">Is a
+                special string, meaning all folders and files in
+                the file system.</font></td>
+            </tr>
+        </table>
+        </td>
+    </tr>
+    <tr>
+        <td valign="top" bgcolor="#FFFFCC"><pre><font
+face="Courier">java.awt.AWTPermission</font></pre>
+        <pre><font face="Courier">//Allow copy / paste
+AWTPermission(&quot;accessClipboard&quot;);</font></pre>
+        </td>
+        <td valign="top"><font size="2" face="Arial">AWTPermissions
+        are all or nothing (only a target string is used).<br>
+        &quot;showWindowWithoutWarningBanner&quot;, allows an
+        applet to open a window without the yellow warning banner
+        on the bottom.</font></td>
+    </tr>
+    <tr>
+        <td valign="top" bgcolor="#FFFFCC"><pre><font
+face="Courier">java.lang.RuntimePermission</font></pre>
+        </td>
+        <td valign="top"><font size="2" face="Arial">Again, these
+        are on / off permissions, and only have targets :<br>
+        &quot;queuePrintJob&quot; &quot;setIO&quot; &quot;loadLibrary.libraryname&quot;
+        &quot;setSecurityManager&quot; ...etc</font></td>
+    </tr>
+    <tr>
+        <td valign="top" bgcolor="#FFFFCC"><pre><font
+face="Courier">java.net.SocketPermission</font></pre>
+        <pre><font face="Courier">//connect to server on port 2020
+SocketPermission(&quot;server:2020&quot;, &quot;connect&quot;);</font></pre>
+        </td>
+        <td valign="top"><font size="2" face="Arial">Like
+        FilePermissions, these permissions are constructed with
+        both a target name and an action list. Use these
+        permissions to allow classes to &quot;listen&quot;,
+        &quot;connect&quot;, &quot;resolve&quot; and / or &quot;accept&quot;
+        connections to a &quot;hostname:port#&quot;. The hostname
+        can be an IP address or a domain name.<br>
+        Remember that port numbers below 1024 are reserved for
+        TCP/IP services</font></td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="4" cellspacing="4" width="100%">
+    <tr>
+        <td valign="top" width="10%" bgcolor="#C0C0C0"><font
+        color="#000080"><i>Related Links </i></font></td>
+        <td valign="top" width="30%" bgcolor="#C0C0C0">&nbsp;</td>
+        <td valign="top" width="30%" bgcolor="#C0C0C0"><em>Next
+        &gt; </em><a href="jarsigner.htm"><em>the JAR signer tool</em></a></td>
+    </tr>
+</table>
+</body>
+</html>

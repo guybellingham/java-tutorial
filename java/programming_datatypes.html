@@ -1,0 +1,398 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="29/1/2002">
+<meta name="keywords" content="datatype, binary, bit, twos complement, hexadecimal, numeric, character, byte, short, int, long, float, double, char, boolean, Programming, Guide, Beginner, Basics, Picture, Example,  Links">
+<meta name="description" content="Java data types. Interactive Java Programming Guide, play with the Applets, try the example code.">
+<TITLE>Java datatypes</TITLE>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="1" leftmargin="1"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script --> 
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading --> 
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!-- Programming Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/programming-toc.js">
+	</SCRIPT></td>
+    <td align="left" valign="top">
+      <table border="0" cellpadding="2" width="100%" cellspacing="2">
+        <tr>
+      <td align="left" valign="top">
+            <h4 class="stdPageHeader"> Java datatypes.</h4>
+      </td>
+          <td align="right" valign="top" > <a href="programming_arithmetic.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">arithmetic 
+            <img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+      </tr>
+        <tr bgcolor="#FFFFFF"> 
+          <td align="left" valign="top" colspan="2"> 
+            <p><b>The Java dataypes are not classes. </b>For performance reasons 
+              Java does not construct objects at runtime to contain and handle 
+              the fundamental types of data. Instead Java provides the keywords 
+              <a href="javascript:popup('keywords.html#byte')">byte</a>, <a href="javascript:popup('keywords.html#short')">short</a>, 
+              <a href="javascript:popup('keywords.html#int')">int</a>, <a href="javascript:popup('keywords.html#long')">long</a>, 
+              <a href="javascript:popup('keywords.html#float')">float</a>, <a href="javascript:popup('keywords.html#double')">double</a>, 
+              <a href="javascript:popup('keywords.html#char')">char</a>, and <a href="javascript:popup('keywords.html#boolean')">boolean</a> 
+              for you to use to reserve areas of memory to store data values in 
+              various formats. </p>
+            <ul>
+              <li>Because computer memory and processors are based on a <i>binary</i> 
+                (on/off) system, all the data formats are based upon a pattern 
+                of <i>bits</i> (binary ones and zeros).</li>
+              <li>Because long sequences of ones and zeros are hard to read, binary 
+                numbers (base 2) are often written in a condensed form called 
+                <i>hexadecimal</i> (base 16). Where digits from 0 through 9 and 
+                letters A through F are used to represent binary numbers 0000 
+                (hex zero) through 1001 (hex 9) and 1010 (hex A) through 1111 
+                (hex F) respectively.</li>
+              <li>A sequence of 8 bits, makes up a <i>byte</i>. A byte can represent 
+                numbers from 0 to 255. A sequence of 4 bytes (32 bits) makes up 
+                what is known as a 'word' of storage.</li>
+              <li>The Java integer datatypes (byte, short, int and long), are 
+                all signed. This means the value is stored in a binary '<i>twos 
+                complement</i>' format, where the most significant bit is reserved 
+                for the sign. If the sign bit is 0 the number is positive, and 
+                if the sign bit is 1 the number is negative. There is no <span class="code">unsigned</span> 
+                keyword in Java.</li>
+            </ul>
+            <p><b>The <span class="stdCode">java.lang</span> package provides 
+              'wrapper' classes for each of the dataypes. </b>There are some occasions 
+              when you want to manipulate an integer or decimal or boolean value 
+              as an object. For example, you may want to store a collection of 
+              numeric values in a <span class="stdCode">java.util.Vector</span> 
+              or one of the other collection classes in the <span class="stdCode">java.util</span> 
+              package. Javas collections are defined in terms of <span class="stdCode">java.lang.Object</span> 
+              (they can store and retrieve all objects). As shown below, the <a href="#wrappers">wrapper 
+              classes</a> contain methods to convert between data types and to 
+              and from String objects.</p>
+            </td>
+      </tr>
+     </table>
+   </td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="2">
+  <tr> 
+    <td align="left" valign="top"> 
+      <p><b><a name="integers"></a>Java integer datatypes come in four precisions</b>, 
+        <span class="stdCode">byte</span> (8-bit), <span class="stdCode">short</span> 
+        (16-bit), <span class="stdCode">int</span> (32-bit) and <span class="stdCode">long</span> 
+        (64 bits). By default integer instance variables are initialized to zero.</p>
+      <p><img src="images/integer.gif" width="651" height="274"></p>
+      <p>To interpret a negative twos complement binary number, flip all the bits 
+        and add 1 to get the corresponding positive value. </p>
+      <p><b><font color="#FF0000">Gotcha!</font></b> Java will generate an <span class="stdCode">ArithmeticException</span> 
+        at runtime if your code attempts to divide an integer value by zero. Java 
+        integer arithmetic does not generate values for infinity or imaginary 
+        numbers.</p>
+      <p><b>Literal integer values</b> can be written as decimal digits <span class="code">0</span> 
+        thru <span class="code">9</span> with a sign. By default the <span class="code">int</span> 
+        datatype is used for integer literals. If you are dealing with integer 
+        values over 2 billion you should make use of the <span class="code">long</span> 
+        datatype which reserves more memory for very large whole number values. 
+        If you specify a very large integer literal value, you must suffix it 
+        with the letter L, to let the Java compiler know to reserve a long (64-bit) 
+        storage area for the value, instead of the default integer (32-bit) storage 
+        area.</p>
+      <p class="code"> <span class="stdCode">int x = +2147483647; <font color="#999999">//is 
+        the largest positive integer</font><br>
+        int y = -2147482648; <font color="#999999">//is the smallest integer value 
+        </font><br>
+        long bigNothing = 65536 * 65536; <font color="#999999">//integer arithmetic 
+        overflows to zero!</font><br>
+        long bigNumber = 65536<font color="#FF0000">L</font> * 65536; <font color="#999999">//long 
+        arithmetic evaluates to 4294967296 </font></span></p>
+      <p>You might be scratching your head at those last 2 lines, the asterisk 
+        is Javas way of saying multiply two values.</p>
+      <ul>
+        <li>So why does <span class="code">bigNothing</span> end up with zero 
+          ? Well 65536 multiplied by itself, is too big to fit into a 32-bit integer. 
+          The result overflows and Java ignores that fact and just truncates the 
+          most significant bits leaving an answer of zero!</li>
+        <li> Why does <span class="code">bigNumber</span> get the correct value 
+          assigned ? Well in this case, Java sees that one of the values is marked 
+          as a long value, and it <i> widens</i> the other value to a long also. 
+          The arithmetic is done using 64-bits (instead of the default 32-bits) 
+          and the result does not overflow. We'll talk more about how Java casts 
+          and converts datatypes when doing <a href="programming_arithmetic.html">arithmetic 
+          on the following page</a>.</li>
+      </ul>
+      <p><b><font color="#FF0000">Danger!</font></b> Java arithmetic does not 
+        generate Exceptions when a numeric value overflows or underflows its storage. 
+        Apparently this is for robustness, but it is a contentious issue, because 
+        the runtime silently truncates the result. In Java arithmetic it is important 
+        to use a dataype large enough to hold the largest and smallest expected 
+        results.</p>
+      <p><b>Tip!</b> Try to avoid coding numeric literals (constants) inside your 
+        methods, it is better practice to define them as <span class="stdCode">public 
+        static final </span>data variables with an initial value like this : <span class="code"><br>
+        </span><span class="stdCode">public static final int DAYS_IN_WEEK = 7; 
+        </span><br>
+        The convention is to use all CAPS for names of constants.</p>
+      <p>Integer values can also be expressed as hexadecimal (base 16) numbers, 
+        with a prefix of <span class="code">0x</span> and the digits <span class="code">0</span> 
+        thru <span class="code">9</span> and <span class="code">A</span> thru 
+        <span class="code">F</span> (representing decimal values 10 thru 15) : 
+      </p>
+      <p class="stdCode">int x = 0x7FFFFFFF; <font color="#999999">// is the largest 
+        hex integer </font><br>
+        int y = 0x80000000; <font color="#999999">// is the smallest hex integer</font></p>
+      <p>You can express integers in octal (base 8), by prefixing the value with 
+        a zero, and using the digits <span class="code">0</span> thru <span class="code">7</span> 
+        only. <b><font color="#FF0000">Gotcha!</font></b> If you write leading 
+        zeros on a value, Java may interpret it as an octal value. </p>
+    </td>
+  </tr>
+  <tr> 
+    <td align="left" valign="top"> 
+      <p><b><a name="decimals"></a>Java decimal numbers come in two precisions, 
+        </b><span class="stdCode">float</span> (32-bit) and <span class="stdCode">double</span> 
+        (64-bit). By default a decimal literal reserves memory for a double precision 
+        value. If you want to explicitly reserve the lesser precision of a float 
+        datatype, suffix the literal value with the letter F. The binary format 
+        Java uses for floating point numbers and arithmetic is a complex standard 
+        called IEEE-754 and is beyond the scope of this guide (see the<span class="code"> 
+        java.lang.FloatingDecimal</span> class). </p>
+      <p><img src="images/float.gif" width="640" height="172"></p>
+      <p><b>Note</b>: Unlike integers, arithmetic on floating point data types 
+        <font color="#FF0000">does not generate arithmetic errors</font>, because 
+        Java can represent values like positive/negative infinity, and imaginary 
+        numbers (termed NaN 'Not A Number'). <br>
+        You should use the <span class="stdCode">static</span> class methods <span class="stdCode"><b>isInfinite()</b></span> 
+        and <span class="stdCode"><b>isNaN()</b></span> in the wrapper classes<span class="stdCode"> 
+        java.lang.Float </span>and <span class="stdCode">java.lang.Double</span> 
+        to test for infinite or imaginary results, don't try to use the equality 
+        expression <span class="stdCode">==</span> on NaN values (it will always 
+        return <span class="stdCode">false</span>).</p>
+      <p><b>Literal decimal values</b> have a whole number part, followed by a 
+        decimal point and a fraction, and an optional exponent (E plus/minus a 
+        power of ten). By default floating point literals have a datatype of double. 
+        If you want a value that can be assigned to a float use a suffix of <span class="stdCode">F</span> 
+        or <span class="stdCode">f</span>, for example. </p>
+      <p class="stdCode"><font color="#FF0000">float x = 3.5; </font><font color="#999999">//compile 
+        error! 3.5 is a double</font><br>
+        float x = 3.5F; <font color="#999999">//OK</font><br>
+        float y = 3.402E+38F; <font color="#999999">//is the largest float </font><br>
+        float z = 1.402E-45F; <font color="#999999">//is the smallest float value 
+        </font><br>
+        double d = 1.79E+308; <font color="#999999">//largest double precision 
+        value </font><br>
+        double e = 4.94E-324; <font color="#999999">//smallest double </font></p>
+      <p><b><font color="#FF0000">Gotcha!</font></b> The <span class="code">float</span> 
+        dataype has only a limited precision (about 7 significant digits), its 
+        use in arithmetic can lead to cumulative rounding errors. Most floating 
+        point arithmetic in Java is done using a <span class="code">double</span> 
+        (see the <span class="stdCode">java.lang.Math</span> class), and you should 
+        follow the example set by the built in classes. </p>
+    </td>
+  </tr>
+  <tr> 
+    <td align="left" valign="top"> 
+      <p><b><a name="char"></a>Java characters use a double byte character set 
+        (DBCS) 16-bit Unicode format.</b> The Unicode character set supports most 
+        writing scripts in use in the world today, including the large sets for 
+        Chinese, Japanese, and Korean. This allows programmers to use identifiers 
+        in their programs that are written in their native languages. See the 
+        <a href="http://www.unicode.org" target="_blank">Unicode Organization</a> 
+        for more details.</p>
+      <p><img src="images/char.gif" width="459" height="177"><br>
+        <b>Character literals</b> can be represented by a single letter value 
+        in single quotes such as<span class="stdCode"> 'A'</span><span class="code"> 
+        </span>or<span class="stdCode"> 'a'</span>, an escape sequence in single 
+        quotes like <span class="stdCode">'\n'</span> or a Unicode sequence such 
+        as <span class="stdCode">‘\u000A’</span>. The Java compiler ignores 'white 
+        space' characters, which are defined as the ASCII space, horizontal tab, 
+        and form feed characters, as well as the line terminators (ASCII CR and/or 
+        LF).</p>
+      <p><b>The Unicode character set</b>, </p>
+      <table width="100%" border="0" cellpadding="2" cellspacing="2" class="stdTableAsGroupBox">
+        <tr> 
+          <td bgcolor="#FFFFCC" class="stdCode"><span class="code">'\u0030'</span> 
+            thru <span class="code">'\u0039'</span> </td>
+          <td>represents the Latin digits 0 - 9</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFFCC" class="stdCode"><span class="code">'\u0041'</span> 
+            thru <span class="code">'\u005A'</span> </td>
+          <td>are the ASCII Latin lowercase letters</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFFCC" class="stdCode"><span class="code">'\u0061'</span> 
+            thru <span class="code">'\u007A'</span></td>
+          <td>are the ASCII uppercase letters</td>
+        </tr>
+      </table>
+      <p><b>Character escape sequences</b> are needed to represent unprintable 
+        and control characters :</p>
+      <table width="100%" border="0" cellpadding="2" cellspacing="2" class="stdTableAsGroupBox">
+        <tr> 
+          <td bgcolor="#FFFFCC" class="stdCode"><span class="code">'\b'</span></td>
+          <td>represents a backspace escape code</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFFCC" class="stdCode"><span class="code">'\t'</span> 
+          </td>
+          <td>is the tab escape code</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFFCC" class="stdCode"><span class="code">'\n'</span></td>
+          <td>is the ASCII LF line feed code</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFFCC" class="stdCode"><span class="code">'\r'</span> 
+          </td>
+          <td>is the ASCII CR carriage return</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFFCC" class="stdCode"><span class="code">'\''</span></td>
+          <td>represents a single apostrophe</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFFCC" class="stdCode"><span class="code">'\\'</span></td>
+          <td>is the code for a single back slash</td>
+        </tr>
+        <tr> 
+          <td bgcolor="#FFFFCC" class="stdCode"><span class="code">'\"'</span></td>
+          <td> is a single double quote</td>
+        </tr>
+      </table>
+      <p><b><font color="#FF0000">Gotcha!</font></b> You must use <strong>single 
+        quotes</strong> around a character literal, double quotes are used for 
+        String literals as we'll see on a following page. The default value for 
+        a char is <span class="stdCode">‘\u0000’</span> which is not the same 
+        as a space, or a <a href="javascript:popup('keywords.html#null')" class="stdCode">null</a>. 
+      </p>
+    </td>
+  </tr>
+  <tr> 
+    <td align="left" valign="top"> 
+      <p><b><a name="boolean"></a>The Java boolean dataype can have only 2 values</b>, 
+        represented by the keywords <a href="javascript:popup('keywords.html#true')" class="stdCode">true</a> 
+        or <a href="javascript:popup('keywords.html#false')" class="stdCode">false</a>. 
+        The logical opposites true and false are the only values that may be assigned 
+        to a data type of <span class="stdCode">boolean</span>. By default a boolean 
+        instance variable is initialized to <span class="stdCode">false</span>.</p>
+      <p><b><font color="#FF0000">Gotcha!</font></b> Unlike other programming 
+        languages, Java does not use a numeric value of 0 to represent false and 
+        non-zero value for true. So you cannot use an integer value in a conditional 
+        test like this :</p>
+      <p class="stdCode"><font color="#999999">//This is <font color="#FF0000">NOT 
+        VALID</font> in Java!</font> <br>
+        java.util.Random randomizer = new java.util.Random(System.currentTimeMillis()); 
+        <br>
+        int r = randomizer.nextInt(2); <font color="#FF0000"><br>
+        if (r) </font>{ <font color="#999999">//do something </font>}</p>
+    </td>
+  </tr>
+  <tr> 
+    <td align="left" valign="top"> 
+      <p><b><a name="wrappers"></a>The wrapper classes</b> and some example uses 
+        for them are listed below :</p>
+      <table width="100%" border="0" cellpadding="2" cellspacing="2" class="stdTableAsGroupBox">
+        <tr valign="top"> 
+          <td bgcolor="#FFFFCC" class="stdCode"><span class="code">java.lang.Byte</span> 
+          </td>
+          <td class="stdCode"> 
+            <p class="code"><font color="#999999">//use a String literal to construct 
+              a Byte object</font><br>
+              Byte myByte = new Byte(&quot;127&quot;);<br>
+              byte b1 = myByte.byteValue();</p>
+          </td>
+        </tr>
+        <tr valign="top"> 
+          <td bgcolor="#FFFFCC" class="stdCode"><span class="code">java.lang.Short</span></td>
+          <td class="stdCode"> 
+            <p class="code">Short myShort = new Short(&quot;32767&quot;);<br>
+              short s1 = myShort.shortValue();</p>
+          </td>
+        </tr>
+        <tr valign="top"> 
+          <td bgcolor="#FFFFCC" class="stdCode"><span class="code">java.lang.Integer</span> 
+          </td>
+          <td class="stdCode"> 
+            <p class="code">Integer myInteger = new Integer(&quot;2147483647&quot;);<br>
+              int i = myInteger.intValue();</p>
+          </td>
+        </tr>
+        <tr valign="top"> 
+          <td bgcolor="#FFFFCC" class="stdCode"><span class="code">java.lang.Long</span> 
+          </td>
+          <td class="stdCode"> 
+            <p class="code"><font color="#999999">//parse a really big base 16 
+            number String</font><br>
+            long l = Long.parseLong(&quot;7FFFFFFFF&quot;, 16); </td>
+        </tr>
+        <tr valign="top"> 
+          <td bgcolor="#FFFFCC" class="stdCode"><span class="code">java.lang.Float</span> 
+          </td>
+          <td class="stdCode"> 
+            <p class="code"><font color="#999999">//parse a floating point value 
+            in a String</font><br>
+            Float myFloat = Float.valueOf(&quot;3.402E+38&quot;);</td>
+        </tr>
+        <tr valign="top"> 
+          <td bgcolor="#FFFFCC" class="stdCode"><span class="code">java.lang.Double</span> 
+          </td>
+          <td class="stdCode"> 
+            <p class="code">double d = Double.parseDouble(&quot;1.79E+308&quot;);<br>
+            boolean b = Double.isInfinite(d); <font color="#999999">//returns 
+            false</font></td>
+        </tr>
+        <tr valign="top"> 
+          <td bgcolor="#FFFFCC" class="stdCode"><span class="code">java.lang.Character</span> 
+          </td>
+          <td class="stdCode"> 
+            <p class="code">char c = 'y';<br>
+            c = Character.toUpperCase(c);<br>
+            boolean b = Character.isDigit(c); <font color="#999999">//returns 
+            false</font></td>
+        </tr>
+        <tr valign="top"> 
+          <td bgcolor="#FFFFCC" class="stdCode"><span class="code">java.lang.Boolean</span></td>
+          <td class="stdCode"> 
+            <p class="code">Boolean myBoolean = new Boolean(&quot;true&quot;);<br>
+              boolean b = myBoolean.booleanValue(); <font color="#999999">//returns 
+              true</font>
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr bgcolor="#CCFFFF"> 
+    <td align="left" valign="top"> 
+      <ul>
+        <li>For more detail on the Java datatypes see the <a href="http://java.sun.com/docs/books/jls/second_edition/html/jTOC.doc.html">Java 
+          Language Specification</a>.</li>
+        <li>Here's an interesting article on the dangers of <a href="http://www2.hursley.ibm.com/decimal/">floating 
+          point arithmetic</a> in Java.</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0"> 
+      <tr>
+        
+    <td align="left" valign="top"> Last Updated: January 2002. &copy;1999 Guy&nbsp;Bellingham-Smith</td>
+        
+    <td align="right" valign="top" > <a href="programming_arithmetic.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">arithmetic 
+      <img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+      </tr>
+</table>
+
+</FONT>
+</BODY>
+</HTML>

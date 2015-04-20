@@ -1,0 +1,113 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="7/20/2002">
+<meta name="keywords" content="Java,AWT,Abstract Windowing Toolkit">
+<meta name="description" content="Introducing the AWT.">
+<title>The Title</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/awt-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader">java.awt.TextField</h4></td>
+          <td align="right" valign="top" ><a href="awt_textarea.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">TextArea<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"><table border="0" cellpadding="4" width="100%">
+              <tr> 
+                <td valign="top"><p><font class="text"><img src="images/awt-textfield.gif"
+        width="445" height="240"></font></p>
+                  <p><font class="text">A <span class="stdCode">TextField</span>, 
+                    generates an <span class="stdCode">ActionEvent</span>, only 
+                    when the ENTER key is hit, while the cursor is focused upon 
+                    it.<br>
+                    When in editable mode, you can click in the text field, and 
+                    'enter' the details required. Here are some of the more useful 
+                    methods of <span class="stdCode">TextField</span>:</font></p>
+                  <p class="stdCode"><font class="text">int getColumns();<br>
+                    void setEchoChar(char c);</font></p>
+                  <p><font class="text"><strong>Note</strong>: The Java version 
+                    1.0 versions of the AWT, do not support keyboard tabbing between 
+                    components! The Java 1.1 'Swing' components fix this failing.</font></p></td>
+                <td valign="top"><font class="text">A <span class="stdCode">TextField</span> 
+                  is a single line text entry box, that usually requires some 
+                  label in front of it to explain what the user needs to enter 
+                  there. <br>
+                  It inherits several methods from the <span class="stdCode">TextComponent</span>, 
+                  class which deal with inserting, selecting and editing text.</font></td>
+              </tr>
+            </table>
+            <table border="0" width="100%">
+              <tr> 
+                <td valign="top"><p><font class="text">Click in each of the TextFields 
+                    in the Applet at right.. </font></p>
+                  <p><font class="text"> Type invalid and valid SSN and ZIP values 
+                    and hit the <span class="stdCode"><font color="#FF0000">ENTER</font></span> 
+                    key to see what happens. </font></p>
+                  <p><font class="text">The first two fields are subclasses of 
+                    the <span class="stdCode">TextField</span> component, that 
+                    can take a <span class="stdCode">Validator</span> object when 
+                    they are constructed. </font> </p>
+                  </td>
+                <td valign="top" bgcolor="#FFFF00"><font class="text"> 
+                  <applet
+        code="textfield/Applet1.class" codebase="classes"
+        align="absbottom" width="400" height="150"
+        archive="textfield/Applet1.jar" name="TextFieldApplet">
+                  </applet>
+                  </font></td>
+              </tr>
+            </table>
+			<li><font class="text">The SSN field has an <span class="stdCode">SSNValidator</span> 
+              object in the background which checks the format of the string you 
+              enter into the field. </font></li>
+                    
+            <li><font class="text">The ZIP field has a <span class="stdCode">USZIPValidator</span> 
+              object, behind the scenes which checks the format of the zip code 
+              when you hit the Enter key.</font></li>
+                    
+            <li><font class="text">The password field is a regular TextField with 
+              the echo character set to '*'.</font></li>
+                  
+			</td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr>
+    <td><p>&nbsp;</p>
+      </td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: July 2002. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="awt_textarea.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">TextArea<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+</FONT> 
+</BODY>
+</HTML>

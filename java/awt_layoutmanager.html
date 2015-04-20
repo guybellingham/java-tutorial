@@ -1,0 +1,158 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="7/20/2002">
+<meta name="keywords" content="Java,AWT,Abstract Windowing Toolkit">
+<meta name="description" content="Introducing the AWT.">
+<title>The Title</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<font class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+</font> 
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> <font class="text"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/awt-toc.js">
+	</SCRIPT>
+      </font></td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader"><font class="text">java.awt.LayoutManager</font></h4></td>
+          <td align="right" valign="top" ><font class="text"><a href="awt_layout.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">Layout<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+            </font></td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"><p><font class="text">Every 
+              AWT <span class="stdCode">Container</span> has one <span class="stdCode">LayoutManager</span>, 
+              which is responsible for arranging the components within the container. 
+              <br>
+              Whenever the visual aspect of a Container changes (on first display, 
+              or when the container is resized), the AWT invokes the container's 
+              <span class="stdCode">validate( )</span> method, which in turn calls 
+              the <span class="stdCode">layout( )</span> method. This method relies 
+              upon the <span class="stdCode">layoutContainer( )</span> method 
+              in the layout manager to position all the components in the container. 
+              </font></p>
+            <p><font class="text"> Java defines the general properties and behaviors 
+              common to all layout managers in the <span class="stdCode">java.awt.LayoutManager</span> 
+              and <span class="stdCode">LayoutManager2</span> interfaces, with 
+              methods for adding and removing components and laying out the contents 
+              of a container. <br>
+              Below are shown the five built-in layout managers that are included 
+              with Java 1.0 and which implement these interfaces.</font></p>
+            <p><font class="text"><img src="images/awt-layoutmanager.gif" alt="Layout Managers!" border="0" width="558" height="264" naturalsizeflag="3" ismap="" usemap="#FrontPageMap0"> 
+              <map name="FrontPageMap0">
+                <area shape="RECT" coords="439,120,543,170" href="awt_gridbaglayout.html">
+                <area shape="RECT" coords="335,120,431,170" href="awt_gridlayout.html">
+                <area shape="RECT" coords="227,118,324,168" href="awt_flowlayout.html">
+                <area shape="RECT" coords="120,119,216,169" href="awt_cardlayout.html">
+                <area shape="RECT" coords="11,119,109,169" href="awt_borderlayout.html">
+              </map>
+              </font></p>
+            <p><font class="text">All LayoutManagers, should define the following 
+              methods :</font></p>
+            <p><span class="stdCode"><font class="text">void&nbsp;addLayoutComponent(String 
+              name, Component comp);</font><br>
+              <font class="text">void&nbsp;removeLayoutComponent(String name, 
+              Component comp);</font><br>
+              <font class="text">Dimension&nbsp;preferredLayoutSize(Container 
+              parent);</font><br>
+              <font class="text">Dimension&nbsp;minimumLayoutSize(Container parent);</font><br>
+              <font class="text">void&nbsp;layoutContainer(Container parent);</font></span></p>
+            <p><font class="text"><strong>Note</strong>: Although Layout Managers, 
+              define these methods, they do not necessarily have to act upon all 
+              these methods. For instance, the <span class="stdCode">FlowLayout</span> 
+              does not need to 'do' anything in the <span class="stdCode">addLayoutComponent()</span> 
+              or<span class="stdCode"> removeLayoutComponent()</span> methods, 
+              because it simply lays out whatever components it finds in the container 
+              that calls it (a container maintains an array of components), in 
+              the order they were added to that container. Other more sophisticated 
+              layout managers, such as <span class="stdCode">BorderLayout</span>, 
+              do maintain their own list of components with associated positioning 
+              information. When adding a component to a container with a <span class="stdCode">BorderLayout</span> 
+              you can specify a String in the <span class="stdCode">add( )</span> 
+              method that describes the desired position of that component.</font></p></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr> 
+    <td><p><font class="text">A <span class="stdCode">LayoutManager</span> is 
+        responsible for finding out the '<a
+        href="awt_layout.html#preferred">preferred</a>' and minimum sizes of components, 
+        and laying out those components within their container. </font><font class="text">Some 
+        types of LayoutManager work for one and only one container, other LayoutManagers 
+        might end up working for any number of Containers, and must be passed 
+        a reference to the 'owning' Container, so that they know which one to 
+        go to work on.</font></p>
+      <p><font class="text">Generally you use a combination of layout managers 
+        and containers in an application to get the desired look.</font></p>
+      <table width="100%" border="0" cellpadding="2" cellspacing="2">
+        <tr align="left" valign="top"> 
+          <td><p><font class="text">Java's default <span class="stdCode">Container</span> 
+              methods invoke the appropriate methods in the LayoutManager for 
+              you, as follows :</font> </p>
+            <table
+        border="1" cellpadding="2" cellspacing="0">
+              <tr class="stdTableColumnHeader"> 
+                <td><font class="text">Container method</font></td>
+                <td><font class="text">LayoutManager method</font></td>
+              </tr>
+              <tr class="stdCode"> 
+                <td><font class="text">add( )</font></td>
+                <td><font class="text">addLayoutComponent( )</font></td>
+              </tr>
+              <tr class="stdCode"> 
+                <td><font class="text">layout( )</font></td>
+                <td valign="top"><font class="text">layoutContainer( )</font></td>
+              </tr>
+              <tr class="stdCode"> 
+                <td><font class="text">minimumSize( )</font></td>
+                <td><font class="text">minimumLayoutSize( )</font></td>
+              </tr>
+              <tr class="stdCode"> 
+                <td><font class="text">preferredSize( )</font></td>
+                <td><font class="text">preferredLayoutSize( )</font></td>
+              </tr>
+              <tr class="stdCode"> 
+                <td><font class="text">remove( )</font></td>
+                <td><font class="text">removeLayoutComponent(&nbsp;)</font></td>
+              </tr>
+            </table></td>
+          <td><p><font class="text">You connect a layout manager to a container 
+              using the <span class="stdCode">setLayout(LayoutManager)</span> 
+              method : </font></p>
+            <pre><font class="text">setLayout(new BorderLayout( ));</font></pre>
+            <p><font class="text"><strong>Note</strong>: You do not normally need 
+              to tell the LayoutManager to recalculate the best layout for the 
+              container, the AWT automatically takes care of this for you. However 
+              you can 'mark' a container as needing laying out with a call to 
+              the container's <span class="stdCode">invalidate( )</span> method.</font></p></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"><font class="text"> Last Updated: July 2002. 
+      &copy;1999 Guy&nbsp;Bellingham-Smith </font></td>
+    <td align="right" valign="top" ><font class="text"><a href="awt_layout.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">Layout<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+      </font></td>
+  </tr>
+</table> 
+</BODY>
+</HTML>

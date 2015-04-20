@@ -1,0 +1,266 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>Java Remote Objects</title>
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="2" leftmargin="2">
+<script language="JavaScript"><!--
+
+if (document.images) {
+  nexton = new Image();
+  nexton.src = "../gif/arrows/nextarrow_on.gif";
+
+  nextoff = new Image();
+  nextoff.src = "../gif/arrows/nextarrow_off.gif";
+
+  backon = new Image();
+  backon.src = "../gif/arrows/backarrow_on.gif";
+
+  backoff = new Image();
+  backoff.src = "../gif/arrows/backarrow_off.gif";
+
+}
+function turnOn(imageName) {
+  if (document.images) {
+    document[imageName].src = eval(imageName + "on.src");
+  }
+}
+
+function turnOff(imageName) {
+  if (document.images) {
+    document[imageName].src = eval(imageName + "off.src");
+  }
+}
+
+// --></script>
+
+<table border="0" cellpadding="2" cellspacing="0" width="100%">
+    <tr>
+        <td valign="top" width="42"><a
+        href="../contents.htm#4.0_advanced"
+        onmouseover="turnOn('back')" onmouseout="turnOff('back')"><img
+        src="../gif/arrows/backarrow_off.gif" alt="contents!"
+        align="right" border="0" hspace="0" width="40"
+        height="24" name="back"></a></td>
+        <td valign="top" width="25%"><font size="2" face="Arial">Java
+        contents.</font></td>
+        <td align="center" valign="top" width="50%"><font
+        color="#000099" size="3" face="Arial"><strong>Remote
+        objects</strong></font></td>
+        <td align="right" valign="top" width="25%"><font size="2"
+        face="Arial">Next - The Client side</font></td>
+        <td valign="top" width="42"><a href="rmi2.htm"
+        onmouseover="turnOn('next')" onmouseout="turnOff('next')"><img
+        src="../gif/arrows/nextarrow_off.gif" alt=" "
+        align="right" border="0" hspace="0" width="40"
+        height="24" name="next"></a></td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="2" width="100%">
+    <tr>
+        <td valign="top"><em>figure: RMI connection over a TCP/IP
+        connection.</em><br>
+        <img src="../gif/RMI-overview.gif" width="410"
+        height="289"><table border="1" cellpadding="2"
+        cellspacing="0">
+            <tr>
+                <td valign="top"><font size="2" face="Arial"><strong>datatypes
+                </strong></font></td>
+                <td valign="top"><font size="2" face="Arial">are
+                passed by value</font></td>
+            </tr>
+            <tr>
+                <td valign="top"><font size="2" face="Arial"><strong>objects</strong></font></td>
+                <td valign="top"><font size="2" face="Arial">are
+                serialized (both data and code)</font></td>
+            </tr>
+            <tr>
+                <td valign="top"><font size="2" face="Arial"><strong>remote<br>
+                objects</strong></font></td>
+                <td valign="top"><font size="2" face="Arial">are
+                passed by reference (a copy of the remote stub)</font></td>
+            </tr>
+        </table>
+        </td>
+        <td valign="top"><a name="remoteobjects"></a><font
+        size="2" face="Arial">&nbsp;RMI is the framework built-in
+        to the JDK (1.1+), that allows Java objects on a 'client'
+        machine to communicate with remote objects on a different
+        machine (the server). </font><p><font size="2"
+        face="Arial">The mechanism that RMI provides, is
+        invisible to the developer. The RMI compiler (<strong>rmic</strong>)
+        and classes, take care of all the details, all you have
+        to worry about is <br>
+        <strong>1.</strong> Defining a remote interface.<br>
+        <strong>2.</strong> Build the object that implements the
+        remote methods.<br>
+        <strong>3.</strong> Code the 'client' to invoke the
+        remote methods and handle any RemoteExceptions.<br>
+        <strong>4.</strong> Compiling and deploying the classes.</font></p>
+        <p><font size="2" face="Arial">Remote Method Invocation
+        has some rules:<br>
+        <strong>1. </strong>Clients only ever interact with a
+        remote interface, never the actual object that implements
+        the remote methods.<br>
+        <strong>2. </strong>Complex failures are possible, and
+        security and thread synchronization must be designed
+        carefully.<br>
+        <strong>3. </strong>Arguments and return types are passed
+        by copy (objects are serialized). Remote objects can be
+        used as parameters, but only references (stubs) are
+        actually passed around, the remote object stays put.</font></p>
+        </td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="2" width="100%">
+    <tr>
+        <td valign="top" width="30%"><a name="remoteinterface"></a><font
+        color="#000080" face="Arial">1. The Remote interface</font><font
+        face="Arial">.<br>
+        </font><font size="2" face="Arial">A remote interface,
+        must inherit from the <strong>java.rmi.Remote</strong>
+        interface definition (either directly or indirectly). All
+        'remote' methods must be defined to throw a <strong>java.rmi.RemoteException</strong>
+        (a subclass of java.io.IOException).<br>
+        This represents the remote 'contract' that both client
+        and server adhere to.<br>
+        &nbsp;</font></td>
+        <td valign="top" width="70%"><pre><font face="Courier">package rmi.calculator;
+import java.rmi.*;
+public&nbsp;interface&nbsp;Calculator extends Remote {
+&nbsp;public&nbsp;long&nbsp;add(long&nbsp;x,&nbsp;long&nbsp;y)&nbsp;throws&nbsp;RemoteException;
+&nbsp;public long sub(long x, long y) throws&nbsp;RemoteException;
+}</font></pre>
+        <p><font size="2" face="Arial">Remember interfaces define
+        abstract methods, static final variables, and can extend
+        multiple 'super' interfaces, if required. They lay out a
+        programming interface.</font></p>
+        </td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="2" width="100%">
+    <tr>
+        <td valign="top" width="30%"><a name="remoteserver"></a><font
+        color="#000080" face="Arial">2. The Remote server
+        implementation</font><font face="Arial">.<br>
+        </font><font size="2" face="Arial">A remote interface,
+        needs an actual implementation on the 'server' side.
+        Because this is a 'remote' object, it needs to inherit
+        some behaviors from the java.rmi.RemoteObject and
+        RemoteServer classes. The easiest way to do that is to
+        extend the java.rmi.UnicastRemoteObject, which inherits
+        from those classes, and represents a singleton 'remote'
+        object. Obviously the server side object should implement
+        the remote interface we have laid out above, and provide
+        processing for the remote methods. It can also define its
+        own instance variables and methods for 'local' use only.<br>
+        <br>
+        The java.rmi.Naming class, represents the simple naming
+        service provided with rmi (the rmiregistry).<br>
+        The String shown in red, is a network name for this
+        service. The rebind method, 'publishes' the calc object
+        under this name, so that others on the network can find
+        this object.<br>
+        The </font><font color="#FF0000" size="2" face="Arial">host</font><font
+        size="2" face="Arial"> is the domain name of the server
+        on the network. If not specified it defaults to special
+        name &quot;localhost&quot; IP address=127.0.0.1. <br>
+        The </font><font color="#FF0000" size="2" face="Arial">port</font><font
+        size="2" face="Arial"> is the port number that this
+        server will 'listen' on, for incoming requests. It
+        defaults to 1099. Port number can be between 1024 and
+        65535, but should match the port number being used by the
+        rmiregistry.</font></td>
+        <td valign="top" width="70%"><pre><font face="Courier">package rmi.calculator;
+import java.rmi.*;
+import java.rmi.server.*;
+public&nbsp;class&nbsp;CalculatorImpl extends&nbsp;UnicastRemoteObject
+implements Remote {
+ //Constructor method
+ public CalculatorImpl() throws RemoteException {
+  //Parent classes construct the remote object
+  super();
+ }
+ 
+ //Entry point
+ public static void main(String[] s) {
+  //Install a SecurityManager here if necessary
+  If&nbsp;(System.getSecurityManager()&nbsp;==&nbsp;null)&nbsp;{
+    System.setSecurityManager(new RMISecurityManager());
+  }
+  //Instantiate me and bind to naming service 
+  try {
+    CalculatorImpl calc = new CalculatorImpl();
+    Naming.rebind(&quot;</font><font color="#FF0000"
+face="Courier">//host:port/name</font><font face="Courier">&quot;, calc);
+  }
+  catch(Exception e1) {
+    e1.printStackTrace(System.err);
+  }
+ }
+ //The remote methods 
+&nbsp;public&nbsp;long&nbsp;add(long&nbsp;x,&nbsp;long&nbsp;y)&nbsp;throws&nbsp;RemoteException {
+   return x + y;
+ }
+&nbsp;public long sub(long x, long y) throws&nbsp;RemoteException {
+   return x - y;
+ }
+}</font></pre>
+        <p><font size="2" face="Arial">A SecurityManager may be
+        needed in the JVM on the server side, if classes have to
+        be dynamically loaded when not available in the local
+        classpath. However, you may then need to run with the
+        correct security policy file and permissions in place, to
+        allow the server side object to listen and connect to
+        network Sockets. And you will need to specify the correct
+        </font><font face="Courier">java.rmi.server.codebase </font><font
+        size="2" face="Arial">(see below) so that other Java
+        Virtual Machines (including the rmiregistry) know where
+        to load 'remote' classes (such as the _stub class) from.</font></p>
+        </td>
+    </tr>
+</table>
+
+<table border="0" width="100%">
+    <tr>
+        <td valign="top"><font size="2" face="Arial">When running
+        the remote server, you can use the following options on
+        the command line in your .bat files:</font><pre><font
+face="Courier">//loads the policy file from the URL
+java </font><font color="#FF0000" face="Courier">-Djava.security.policy=URL</font><font
+face="Courier"> rmi.calculator.CalculatorImpl
+//loads the default SecurityManager 
+java </font><font color="#FF0000" face="Courier">-Djava.security.manager</font><font
+face="Courier"> rmi.calculator.CalculatorImpl
+//Other JVMs can get classes from this codebase
+java </font><font color="#FF0000" face="Courier">-Djava.rmi.server.codebase=URL</font><font
+face="Courier"> rmi.calculator.CalculatorImpl</font></pre>
+        <p><font size="2" face="Arial">Note: the URL can be http://
+        or file:/// or even ftp:// based (some operating systems,
+        require 3 slashes for the file:/ protocol name). If the
+        URL specifies a directory, the trailing slash is required.
+        Do not use backslash ' \ ' in a URL.</font></p>
+        <pre><font face="Courier">http://domain/path/filename
+file:/C:/Java/classes/</font></pre>
+        </td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="4" cellspacing="4" width="100%">
+    <tr>
+        <td valign="top" width="10%" bgcolor="#C0C0C0"><em>Related
+        Links </em></td>
+        <td valign="top" width="30%" bgcolor="#C0C0C0">&nbsp;</td>
+        <td valign="top" width="30%" bgcolor="#C0C0C0"><em>Next
+        &gt; </em><a href="rmi2.htm"><em>The Client</em></a></td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,135 @@
+package urlinput;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.applet.*;
+import java.net.*;
+import java.io.*;
+
+public class Applet1 extends Applet {
+  // Network uniform resource locations and connection
+  URL cb, target;
+  URLConnection uc;
+
+  // Byte based InputStream and Char based Reader
+  InputStream is;
+  BufferedReader rd;
+
+  BorderLayout borderLayout1 = new BorderLayout();
+  Panel panel1 = new Panel();
+  Button button1 = new Button();
+  TextArea textArea1 = new TextArea();
+  Label label1 = new Label();
+
+  //Construct the applet
+  public Applet1() {
+  }
+
+  //Initialize the applet
+  public void init() {
+    try  {
+      jbInit();
+    }
+    catch(Exception e)  {
+      e.printStackTrace();
+    }
+  }
+
+  //Component initialization
+  private void jbInit() throws Exception {
+    this.setSize(new Dimension(400,300));
+    this.setLayout(borderLayout1);
+    button1.setLabel("Download");
+    button1.addActionListener(new Applet1_button1_actionAdapter(this));
+    panel1.setBackground(Color.yellow);
+    textArea1.setBackground(Color.white);
+    textArea1.setText("Ready to download...");
+    textArea1.setEditable(false);
+
+    this.add(panel1, BorderLayout.NORTH);
+    panel1.add(button1, null);
+    this.add(textArea1, BorderLayout.CENTER);
+    this.add(label1, BorderLayout.SOUTH);
+
+    // CodeBase
+    cb = this.getCodeBase();
+    label1.setText("codebase=" + cb.toString());
+
+  }
+
+  //Get Applet information
+  public String getAppletInfo() {
+    return "Applet Information";
+  }
+
+  void button1_actionPerformed(ActionEvent e) {
+    if (target == null) {
+      // target file folder/name
+      try {
+        target = new URL(cb, "urlinput/Applet.txt");
+      }
+      catch(MalformedURLException ex) {
+        textArea1.setText("target file error=" + ex.getMessage());
+        return;
+      }
+      System.out.println("target=" + target.toString());
+    }
+    if (uc == null) {
+      // URL connection to file
+      try {
+        uc = target.openConnection();
+      }
+      catch(IOException ex) {
+        textArea1.setText("openConnection error=" + ex.getMessage());
+        return;
+      }
+      System.out.println("URL   content type=" + uc.getContentType());
+      System.out.println("URL         length=" + uc.getContentLength());
+      System.out.println("URL     does input=" + uc.getDoInput() + ", URL does output=" + uc.getDoOutput());
+      System.out.println("URL          dated=" + uc.getLastModified());
+    }
+    if (rd == null) {
+      // BufferedReader to file (byte -> char conversion)
+      try {
+        is = uc.getInputStream();
+        rd = new BufferedReader(new InputStreamReader(is));
+        label1.setText("Reader ready=" + rd.ready());
+      }
+      catch(IOException ex) {
+        textArea1.setText("getInputStream error=" + ex.getMessage());
+        return;
+      }
+
+    }
+    textArea1.setText("");
+    try {
+        while (true) {
+          String s = rd.readLine();
+          if (s  == null) {
+            break;
+          } else {
+            textArea1.append(s.toString() + '\n');
+          }
+        }
+    }
+    catch(IOException ex) {
+        textArea1.setText("read line error=" + ex.getMessage());
+        return;
+    }
+    label1.setText("Download complete");
+    button1.setEnabled(false);
+  }
+
+}
+
+class Applet1_button1_actionAdapter implements java.awt.event.ActionListener {
+  Applet1 adaptee;
+
+  Applet1_button1_actionAdapter(Applet1 adaptee) {
+    this.adaptee = adaptee;
+  }
+
+  public void actionPerformed(ActionEvent e) {
+    adaptee.button1_actionPerformed(e);
+  }
+} 

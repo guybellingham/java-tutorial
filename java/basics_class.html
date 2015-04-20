@@ -1,0 +1,141 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="29/1/2002">
+<meta name="keywords" content="Objects, Class, Classes, extends, implements, Java, Programming, Guide, Beginner, Basics, Picture, Example, Applet, Servlet, JSP, Links">
+<meta name="description" content="Defining types of Objects. Interactive Java Programming Guide, play with the Applets, try the example code.">
+<title>The class statement</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="1" leftmargin="1"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!-- Basics Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/basics-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader"> The class 
+              statement.</h4></td>
+          <td align="right" valign="top" ><a href="basics_inheritance.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">reusing 
+            classes <img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"> <p><b>Java defines types 
+              of objects with the </b><a href="javascript:popup('keywords.html#class')">class</a><b> 
+              statement</b>. A class, is the way you define a new type of object 
+              in Java (when you see the word class, think 'type'). <br>
+              In fact, each source file (source files have a <span class="code">.java</span> 
+              suffix) should have a single <a href="javascript:popup('keywords.html#public')">public</a> 
+              class statement in it. To help Java find the correct file at runtime, 
+              the filename must be the same as the class name. <br>
+              So for example, if I'm defining a <span class="code">Circle</span> 
+              class, my source code must be in a file called <span class="code">Circle.java</span>. 
+              And when my code compiles successfully, my runtime code will be 
+              in a file called <span class="code">Circle.class</span>. </p>
+            <p><b>Class files exist as files or archives on your computer</b> 
+              or on an internet server. They are organized in file system folders. 
+              We'll talk about how they are <a href="javascript:popup('keywords.html#package')">packaged</a> 
+              on a following page. Class files actually contain 'byte code', which 
+              the Java Virtual Machine (JVM) interprets. Class files act as a 
+              sort of template, from which objects are built at runtime by the 
+              JVM. <br>
+            </p>
+            <p><b>Class names start with a <u>C</u>apital letter </b>and are usually 
+              a 'real world' thing or noun. Note that class names do not contain 
+              spaces and most importantly that <font color="#FF0000">all names 
+              in Java are case sensitive! </font><br>
+              <span class="caption">Here is a simple empty class statement. </span> 
+            </p>
+            <pre class="code"><font color="#999999">// This class defines a Circle</font>
+package my.shapes;
+<font color="#FF0000">public class Circle <span class="code"><font color="#FF0033">extends Shape</font></span> {</font>
+   <font color="#999999">/* member variables and
+      member methods go here */</font>
+<font color="#FF0000">} </font></pre> 
+            <p><font color="#FF0000">Syntax Note</font>: <br>
+              Curly braces <span class="code">{ ... }</span> serve to contain 
+              blocks of code in Java.<br>
+              All statements in Java code must end with a semicolon ;.<br>
+              The greyed out text are comments. You will find it is important 
+              to <a href="javascript:popup('keywords.html#javadoc')"> document 
+              your code thoroughly</a>. </p>
+            </td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+</FONT> 
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr>
+    <td><p><b>A class statement also serves to indicate what existing object type 
+        the current class is based upon</b>. Java uses the keyword <a href="javascript:popup('keywords.html#extends')">extends</a> 
+        followed by the parent class name, to identify an inheritance relationship. 
+        This is what the <a href="javascript:popup('keywords.html#extends')">extends</a> 
+        keyword in the above example is doing, it is saying that objects of type 
+        Circle <b>inherit from</b> the Shape class. Actually the extends keyword 
+        is optional, without it, Java automatically assumes that your class inherits 
+        directly from the <span class="code">java.lang.Object</span> class. We'll 
+        talk more about inheritance on the next page. </p>
+      <p><b>You can list any programming interfaces that your class is built to 
+        service</b>, in the class statement after the <a href="javascript:popup('keywords.html#implements')">implements</a> 
+        keyword. <br>
+        We'll talk about programming <a href="javascript:popup('keywords.html#interface')">interfaces</a> 
+        on a following page, but for now you need to know that Java classes are 
+        allowed to implement multiple interfaces, and by doing so, the class is 
+        declaring that it provides runtime behavior for all the methods defined 
+        in those interfaces. <br>
+        <span class="caption">For example my Circle class implements the Cloneable 
+        interface like this :</span> </p>
+      <pre class="code">package my.shapes;
+public class <font color="#FF0000">Circle</font> <font color="#FF0033">extends Shape</font> <font color="#FF0000">implements Cloneable</font> {<br>  <font color="#999999">//properties and methods of a Circle go here</font> <br>  float radius; <br>  <font color="#FF0000">public Object clone() {<br>  }</font> <br>}</pre> 
+      <p> In the example above, by implementing the Cloneable interface all objects 
+        of the <span class="code">Circle</span> class are stating that they implement 
+        the <span class="code">clone()</span> method, which returns another Object 
+        of some kind which is an exact copy of themselves.</p>
+      <p><b>A class statement contains the member variables</b> (numbers, text, 
+        arrays and references to other objects) which embody the runtime properties 
+        of that particular object. You also code <b>member methods</b>, which 
+        embody the behaviors of that runtime object, inside the class statement. 
+      </p>
+      <p><b>The Java compiler expects your source code in a particular order:</b></p>
+      <ul>
+        <li>A package statement (if needed) must precede all others in the source 
+          file. </li>
+        <li>Next you can list any <a href="javascript:popup('keywords.html#import')">import</a> 
+          statements your class might require. There's more details about packages 
+          and the import statement on the following pages.</li>
+        <li>Comments can appear anywhere within your class definition, and are 
+          ignored by the compiler. </li>
+        <li>The class statement, is followed by curly braces which surround the 
+          member variables and methods that belong to the class.</li>
+      </ul></td>
+  </tr>
+</table>
+<FONT class="text"> 
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: December 2001. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="basics_inheritance.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">reusing 
+      classes<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+</FONT> 
+</BODY>
+</HTML>

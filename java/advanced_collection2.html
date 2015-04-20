@@ -1,0 +1,155 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="7/20/2002">
+<meta name="keywords" content="Java,IO,Reader,Writer,InputStream,OutputStream,Collections,Threads,Networking">
+<meta name="description" content="The Java class libraries and advanced programming topics.">
+<title>Advanced Java</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/advanced-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader">Lists, Sets 
+              and Maps.</h4></td>
+          <td align="right" valign="top" ><a href="advanced_streams.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">InputOutput<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"><p>The <span class="stdCode">abstract</span> 
+              classes (shown in italics below), implement only the 'utility' methods 
+              of each type of collection, leaving the implementation of the fundamental 
+              methods to the concrete classes (in black).</p>
+            <p>When subclassing one of the abstract collections, the java api 
+              recommends you provide a 'no args' (or empty) constructor, and another 
+              that accepts the generic <span class="stdCode">Collection</span>. 
+              Remember that interfaces cannot be used to 'layout' constructor 
+              methods.</p>
+            <p><span class="stdCaption">figure: the java.util classes.</span><br>
+              <img src="images/java-util-list-set.gif" width="577"
+        height="431"></p></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr> 
+    <td><table border="0" width="100%">
+        <tr> 
+          <td valign="top" width="50%"><font class="text">A <strong><span class="stdCode">LinkedList</span></strong> 
+            is implemented with a doubly linked list of Objects. The methods of 
+            LinkedList are not synchronized, if you want thread safe behavior, 
+            provide your own thread monitor, or see the method : java.util.Collections.synchronizedList( 
+            ). <br>
+            You can use a LinkedList as a 'stack' or 'queue', for which it provides 
+            the following special methods :</font></td>
+          <td valign="top"><table border="0" class="stdTableAsGroupBox">
+              <tr align="left" valign="top"> 
+                <td width="55%" bgcolor="#FFFF80" class="stdCode"> 
+                  <p><font class="text">Object 
+                    getFirst()<br>
+                    Object getLast()</font></p></td>
+                <td width="45%"><font class="text">returns the Object at the front 
+                  or end of the queue.</font></td>
+              </tr>
+              <tr align="left" valign="top"> 
+                <td width="55%" bgcolor="#FFFF80" class="stdCode"> 
+                  <p><font class="text">Object 
+                    removeFirst()<br>
+                    Object removeLast()</font></p></td>
+                <td width="45%"><font class="text">remove the Object at the front 
+                  or end of the queue.</font></td>
+              </tr>
+            </table></td>
+        </tr>
+        <tr> 
+          <td valign="top" width="50%"><font class="text">An <strong><span class="stdCode">ArrayList</span></strong> 
+            is a fast resizable array, much like <span class="stdCode">Vector</span>, 
+            but without the overhead of thread synchronization code. </font></td>
+          <td valign="top"><table border="0" class="stdTableAsGroupBox">
+              <tr> 
+                <td width="55%" align="left" valign="top" bgcolor="#FFFF80" class="stdCode"> 
+                  <p><font class="text">void&nbsp;ensureCapacity(int&nbsp;i)</font></p></td>
+                <td width="45%"><font class="text">resizes the array to a capacity 
+                  i.</font></td>
+              </tr>
+              <tr> 
+                <td width="55%" align="left" valign="top" bgcolor="#FFFF80" class="stdCode"> 
+                  <p><font class="text">void trimToSize()</font></p></td>
+                <td width="45%"><font class="text">resizes the array to match 
+                  the current size.</font></td>
+              </tr>
+            </table></td>
+        </tr>
+        <tr> 
+          <td valign="top" width="50%"><font class="text">A <span class="stdCode"><strong>Vector</strong></span>, 
+            is a growable array of Objects, that is synchronized for use with 
+            multiple threads of execution.</font></td>
+          <td valign="top">&nbsp;</td>
+        </tr>
+        <tr> 
+          <td valign="top" width="50%"><font class="text">A <span class="stdCode"><strong>HashSet</strong></span>, 
+            is based upon a hash table. It is not sorted, and allows null values. 
+            It is not synchronized, see the method java.util.Collections.synchronizedSet(&nbsp;) 
+            for a thread safe 'wrapper' class. </font></td>
+          <td valign="top"><font class="text">A <span class="stdCode"><strong>TreeSet</strong></span>, 
+            is based upon an internal <span class="stdCode">TreeMap</span>, it 
+            is not synchronized.</font></td>
+        </tr>
+      </table>
+      <table border="0" width="100%">
+        <tr> 
+          <td valign="top"><span class="stdCaption"><font class="text">figure: 
+            the Map classes.</font></span><font class="text"><br>
+            <img src="images/java-util-hashmap-treemap.gif"
+        width="379" height="348"></font></td>
+          <td valign="top"><font class="text">&nbsp;<br>
+            Construct a <span class="stdCode"><strong>HashMap</strong></span>, 
+            with the method call <br>
+            <span class="stdCode">new HashMap(int initCapacity, int LoadFactor);</span><br>
+            A <span class="stdCode">HashMap</span> is backed by a hash table, 
+            and is not sorted. It permits null values, and is not synchronized 
+            for multi-threaded access. See the method <br>
+            <span class="stdCode">java.util.Collections.synchronizedMap(&nbsp;) 
+            </span>for a thread safe 'wrapper' class. </font> 
+            <p><font class="text">Elements in the <strong><span class="stdCode">WeakHashMap</span></strong> 
+              that are not explicitly referenced anymore, are eligible to be finalized() 
+              and garbage collected.</font></p>
+            <p><font class="text">A <span class="stdCode"><strong>TreeMap</strong></span> 
+              is based upon a red-black B-Tree. The keys are sorted in ascending 
+              order. It is not synchronized for threads. See the method <br>
+              java.util.Collections.synchronizedMap(&nbsp;) for a thread safe 
+              'wrapper' class. </font></p></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: July 2002. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="advanced_streams.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">InputOutput<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+</FONT> 
+</BODY>
+</HTML>

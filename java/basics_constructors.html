@@ -1,0 +1,248 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>The constructor</title>
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="29/1/2002">
+<meta name="keywords" content="Objects, constructor, classpath, Java, Programming, Guide, Beginner, Basics, Picture, Example, Applet, Servlet, JSP, Links">
+<meta name="description" content="Packaging your classes and the classpath. Interactive Java Programming Guide, play with the Applets, try the example code.">
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="1" leftmargin="1"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script --> 
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading --> 
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC">
+      <!-- Basics Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/basics-toc.js">
+	</SCRIPT></td>
+    <td align="left" valign="top"> 
+      <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> 
+            <h4 class="stdPageHeader"> The constructor method.</h4>
+          </td>
+          <td align="right" valign="top" ><a href="basics_polymorphism.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">handling 
+            objects<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"> 
+            <p><b>We've seen that an object can contain a reference to another 
+              object. </b>You can assign a variable (of the correct class type) 
+              to a new instance of a class (an object in memory). Java uses the 
+              keyword <a href="javascript:popup('keywords.html#new')">new</a> 
+              to construct an object from a class like this : </p>
+            <p><font color="#FF0000" class="code">java.awt.Point anchor = new 
+              java.awt.Point(10,20); </font></p>
+            <p><b>The phrase ‘a Shape <font color="#FF0000">has an</font> anchor 
+              Point’,</b> might be part of our design criteria. The words 'has 
+              a' or 'have' denote an association of some kind between objects 
+              at design time. What this really means is that, all objects of the 
+              type Shape will contain a reference to another object of the Point 
+              type, that serves as the anchor coordinates for that particular 
+              Shape. <span class="caption"> <br>
+              So we might define our Shape class like this : </span><br>
+            </p>
+            <pre class="code">package my.shapes;<br>abstract class Shape { 
+   <font color="#999999">//A Shape has an anchor Point </font>
+   <font color="#FF0000">java.awt.Point anchor;</font> 
+   <font color="#999999">//Construct the Shape </font>
+   public Shape(int x, int y, int width, int height){<br>     <font color="#FF0000">anchor = new java.awt.Point(x,y);</font>
+   } 
+   <font color="#999999">//All Shapes have some sort of draw method</font>
+   public abstract void draw(Graphics g);
+} </pre>
+            <p>This might look confusing, so for now concentrate on the Java statements 
+              in <font color="#FF0000">red</font>. What we have is a class called 
+              <span class="code">my.shapes.Shape</span> that contains a variable 
+              called <span class="code"><font color="#FF0000">anchor</font></span>, 
+              that is of the<span class="code"> <font color="#FF0000">java.awt.Point</font></span> 
+              class. When we build a new Shape object, we use the top left coordinates 
+              (x and y) to build a new Point object and then assign that object 
+              to the anchor variable.</p>
+            <p><b>Constructors are special member methods that are automatically 
+              invoked to build a new object at runtime.</b> A constructor <a href="javascript:popup('keywords.html#method')">method</a> 
+              is referenced whenever you create a <a href="javascript:popup('keywords.html#new')">new</a> 
+              runtime object based upon a class. </p>
+            <p> <font color="#999999">//Create a Point object at x=10, y=20</font><br>
+              <font color="#FF0000">Point p1 = new Point(10, 20);</font><br>
+              <font color="#999999">//Create a different Point object at x=50, 
+              y=60</font><br>
+              Point p2 = new Point(50, 60); </p>
+            <p>At runtime, Java loads and initializes the <span class="code">java.awt.Point</span> 
+              class. Then for each new Point object, Java references the constructor 
+              method in the Point class. <br>
+              <span class="caption">This is the constructor in the Point class 
+              that is referenced :</span> </p>
+            <pre><span class="code">package java.awt;<br>public class Point {</span><font color="#999999"><span class="code">                    
+  //Construct a Point object at coordinates x,y</span></font><span class="code">
+  <font color="#FF0000">public Point (int x, int y)</font> { 
+  }
+} </span></pre>
+            <p>After the first Point object is built in memory, the variable called 
+              <span class="code">p1</span> in the above example references that 
+              particular object. The variable <span class="code">p2</span> will 
+              reference a completely different Point object, representing a different 
+              x,y location. We can get to the accessible member variables and 
+              methods of the first Point object through <span class="code">p1</span>, 
+              and of the second Point object through <span class="code">p2</span>. 
+              They are '<i>handles</i>' we can use to work with the Point objects.</p>
+            <p>Commonly you will design your own constructor methods to take in 
+              parameters that are needed to initialize the variables (the data) 
+              inside a new object. In the above example the Point constructor 
+              takes in two parameters which are the x and y coordinates of a new 
+              Point. Note that the <span class="code">int</span> keyword here, 
+              is used to reserve space for an integer variable (which is one of 
+              Javas built in <a href="javascript:popup('keywords.html#datatypes')">datatypes</a>). 
+            </p>
+            <p>Notice that the Shape class, shown above also has a constructor 
+              method, that passes the values for x and y on to another constructor, 
+              when initializing a new anchor point object. </p>
+            </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table width="100%" name="contentTable" border="0" cellspacing="2" cellpadding="2" bgcolor="#FFFFFF">
+  <tr valign="top" align="left"> 
+    <td> 
+      <p> <b>There are some rules to remember about defining constructor methods 
+        in a class. </b></p>
+      <ul>
+        <li>A constructor is <b>a method with the same name as the class name</b>.</li>
+        <li>A constructor method, has a set of arguments in parentheses like any 
+          normal method,<b> <font color="#FF0000">but does not specify a return 
+          value</font>.</b> This is because the newly built object must be returned 
+          from a constructor method.<br>
+          <b>Gotcha!</b> If you specify the keyword <a href="javascript:popup('keywords.html#void')">void</a> 
+          or a return type on a constructor method, Java will treat it like a 
+          'normal' method definition, and your class will then lack a constructor 
+          method, and may fail at runtime with an InstantiationException.</li>
+        <li><b>If you do not specify any constructor method for your class, the 
+          java compiler automatically creates a default constructor method for 
+          your class, that takes no arguments.</b> All classes must have a constructor 
+          method. This default constructor just references the constructor of 
+          the parent or <a href="javascript:popup('keywords.html#super')">super</a> 
+          class (see the keyword <span class="code">super()</span> below). </li>
+        <li>If you do define a constructor method, the default constructor with 
+          an empty argument list, is not automatically created for your class. 
+          Therefore if you want the default constructor method, you will have 
+          to code it yourself.</li>
+        <li>Because a constructor is class specific, <b>your class does not ‘inherit’ 
+          the constructor methods of its parent class</b>. Obviously you do not 
+          want to code all the constructor method logic from the parent class, 
+          into a sub class. So as noted below, a common design is to invoke a 
+          constructor in the parent class (using the super( ) keyword) as the 
+          first thing, and then follow that with logic that is specific to initializing 
+          the sub class.</li>
+      </ul>
+      
+      
+      <p><b>It is common for constructors to reference other constructor methods 
+        in the same class or in the super class. </b> </p>
+      <ul>
+        <li>Any direct reference from one constructor method to another, <b>must 
+          be the first statement in the method block</b>, because you must build 
+          the object before you can do anything else with it.</li>
+        <li>Use the keywords <span class="code"><b>this( )</b></span> or <span class="code"><b>super( 
+          )</b></span> to invoke another constructor in the current or parent 
+          class respectively. <span class="caption"> <br>
+          Here is an example taken from the java.awt.Point class :</span> 
+          <blockquote> 
+            <pre><span class="code">package java.awt; 
+public class Point {</span><font color="#999999"><span class="code">                    
+ //Default constructor</span></font><span class="code"><font color="#FF0000"> 
+ public Point ( ) {<br>   </font><font color="#999999"><span class="code">//Pass it on to the other constructor in this object</span></font><font color="#FF0000">
+   this(0,0);
+ }</font></span><font color="#999999"><span class="code"> 
+ //This constructor does the real work!</span></font><span class="code">                    <font color="#FF0000"> 
+ public Point (int x, int y) {
+   setX(x);
+   setY(y);
+ } </font>
+}</span></pre>
+          </blockquote>
+        </li>
+      </ul>
+    </td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> 
+      <p class="caption">Constructing a new object at runtime involves a lot of 
+        work, most of it hidden and automatic.</p>
+      <p><font class="text"><img src="images/object_construction.gif" width="562" height="400"></font> 
+      </p>
+    </td>
+    <td align="left" valign="top" > 
+      <p> Java <b>ClassLoaders</b> are responsible for finding the class files, 
+        and constructing an object in memory. </p>
+      <p>&nbsp;</p>
+    </td>
+  </tr>
+  <tr> 
+    <td align="left" valign="top" colspan="2"> 
+      <ol>
+        <li>A ClassLoader, searches the libraries built-in to the local JRE first. 
+          Then it searches the Java extension libraries (n the JRE /ext folder), 
+          and finally it searches all the working folders and archives specified 
+          on the the local CLASSPATH. If you are running an Applet, the CODEBASE 
+          on the web server is searched last of all. The object's class file and 
+          all of the classes that it inherits from are loaded (the blue arrows). 
+          A single object of type <span class="code">java.lang.Class</span> is 
+          built to describe the static variables and methods of each type of class 
+          file that is loaded. If a Class object already exists for a class file 
+          the ClassLoader reuses it.</li>
+        <li> Class initialization occurs only once at class load time (static 
+          variables and static initializer { } blocks). We'll talk more about 
+          the keyword <a href="javascript:popup('keywords.html#static')">static</a> 
+          and what it means, in later pages.</li>
+        <li> Then the JVM bytecode verifier and SecurityManager checking are run.</li>
+        <li>Space for new objects is allocated from the 'heap' (Javas general 
+          purpose memory area). </li>
+        <li>Member variables are initialized, numerics to zero, and object reference 
+          variables to null. Local method variables are not initialized for you, 
+          the compiler forces you to unconditionally assign them a value before 
+          their first use.</li>
+        <li>The appropriate constructor method for the object is called. The construction 
+          process ripples up the inheritance chain all the way to <span class="code">java.lang.Object</span> 
+          ! Objects are built for every class, in the family tree, and this is 
+          how an object inherits the methods and variables of the classes it extends. 
+          Interestingly if you do not explicitly call a constructor method in 
+          the super class, the Java compiler automatically inserts a call to <span class="code">super( 
+          );</span> as the first statement in your constructor. This is to ensure 
+          that construction ripples up the inheritance hierarchy. The constructor 
+          methods run and return (the red arrows), initializing all the instances 
+          of the super classes and then finally the constructor method in your 
+          object runs. </li>
+        <li>Lastly a 'reference' to the newly constructed object in memory is 
+          returned from the constructor method (the green arrow). <br>
+          <b>Note</b>: You do not specify a return type for constructor methods, 
+          it is always a 'reference' to the new object in memory.</li>
+      </ol>
+    </td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: December 2001. &copy;1999 Guy&nbsp;Bellingham-Smith </td>
+    <td align="right" valign="top" ><a href="basics_polymorphism.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">handling 
+      objects<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+</FONT> 
+</BODY>
+</HTML>

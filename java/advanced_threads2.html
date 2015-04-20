@@ -1,0 +1,113 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="7/20/2002">
+<meta name="keywords" content="Java,IO,Reader,Writer,InputStream,OutputStream,Collections,Threads,Networking">
+<meta name="description" content="The Java class libraries and advanced programming topics.">
+<title>Advanced Java</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/advanced-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader">Lifecycle of 
+              a thread</h4></td>
+          <td align="right" valign="top" ><a href="advanced_threads3.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">Thread 
+            methods <img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"><p><strong>During its lifetime</strong>, 
+              a thread spends some time executing and some time in any of several 
+              non-executing states. The scheduling of threads is an operating 
+              system dependent function, Java does not guarantee a particular 
+              behavior. Java, does provide for some control of thread execution 
+              : the setting of thread priorities, and synchronization and communication 
+              between threads.</p>
+            <p>A thread is 'alive' between the time it is started and when it 
+              stops. <br>
+              Once started, a thread becomes 'ready' to run.<br>
+              The operating system scheduler, decides which thread gets control 
+              of the CPU.<br>
+              A thread automatically stops once its' run( ) method exits.<br>
+              A thread can be forced to stop, by calling the stop( ) method on 
+              the thread object.</p>
+            <p><span class="stdCaption">diagram: of the various 'states' a thread 
+              of execution may enter during its lifetime.</span><br>
+              <br>
+              <img src="images/thread-lifecycle.gif"
+        alt="Lifecycle of a Thread!" width="597" height="254"
+        naturalsizeflag="3"></p></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr> 
+    <td><p>Many methods that perform some sort of input or output, have to wait 
+        for something to happen (locating of a file or opening of a network connection) 
+        in the outside world before they can proceed. A thread that has to wait 
+        on the slow moving outside world, must reliquish control of the CPU, so 
+        that useful work can continue and the computer remains responsive.<br>
+        All this is handled by the runtime environment, and threads waiting for 
+        resources are said to be 'blocked'.</p>
+      <p>'Monitor states' represents threads that voluntarily issue a <span class="stdCode">wait( 
+        ) </span>call upon a Java object of some kind. The methods <span class="stdCode">wait( 
+        )</span> and <span class="stdCode">notify( )</span> are implemented in 
+        the <span class="stdCode">java.lang.Object</span> class and cannot be 
+        overidden by your classes. Note: The methods you can use to influence 
+        a threads' execution are examined on the next page.</p>
+      <p><strong>Modern operating systems use 2 general models for multi-tasking.</strong></p>
+      <table border="0" class="stdTableAsGroupBox">
+        <tr> 
+          <td valign="top" class="stdCode"><font class="text">Preemptive&nbsp;- 
+            </font></td>
+          <td valign="top"><font class="text">The system scheduler picks the highest 
+            priority thread , that is ready to run, from amongst competing Threads. 
+            If a higher priority thread of work becomes ready to run, it preempts 
+            a lower priority one and takes over the CPU.<br>
+            This scheme works well for cooperating threads, that are working on 
+            related tasks. However a high priority thread can monopolize the CPU.</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" class="stdCode"><font class="text">Time&nbsp;Sliced&nbsp;- 
+            </font></td>
+          <td valign="top"><font class="text">This model builds upon the notion 
+            of a competing pool of threads, with differing priorities, but the 
+            scheduler occasionally interrupts the executing thread, giving other 
+            ready threads the chance to execute at regular intervals.<br>
+            This scheme works well for multiple independent threads of work.</font></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: July 2002. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="advanced_threads3.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">Thread 
+      methods <img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+</FONT> 
+</BODY>
+</HTML>

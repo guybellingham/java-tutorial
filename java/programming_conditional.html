@@ -1,0 +1,121 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="29/1/2002">
+<meta name="keywords" content="Introduction, Java, conditional, if, else, switch, case, break, continue, label, Programming, Guide, Beginner, Basics, Picture, Example,  Links">
+<meta name="description" content="Conditional execution and the case statement. Interactive Java Programming Guide, play with the Applets, try the example code.">
+<title>Java conditional IF, ELSE and SWITCH</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="1" leftmargin="1"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script --> 
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading --> 
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!-- Programming Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/programming-toc.js">
+	</SCRIPT></td>
+    <td align="left" valign="top">
+      <table border="0" cellpadding="2" width="100%" cellspacing="2">
+        <tr> 
+          <td align="left" valign="top"> 
+            <h4 class="stdPageHeader"> Conditional statements.</h4>
+          </td>
+          <td align="right" valign="top" > <a href="programming_looping.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">looping<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr bgcolor="#FFFFFF"> 
+          <td align="left" valign="top" colspan="2"><a name="if"></a><b>The <span class="stdCode">if</span> 
+            statement </b>conditionally executes blocks of code (between curly 
+            braces). The if keyword must be followed by an expression in parentheses 
+            that evaluates to a boolean (<span class="stdCode">true</span> / <span class="stdCode">false</span>) 
+            value. Note that unlike some other languages, the Java if statement 
+            does not accept a numeric value of 0 (to mean false) or non-zero (to 
+            mean true). 
+            <pre class="stdCode">if (x &gt; y) { 
+  <font color="#999999">//statement block only executed when x &gt; y is true</font> 
+} 
+if ((x &gt; y) &amp;&amp; (x &gt; z)) { 
+  <font color="#999999">//statement block executed when x &gt; y AND x &gt; z is true</font> 
+} else {
+  <font color="#999999">//statement block executed if condition is false</font> 
+} 
+<font color="#999999">//nested if statement </font>
+if (day.equals(&quot;Saturday&quot;)) {
+  <font color="#999999">//statement block executed when day String contains &quot;Saturday&quot;</font> 
+} else if (day.equals(&quot;Sunday&quot;)) {
+  <font color="#999999">//statement block executed when day String contains &quot;Sunday&quot;</font> 
+} else {
+  <font color="#999999">//statement block executed when day String is something else</font> 
+} </pre>
+            <p><b><a name="switch"></a>The <span class="stdCode">switch</span> 
+              statement </b>allows conditional execution, based upon a number 
+              of <i>cases</i>. If a case is true, then its corresponding statement/s 
+              are executed. Note that the <a href="javascript:popup('keywords.html#switch')">switch</a> 
+              keyword is followed by a data type of byte, short, char or int in 
+              parentheses (you cannot use it to test object variables or decimals). 
+              Curly braces enclose any number of case statements, which execute 
+              Java statements depending upon the value of the argument given to 
+              the switch. The comparand in a case statement, must be a constant 
+              or literal value, no expressions are allowed.<br>
+            </p>
+            <pre class="stdCode">int dayOfWeek = myCalendar.get(Calendar.DAY_OF_WEEK);
+switch (dayOfWeek) {
+  case 1:
+   System.out.println(“Monday - football”);
+   break;
+  case 2:
+   System.out.println(“Tuesday - garbage day”);
+   break;
+  case 3:
+   System.out.println(“Wednesday - pickup pizza”);
+   break;
+  case 4:
+   System.out.println(“Thursday”);
+   break;
+  case 5:
+   System.out.println(“Thank God it's Friday”);
+   break;
+  default:
+   System.out.println(“Its the weekend!”);
+   break; 
+}
+</pre>
+            Remember to include a <a href="javascript:popup('keywords.html#break')" class="stdCode">break</a>, 
+            <a href="javascript:popup('keywords.html#throw')" class="stdCode">throw</a> 
+            or <a href="javascript:popup('keywords.html#return')" class="stdCode">return</a> 
+            statement after the statement/s that belong to each case, otherwise 
+            the following case statements are also evaluated. A 'catch all' <span class="stdCode"><a href="javascript:popup('keywords.html#default')">default</a></span> 
+            case can be specified anywhere within the switch statement. </td>
+        </tr>
+        <tr bgcolor="#FFFFFF">
+          <td align="left" valign="top" colspan="2">The last type of conditional 
+            statement is the <a href="programming_arithmetic.html#ternary">ternary 
+            (three way) operator.</a></td>
+        </tr>
+      </table>
+   </td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+      <tr> 
+        <td align="left" valign="top"> Last Updated: January 2002. &copy;1999 Guy&nbsp;Bellingham-Smith</td>
+        <td align="right" valign="top" > <a href="programming_looping.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">looping<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+        </td>
+      </tr>
+</table>
+</FONT> 
+</BODY>
+</HTML>

@@ -1,0 +1,244 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="7/20/2002">
+<meta name="keywords" content="Java,IO,Reader,Writer,InputStream,OutputStream,Collections,Threads,Networking">
+<meta name="description" content="The Java class libraries and advanced programming topics.">
+<title>Advanced Java</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/advanced-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader">The java.io 
+              package </h4></td>
+          <td align="right" valign="top" ><a href="advanced_filters.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">Filters<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"><p><a name="java.io"></a><strong>The 
+              <span class="stdCode">java.io</span> package</strong> contains classes 
+              related to the reading, writing, and filtering of &#145;streams&#146; 
+              of data. A &#145;stream&#146; is a sequence of bytes of data, travelling 
+              from some source, to a destination. <br>
+              The package also contains some non-stream classes like, <span class="stdCode">File, 
+              RandomAccessFile</span> and <span class="stdCode">StreamTokenizer</span>.</p>
+            <p><span class="stdCaption">figure: InputStream and OutputStream are 
+              the abstract super classes for handling &#145;streams&#146; of bytes<br>
+              </span><img src="images/java-io.gif" width="505" height="491"
+        naturalsizeflag="3"></p>
+            </td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr> 
+    <td><p>At the top of the heirarchy of input / output classes, are 2 abstract 
+        classes <span class="stdCode">InputStream</span> and <span class="stdCode">OutputStream</span>, 
+        that prescribe fundamental io methods like <span class="stdCode">read( 
+        ), write( )</span> and <span class="stdCode">close( )</span>. There is 
+        no open() method because creating the stream object automatically opens 
+        the stream. <br>
+        The <span class="stdCode">Filter</span> streams work with other streams, 
+        and require an instance of an InputStream or OutputStream (as appropriate) 
+        in their constructor methods. By chaining a number of filter streams to 
+        an InputStream or OutputStream that is associated with an underlying file 
+        or data resource, you can add valuable processing to a stream of bytes.</p>
+      <p><a name="inputstream"></a><span class="stdCode"><strong>InputStream</strong></span> 
+        defines the following abstract methods.<br>
+        Many of these methods can run into problems when getting or putting data 
+        and <span class="stdCode">throw</span> <span class="stdCode">java.io.IOException</span>.</p>
+      <table width="100%" border="0" cellpadding="2" class="stdTableAsGroupBox">
+        <tr class="stdTableColumnHeader"> 
+          <td valign="top"><font class="text">method</font></td>
+          <td valign="top"><font class="text">description</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">int 
+            read ( ) throws IOException&nbsp;;</font></td>
+          <td valign="top"><font class="text">Reads one byte at a time. The byte 
+            is 'promoted' to an int when returned.</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">int 
+            read (byte dest[ ] ) throws IOException ;</font></td>
+          <td valign="top"><font class="text">Read bytes from the data source, 
+            into the dest[ ] byte array object. Returns when the array is full 
+            or when no more data is available. The int returned contains the number 
+            of bytes read.</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">int 
+            read (byte dest[ ], int offset, int&nbsp;length) throws IOException 
+            ;</font></td>
+          <td valign="top"><font class="text">&nbsp;Attempts to reads length bytes 
+            from the data source, into the dest[ ] byte array, starting at offset. 
+            Returns &#150;1 when the source has no more data.</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">void 
+            close ( ) throws IOException ;</font></td>
+          <td valign="top"><font class="text">&nbsp;Releases system resources 
+            tied to the data source.</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">int 
+            available( ) throws IOException ;</font></td>
+          <td valign="top"><font class="text">&nbsp;Returns the number of bytes 
+            that are ready to be read in without blocking. Not supported under 
+            all operating systems !</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">long 
+            skip (long nbytes) throws IOException ;</font></td>
+          <td valign="top"><font class="text">&nbsp;Attempts to skip over and 
+            discard the next nbytes from the data source. The long returned is 
+            the actual number of bytes skipped.</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">boolean 
+            markSupported ( ) ;</font></td>
+          <td valign="top"><font class="text">&nbsp;Returns true if the input 
+            stream supports the mark &amp; reset methods, discussed below.</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">void 
+            mark (int readLimit) ;</font></td>
+          <td valign="top"><font class="text">&nbsp;Marks the input stream at 
+            this point, so that a future reset ( ) call can return, and start 
+            re-reading bytes.If more than readLimit bytes are read before the 
+            next reset ( ) call, the mark is lost.</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">void 
+            reset ( ) throws IOException ;</font></td>
+          <td valign="top"><font class="text">&nbsp;Rewinds the input stream to 
+            the previously marked position, so that subsequent reads repeat the 
+            bytes read since the last mark( ) call.</font></td>
+        </tr>
+      </table>
+      <p><a name="outputstream"></a><strong><span class="stdCode">OutputStream</span></strong> 
+        defines the following abstract methods. </p>
+      <table width="100%" border="0" cellpadding="2" class="stdTableAsGroupBox">
+        <tr class="stdTableColumnHeader"> 
+          <td valign="top"><font class="text">method</font></td>
+          <td valign="top"><font class="text">description</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">void 
+            write (int data) throws IOException ;</font></td>
+          <td valign="top"><font class="text">Writes the low-order 8-bits of the 
+            argument, ignoring the high-order 24-bits.</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">void 
+            write (byte data[ ]) throws IOException ;</font></td>
+          <td valign="top"><font class="text">Writes an array of bytes to the 
+            output destination.<br>
+            Note: A String can be converted to a byte array with the getBytes( 
+            ) method. The high-order byte of each Unicode character will be lost.</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">void 
+            write (byte data[ ], int offset, int length) throws IOException ;</font></td>
+          <td valign="top"><font class="text">Writes a subset of the byte array, 
+            beginning at offset and for length bytes.</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">void 
+            flush( ) throws IOException ;</font></td>
+          <td valign="top"><font class="text">Forces any bytes that may have been 
+            buffered, out to the stream. Do this before closing a stream.</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text">void 
+            close( ) throws IOException ;</font></td>
+          <td valign="top"><font class="text">Releases system resources tied to 
+            the data consumer.</font></td>
+        </tr>
+      </table>
+      <p><a name="outputstream"></a>Several classes inherit from these two abstract 
+        classes, and actually implement these io methods : </p>
+      <table width="100%" border="0" cellpadding="2" class="stdTableAsGroupBox">
+        <tr class="stdTableColumnHeader"> 
+          <td valign="top"><font class="text">Class constructor </font></td>
+          <td valign="top"><font class="text">description</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text"><a
+        name="fileinputstream"></a>FileInputStream (String path) throws FileNotFoundException;</font></td>
+          <td valign="top"><font class="text">Attempts to open the file for input, 
+            and throws FileNotFoundException. A File object may also be passed 
+            as an argument to the constructor method.</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text"><a
+        name="fileoutputstream"></a>FileOutputStream (String path) throws IOException;<br>
+            FileOutputStream (String path, boolean append) throws IOException;</font></td>
+          <td valign="top"><font class="text">Tries to open a stream to the file 
+            in the path, a File object can be passed as an argument. If append 
+            is true, bytes will be added to the end of any existing data in the 
+            file.</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text"><a
+        name="bytearrayinputstream"></a>ByteArrayInputStream ( byte buf[ ] );<br>
+            ByteArrayInputStream ( byte buf[ ] , int offset, int length );</font></td>
+          <td valign="top"><font class="text">Takes its input from an array or 
+            a part of an array of bytes. The OutputStream version, writes to an 
+            array of bytes which automatically grows to fit the data. An array 
+            of bytes can be converted to a String, using the buf [ ].toString( 
+            ) method.</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text"><a
+        name="stringbufferinputstream"></a>StringBufferInputStream(String s);</font></td>
+          <td valign="top"><font class="text">Reads bytes from a String and not 
+            a StringBuffer object. Strings cannot be changed, therefore the input 
+            is fixed.</font></td>
+        </tr>
+        <tr> 
+          <td valign="top" bgcolor="#FFFF99" class="stdCode"><font class="text"><a
+        name="pipedinputstream"></a>PipedInputStream( );<br>
+            PipedOutputStream( );<br>
+            PipedInputStream(PipedOutputStream o);<br>
+            PipedOutputStream(PipedInputStream i);</font></td>
+          <td valign="top"><font class="text">The first 2 constructors just creates 
+            pipes, which are useless until they are connected (using the connect( 
+            ) method). These classes are always used in pairs: piped input is 
+            read from a corresponding piped output stream, and piped output must 
+            connect to a corresponding piped input stream.</font></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: July 2002. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="advanced_filters.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">Filters<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+</FONT> 
+</BODY>
+</HTML>

@@ -1,0 +1,116 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="7/20/2002">
+<meta name="keywords" content="Java,AWT,Abstract Windowing Toolkit">
+<meta name="description" content="Introducing the AWT.">
+<title>The Title</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/awt-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader">javax.swing.JButton</h4></td>
+          <td align="right" valign="top" ><a href="swing_jlist.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">JList<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"><p>Swing <span class="stdCode">JButtons</span> 
+              generate <span class="stdCode">ActionEvents</span> when clicked. 
+            </p>
+            <p>Because they are descended from <span class="stdCode">JComponent</span>, 
+              they share the abilities of all Swing components to have borders, 
+              keyboard accelerators, pluggable look-and-feel and accessibility 
+              features. Much of the functionality common to all buttons is defined 
+              in the <span class="stdCode">javax.swing.AbstractButton</span> class, 
+              which has methods to get and set the text and icons of the button, 
+              and control alignments.</p>
+            <p><span class="stdCaption"><a name="swing components"></a>&nbsp;figure 
+              - JButton has a model and a user-interface.</span><br>
+              <img src="images/swing-buttons.gif" width="494"
+        height="475"></p>
+            <p>&nbsp;</p></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr> 
+    <td><p>Notice that in Swing, a JMenuItem is a type of button. Also the JCheckBox 
+        and JRadioButton inherit from the <span class="stdCode">JToggleButton</span>!</p>
+      <p>You can group buttons by adding them to an instance of the <span class="stdCode">ButtonGroup</span> 
+        class.</p>
+      <p class="stdCode">ButtonGroup bg = new ButtonGroup(&nbsp;);<br>
+        bg.add(radiobutton1);<br>
+        bg.add(radiobutton2);</p>
+      <p>It's best to add buttons to a container (like a JPanel) that has a <span class="stdCode">GridLayout</span> 
+        or the new <span class="stdCode">BoxLayout</span> so that they have similar 
+        sizes.</p>
+      <table border="0" cellpadding="2" width="100%">
+        <tr align="left"> 
+          <td valign="top"><font class="text"> 
+            <!--"CONVERTED_APPLET"-->
+            <!-- CONVERTER VERSION 1.3 -->
+            <br>
+            <object
+        classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
+        codebase="http://java.sun.com/products/plugin/1.3/jinstall-13-win32.cab#Version=1,3,0,0"
+        align="absbottom" border="0" width="300" height="120"
+        name="SwingButtonApplet">
+              <param name="CODE"
+        value="JButton.Applet1.class">
+              <param name="CODEBASE"
+        value="classes">
+              <param name="ARCHIVE"
+        value="JButton/Applet1.jar">
+              <param name="NAME"
+        value="JButtonApplet">
+              <param name="type"
+        value="application/x-java-applet;version=1.3">
+              <param
+        name="scriptable" value="false">
+              <COMMENT> 
+              <embed align="absbottom" border="0" width="300" height="120" type="application/x-java-applet;version=1.3" code="JButton.Applet1.class" codebase="classes" archive="JButton/Applet1.jar" name="JButtonApplet" scriptable="false" pluginspage="http://java.sun.com/products/plugin/1.3/plugin-install.html"></embed></object>
+            </font> <object
+        classid="clsid:8AD9C840-044E-11D1-B3E9-00805F499D93"
+        codebase="http://java.sun.com/products/plugin/1.3/jinstall-13-win32.cab#Version=1,3,0,0"
+        align="absbottom" border="0" width="300" height="120"
+        name="SwingButtonApplet">
+            </object></td>
+          <td valign="top"><p><font class="text">The <span class="stdCode">JApplet</span> 
+              at left, contains some <span class="stdCode">JButtons</span> that 
+              have some custom JButtonUIs.</font></p>
+            <p>You can dynamically change the look and feel of Swing components.</p></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: July 2002. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="swing_jlist.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">JList<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+</FONT> 
+</BODY>
+</HTML>

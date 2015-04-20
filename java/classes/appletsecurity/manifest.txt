@@ -1,0 +1,10 @@
+Use the JAR tool to update/create the JAR file, using the manifest.mf file from this folder.
+This Applet requires a Main-Class: header like this:
+
+Main-Class: appletsecurity/Applet1.class
+
+so that it can be run from the jar file, using the -jar option of the java runtime. Main-Class identifies the runnable class.
+
+Dbl-click the JAR shortcut in the JBuiler3 folder and enter this:
+
+cvmf appletsecurity\manifest.mf appletsecurity\Applet1.jar appletsecurity\*.class

@@ -1,0 +1,193 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="07/29/2002">
+<meta name="keywords" content="Object, method, member, parameters, signature, overloading, overriding, Java, Programming, Guide, Beginner, Basic, Picture, Example, Applet, Servlet, JSP, Link">
+<meta name="description" content="Defining methods. Interactive Java Programming Guide, play with the Applets, try the example code.">
+<title>Object methods</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="1" leftmargin="1"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Image Swap Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC">
+      <!-- Basics Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/basics-toc.js">
+	</SCRIPT></td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader"> Member methods.</h4></td>
+          <td align="right" valign="top" ><a href="basics_variables.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">member 
+            variables <img src="../images/nextarrow_off.gif" alt="Next Page!" name="next1" width="40" height="24" border="0"></a> </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"> <p><b>A method is similar 
+              to a function() call in other programming languages</b>. <br>
+              You code <a href="javascript:popup('keywords.html#method')">methods</a> 
+              within the body of the Java <a href="basics_class.html">class statement</a>. 
+              Parameters can be passed to a method, which then does some kind 
+              of processing with them, and can optionally return a value, to the 
+              caller. <br>
+              <span class="caption">Here is the structure of a method statement.</span> 
+            </p>
+            <p><img src="images/method_statement.gif" width="512" height="300"></p>
+            <p><b>Each method in a class must have a unique ‘<i>signature</i>’, 
+              which is the combination of the method name and the number and types 
+              of arguments in the parameter list.</b> <br>
+              The method name is required and must be followed by parentheses, 
+              which may or may not contain, a comma separated list of arguments 
+              to be passed into the method code block. When you reference a method, 
+              Java uses this 'signature' to look for the correct method block 
+              to call at runtime. <br>
+              <b>Note</b>: The return type and any exceptions thrown by a method 
+              play no part in uniquely identifying a method by its signature. 
+              <br>
+              <span class="caption">So the following example class would fail 
+              to compile.</span> </p>
+            <pre class="code">package my.pets; 
+public class Cat extends Pet {
+<font color="#999999"> //Stroke the cat x times</font> 
+ <font color="#FF0000">public void stroke(int x) {
+ }</font> 
+<font color="#999999"> //Compile Error! - duplicates the method signature above</font> 
+ public Purr stroke(int y) throws ScratchException {
+ }
+}</pre> 
+            <p> By convention method names start with a lowercase word, which 
+              is usually a verb or action, and can be followed by any number of 
+              <u>C</u>apitalized words. <br>
+              When modelling classes of objects with UML, we write a method like 
+              this :<br>
+              <br>
+              <img src="images/uml_method.gif" width="351" height="122"> <br>
+            </p></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" name="contentTable" border="0" cellspacing="2" cellpadding="2" bgcolor="#FFFFFF">
+  <tr valign="top" align="left"> 
+    <td> <p><b>A method has single return type which may be, an object type, a 
+        datatype, an array type or the keyword void.</b> <br>
+        The <a href="javascript:popup('keywords.html#void')">void</a> keyword 
+        is used to define a method that 'does something' without returning a result. 
+        It is quite valid to call a method, and ignore the returned object or 
+        datatype. This is termed calling a method for its 'side effects', and 
+        is why the return type plays no part in finding a method by its signature. 
+      <pre class="code">
+package my.pets;
+public class Pet {<font color="#999999">
+  //The age in years of this Pet - defaults to zero
+</font>  int myAge;<font color="#999999">
+  //The PetLicense object for this Pet 
+</font>  PetLicense license;<font color="#999999">
+  //Returns my PetLicense object</font>
+  <font color="#FF0000">public PetLicense getLicense() {
+    return license;
+  }</font>
+  <font color="#999999">//Returns an integer datatype</font>
+  <font color="#FF0000">public int getAge() {
+    return myAge;
+  }</font>
+  <font color="#999999">//Returns nothing</font>
+  <font color="#FF0000">public void setAge(int newAge) {
+    myAge = newAge;
+  }</font>
+}</pre> 
+    </td>
+  </tr>
+  <tr valign="top" align="left"> 
+    <td> <p><b>Methods are inherited from a parent or super class. </b>When you 
+        reference a method, in an object, Java looks for a method with that same 
+        'signature' in the class definition of that object. If none is found, 
+        Java searches for that method, upwards through the inheritance hierarchy, 
+        first in the 'parent' or super class, and then in the 'grand-parent' and 
+        so on. </p>
+      <p><b>Inherited methods can be <i>overridden</i></b>. If the behavior of 
+        an inherited method is not what your class needs, you can define your 
+        own version of the method with the exact same signature and return type. 
+        <br>
+        So for example, if my Cat class wants to return an age in 'cats years', 
+        instead of human years, it can override the getAge( ) method defined in 
+        the Pet super class like this.</p>
+      <pre class="code">
+package my.pets;
+public class Cat <font color="#FF0000">extends Pet</font> {<font color="#999999">
+  </font><font color="#999999">//Add a new method for Cats only </font>
+  <font color="#FF0000">public String say() {
+    return new String(&quot;Meow.&quot;);
+  }</font>
+  <font color="#999999">//Overrides the method in the Pet class<br>  //Returns my age in Cats years</font>
+  <font color="#FF0000">public int getAge() {
+    return myAge * 7;
+  }</font>
+  <font color="#999999">//Inherits the setAge( ) method from Pet</font>
+  
+}</pre> 
+    </td>
+  </tr>
+  <tr valign="top" align="left"> 
+    <td> <p><b>There are some rules to remember when overriding a method in a 
+        super class. </b></p>
+      <ul>
+        <li>Access to the method in the subclass cannot be made more restrictive 
+          (more private), than the method in the super class that is being overridden. 
+          However access can be made less restrictive (more public). </li>
+        <li>The overriding method in the subclass may opt to become <a href="javascript:popup('keywords.html#synchronized')">synchronized</a> 
+          (thread safe), when the overridden method is not, and vice versa. </li>
+        <li>If a method is defined as <a href="javascript:popup('keywords.html#final')">final</a>, 
+          by definition it cannot be overridden by a subclass.</li>
+        <li> The method name, parameter list <b>and return type</b>, must match 
+          exactly the overridden method in the super class. </li>
+        <li>The subclass can throw the same Exception objects (or subclasses of 
+          those), that are thrown by the overridden method in the super class. 
+          The subclass may opt not to throw exceptions, but it cannot throw new 
+          exception types. Unchecked (runtime) errors and exceptions may be thrown 
+          as and when needed.</li>
+      </ul></td>
+  </tr>
+  <tr valign="top" align="left"> 
+    <td> <p><b>Methods can be <i>overloaded</i>.</b> If you define more than one 
+        method with the same name in a class, you <i>'overload'</i> that method. 
+        Each definition of the method must have different parameter lists, in 
+        effect providing several alternative ways to achieve the same behavior. 
+        This is often done with special methods called constructors, and gives 
+        you several alternate ways to construct an object.<span class="caption"> 
+        <br>
+        The <span class="code">java.awt.Point</span> class provides 3 different 
+        constructor methods :</span> </p>
+      <blockquote> 
+        <pre class="code">package java.awt;
+public class Point {<font color="#999999"><span class="code">  <br> //Construct a Point object at coordinates 0,0</span></font><span class="code">              <font color="#FF0000">
+ public Point ( ) { }</font></span><font color="#999999"><span class="code">            
+ //Construct a Point object at coordinates x,y</span></font>              <font color="#FF0000">
+ public Point (int x, int y) { } </font><br><font color="#999999"><span class="code"> //Construct a Point object using an existing Point</span></font><span class="code">              <font color="#FF0000">
+ public Point (Point p) { }</font></span>
+} </pre>
+      </blockquote></td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: December 2001. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="basics_variables.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">member 
+      variables<img src="../images/nextarrow_off.gif" alt="Next Page!" name="next2" width="40" height="24" border="0" id="next2"></a><a href="basics_variables.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)"> 
+      </a> </td>
+  </tr>
+</table>
+</FONT> 
+</BODY>
+</HTML>

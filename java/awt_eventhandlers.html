@@ -1,0 +1,224 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="7/20/2002">
+<meta name="keywords" content="Java,AWT,Abstract Windowing Toolkit">
+<meta name="description" content="Introducing the AWT.">
+<title>The Title</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/awt-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader">AWT Event Propagation</h4></td>
+          <td align="right" valign="top" ><a href="awt_eventnew.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">Event 
+            Listeners <img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"><p><strong>In the Java 1.0 
+              event model</strong>, an event must be handled by the component 
+              object where the event originated, or one of that components containers. 
+              <br>
+              All AWT components have a <span class="stdCode">postEvent() </span>method 
+              (inherited from the Component class), that propagates events up 
+              through the containment hierarchy. <br>
+              A call is made to the handleEvent() method of the component, and 
+              if the event is not handled (boolean <span class="stdCode">false</span> 
+              is returned), the postEvent( ) method finds the next larger container 
+              object, alters the x and y coordinates for its larger graphics area 
+              and calls <span class="stdCode">handleEvent( )</span> again. This 
+              continues until the event is 'consumed' (a boolean value of true 
+              is returned) or until the top level is reached, in which case the 
+              event is simply disposed of (ignored). </p>
+            <p><img src="images/awt-eventthread.gif"
+        width="474" height="544"></p>
+            <p>Typically a component will compare the <span class="stdCode">id</span> 
+              property of the event, against one of a number of <span class="stdCode">Event</span> 
+              constants, like <span class="stdCode">Event.MOUSE_DOWN</span> or 
+              <span class="stdCode">Event.KEY_PRESS</span>. Another strategy is 
+              to compare the <span class="stdCode">target</span> of the Event 
+              with the instance variables in your program to see if they reference 
+              the same component.</p>
+            </td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr> 
+    <td> <table border="0">
+        <tr> 
+          <td valign="top"><p>Having determined if this is something it should 
+              act upon, the component can either allow the event to be passed 
+              on up the container hierarchy (by returning <span class="stdCode">false</span>) 
+              or 'handle' the event, and end the chain (by returning <span class="stdCode">true</span>).</p>
+            <p>An added complication, is in deciding whether the component's parent 
+              (or super) class, should get a look at the event, by calling <span class="stdCode">super.handleEvent()</span> 
+              which also returns a boolean (true or false).</p></td>
+          <td valign="top" bgcolor="#CCCCCC">
+<pre><font class="stdCode">public boolean handleEvent(Event e) { 
+ if (e.target == myButton) {
+   //handle events here
+   return true;
+ }
+ //let my parent class have a chance
+ return super.handleEvent(e);
+
+}</font></pre></td>
+        </tr>
+      </table>
+      <table border="0" cellpadding="4" cellspacing="4">
+        <tr> 
+          <td valign="top"><p><font class="text">If you look at the <span class="stdCode">handleEvent()</span> 
+              method in the <span class="stdCode">java.awt.Component</span> class, 
+              you will see :</font> </p>
+            <pre><span class="stdCode"><font class="text">public boolean handleEvent(Event evt) {
+ switch (evt.id) {
+   case Event.MOUSE_ENTER:
+     return mouseEnter(evt, evt.x, evt.y);
+   case Event.MOUSE_EXIT:
+     return mouseExit(evt, evt.x, evt.y);
+   case Event.MOUSE_MOVE:
+     return mouseMove(evt, evt.x, evt.y);
+   case Event.MOUSE_DOWN:
+     return mouseDown(evt, evt.x, evt.y);
+   case Event.MOUSE_DRAG:
+     return mouseDrag(evt, evt.x, evt.y);
+   case Event.MOUSE_UP:
+     return mouseUp(evt, evt.x, evt.y);
+   case Event.KEY_PRESS:
+   case Event.KEY_ACTION:
+     return keyDown(evt, evt.key);
+   case Event.KEY_RELEASE:
+   case Event.KEY_ACTION_RELEASE:
+     return keyUp(evt, evt.key);
+               
+   case Event.ACTION_EVENT:
+     return action(evt, evt.arg);
+               
+   case Event.GOT_FOCUS:
+     return gotFocus(evt, evt.arg);
+   case Event.LOST_FOCUS:
+     return lostFocus(evt, evt.arg);
+  }
+  return false;
+}</font></span><font class="text"></font></pre></td>
+          <td valign="top" bgcolor="#FFFFCC"><p>An alternative strategy, allows 
+              you to avoid the generic <span class="stdCode">handleEvent()</span> 
+              method and allow the default <span class="stdCode">java.awt.Component</span> 
+              processing to occur, which simply executes a switch on the Event.id, 
+              and invokes one of a number of 'convenience' methods in the object 
+              for handling specific events. </p>
+            <p><font class="text">All of these convenience methods, are empty 
+              in <span class="stdCode">java.awt.Component</span>, and exist solely 
+              for you to override them in a sub class of Component (your button, 
+              or box, or list..etc).</font></p>
+            <p><font class="text">The following values for id are not provided 
+              a corresponding convenience method and the default handleEvent( 
+              ) method simply returns false :<br>
+              <span class="stdCode">Event.WINDOW_DESTROY, Event.WINDOW_EXPOSE, 
+              Event.WINDOW_ICONIFY, Event.WINDOW_DEICONIFY, Event.WINDOW_MOVED, 
+              Event.LIST_SELECT, Event.LIST_DESELECT, Event.SCROLL_LINE_UP, Event.SCROLL_LINE_DOWN, 
+              Event.SCROLL_PAGE_UP, Event.SCROLL_PAGE_DOWN, Event.LOAD_FILE, Event.SAVE_FILE 
+              </span></font></p>
+            <p><font class="text">Note: These 'convenience' methods, should <font color="#FF0000">never</font> 
+              return <span class="stdCode">super.handleEvent()</span>, because 
+              this will return the event to the parent Component, who's default 
+              processing deciphers the id, and loops around to invoke the same 
+              convenience method on the object again!</font></p></td>
+        </tr>
+      </table>
+      <table width="100%" border="0" cellpadding="2" cellspacing="2">
+        <tr> 
+          <td valign="top">
+            <table border="1" cellpadding="3"
+        cellspacing="0">
+              <tr class="stdTableColumnHeader"> 
+                <td><font class="text">Component&nbsp;</font></td>
+                <td><font class="text">&nbsp;arg </font></td>
+              </tr>
+              <tr> 
+                <td class="stdCode"><font class="text">Button</font></td>
+                <td><font class="text">is a String containing the label of the 
+                  Button pressed </font></td>
+              </tr>
+              <tr> 
+                <td class="stdCode"><font class="text">Checkbox</font></td>
+                <td><font class="text">is a Boolean value, true if the box is 
+                  checked, false it is clear</font></td>
+              </tr>
+              <tr> 
+                <td class="stdCode"><font class="text">TextField</font></td>
+                <td><font class="text">is the String of text entered into the 
+                  field </font></td>
+              </tr>
+              <tr> 
+                <td class="stdCode"><font class="text">List</font></td>
+                <td><font class="text">String representing the item double clicked</font></td>
+              </tr>
+              <tr> 
+                <td class="stdCode"><font class="text">Choice</font></td>
+                <td><font class="text">String of the item selected</font></td>
+              </tr>
+            </table></td>
+          <td valign="top"><p><font class="text">The second parameter <span class="stdCode">arg</span>, 
+              can be any java Object, and its value depends upon which component 
+              generated the event, as shown in the table at left.</font></p>
+            <p><font class="text">An <span class="stdCode">ACTION_EVENT</span>, 
+              is a special type of event, ONLY generated by triggerring one of 
+              the components listed below. The action() method looks like this 
+              : </font> </p>
+            <pre><font class="text">public boolean action(Event e, Object arg) {
+  //Do something here with the action 
+}</font></pre>
+            <p><font class="text">It is tempting to use the label of a component 
+              (often passed as the arg property in Event) to find out which component 
+              was the target of the Event. <font color="#FF0000">Don't do it!</font><br>
+              It is much cleaner and more robust to compare the <span class="stdCode">Event.target 
+              </span>property which references the target object, against the 
+              AWT component objects themselves. This means you must declare instance 
+              variables to reference all the buttons, lists, choices ..etc in 
+              your program (a good thing to do anyway). Then you can&nbsp;compare 
+              the <span class="stdCode">Event.target</span> against the instance 
+              variables in the convenience method (using the equality operator 
+              <span class="stdCode">==</span> ) , and the code will continue to 
+              function, even if you change the label of the buttons or text of 
+              items in the list. <br>
+              This advice also applies to figuring out which <span class="stdCode">MenuItem</span> 
+              in a <span class="stdCode">Menu</span> triggered an Event.</font></p></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: July 2002. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="awt_eventnew.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">Event 
+      Listeners <img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+
+</FONT> 
+</BODY>
+</HTML>

@@ -1,0 +1,173 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="Author" content="Gus Bellingham-Smith">
+<meta name="Description" content="Java concepts - syntax of Java">
+<meta name="KeyWords"
+content="Java, Syntax, Language, Classes, objects, methods, properties, applets, AWT, Jargon, Programming, Guide to Java">
+<meta name="Classification"
+content="Java guide - syntax of the programming language">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>Servlets Overview</title>
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="2" leftmargin="2">
+<script language="JavaScript"><!--
+
+if (document.images) {
+  nexton = new Image();
+  nexton.src = "../gif/arrows/nextarrow_on.gif";
+
+  nextoff = new Image();
+  nextoff.src = "../gif/arrows/nextarrow_off.gif";
+
+  backon = new Image();
+  backon.src = "../gif/arrows/backarrow_on.gif";
+
+  backoff = new Image();
+  backoff.src = "../gif/arrows/backarrow_off.gif";
+
+}
+function turnOn(imageName) {
+  if (document.images) {
+    document[imageName].src = eval(imageName + "on.src");
+  }
+}
+
+function turnOff(imageName) {
+  if (document.images) {
+    document[imageName].src = eval(imageName + "off.src");
+  }
+}
+
+// --></script>
+
+<table border="0" cellpadding="2" cellspacing="0" width="100%">
+    <tr>
+        <td valign="top" width="42"><a
+        href="../contents.htm#4.0_advanced"
+        onmouseover="turnOn('back')" onmouseout="turnOff('back')"><img
+        src="../gif/arrows/backarrow_off.gif" alt="contents!"
+        align="right" border="0" hspace="0" width="40"
+        height="24" name="back"></a></td>
+        <td valign="top" width="25%"><font size="2" face="Arial">Java
+        contents.</font></td>
+        <td align="center" valign="top" width="50%"><font
+        color="#000099" size="3" face="Arial"><strong>Servlets</strong></font></td>
+        <td align="right" valign="top" width="25%"><font size="2"
+        face="Arial">Next - The Servlet API</font></td>
+        <td valign="top" width="42"><a href="servlets2.htm"
+        onmouseover="turnOn('next')" onmouseout="turnOff('next')"><img
+        src="../gif/arrows/nextarrow_off.gif" alt=" "
+        align="right" border="0" hspace="0" width="40"
+        height="24" name="next"></a></td>
+    </tr>
+</table>
+
+<table border="0">
+    <tr>
+        <td><font color="#0000FF" size="2" face="Arial"><strong>Servlets
+        are 'server side' components, that extend the
+        functionality of the server.</strong></font><font
+        size="2" face="Arial"> In a manner similar to Applets;
+        Servlets are hosted by a Java enabled web server, and run
+        under the control of the Java Virtual Machine. However
+        Servlets have no graphical interface, and work 'behind
+        the scenes'. </font><p><font size="2" face="Arial">All
+        Servlets conform to the Servlet interface, through which
+        they can be invoked by the web server. The most common
+        way to build a Servlet is to extend either the
+        javax.servlet.GenericServlet or
+        javax.servlet.http.HttpServlet classes.</font></p>
+        <p><font size="2" face="Arial">Servlets are a good
+        alternative to the Common Gateway Interface (CGI) for
+        dealing with user input from a web client. <br>
+        <strong>1</strong>. Servlets have advantages in
+        performance : they can run within the server process, are
+        multithreaded and compiled into Java byte-code. <br>
+        <strong>2</strong>. Servlets remain in memory until
+        explicitly 'destroyed' by the server, and they can share
+        resources such as database connections across multiple
+        requests for service. <br>
+        <strong>3</strong>. Servlets are more robust and secure
+        than cgi scripts, because they are written in Java, run
+        within the Java Virtual Machine and can make use of the
+        SecurityManager and fine grain security policies.</font></p>
+        <p><font size="2" face="Arial">Servlets are protocol
+        independent (servlets can extend any kind of server that
+        supports them), and come with built-in support for the
+        HTTP protocol. Servlets are designed to handle </font><font
+        color="#FF0000" size="2" face="Arial"><strong>Request -
+        Response</strong></font><font size="2" face="Arial"> type
+        applications in a clean and simple manner. </font></p>
+        </td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="4" cellspacing="4" height="100">
+    <tr>
+        <td valign="top"><em>figure: An Http GET request to a
+        Servlet.</em><br>
+        <img src="../gif/servlet-http-get.gif" width="673"
+        height="329"></td>
+        <td valign="top" bgcolor="#CEFFFF"><font size="2"
+        face="Arial">An HTTP <strong>GET</strong> method request,
+        is commonly used to request 'static' resources or
+        functions from a web server. <br>
+        The query parameters follow the ? in the URL.</font></td>
+    </tr>
+</table>
+
+<table border="0">
+    <tr>
+        <td><font size="2" face="Arial">Notice that the
+        parameters are passed as name=value pairs in the URL of a
+        GET request. The URL is specially encoded to remove
+        characters that may be dropped or misinterpreted by the
+        TCP/IP network protocol (spaces are replaced with +, and
+        special characters are expressed as % followed by their
+        ASCII number in hexadecimal base). There are limits on
+        the size of parameters passed in the header of a HTTP GET
+        request. A GET request is often generated by an HTML
+        &lt;A HREF=&gt; link or &lt;FORM&gt;.</font></td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="2" height="100">
+    <tr>
+        <td valign="top"><em>figure: An Http POST request to a
+        Servlet.</em><img src="../gif/servlet-http-post.gif"
+        width="673" height="349"></td>
+        <td valign="top" bgcolor="#CEFFFF"><font size="2"
+        face="Arial">An HTTP <strong>POST</strong> request is
+        usually used to process dynamic user input, such as a
+        search or login request.</font></td>
+    </tr>
+</table>
+
+<table border="0">
+    <tr>
+        <td><font size="2" face="Arial">The POST method of the
+        HTTP protocol is more flexible than the GET request. The
+        query parameters are passed in the body of the request,
+        and are not visible in the URL generated by the browser.
+        There is no limit on the number / size of parameters
+        passed in the body of a POST request. A POST request is
+        usually generated by hitting the submit button on a HTML
+        &lt;FORM&gt;, displayed in a web browser.</font></td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="4" cellspacing="4" width="100%">
+    <tr>
+        <td valign="top" width="10%" bgcolor="#C0C0C0"><font
+        color="#000080"><i>Related Links </i></font></td>
+        <td valign="top" width="30%" bgcolor="#C0C0C0">&nbsp;</td>
+        <td valign="top" width="30%" bgcolor="#C0C0C0"><em>Next
+        &gt; </em><a href="servlets2.htm"><em>Servlet Classes</em></a></td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="29/1/2002">
+<meta name="keywords" content="summary, object, class, instantiation, inheritance, extends, implements, method, reference, by value, encapsulation, polymorphism, Java, Programming, Guide, Beginner, Basics, Picture, Example, Applet, Servlet, JSP, Links">
+<meta name="description" content="Summary of basic OOP concepts. Interactive Java Programming Guide, play with the Applets, try the example code.">
+<title>Referencing methods in objects</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="1" leftmargin="1"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script --> 
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading --> 
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC">
+      <!-- Basics Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/basics-toc.js">
+	</SCRIPT></td>
+    <td align="left" valign="top"> 
+      <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> 
+            <h4 class="stdPageHeader"> Summary of Basics.</h4>
+          </td>
+          <td align="right" valign="top" ><a href="programming_intro.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">programming<img src="../images/nextarrow_off.gif" alt="Next Page!" name="next1" width="40" height="24" border="0"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"> 
+            <ul>
+              <li>So far, we've seen how to define a type of object, using the 
+                <i>class</i> statement. It is important to distinguish a class 
+                definition from an actual object. The class acts like a sort of 
+                cookie cutter, whereas an object is like an individual cookie 
+                made with the cookie cutter.</li>
+              <li>You know that a class definition usually <i>extends</i> (is 
+                based upon) an existing class of object. We've talked about how 
+                objects <i>inherit</i> the <i>methods</i> (the logic) and <i>variables</i> 
+                (the data) of all the <i>super</i> classes that they extend. In 
+                fact classes have an inheritance hierarchy (a family tree), and 
+                the java.lang.Object class (at the root of the tree) is the grand 
+                daddy of all Java classes. </li>
+              <li>Java allows you to package your classes using a folder structure 
+                of your own choosing. This helps you to group related classes 
+                and ensure that class names are unique and do not clash with existing 
+                classes. To uniquely identify a class to the compiler, you may 
+                type its fully qualified class name (which is the package folders 
+                and subfolders, followed by the class name, all seperated by the 
+                full stop character).You may also use the <i>import</i> statement 
+                to identify to the compiler, which package folders it should search 
+                to find the classes referenced from within your class definition.</li>
+              <li> We've also discussed the <i>public</i>, <i>protected</i> and 
+                <i>private</i> keywords, that allow you to <i>encapsulate</i> 
+                or hide data and logic inside your objects. </li>
+              <li>Java ClassLoaders are responsible for finding and loading the 
+                compiled <i>.class</i> files and building objects by invoking 
+                the special <i>constructor</i> method which returns the address 
+                of the newly constructed object in memory. </li>
+              <li>You've seen that Java objects are <i>polymorphic</i>; that is, 
+                they can be treated as if they were a more generic but related 
+                class and can even be handled by any programming <i>interface</i> 
+                they implement.</li>
+              <li>To give you more flexibility in designing a class (or type) 
+                of object, Java allows you to define an <i>interface. </i>An interface 
+                is like a class, except that you do not flesh out the member methods 
+                (they are abstract), and any member variables are automatically 
+                defined as constant (or final) values. An interface is a sort 
+                of contract or protocol of behavior, which can be implemented 
+                by classes. Classes that <i>implement</i> an interface are agreeing 
+                to override the empty methods in the interface with their own 
+                methods. </li>
+              <li>You should now know how to construct and refer to a <i>new</i> 
+                object in memory at runtime, using an object variable. You assign 
+                the new instance of a class to an object variable or 'handle'. 
+                It is through the object variable, that you indirectly reference 
+                the methods and variables of the object, using a 'dot notation'. 
+                <b>Note:</b> When assigning objects with the = operator, and comparing 
+                objects with the == operator you are actually dealing with object 
+                addresses and not the objects themselves.</li>
+              <li>Within the class statement you define member methods (the logic) 
+                and member variables (the data). Variables defined outside of 
+                any code blocks in a class, are called <i>instance variables</i> 
+                and are accessible from anywhere within the class. Variables defined 
+                within a method code block (known as <i>local variables</i>) are 
+                accessible only within the curly braces of that code block. </li>
+              <li>A method statement, defines a single return type (or the keyword 
+                void), the method name and optionally any parameters expected 
+                by the method in parentheses. The combination of the method name 
+                and the parameters it accepts is the methods <i>signature</i>, 
+                which must be unique within a class. Methods may be <i>overloaded</i>, 
+                having the same name, with different combinations of parameters. 
+                Methods in a subclass may <i>override</i> methods inherited from 
+                a super class if they have the same signature and return type.</li>
+            </ul>
+            </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: December 2001. &copy;1999 Guy&nbsp;Bellingham-Smith </td>
+    <td align="right" valign="top" ><a href="programming_intro.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">programming<img src="../images/nextarrow_off.gif" alt="Next Page!" name="next2" width="40" height="24" border="0" id="next2"></a> 
+    </td>
+  </tr>
+</table>
+</FONT> 
+</BODY>
+</HTML>

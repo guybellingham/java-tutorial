@@ -1,0 +1,154 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="7/20/2002">
+<meta name="keywords" content="Java,AWT,Abstract Windowing Toolkit">
+<meta name="description" content="Introducing the AWT.">
+<title>The Title</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/awt-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader">java.awt.AWTEvent</h4></td>
+          <td align="right" valign="top" ><a href="awt_eventlisteners.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">Event 
+            Listeners <img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"><p><strong>The 'old' Java 
+              1.0 event propagation</strong> and handling mechanism has some drawbacks: 
+              Because you cannot pick which events are sent to your component 
+              and its containers, your application is often flooded with events 
+              that it does not want to handle. The performance was slow (especially 
+              if your application handled mouse movements). There was no support 
+              for more sophisticated user interactions, such as mouseless operation 
+              (tabbing and shortcut keys), ability to cut &amp; paste and drag 
+              &amp; drop. The old event handling strategy forced you to either 
+              subclass every component to add useful event handling methods or 
+              sort through all the events (propagated up through the containment 
+              heirarchy) in a top level container.</p>
+            <p><strong>The Java 1.1 event handling</strong>, represents the different 
+              kinds of events as seperate classes (found in the <span class="stdCode">java.awt.event 
+              </span>package) and is based upon the concepts of an event 'source' 
+              and an event 'listener'. When a user interacts with a component 
+              on screen, the AWT notifies all the objects (if any) that have registered 
+              an interest in that type of event with the component. You register 
+              as a listener by calling one of the <span class="stdCode">addXXXListener( 
+              )</span> methods, where XXX represents the type of events you need 
+              to be notified about. For example</p>
+            <pre>//Register object ml as a listener for mouse activity on myButton
+myButton.addMouseListener(ml); </pre>
+            <p>A Listener is a class that implements one of the <span class="stdCode">EventListener</span> 
+              interfaces. </p>
+            <p>The event objects that your listeners receive are tailored to the 
+              type of event they represent. For example a <span class="stdCode">MouseEvent</span> 
+              has <span class="stdCode">getX(&nbsp;)</span> and <span class="stdCode">getY(&nbsp;)</span> 
+              methods that return the coordinates to the event, whereas a <span class="stdCode">KeyEvent</span> 
+              has a <span class="stdCode">getKeyCode(&nbsp;)</span> method to 
+              return an integer that can be used to identify the key hit (using 
+              VK_ constants defined in KeyEvent).</p>
+            <p>The specific type of user interface event is now represented by 
+              a subclass of AWTEvent.</p>
+            <p>Note: The 'old' event model is still supported, in Java 1.x and 
+              2.0, however <font color="#FF0000">you cannot mix both event models 
+              in the same class file</font>. Only the more recent web browsers 
+              contain a JVM that supports the 'new' event handling scheme. The 
+              new <a href="swing.html">SWING</a> user interface only supports the 
+              newer event model.</p></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr>
+    <td><p class="stdCaption"><em>figure: AWTEvent has generic properties that 
+        all these new event types share, such as an integer id and the method 
+        getId(&nbsp;). </em></p>
+      <p><img src="images/awt-new-event.gif" width="649"
+        height="443"></p>
+      <p><font class="text">The first four <span class="stdCode">Event</span> 
+        types listed below are termed 'low level' events and represent raw user 
+        input. The last five events are called 'semantic' events and are higher 
+        level or compound user interactions such as a button click (mouse pressed 
+        + released), or a scroll bar adjustment (mouse drag and release). This 
+        is just terminology since Java treats all these events in the same way.</font></p>
+      <table border="1" cellpadding="2" cellspacing="0">
+        <tr> 
+          <td class="stdCode"><font class="text">ComponentEvent</font></td>
+          <td><font class="text">A component has been moved, resized, shown or 
+            hidden.</font></td>
+        </tr>
+        <tr> 
+          <td class="stdCode"><font class="text">FocusEvent</font></td>
+          <td><font class="text">A component has received or lost the input focus.</font></td>
+        </tr>
+        <tr> 
+          <td class="stdCode"><font class="text">MouseEvent </font></td>
+          <td><font class="text">The mouse pointer has entered or left the screen 
+            space, the mouse button has been pressed, released, clicked on the 
+            component, the mouse has moved or been dragged over the component.</font></td>
+        </tr>
+        <tr> 
+          <td class="stdCode"><font class="text">KeyEvent</font></td>
+          <td><font class="text">A key or combination of keys input to the component.</font></td>
+        </tr>
+        <tr> 
+          <td class="stdCode"><font class="text">ItemEvent</font></td>
+          <td><font class="text">A new item has been selected / deselected in 
+            a List, Checkbox, CheckboxMenuItem or Choice (drop down) component.</font></td>
+        </tr>
+        <tr> 
+          <td class="stdCode"><font class="text">WindowEvent</font></td>
+          <td><font class="text">The window has opened / closed, been activated 
+            / deactivated or has been iconified / restored.</font></td>
+        </tr>
+        <tr> 
+          <td class="stdCode"><font class="text">ContainerEvent</font></td>
+          <td><font class="text">A component has been added or removed from the 
+            container (which is itself a component).</font></td>
+        </tr>
+        <tr> 
+          <td class="stdCode"><font class="text">ActionEvent</font></td>
+          <td><font class="text">A component has been 'activated' in some way 
+            e.g a Button has been clicked, a string has been entered into a TextField.</font></td>
+        </tr>
+        <tr> 
+          <td class="stdCode"><font class="text">AdjustmentEvent</font></td>
+          <td><font class="text">A scrollbar has been dragged.</font></td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: July 2002. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="awt_eventlisteners.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">Event 
+      Listeners <img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+</FONT> 
+</BODY>
+</HTML>

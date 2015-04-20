@@ -1,0 +1,21 @@
+.Navlink {
+	color : Gray;
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: normal;
+}
+a:link.Navlink  {
+	color : Black;
+	font-family : Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size : 10pt;
+	font-style : normal;
+}
+a:visited.Navlink  {
+	color : Purple;
+}
+a:active.Navlink  {
+	color : Navy;
+}
+a:hover.Navlink  {
+	color : Red;
+}

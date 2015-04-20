@@ -1,0 +1,234 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="29/1/2002">
+<meta name="keywords" content="Introduction, Java, Programming, Statement, Syntax, Guide, Beginner, Basics, Picture, Example, Applet, Servlet, JSP, Links">
+<meta name="description" content="Introduction to Java Programming. Interactive Java Programming Guide, play with the Applets, try the example code.">
+<TITLE>Programming in Java</TITLE>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="1" leftmargin="1"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text">
+<!-- Next arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT> 
+<!-- Popup Window Script --> 
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading --> 
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC">
+	<!-- Programming Table Of Contents -->
+    <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/programming-toc.js">
+	</SCRIPT>
+	</td>
+    <td align="left" valign="top">
+     <table border="0" cellpadding="2" width="100%" cellspacing="0"> 
+      <tr>
+      <td align="left" valign="top">
+            <h4 class="stdPageHeader"> Programming Java.</h4>
+      </td>
+          <td align="right" valign="top" > <a href="programming_class.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">class 
+            keywords <img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+      </tr>
+        <tr bgcolor="#FFFFFF"> 
+          <td align="left" valign="top" colspan="2"> 
+            <p><b>Java is an 'object oriented' programming language.</b> <br>
+              The programming language has <a href="javascript:popup('keywords.html')">keywords</a> 
+              and a language <a href="#syntax">syntax</a>, and relies upon an 
+              extensive library of built-in <i>runtime</i> classes. When you code 
+              with an object oriented language, you must learn to break up your 
+              logic and data into self contained functional pieces (objects). 
+              The smaller and more generic these pieces the more robust and flexible 
+              will be the software you develop. </p>
+            <p><b>Designing your solution</b> before you start coding and testing 
+              is obviously a good idea, and this is even more important when using 
+              objects. A good design will make the development process easier. 
+              The symptoms of a good design are an increase in the reuse of existing 
+              classes, a seperation of the interfaces (the what) from the implementations 
+              (the how), and more flexible (<a href="basics_polymorphism.html">polymorphic</a>) 
+              software. Symptoms of a bad object oriented analysis and design, 
+              are tight coupling between your classes, large classes, multi-function 
+              classes and inflexible (proprietary) solutions. </p>
+            <p><b>In this section we'll take a look at the following programming 
+              concepts. </b></p>
+            <ul>
+              <li>The class statement keywords, public, abstract and final and 
+                what they mean.</li>
+              <li>The keywords, abstract, final, static and synchronized and the 
+                effects they have on method and variable definitions in a class.</li>
+              <li>The Java datatypes for handling numbers, characters, bytes and 
+                boolean values.</li>
+              <li>The Java arithmetic operators, and how to format numbers. Casting 
+                between datatypes.</li>
+              <li>Assigning values to datatypes. Comparing datatypes and objects.</li>
+              <li>Coding conditional logic using the if ... else and switch statements.</li>
+              <li>Iterative looping using the for and while statements.</li>
+              <li>The java.lang.String and StringBuffer classes for handling text. 
+                Converting between Strings and other datatypes.</li>
+              <li>Defining and working with Arrays of Java datatypes and objects.</li>
+              <li>The Java Date object and how to do calendar calculations and 
+                format dates for display.</li>
+              <li>Error handling : throwing and catching Exception objects in 
+                your methods.</li>
+              <li>Summary.</li>
+              <li>A Simple Programming Example.</li>
+            </ul>
+            </td>
+      </tr>
+     </table>
+   </td>
+  </tr>
+</table>
+<table width="100%" name="contentTable" border="0" cellspacing="2" cellpadding="2" bgcolor="#FFFFFF">
+  <tr valign="top"> 
+    <td> 
+      <p><b><a name="syntax"></a>Java programming syntax and tips.</b><br>
+        <b>A Java statement</b> forms a complete unit of execution and is terminated 
+        with a semicolon (;). There are three kinds of statements: expression 
+        statements, declaration statements, and control flow statements. In control 
+        flow statements you should always group your statements together into 
+        a block with curly braces. Pairs of curly braces { }, enclose 'blocks' 
+        of functionally related statements. They are often used in conditional 
+        and program flow statements, where a group of more than one statements, 
+        is treated like a single statement. For example :</p>
+      <pre class="stdCode">if (conditional test) {
+  <font color="#999999">// do a group of statements;</font> 
+} else { 
+  <font color="#999999">// do some other statements;</font> 
+}</pre>
+      <p> <b>Java comments</b> start with <span class="stdCode">/*</span> (or 
+        /** for javadoc) and end with <span class="stdCode">*/</span>, or follow 
+        a double slash // to the end of that line. Comments cannot be nested. 
+        The javadoc tool, can build documentation for your classes in html format, 
+        by reading your java source files. It looks for comments that start with 
+        /** and end */. </p>
+      <p>As with any programming language, <b>some words are <span class="stdCode"><a href="javascript:popup('keywords.html')">keywords</a></span></b> 
+        reserved for the operators and verbs of the language itself. The package 
+        <span class="code">java.lang.*</span> contains most of operators and methods 
+        built into the Java language and is automatically available to any class 
+        you write.</p>
+      <p><b>Java is case sensitive!</b> This means a Rose is not a ROSE is not 
+        a rose! Class, method and variable names can contain numbers but cannot 
+        start with them. Names cannot contain spaces, tabs or line feeds and you 
+        should avoid unprintable and 'special' characters. </p>
+      <p> 
+      <table border="0" cellpadding="3" cellspacing="0" class="stdTableAsGroupBox">
+        <tr class="stdTableColumnHeader"> 
+          <td valign="top">Type of name</td>
+          <td valign="top">Naming convention</td>
+          <td valign="top">Examples</td>
+        </tr>
+        <tr> 
+          <td valign="top"><span class="stdCode">class</span> or <span class="stdCode">interface</span></td>
+          <td valign="top">First letter of each word is Capitalized. Classes are 
+            usually 'things'.</td>
+          <td valign="top" class="stdCode">java.awt.Point, my.financial.DepositAccount</td>
+        </tr>
+        <tr> 
+          <td valign="top">method or <br>
+            variable</td>
+          <td valign="top">First letter of each word except the first is Capitalized.<br>
+            Methods usually denote an 'action'. </td>
+          <td valign="top" class="stdCode">getGraphics(), length, fontStyle</td>
+        </tr>
+        <tr> 
+          <td valign="top">constant</td>
+          <td valign="top">Variables defined as <span class="code">final</span> 
+            have names that are all UPPERCASE.</td>
+          <td valign="top" class="stdCode">PI, ALIGN_LEFT</td>
+        </tr>
+      </table>
+      <p> Because a single syntax error, can sometimes have 'knock on' effects, 
+        the compiler will sometimes generate a whole bunch of seemingly nonsensical 
+        error messages. Try to find the 'real' errors, ignore the others, and 
+        they will often go away when you recompile. Common Errors when writing 
+        java include the following :</p>
+      <ul>
+        <li>Have you mis-spelled a word (remember a <span class="code">Rose</span> 
+          is not a <span class="code">rose</span>)?</li>
+        <li>Did you leave any unpaired braces or parentheses? </li>
+        <li>When calling a method, are you forgetting the parentheses after the 
+          method name? </li>
+        <li>Did you forget the semicolon at the end of a statement? </li>
+        <li>Did you confuse the assignment operator = (single equals) with the 
+          equals comparison == (two equals signs)? </li>
+        <li>Have you used a Java keyword or reserved word as a variable or method 
+          name?</li>
+        <li>Did you add a return type to your constructor method by mistake?</li>
+        <li>Are you declaring an object variable but forgetting to assign it to 
+          a new object?</li>
+      </ul>
+      <p><b><font color="#FF0000">Tip!</font></b> Try not to hard-code values 
+        into your programs. Design them so that they inquire about the current 
+        properties of components, instead of assuming a fixed value. Try to make 
+        the classes you code, as self sufficient and as 'dynamic' and flexible 
+        as possible. </p>
+    </td>
+  </tr>
+  <tr valign="top"> 
+    <td bgcolor="#CCFFFF"> <a name="links"></a><b>Here are some Java programming 
+      links:</b> 
+      <table width="100%" border="0" cellspacing="4" cellpadding="2">
+        <tr> 
+          <td><b> </b> 
+            <p><a href="http://groups.google.com/groups?hl=us&amp;group=comp.lang.java" target="_blank">Java 
+              programming newsgroups.</a></p>
+          </td>
+          <td> 
+            <p>Suns collection of <a href="http://java.sun.com/docs/faqindex.html" target="_blank">frequently 
+              asked questions</a>.</p>
+          </td>
+        </tr>
+        <tr> 
+          <td> 
+            <p>Beginners <a href="http://java.sun.com/docs/books/tutorial/java/problems/index.html" target="_blank">common 
+              problems and some solutions</a>.</p>
+          </td>
+          <td> 
+            <p><a href="http://www.jguru.com/" target="_blank">JGuru famous FAQs</a> 
+              and Forums, links to articles.</p>
+          </td>
+        </tr>
+        <tr> 
+          <td> 
+            <p><a href="http://developer.java.sun.com/developer/index.html" target="_blank">The 
+              Java Developer Connection</a>.</p>
+          </td>
+          <td> 
+            <p><a href="http://www.javaworld.com/columns/jw-tips-index.shtml" target="_blank">Java 
+              World Magazine Tips</a>.</p>
+          </td>
+        </tr>
+        <tr> 
+          <td><a href="http://java.sun.com/docs/books/tutorial/java/nutsandbolts/index.html">The 
+            nuts and bolts Java tutorial.</a></td>
+          <td><a href="http://java.sun.com/docs/codeconv/html/CodeConvTOC.doc.html">Java 
+            coding conventions.</a></td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="2" width="100%" cellspacing="0"> 
+      <tr>
+        <td align="left" valign="top">
+        Last Updated: December 2001. &copy;1999 Guy&nbsp;Bellingham-Smith
+        </td>
+        
+    <td align="right" valign="top" > <a href="programming_class.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">class 
+      keywords <img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+      </tr>
+</table>
+
+</FONT>
+</BODY>
+</HTML>

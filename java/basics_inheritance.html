@@ -1,0 +1,110 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="29/1/2002">
+<meta name="keywords" content="Objects, Inheritance, Extends, Reuse, Classes, Java, Programming, Guide, Beginner, Basics, Picture, Example, Applet, Servlet, JSP, Links">
+<meta name="description" content="What is Object inheritance? Interactive Java Programming Guide, play with the Applets, try the example code.">
+<TITLE>Java Object Inheritance</TITLE>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="1" leftmargin="1"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script --> 
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading --> 
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC">
+      <!-- Basics Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/basics-toc.js">
+	</SCRIPT></td>
+    <td align="left" valign="top">
+     <table border="0" cellpadding="2" width="100%" cellspacing="0"> 
+      <tr>
+      <td align="left" valign="top">
+            <h4 class="stdPageHeader"> Object Inheritance.</h4>
+      </td>
+          <td align="right" valign="top" > <a href="basics_package.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">organizing 
+            classes <img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+      </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"> 
+            <p><b>Java objects do not exist in isolation</b>. A type of object 
+              (like a Circle) is always built upon a 'parent' type, which is called 
+              the <a href="javascript:popup('keywords.html#super')">super</a> 
+              class (such as Shape). It <a
+        href="javascript:popup('keywords.html#inheritance')">inherits</a> all 
+              the traits of the parent type. The 'parent' class in turn inherits 
+              from the 'grandparent' class, and so on, up the family tree. <br>
+            </p>
+            <p><b>At the top of the inheritance hierarchy is an abstract class 
+              called java.lang.Object</b>, from which all other Java classes are 
+              descended. This means that all Java objects, inherit some common 
+              traits, like Javas automatic storage management. </p>
+            <p><b>Java classes are organized into hierarchical libraries</b>, 
+              much like the folders and files used in file systems. Related classes 
+              of objects are <a href="javascript:popup('keywords.html#package')">packaged</a> 
+              together, and these packages can be imported for use in your own 
+              Java programs or class definitions. We'll look at the package keyword 
+              on the next page. </p>
+            <p>In the example shown below, I have defined 3 object types, and 
+              packaged them into a library called my.pets.</p>
+            <p>The fully qualified names of these classes of object are :</p>
+            <ul>
+              <li><b>my.pets.Pet </b>- represents all Pets as having a name and 
+                age.</li>
+              <li> <b>my.pets.Dog </b>- extends the Pet class, and defines a Dog 
+                as having a bark and a bite.</li>
+              <li><b>my.pets.Cat </b>- extends the Pet class, and adds a cats 
+                breed and whiskers.</li>
+            </ul>
+			<p>The full name of a class, uses 'dot notation'. It is the package 
+                  name, followed by the class name. </p>
+          <p> The full class name must be unique, and the accepted standard, 
+                  is to begin your package names with your internet domain name, 
+                  in reverse. For example my classes should live in packages that 
+                  start <b>com.spiritone.gus. ...etc</b></p>
+
+      </td>
+      </tr>
+     </table>
+   </td>
+  </tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr align="left" valign="top"> 
+    <td> 
+      <p class="caption">Class diagram, showing a simple inheritance hierarchy.</p>
+      <p><img src="images/class_inheritance.gif" width="484" height="398"></p>
+      <p>Here is a <a href="javascript:popup('keywords.html#classdiagram')">link 
+        to the key</a> for the above class diagram.</p>
+    </td>
+    <td> 
+      <p>&nbsp;</p>
+      </td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0"> 
+      <tr>
+      <td align="left" valign="top">
+            Last Updated: December 2001. &copy;1999 Guy&nbsp;Bellingham-Smith 
+      </td>
+          
+    <td align="right" valign="top" ><a href="basics_package.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">organizing 
+      classes<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+      </tr>
+</table>
+</FONT>
+</BODY>
+</HTML>

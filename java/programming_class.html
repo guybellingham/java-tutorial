@@ -1,0 +1,133 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="29/1/2002">
+<meta name="keywords" content="abstract, final, public, class, keyword, Java, Programming, Guide, Beginner, Basics, Picture, Example">
+<meta name="description" content="The Java class statement keywords. Interactive Java Programming Guide, play with the Applets, try the example code.">
+<TITLE>The class keywords</TITLE>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="1" leftmargin="1"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script --> 
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading --> 
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!-- Programming Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/programming-toc.js">
+	</SCRIPT></td>
+    <td align="left" valign="top">
+     <table border="0" cellpadding="2" width="100%" cellspacing="0"> 
+      <tr>
+      <td align="left" valign="top">
+            <h4 class="stdPageHeader"> Java class keywords.</h4>
+      </td>
+          <td align="right" valign="top" > <a href="programming_member.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">member 
+            keywords <img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+      </tr>
+        <tr bgcolor="#FFFFFF"> 
+          <td align="left" valign="top" colspan="2"> 
+            <p><b>A Java class defines a type of object, which an outside 'client' 
+              can manipulate to do something useful at runtime.</b> <br>
+              When designing classes, you have to decide whether a class should 
+              be generally available to classes in other package folders. You 
+              have to decide, if you want runtime objects to be constructed from 
+              the class, or whether it should serve as a base for other classes 
+              to extend. Lastly you must decide whether you want to permit other 
+              classes to extend and possibly overrride behaviors defined in your 
+              class. </p>
+            <p><b>The <span class="stdCode">public</span> keyword </b>when applied 
+              to the class statement means the class is designed for general availability. 
+              <br>
+              When you define a class with the public access modifier, you permit 
+              ‘outside’ classes in other packages to create new instances of the 
+              class and refer to public members (variables and methods) within 
+              the class. Most of the built in java classes are defined as public, 
+              and they allow you to import them, and instantiate and refer to 
+              their methods and variables from within your own classes and packages.<br>
+              Without the public keyword, a class is only visible to other classes 
+              defined in the same package.</p>
+            <p><b>The <span class="stdCode">abstract</span> class keyword</b> 
+              means this class is not designed to be instantiated.<br>
+              Sometimes your software solution, may require a class of object 
+              for which you have no ‘real world’ use. Such classes are useful 
+              to provide incomplete or generic behaviors, that are designed to 
+              be extended by other 'concrete' classes. <br>
+              Abstract classes allow you to 'break out' common processing into 
+              a single generic super class. The common processing may be incomplete, 
+              but it can be reused by sub classes that extend the abstract super 
+              class. <br>
+              The abstract keyword is used to make it clear that a class is not 
+              to be directly instantiated and used 'as is'. The Java compiler 
+              will prevent classes from constructing new objects of a class marked 
+              as abstract. <br>
+              <b>Note</b>: Other classes can still directly reference an abstract 
+              class, for use as an object variable. For example, a class like 
+              <span class="stdCode">Shape</span> should probably be abstract, 
+              since its sole purpose is to serve as a base upon which to build 
+              real world classes like <span class="stdCode">Rectangle, Circle</span> 
+              and <span class="stdCode">Polygon</span> ..etc </p>
+            <pre class="stdCode"><font color="#999999">//class designed for all Shapes to share</font><br>public <font color="#FF0000">abstract</font> class Shape {
+<font color="#666666">  <font color="#999999">//incomplete or generic implementation here</font>  </font>
+} </pre>
+            <p>My classes can still make use of the <span class="stdCode">Shape</span> 
+              class, when defining an object variable if they want to take advantage 
+              of polymorphism, but the compiler will not allow a new Shape object 
+              to be constructed. </p>
+            <p><span class="stdCode"><font color="#999999">//Treat a Circle object 
+              like a Shape</font><br>
+              <font color="#FF0000">Shape s1</font> = new Circle(5,5,50);<br>
+              <font color="#999999">//Treat a Rectangle like a Shape</font><br>
+              <font color="#FF0000">s1</font> = new Rectangle(5,5,50,60); <br>
+              </span> </p>
+            <p><b>The <span class="stdCode">final</span> keyword on a class statement</b>, 
+              means this class is at the end of a branch of the inheritance tree, 
+              and cannot be extended by other classes. <br>
+              If you mark an entire class as final you prohibit any other class 
+              from extending that class. This is useful if you want a secure design 
+              (one that cannot be overridden by a sub class), and as we'll see 
+              on a following page, also optimizes your code. <br>
+              <b>Beware</b><b>!</b> All the member variables and methods of a 
+              class marked as final automatically become final as well, because 
+              they cannot be overridden by any subclasses. </p>
+            <p><b><font color="#FF0000">Invalid combinations.</font></b> Certain 
+              combinations of class keywords do not make sense and are invalid. 
+            </p>
+            <ul>
+              <li><b>An abstract class cannot also be final.</b> This is because 
+                a final class cannot be extended by a sub class. A final class 
+                must be fully defined, since no sub classes can make up for any 
+                ‘missing’ or abstract parts of the class definition.</li>
+            </ul>
+          </td>
+      </tr>
+     </table>
+   </td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0"> 
+      <tr>
+        <td align="left" valign="top">
+        Last Updated: December 2001. &copy;1999 Guy&nbsp;Bellingham-Smith
+        </td>
+        
+    <td align="right" valign="top" > <a href="programming_member.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">member 
+      keywords <img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+      </tr>
+</table>
+
+</FONT>
+</BODY>
+</HTML>

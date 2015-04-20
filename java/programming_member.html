@@ -1,0 +1,155 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="29/1/2002">
+<meta name="keywords" content="abstract, final, static, synchronized, native, member, method, variable, class, keyword, Java, Programming, Guide, Beginner, Basics, Picture, Example">
+<meta name="description" content="The Java method and variable keywords : abstract, final, static, synchronized. Interactive Java Programming Guide, play with the Applets, try the example code.">
+<title>The member keywords</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="1" leftmargin="1"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT> 
+<!-- Popup Window Script --> 
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading --> 
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!-- Programming Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/programming-toc.js">
+	</SCRIPT></td>
+    <td align="left" valign="top">
+     <table border="0" cellpadding="2" width="100%" cellspacing="0"> 
+      <tr>
+      <td align="left" valign="top">
+            <h4 class="stdPageHeader"> Method and variable keywords.</h4>
+      </td>
+          <td align="right" valign="top" > <a href="programming_datatypes.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">data 
+            types <img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+      </tr>
+        <tr bgcolor="#FFFFFF"> 
+          <td align="left" valign="top" colspan="2"> 
+            <p><b>Java permits the following keywords to precede statements that 
+              define variables and methods in a class. <br>
+              </b>These are in addition to the keywords <span class="stdCode">public 
+              protected</span> and <span class="stdCode">private</span>, that 
+              allow you to <a href="basics_encapsulation.html">encapsulate</a> 
+              data and logic in your classes. When declaring member methods in 
+              your class, you have to decide whether you want to define just the 
+              <a href="basics_methods.html">signature</a> of the method, or provide 
+              an implementation for the method as well. When defining member variables 
+              and methods, you have the option to finalize the data or logic so 
+              that no subclass can override the data value or method implementation. 
+              Methods and variable values can be given a class wide scope or can 
+              be specific to particular instances of a class (belong to an object).</p>
+            <p><b>An <span class="stdCode">abstract</span> method </b>can be defined 
+              only within an <span class="stdCode">abstract</span> class. <br>
+              An abstract method is one without a body of code, and which is meant 
+              to be overridden by subclasses. If a class contains an abstract 
+              method, it must also be declared abstract, because it is 'missing' 
+              implementation details, and should not be directly instantiated. 
+              (The term <i>instantiation</i>, refers to the process of constructing 
+              a new object from a class at runtime).</p>
+            <p><b>A <span class="stdCode">final</span> variable</b> has a constant 
+              value that cannot be overridden by any subclasses. When variables 
+              are declared final, the Java compiler knows that their values will 
+              not change. So for example instead of a reference to the member 
+              variable such as <span class="stdCode">java.lang.Math.PI</span> 
+              the compiler might 'optimize' your code and substitute the constant 
+              value (3.14159) instead. You must give a final variable an initial 
+              value when you declare it. <br>
+              <font color="#FF0000"><b>Gotcha!</b></font> When you make an object 
+              variable <span class="stdCode">final</span>, it means that variable 
+              always refers to the same object in memory, the one created by its 
+              initializer. However, a method can still reference that object and 
+              its public members and even change its properties.</p>
+            <p><b>A <span class="stdCode">final</span> method</b> has guaranteed 
+              processing that cannot be overridden by any subclasses. A final 
+              method, can give you the security, that its processing won’t be 
+              overridden by any subclasses. For example the <span class="stdCode">java.lang.String</span> 
+              class defines final methods, so that other classes can't subvert 
+              or pretend to be Java String objects.<br>
+              When a method that is declared as final is referenced, the compiler 
+              is free to replace the complicated and slow method lookup process, 
+              with the ‘inline’ code of that method. </p>
+            <p><b>A <span class="stdCode">static</span> variable</b> is associated 
+              with the enclosing class, and not with any particular object constructed 
+              from the class. This means that the variable exists just once in 
+              memory when the class is loaded by the Java runtime. The variable 
+              can be referenced using the class name and is 'shared' by all objects. 
+              You have to be aware of threading and 'side effects' issues when 
+              using static variables.</p>
+            <p><b>A <span class="stdCode">static</span> method</b> is not associated 
+              with a particular instance of a class. The method implementation 
+              is loaded once into memory, when the class is first referenced. 
+              This has a couple of important consequences: </p>
+            <ol>
+              <li>You cannot use the keyword this (to refer to the current object)</li>
+              <li>You cannot refer to a non-static variable or method by name 
+                from within the static method. </li>
+            </ol>
+            <pre class="code"><span class="stdCode"><font color="#999999">//class designed for all Shapes to share</font><br>public <font color="#FF0000">abstract</font> class Shape {
+<font color="#666666">  <font color="#999999">//incomplete or generic implementation here</font>  </font>
+} </span>
+</pre>
+            <p><b>The <span class="stdCode">synchronized</span> keyword</b> can 
+              precede a method statement or code block, it causes <i>threads</i> 
+              of execution to queue up when entering blocks of code, so that the 
+              whole section of code is finished by one thread, before another 
+              thread can begin processing it.<br>
+              Java supports <i>multi-threading</i>, which is a way of doing several 
+              things at once with the same processor or multiple CPUs. However 
+              certain ‘<i>critical sections</i>’ of code, are vulnerable to errors 
+              if more than one thread, is processing that code at the same time.<br>
+              We will explore the concepts of Java threads and how to control 
+              them in a following page.</p>
+            <p><b><font color="#FF0000">Invalid combinations.</font></b> Certain 
+              combinations of member keywords do not make sense and are not allowed 
+              by the Java compiler. </p>
+            <ul>
+              <li><b>An abstract method cannot also be final.</b> A final method 
+                must be fully defined, since no subclasses can override the method 
+                and make up for any ‘missing’ or abstract parts of the method 
+                implementation.</li>
+              <li> Less obviously <b>a static method cannot also be abstract</b>, 
+                since there is no object instance associated with a static method, 
+                and therefore no <span class="code">this</span> or <span class="code">super</span> 
+                references can be made to the current or parent object, there 
+                is no way to override the ‘missing’ body of a static method. A 
+                static method is not associated with any object at runtime, and 
+                therefore it cannot be overridden by an <i>instance</i> of a subclass. 
+              </li>
+              <li>An <b>abstract method cannot also be marked as native</b>. A 
+                native method is one written in a platform dependent language 
+                (not Java).</li>
+            </ul>
+          </td>
+      </tr>
+     </table>
+   </td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0"> 
+      <tr>
+        <td align="left" valign="top">
+        Last Updated: December 2001. &copy;1999 Guy&nbsp;Bellingham-Smith
+        </td>
+        
+    <td align="right" valign="top" > <a href="programming_datatypes.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">data 
+      types <img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+      </tr>
+</table>
+
+</FONT>
+</BODY>
+</HTML>

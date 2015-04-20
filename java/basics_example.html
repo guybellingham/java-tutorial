@@ -1,0 +1,247 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="29/1/2002">
+<meta name="keywords" content="JDK, J2SE, running, app, application, appletviewer, install, classpath, java, compiler, command line,  Programming, Guide, Beginner, Basics, Picture, Example, Applet, Servlet, JSP, Links">
+<meta name="description" content="Programming objects at runtime. Interactive Java Programming Guide, play with the Applets, try the example code.">
+<title>Working with objects</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="1" leftmargin="1"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script --> 
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading --> 
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC">
+      <!-- Basics Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/basics-toc.js">
+	</SCRIPT></td>
+    <td align="left" valign="top"> 
+      <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> 
+            <h4 class="stdPageHeader"> Example.</h4>
+          </td>
+          <td align="right" valign="top" ><a href="basics_reference.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">working 
+            with objects<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"> 
+            <p><b><a name="jdk"></a>1. The first step is to download and install 
+              the J2SE development kit.</b></p>
+            <table width="100%" border="0" cellspacing="0" cellpadding="2">
+              <tr align="left" valign="top"> 
+                <td><img src="images/jdk.gif" width="315" height="205"></td>
+                <td> 
+                  <p>I recommend you install into a folder like this one on your 
+                    C: drive. For install instructions and troubleshooting tips, 
+                    see <a href="http://java.sun.com/j2se/1.3/install.html" target="_blank">this 
+                    link to Suns web site</a>.<br>
+                    Once the install has finished successfully, open up the C:\jdk1.3.1 
+                    folder and have a look around. Open and read the readme.html 
+                    file.</p>
+                  <p>In the example above, I also downloaded the documentation 
+                    zip file, and extracted all the files into the C:\jdk1.3.1\docs 
+                    folder.</p>
+                  </td>
+              </tr>
+            </table>
+            <p><b><a name="path"></a>2. The second step is to update the PATH 
+              environment variable on your system.</b></p>
+            <table width="100%" border="0" cellspacing="0" cellpadding="2">
+              <tr align="left" valign="top"> 
+                <td><img src="images/system_path.gif" width="364" height="381"></td>
+                <td> 
+                  <p>To update the system environment variables in Windows 2000, 
+                    right click the 'My Computer' icon on your desktop and select 
+                    Properties. </p>
+                  <p>In the System Properties dialog, select the Advanced tab. 
+                    Hit the button that is labelled 'Environment Variables' and 
+                    you will get a window with 2 scrolling lists. The lower list 
+                    contains system variables.</p>
+                  <p>Add the path to the jdk1.3.1\bin tools folder, to the system 
+                    PATH environment variable. </p>
+                  <p>Be careful to use a semicolon to seperate the folders in 
+                    your PATH. And remember that Windows file system uses a backslash 
+                    as a seperator. </p>
+                  <p>Hit the OK buttons once you are finished.</p>
+                </td>
+              </tr>
+            </table>
+            
+          </td>
+             </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table width="100%" name="contentTable" border="0" cellspacing="2" cellpadding="2" bgcolor="#FFFFFF">
+  <tr valign="top" align="left"> 
+    <td> 
+      <p><b>3. The third step is to make a home folder where you can keep your 
+        Java source files and test them.</b></p>
+      <table width="100%" border="0" cellspacing="0" cellpadding="2">
+        <tr align="left" valign="top"> 
+          <td> 
+            <p><img src="images/java_home.gif" width="314" height="101"></p>
+            <p>The ExampleProgram.java source is a very simple application that 
+              just prints a message to the java.lang.System object. The source 
+              is shown at right.</p>
+            <p><a href="SimpleApplet.java">Click here </a>to download the SimpleApplet.java 
+              source file. An Applet is a different kind of program that is executed 
+              by a web browser, inside a HTML page. It does not have a main( ) 
+              method.</p>
+          </td>
+          <td> 
+            <p>All applications must have a main( ) method (signature shown below 
+              in red) which the Java runtime looks for: </p>
+            <pre class="code"><font color="#999999">/**<br> * A Very Simple Example Java Application.  <br> */</font><br>class ExampleProgram { <br>  <font color="#999999">/** Entry Point <br>   * @param args an array of command-line arguments <br>   */</font> <br>  <font color="#FF0000">public static void main(String[] args){</font><br>   System.out.println("I'm a Simple Program");<br>  <font color="#FF0000">}</font><br>}</pre>
+            <p>The main method is a static method and is the 'entry point' (where 
+              Java starts executing from). </p>
+            <p>The keyword static means that the method is not associated with 
+              a runtime object, it is part of the class definition and can be 
+              invoked without first having to construct a new instance of the 
+              ExampleProgram class. </p>
+          </td>
+        </tr>
+      </table>
+      <p><b><a name="javac"></a>4. Next we must compile our source files into 
+        class files that the Java runtime can execute.</b></p>
+      <table width="100%" border="0" cellspacing="0" cellpadding="2">
+        <tr align="left" valign="top"> 
+          <td> 
+            <p><img src="images/javac_example.gif" width="305" height="265"></p>
+            <p>The <b>compile.bat</b> file, is a simple DOS command line script, 
+              that contains 2 lines:</p>
+            <p class="code">javac ExampleProgram.java <br>
+              javac SimpleApplet.java</p>
+          </td>
+          <td> 
+            <p>To run a java tool, you can open a command line window. In Windows 
+              2000, select <b>Start &gt; Run</b> from the taskbar. In the Run 
+              drop down box, type <b>cmd</b> and hit OK. </p>
+            <p>Change to your C drive if necessary by entering <b>C:</b> Use the 
+              Change Directory (<b>cd</b>) command to make your Java home folder 
+              <b>C:\java</b> the current working directory. At the <b>&gt;</b> 
+              prompt type <b>javac</b> followed by a space and then the filename 
+              of the java source file you want to compile and hit <b>Enter</b> 
+              and wait. </p>
+            <p>If the compile succeeds, the command prompt will return, and you 
+              should see a <b>.class</b> file produced. </p>
+            <p>If the compiler finds an error in your java source file, it will 
+              print error messages. The messages can look scary, so try to pinpoint 
+              something you understand, and fix your java source and recompile. 
+              Errors can sometimes have knock on effects, so fixing one problem 
+              can clear up others. </p>
+            <p>If you get a <b>NoClassDefFoundError</b> message, see the paragraph 
+              below about <a href="#classpath">the CLASSPATH system variable</a>.</p>
+            <p>To save time and effort, you can create a <b>.bat</b> file with 
+              your javac line commands. Just double click it to run the commands.</p>
+          </td>
+        </tr>
+      </table>
+      <p><b><a name="java"></a>5. Finally we can start the Java runtime and execute 
+        our application.</b></p>
+      <table width="100%" border="0" cellspacing="0" cellpadding="2">
+        <tr align="left" valign="top"> 
+          <td><img src="images/java_example.gif" width="476" height="192"></td>
+          <td> 
+            <p>Open a command line window as described above, and start the java 
+              runtime, by typing <b>java</b> then a space and the fully qualified 
+              class name of your program which is just <b>ExampleProgram</b>.</p>
+            </td>
+        </tr>
+        <tr align="left" valign="top">
+          <td><img src="images/run_package_example.gif" width="456" height="227"></td>
+          <td>
+            <p>If your class is in a package, the source and class files should 
+              be in a folder structure within your Java home folder, that corresponds 
+              to the package name. </p>
+            <p>When running the class, you will need to type the package name 
+              (replacing the file seperators with full stops) followed by the 
+              class name. The example at left shows how to run a <span class="code">PetApp</span> 
+              class, which is in the <span class="code">my.pets</span> package.</p>
+          </td>
+        </tr>
+      </table>
+      <p><b><a name="appletviewer"></a>6. You can use the AppletViewer tool or 
+        a web browser to test an Applet.</b></p>
+      <table width="100%" border="0" cellspacing="0" cellpadding="2">
+        <tr align="left" valign="top"> 
+          <td>
+            <p>To test the SimpleApplet.class I've created a very simple web page 
+              called SimpleApplet.html, that contains these HTML tags:</p>
+            <p class="code">&lt;HTML&gt;<br>
+              &lt;BODY&gt;<br>
+              <font color="#FF0000">&lt;APPLET CODE=SimpleApplet.class WIDTH=200 
+              HEIGHT=100&gt;<br>
+              &lt;/APPLET&gt;</font><br>
+              &lt;/BODY&gt;<br>
+              &lt;/HTML&gt;</p>
+            <p>Double clicking this html file, should start your web browser program, 
+              which will load the page and execute the SimpleApplet.class embedded 
+              in it.</p>
+            <p><img src="images/simple_applet_html.gif" width="323" height="256"></p>
+          </td>
+          <td> 
+            <p>Alternatively, I can run my SimpleApplet.html page from the command 
+              line, and see any messages it prints, like this.</p>
+            <p><img src="images/run_simpleapplet.gif" width="348" height="167"></p>
+            <p>The AppletViewer tools opens a window and runs the SimpleApplet 
+              in it.</p>
+            <p><img src="images/simple_applet.gif" width="208" height="169"></p>
+          </td>
+        </tr>
+      </table>
+      <p><b><a name="classpath"></a>7. The CLASSPATH is one way to tell Java applications 
+        where to look for user written classes.<br>
+        </b></p>
+      <table width="100%" border="0" cellspacing="0" cellpadding="2">
+        <tr align="left" valign="top"> 
+          <td><img src="images/system_classpath.gif" width="361" height="395"></td>
+          <td>
+            <p>The <b>classpath</b> system variable, is similar to the Windows 
+              <b>path</b>. You can change it from the System &gt; Properties &gt; 
+              Environment Variables dialog, as <a href="#path">described in step 
+              2 above</a>. If you are going to keep all your classes under one 
+              'home' directory, it is a good idea to add the path to that directory 
+              to the end of the classpath list (as shown at left).</p>
+            <p>The classpath can also be dynamically set when executing most of 
+              the Java tools from the command line, using the -classpath option. 
+            </p>
+            <p><img src="images/classpath_option.gif" width="344" height="72"></p>
+            <p>This is a more flexible approach, but requires more typing. Here 
+              is a link to <a href="http://java.sun.com/j2se/1.3/docs/tooldocs/win32/classpath.html">Suns 
+              web site</a> that describes how to set the classpath from the windows 
+              command line.</p>
+            <p>&nbsp;</p>
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: December 2001. &copy;1999 Guy&nbsp;Bellingham-Smith </td>
+    <td align="right" valign="top" ><a href="basics_reference.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">working 
+      with objects<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+</FONT> 
+</BODY>
+</HTML>

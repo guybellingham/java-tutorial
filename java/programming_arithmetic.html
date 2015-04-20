@@ -1,0 +1,557 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="29/1/2002">
+<meta name="keywords" content="operators. arithmetic, numeric, addition, subtraction, multiplication, division, modulus, assignment, increment, BigDecimal, rounding, bit, shift, promotion, Programming, Guide, Beginner, Basics, Picture, Example, Links">
+<meta name="description" content="Introducing Java Programming. Interactive Java Programming Guide, play with the Applets, try the example code.">
+<title>Java Arithmetic</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="1" leftmargin="1"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script --> 
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading --> 
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!-- Programming Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/programming-toc.js">
+	</SCRIPT></td>
+    <td align="left" valign="top">
+      <table border="0" cellpadding="2" width="100%" cellspacing="2">
+	  <tr>
+      	<td align="left" valign="top">
+            <h4 class="stdPageHeader"> Java Arithmetic.</h4>
+      	</td>
+          <td align="right" valign="top" > <a href="programming_comparing.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">assigning 
+            and comparing<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+      </tr>
+        <tr bgcolor="#FFFFFF"> 
+          <td align="left" valign="top" colspan="2"> 
+            <p><b><a name="top"></a>The Java arithmetic operators </b>are used 
+              to combine or compare numeric data variables (as well as numeric 
+              literals). Some operators can have a single argument, like the unary 
+              plus or negative sign (<span class="stdCode">+x or -y</span>), and 
+              others (binary operators) have 2 operands like addition (<span class="stdCode">x 
+              + y</span>) or multiplication (<span class="stdCode">x * y</span>). 
+            </p>
+            <p>Here are some general arithmetic rules to bear in mind :</p>
+            <ul>
+              <li>Evaluation of an expression proceeds from left to right. <br>
+                But assignment operations (a = b = c) are evaluated right to left. 
+              </li>
+              <li> If evaluation of an expression cannot complete, an ArithmeticException 
+                is abruptly thrown, and no part of the expression to the right 
+                of the point of failure is evaluated.</li>
+              <li>The order of evaluation respects parentheses and the <a href="#arithmeticoperators">natural 
+                precedence</a> of operators. </li>
+              <li>The operands of an expression are fully evaluated before the 
+                operation between them is performed. </li>
+            </ul>
+            <p>Java automatically performs any necessary type conversions on operands 
+              before evaluating an expression. This usually involves a <i>widening</i> 
+              of operands as shown in the table below. <font color="#FF0000"><br>
+              Beware of</font> combining a long and float in the same expression, 
+              since as noted on the <a href="programming_datatypes.html#decimals">datatypes 
+              page</a> a float may only approximate the precision of a long. </p>
+            <table width="100%" border="1" cellpadding="2" cellspacing="0">
+              <tr valign="top" class="stdTableColumnHeader"> 
+                <td>Type of operands</td>
+                <td>Result&nbsp;</td>
+              </tr>
+              <tr valign="top"> 
+                <td>IF neither operand is a float, double or long datatype. integer 
+                  arithmetic is used. Notice that byte, short and char are widened 
+                  to an int. </td>
+                <td class="stdCode">int</td>
+              </tr>
+              <tr valign="top"> 
+                <td>IF neither operand is a float or a double and at least one 
+                  operand is a long, 64-bit integer arithmetic is performed. </td>
+                <td class="stdCode">long</td>
+              </tr>
+              <tr valign="top"> 
+                <td>IF at least one operand is a float and neither operand is 
+                  a double, 32-bit floating point arithmetic is performed.</td>
+                <td class="stdCode">float</td>
+              </tr>
+              <tr valign="top"> 
+                <td>IF at least one operand is a double, then double precision 
+                  floating point arithmetic is performed, and the result is a 
+                  double. </td>
+                <td class="stdCode">double</td>
+              </tr>
+            </table>
+            <p><b><a name="casting"></a>Casting</b> is jargon for converting between 
+              types. The Java compiler can cast numeric datatypes to a wider datatype 
+              automatically when needed. This is often termed <i>promotion</i> 
+              and preserves the signed value (by extending the sign bit for integral 
+              types). Casting to a narrower datatype (one with lesser precision) 
+              must be done explicitly (by prefixing with the new datatype in parentheses) 
+              because it discards the high order bits! Casting from a float or 
+              double to an integral type discards the fractional part of the value. 
+              <b>Note</b> that you cannot cast between the boolean datatype and 
+              any of the other datatypes. Also you cannot cast a fundamental datatype 
+              to a class or interface type (and vice versa).</p>
+            <p><b><font color="#FF0000">Gotcha!</font></b> You can get compile 
+              time errors when assigning the result of an arithmetic expression 
+              to a byte or short data variable. The Java runtime doesn't handle 
+              anything smaller than 32-bits when doing arithmetic, and as noted 
+              above requires an explicit cast, when narrowing the precision of 
+              an arithmetic result or datatype. </p>
+            <p class="stdCode">byte b1 = 127; <font color="#999999">//OK</font><br>
+              byte b2 = 0x80; <font color="#999999">//compile error type mismatch 
+              - byte cant hold +128</font><br>
+              byte b3 = b1 / 2; <font color="#999999">//compile error type mismatch 
+              - result is an int</font></p>
+          </td>
+      </tr>
+     </table>
+   </td>
+  </tr>
+</table>
+</font><tr>
+  <td align="left" valign="top"><FONT class="text">&nbsp; </font>
+    <table width="100%" border="0" cellspacing="0" cellpadding="2">
+      <tr>
+        <td>
+<a
+                name="arithmeticoperators"></a> 
+          <table border="1"
+        cellpadding="4" cellspacing="0">
+            <tr class="stdTableColumnHeader"> 
+              <td width="33%" valign="top">Arithmetic operators</td>
+              <td width="33%" valign="top">operation</td>
+              <td width="34%" valign="top">example</td>
+            </tr>
+            <tr> 
+              <td class="stdCode">&nbsp;=&nbsp;</td>
+              <td>assignment</td>
+              <td class="stdCode">&nbsp;a = b;</td>
+            </tr>
+            <tr> 
+              <td width="33%" class="stdCode">&nbsp;==</td>
+              <td width="33%">equality</td>
+              <td width="34%" class="stdCode">if (x == y) ...</td>
+            </tr>
+            <tr> 
+              <td class="stdCode">&nbsp;!=</td>
+              <td>inequality</td>
+              <td class="stdCode">if (a != 0) ...</td>
+            </tr>
+            <tr> 
+              <td class="stdCode">&nbsp;&lt;</td>
+              <td>less than</td>
+              <td class="stdCode">if (x &lt; y) ...</td>
+            </tr>
+            <tr> 
+              <td class="stdCode">&lt;=</td>
+              <td>less than or equal</td>
+              <td class="stdCode">if (a &lt;= b) ...</td>
+            </tr>
+            <tr> 
+              <td class="stdCode">&nbsp;&gt;</td>
+              <td>greater than</td>
+              <td class="stdCode">if (x &gt; 64) ...</td>
+            </tr>
+            <tr> 
+              <td class="stdCode">&nbsp;&gt;=</td>
+              <td>greater than or equal</td>
+              <td class="stdCode">if (a &gt;= b)...</td>
+            </tr>
+            <tr> 
+              <td class="stdCode">+</td>
+              <td>arithmetic addition</td>
+              <td class="stdCode">a + b</td>
+            </tr>
+            <tr> 
+              <td class="stdCode">-</td>
+              <td>arithmetic subtraction</td>
+              <td class="stdCode">a - b</td>
+            </tr>
+            <tr> 
+              <td class="stdCode">*</td>
+              <td>arithmetic multiplication</td>
+              <td class="stdCode">a * b</td>
+            </tr>
+            <tr> 
+              <td class="stdCode">&nbsp;/</td>
+              <td>arithmetic division</td>
+              <td class="stdCode">a / b</td>
+            </tr>
+            <tr> 
+              <td class="stdCode">%</td>
+              <td>arithmetic modulus or remainder</td>
+              <td class="stdCode">a % b</td>
+            </tr>
+            <tr> 
+              <td class="stdCode">&lt;&lt;</td>
+              <td>integer bit leftshift</td>
+              <td class="stdCode">b = a &lt;&lt; 4</td>
+            </tr>
+            <tr> 
+              <td class="stdCode">&gt;&gt;&nbsp;</td>
+              <td>integer bit rightshift<br>
+                (sign safe)</td>
+              <td class="stdCode">b = a &gt;&gt; 4</td>
+            </tr>
+            <tr> 
+              <td class="stdCode">&gt;&gt;&gt;</td>
+              <td>integer bit rightshift</td>
+              <td class="stdCode">b = a &gt;&gt;&gt; 4</td>
+            </tr>
+            <tr> 
+              <td class="stdCode">&amp;</td>
+              <td>integer bitwise AND</td>
+              <td class="stdCode">a &amp; b</td>
+            </tr>
+            <tr> 
+              <td class="stdCode">|</td>
+              <td>integer bitwise OR</td>
+              <td class="stdCode">a | b</td>
+            </tr>
+            <tr> 
+              <td class="stdCode">&nbsp;^</td>
+              <td>integer bitwise XOR</td>
+              <td class="stdCode">a ^ b</td>
+            </tr>
+            <tr> 
+              <td class="stdCode">&nbsp;-</td>
+              <td>unary negation of a numeric dataype</td>
+              <td class="stdCode">-a</td>
+            </tr>
+            <tr> 
+              <td width="33%" class="stdCode">&nbsp;++</td>
+              <td width="33%">unary increment</td>
+              <td width="34%" class="stdCode">++a or a++</td>
+            </tr>
+            <tr> 
+              <td class="stdCode">&nbsp;--</td>
+              <td>unary decrement</td>
+              <td class="stdCode">--b or b--</td>
+            </tr>
+            <tr> 
+              <td class="stdCode">~</td>
+              <td>unary bitwise negation of an integer datatype</td>
+              <td class="stdCode">~a</td>
+            </tr>
+          </table>
+		</td>
+        <td> 
+          <p><b><font color="#FF0000">Gotcha!</font></b> Do not confuse the <i>assignment</i> 
+            operator (single equals <span class="stdCode"><font color="#FF0000">=</font></span>), 
+            with the double equals <span class="stdCode"><font color="#FF0000">==</font></span>, 
+            which is used for comparing the <i>equality</i> of 2 expressions.</p>
+          <p>Using parentheses <span class="stdCode">(</span> and <span class="stdCode">)</span>, 
+            you should specify how you want a compound expression to be evaluated. 
+            For example </p>
+          <p class="stdCode">a = x + y / 100; <font color="#999999">//ambiguous!</font><br>
+            a = <font color="#FF0000">(</font>x + y<font color="#FF0000">)</font> 
+            / 100; <font color="#999999">//unambiguous, recommended </font></p>
+          <p>If you don't explicitly indicate the order in which you want the 
+            operations in a compound expression to be performed, the order is 
+            determined by the <b>precedence assigned to the operators</b>. In 
+            descending order of importance they are: </p>
+		<table border="1" cellpadding="4" cellspacing="0">
+            <tr> 
+              <td>Unary ++, --, +, -, ~</td>
+            </tr>
+            <tr> 
+              <td>Multiplicative *, /, %</td>
+            </tr>
+            <tr> 
+              <td>Additive +, -</td>
+            </tr>
+            <tr> 
+              <td>Bitshift &gt;&gt;, &gt;&gt;&gt;, &lt;&lt;</td>
+            </tr>
+            <tr> 
+              <td>Comparison &gt;, =, &lt;</td>
+            </tr>
+            <tr> 
+              <td>Equality ==, !=</td>
+            </tr>
+            <tr> 
+              <td>Integer Bitwise &amp;, |</td>
+            </tr>
+            <tr> 
+              <td>Boolean &amp;&amp;, ||</td>
+            </tr>
+            <tr> 
+              <td>Ternary ? :</td>
+            </tr>
+            <tr> 
+              <td>Assignment =, +=, *= ...</td>
+            </tr>
+          </table>
+          <p><b>Incrementing & Decrementing.</b> <br>
+            Because adding or subracting one from an integer value is such a common 
+            operation, there are shorthand ways to write a statement like this 
+            : </p>
+          <pre class="stdCode">int x = 10;
+x = x + 1; <font color="#999999">  //x = 11</font>
+<font color="#FF0000">int y = ++x;</font> <font color="#999999">//y and x = 12</font>
+<font color="#FF0000">int z = x++;</font> <font color="#999999">//z = 12, x = 13</font> 
+<font color="#FF0000">--x;</font> <font color="#999999">        //decrementing x</font></pre>
+          <p>There is a difference between the prefix and postfix use of the increment 
+            and decrement operators, notice that y is assigned the incremented 
+            value of x, while z is assigned the value of x before the increment 
+            is performed.<br>
+            Java also provides the following shorthand notation, that combines 
+            the common operations with assignment: </p>
+          <p class="stdCode">x = x + y; <br>
+            x <font color="#FF0000">+=</font> y; <font color="#999999">//adds 
+            y to x</font> <br>
+            x <font color="#FF0000">-=</font> 2; <font color="#999999">//subtracts 
+            2 from x</font><br>
+            x <font color="#FF0000">*=</font> 3; <font color="#999999">//multiplies 
+            x by 3</font><br>
+            x <font color="#FF0000">/=</font> 2; <font color="#999999">//divides 
+            x by 2</font> </p>
+          <p>Other shorthand operators include, <span class="stdCode">&=, |= ,^=, 
+            %=, <<=, >>= </span>.</p>
+          <p><b>Note</b>: The bitwise operators only make sense when you use them 
+            with the integer datatypes. Do not try to AND, OR or bit shift a floating 
+            point variable!</p>
+		</td>
+      </tr>
+    </table>
+    <FONT class="text">
+    <table border="0" cellpadding="4" cellspacing="4" width="100%">
+      <tr> 
+        <td valign="top" colspan="2"> 
+          <p><b><a name="ternary"></a>The ternary operator.</b> Is a shorthand 
+            (and ugly) way of writing an either / or expression. A conditional 
+            expression that evaluates to either true or false must precede the 
+            question mark. If that expression is true at runtime, then the value 
+            or expression before the colon is evaluated, otherwise the value or 
+            expression after the colon is the result. Here is an example, taken 
+            from the <span class="stdCode">java.lang.Math</span> class.</p>
+          <p class="stdCode"><font color="#999999">/** Returns the absolute value 
+            of a <code>double</code> value. <br>
+            * If the argument is not negative, the argument is returned. <br>
+            * If the argument is negative, the negation of the argument is returned. 
+            <br>
+            * @param a the <code>double</code> value. <br>
+            * @return the absolute value of the argument. <br>
+            */ <br>
+            </font>public static double abs(double a) { <br>
+            &nbsp;&nbsp;return (a <= 0.0D) <font color="#FF0000">?</font> 0.0D 
+            - a <font color="#FF0000">:</font> a; <br>
+            }</p>
+        </td>
+      </tr>
+      <tr> 
+        <td valign="top" colspan="2"> 
+          <p><b><a name="bitshift"></a>The bit shift operators <span class="stdCode">>> 
+            , >>></span> and <span class="stdCode"><<</span> </b>can be used to 
+            shift the bits in an integer datatype left or right a number of places. 
+            In combination with the bitwise & (AND) and | (OR) operators discussed 
+            below they permit the testing and manipulation of bits in a byte, 
+            short, int or long variable. </p>
+          <ul>
+            <li>The <span class="stdCode">>></span> operator, maintains the sign 
+              of the integer value while the bit pattern is shifted to the right 
+              the specified number of places. The signed shift fills from the 
+              left with the sign bit (0 or 1).</li>
+            <li>The <span class="stdCode">>>></span> operator, does not maintain 
+              the sign bit, while shifting to the right. The unsigned shift zero-fills 
+              from the left.</li>
+            <li>The <span class="stdCode"><<</span> left shift operator can result 
+              in 'loss' of the sign bit, and should be used with caution. </li>
+          </ul>
+          <p><b><font color="#FF0000">Gotcha!</font></b> Unexpected results can 
+            occur when you use these operators with the byte or short datatypes, 
+            because the Java runtime promotes them to an <span class="code">int</span> 
+            (preserving the sign) to do the shifting, and then truncates the result.</p>
+          <p class="stdCode">byte b = -1; <font color="#999999">//signed byte 
+            -1 (0xFF) is really (integer 0xFFFFFFFF).</font><br>
+            b &gt;&gt;&gt;= 24; <font color="#999999">//unsigned right shift has 
+            no effect! b is still -1 (0xFF)</font><br>
+            b &gt;&gt;&gt;= 25; <font color="#999999">//unsigned right shift has 
+            an effect! b is now +127 (0x7F)<br>
+            </font> b &lt;&lt;= 4; <font color="#999999"> //signed left shift 
+            b is -16 xF0</font></p>
+        </td>
+      </tr>
+      <tr bgcolor="#FFFFCC"> 
+        <td valign="top"> 
+          <p><b>The bitwise OR operator.</b> <br>
+            If either bit in the arguments is ‘on’ (1) the corresponding bit in 
+            the result will be set on. OR’ing with all bits set ‘off’ (0) has 
+            no effect. </p>
+          <p class="stdCode">byte b = 0; <br>
+            //set top 4 bits on <br>
+            b |= 0xF0 </p>
+        </td>
+        <td valign="top"> 
+          <p><b>The bitwise AND operator.</b> <br>
+            Turns bits on (1) in the result, only if both bits in the arguments 
+            are on. ANDing with all bits set ‘on’ has no effect. This can be used 
+            to ‘set’ bits in an integer variable to zero. </p>
+          <p class="stdCode">byte b = 0xDF;<br>
+            //top 4 bits unchanged set last 4 bits to zero <br>
+            b &= 0xF0 </p>
+        </td>
+      </tr>
+      <tr> 
+        <td valign="top" colspan="2"> 
+          <p>Here's an example of how you can use the bitwise operators to set 
+            and test bit flags. As a general rule it is better to make use of 
+            boolean (<span class="stdCode">true</span> / <span class="stdCode">false</span>) 
+            flags, but you may come across code like this : </p>
+          <pre class="stdCode">static final int VISIBLE = 1; <font color="#999999"> // binary 0000 0001</font>
+static final int DRAGGING = 2;<font color="#999999"> // binary 0000 0010</font>
+static final int DRAWING = 4;  <font color="#999999">// binary 0000 0100</font>
+static final int FILLED = 8; <font color="#999999">  // binary 0000 1000</font>
+ int flags = 0; <font color="#999999">// the bit flags variable</font></pre>
+          <p>Now to set the "visible" flag when a Shape becomes visible you would 
+            use an OR statement: </p>
+          <p class="stdCode">flags = flags <font color="#FF0000">|</font> VISIBLE; 
+          </p>
+          <p>To test a Shape for visibility, you could then write this AND test: 
+          </p>
+          <p class="stdCode">if ((flags <font color="#FF0000">&</font> VISIBLE) 
+            == VISIBLE) { ... }</p>
+        </td>
+      </tr>
+      <tr> 
+        <td valign="top" colspan="2">
+          <p><b>You cannot instantiate the <span class="stdCode">java.lang.Math</span> 
+            class </b>(its constructor is private). However the class contains 
+            several useful static methods for calculation : </p>
+          <table width="100%"
+        border="0" cellpadding="2" class="stdTableAsGroupBox">
+            <tr> 
+              <td valign="top" class="stdTableColumnHeader"> 
+                <p>ceil(&nbsp;)</p>
+              </td>
+              <td valign="top">Finds the next biggest integer : <br>
+                <span class="stdCode">Math.ceil(9.01); // equals 10<br>
+                Math.ceil(-1.1); // equals -1</span></td>
+            </tr>
+            <tr> 
+              <td valign="top" class="stdTableColumnHeader"> 
+                <p>floor(&nbsp;)</p>
+              </td>
+              <td valign="top">Finds the next smaller integer : <br>
+                <span class="stdCode">Math.floor(9.01); // equals 9<br>
+                Math.floor(-1.1); // equals -2</span></td>
+            </tr>
+            <tr> 
+              <td valign="top" class="stdTableColumnHeader"> 
+                <p>round(&nbsp;)</p>
+              </td>
+              <td valign="top">Finds the closest integer to a floating point number 
+                :<br>
+                <span class="stdCode">Math.round(9.5); &nbsp;// equals 10<br>
+                Math.round(-9.5); // equals -9</span></td>
+            </tr>
+            <tr> 
+              <td valign="top" class="stdTableColumnHeader"> 
+                <p>sin(&nbsp;)<br>
+                  cos(&nbsp;)<br>
+                  tan(&nbsp;)</p>
+              </td>
+              <td valign="top">Finds the sine, cosine, tangent of an angle given 
+                in <b>radians</b>. <br>
+                There are 2 * PI radians in a 360º circle.</td>
+            </tr>
+            <tr> 
+              <td valign="top" class="stdTableColumnHeader"> 
+                <p>sqrt(&nbsp;)</p>
+              </td>
+              <td valign="top">If the argument is less than zero or the special 
+                value 'Not a Number' the result is also <span class="stdCode">Double.NaN</span> 
+                !</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr> 
+        <td valign="top" colspan="2"> 
+          <p><b>The <span class="stdCode">java.math</span> package</b> provides 
+            2 interesting classes.</p>
+          <ul>
+            <li><b>A <span class="stdCode">BigInteger</span></b> object, can be 
+              used to represent an arbitrary precision integer. </li>
+            <li> <b>A <span class="stdCode">BigDecimal</span></b> should be used 
+              when a double does not provide the necessary precision or when more 
+              control over rounding is required. It has methods you can use to 
+              control the rounding policy, the scale (decimal places) of the decimal 
+              value and methods for basic arithmetic and comparison.</li>
+          </ul>
+          <p> BigDecimals and BigIntegers are immutable, which means that once 
+            created, they cannot be modified.</p>
+        </td>
+      </tr>
+      <tr> 
+        <td valign="top" colspan="2"> 
+          <p><b><a name="numberformat"></a>The<span class="stdCode"> java.text</span> 
+            package provides the abstract <span class="stdCode">NumberFormat</span> 
+            class</b>, which is the base class for formatting and parsing numbers. 
+            It provides a variety of static '<i>factory methods</i>' that will 
+            return a concrete implementation of NumberFormat (actually objects 
+            of the subclass <span class="stdCode">DecimalFormat</span>). <br>
+            A factory method, is a term given to a method that follows the factory 
+            design pattern. In general, a factory implementation is useful when 
+            you need one object to control the creation of and/or access to other 
+            objects. See <a href="http://java.sun.com/blueprints/patterns/j2ee_patterns/index.html">J2EE 
+            design patterns.</a> <br>
+            Use the <span class="stdCode">getInstance()</span> method or <span class="stdCode">getNumberInstance()</span> 
+            to get the normal number format for your country (the default Locale). 
+            Use <span class="stdCode">getCurrencyInstance()</span> to get the 
+            currency number format. And use <span class="stdCode">getPercentInstance()</span> 
+            to get a format for displaying percentages. With this format, a fraction 
+            like 0.53 is displayed as 53%. </p>
+          <p class="stdCode">double E = 2.7182818284590452354; <br>
+            NumberFormat nf = NumberFormat.getNumberInstance(); <font color="#999999">//get 
+            a number format for default Locale</font><br>
+            nf.setMaximumFractionDigits(3); <font color="#999999">//display 3 
+            decimal places</font><br>
+            System.out.println(nf.format(E)); <font color="#999999">//build a 
+            formatted String from the double</font></p>
+          <p><b>A <span class="stdCode">NumberFormat</span> will also parse a 
+            String representation of a number</b>, into one of the numeric wrapper 
+            classes. However, if the String you pass it, does not represent a 
+            valid number value, the parse() method will abruptly terminate, and 
+            <i>throw</i> back an object of the <span class="stdCode">ParseException</span> 
+            class. We'll talk about Exceptions and how to handle them on a following 
+            page. <br>
+            If the <span class="stdCode">parse()</span> method is successful, 
+            it returns an object variable of the abstract <span class="stdCode">java.lang.Number</span> 
+            class. This class is a parent to all the other numeric wrapper classes 
+            (<span class="stdCode">Integer, Double</span> ..etc), and will reference 
+            an instance of one of those classes (an example of <i>polymorphism</i> 
+            at work). The Number class has several methods that allow you to extract 
+            the numeric value as a fundamental datatype. </p>
+          <p class="stdCode">String str = &quot;1,201.75&quot;; <font color="#999999">//str 
+            is a sequence of characters</font><br>
+            NumberFormat nf = NumberFormat.getNumberInstance(); <br>
+            Number nbr = nf.parse(str); <font color="#999999">//may throw a ParseException!</font><br>
+            double d = nbr.doubleValue(); <font color="#999999">//d contains the 
+            numeric value</font></p>
+        </td>
+      </tr>
+    </table>
+    <table border="0" cellpadding="2" width="100%" cellspacing="0">
+      <tr> 
+        <td align="left" valign="top"> Last Updated: January 2002. &copy;1999 Guy&nbsp;Bellingham-Smith</td>
+        <td align="right" valign="top" > <a href="programming_comparing.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">assigning 
+          and comparing<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+        </td>
+      </tr>
+    </table>
+</FONT>
+</BODY>
+</HTML>

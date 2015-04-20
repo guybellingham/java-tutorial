@@ -1,0 +1,95 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="7/20/2002">
+<meta name="keywords" content="Java,AWT,Abstract Windowing Toolkit">
+<meta name="description" content="Introducing the AWT.">
+<title>The Title</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/awt-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader">java.awt.CardLayout</h4></td>
+          <td align="right" valign="top" ><a href="awt_event.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">AWT 
+            Events<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"><table border="0" cellpadding="4" cellspacing="4" height="237">
+              <tr> 
+                <td valign="top" colspan="3" height="191"><font class="text"> 
+                  <applet
+        code="cardlayout.Applet1.class" codebase="classes"
+        align="baseline" width="400" height="300"
+        archive="cardlayout/Applet1.jar" name="CardLayoutApplet">
+                  </applet>
+                  </font></td>
+                <td valign="top" colspan="3" bgcolor="#FFFF80"><font class="text">This 
+                  LayoutManager uses the 'deck of cards' metaphor and ignores 
+                  the preferred size of any component added, and stretches it 
+                  to fit the entire container. Very often you 'nest' other containers 
+                  within a container that has this LayoutManager. </font> <p><font class="text">There 
+                    are 2 constructors :</font></p>
+                  <pre><font size="-1" face="Courier New, Courier, mono" class="text">CardLayout( );
+CardLayout(int hgap,int vgap);</font></pre>
+                  <p><font class="text">Note: you will need a browser that supports 
+                    Java 1.1 to make this applet work properly. Some versions 
+                    of IE 4.* have bugs in their event handling support, you should 
+                    probably upgrade to the latest version.</font></p></td>
+              </tr>
+            </table>
+            <table border="0" cellpadding="2">
+              <tr> 
+                <td><font class="text">Note: The CardLayout has a special methods 
+                  , which display the components in the container's Component[ 
+                  ] array one at a time. </font> <pre><font size="-1" face="Courier New, Courier, mono" class="text">next(Container c); // displays the next component in c
+previous(Container c); // displays the prev component 
+first(Container c); // displays the first component added to c
+last(Container c); // displays the next component </font></pre>
+                  <p><font class="text">You can also go directly to a particular 
+                    'card' in the stack as long as you have named it using a String 
+                    when you add( ) it to the container :</font></p>
+                  <pre><font size="-1" face="Courier New, Courier, mono" class="text">show(Container c, String name); // displays the named component</font></pre></td>
+              </tr>
+            </table></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr>
+    <td><p>&nbsp;</p>
+      </td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: July 2002. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="awt_event.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">AWT 
+      Events<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+</FONT> 
+</BODY>
+</HTML>

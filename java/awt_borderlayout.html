@@ -1,0 +1,101 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="7/20/2002">
+<meta name="keywords" content="Java,AWT,Abstract Windowing Toolkit">
+<meta name="description" content="Introducing the AWT.">
+<title>The Title</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/awt-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <p class="stdPageHeader">java.awt.BorderLayout</p></td>
+          <td align="right" valign="top" ><a href="awt_gridlayout.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">GridLayout<img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"><p>The BorderLayout divides 
+              a container into at most five cells (not all the cells need contain 
+              a component). Often it is used as the 'top level' layout for an 
+              application with a menu or toolbar in the north cell, the main work 
+              area in the center and a status bar along the bottom in the 'south' 
+              cell. </p>
+            <table border="0" width="100%">
+              <tr> 
+                <td valign="top"><font class="text">Only a single Container or 
+                  Component can be placed at each point of the compass, with a 
+                  statements like the following :</font></td>
+                <td><p><font size="-1" face="Courier New, Courier, mono" class="text">setLayout(new 
+                    BorderLayout());<br>
+                    add(&quot;North&quot;, button1);<br>
+                    add(&quot;South&quot;, checkBox1);&nbsp;</font></p></td>
+              </tr>
+            </table>
+            <table border="0" cellpadding="4" cellspacing="4">
+              <tr> 
+                <td valign="top" colspan="3"><font class="text"> 
+                  <applet
+        code="borderlayout/Applet1.class" codebase="classes"
+        align="middle" width="300" height="200"
+        archive="borderlayout/Applet1.jar" name="BorderApplet">
+                  </applet>
+                  <br>
+                  Note: This is the default LayoutManager for Containers, <a href="awt_window.html">Window</a>, 
+                  <a href="awt_dialog.html">Dialog</a>, &amp; <a href="awt_frame.html">Frame</a>.</font></td>
+                <td valign="top" colspan="3" bgcolor="#FFFF80"><p><font class="text">This 
+                    LayoutManager does not always respect the preferred size of 
+                    a Component, depending upon their placement, components will 
+                    be 'stretched to fit'. </font> </p>
+                  <p><font class="text">Components added to the &quot;North&quot; 
+                    or &quot;South&quot; retain only their preferred height, those 
+                    added to either the &quot;East &quot; or &quot;West&quot; 
+                    regions, maintain their preferred width but are stretched 
+                    to fit between the north and south regions. <br>
+                    The Component at the &quot;Center&quot; fills whatever area 
+                    is left over.</font></p>
+                  <p><font class="text">Click in the Applet screen area at left 
+                    for a demo.</font></p></td>
+              </tr>
+            </table>
+            <p>&nbsp;</p>
+            </td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr>
+    <td><p>&nbsp;</p>
+      </td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: July 2002. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="awt_gridlayout.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">GridLayout<img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+</FONT> 
+</BODY>
+</HTML>

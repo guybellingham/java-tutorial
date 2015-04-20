@@ -1,0 +1,214 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=iso-8859-1">
+<meta name="Author" content="Gus Bellingham-Smith">
+<meta name="Description" content="Java concepts - syntax of Java">
+<meta name="KeyWords"
+content="Java, Syntax, Language, Classes, objects, methods, properties, applets, AWT, Jargon, Programming, Guide to Java">
+<meta name="Classification"
+content="Java guide - syntax of the programming language">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>The Servlet Lifecycle</title>
+</head>
+
+<body bgcolor="#FFFFFF" topmargin="2" leftmargin="2">
+<script language="JavaScript"><!--
+
+if (document.images) {
+  nexton = new Image();
+  nexton.src = "../gif/arrows/nextarrow_on.gif";
+
+  nextoff = new Image();
+  nextoff.src = "../gif/arrows/nextarrow_off.gif";
+
+  backon = new Image();
+  backon.src = "../gif/arrows/backarrow_on.gif";
+
+  backoff = new Image();
+  backoff.src = "../gif/arrows/backarrow_off.gif";
+
+}
+function turnOn(imageName) {
+  if (document.images) {
+    document[imageName].src = eval(imageName + "on.src");
+  }
+}
+
+function turnOff(imageName) {
+  if (document.images) {
+    document[imageName].src = eval(imageName + "off.src");
+  }
+}
+
+// --></script>
+
+<table border="0" cellpadding="2" cellspacing="0" width="100%">
+    <tr>
+        <td valign="top" width="42"><a
+        href="../contents.htm#4.0_advanced"
+        onmouseover="turnOn('back')" onmouseout="turnOff('back')"><img
+        src="../gif/arrows/backarrow_off.gif" alt="contents!"
+        align="right" border="0" hspace="0" width="40"
+        height="24" name="back"></a></td>
+        <td valign="top" width="25%"><font size="2" face="Arial">Java
+        contents.</font></td>
+        <td align="center" valign="top" width="50%"><font
+        color="#000099" size="3" face="Arial"><strong>Servlet
+        Lifecycle</strong></font></td>
+        <td align="right" valign="top" width="25%">&nbsp;</td>
+        <td valign="top" width="42"><a href="servlets3.htm"
+        onmouseover="turnOn('next')" onmouseout="turnOff('next')"><img
+        src="../gif/arrows/nextarrow_off.gif" alt=" "
+        align="right" border="0" hspace="0" width="40"
+        height="24" name="next"></a></td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="2" width="100%" height="100">
+    <tr>
+        <td valign="top"><em>figure: The Servlet 'lifecycle'.</em><br>
+        <img src="../gif/servlet-lifecycle.gif" width="716"
+        height="324"></td>
+    </tr>
+    <tr>
+        <td valign="top" width="100%"><font color="#FF0000"
+        size="2" face="Arial"><strong>1.</strong></font><font
+        size="2" face="Arial"> The Java ClassLoader finds and
+        loads the servlet class files </font><font size="2"
+        face="Courier">Class c =
+        Class.forName(&quot;package.EchoServlet&quot;);</font><font
+        size="2" face="Arial"> <br>
+        </font><font color="#FF0000" size="2" face="Arial"><strong>2.</strong></font><font
+        size="2" face="Arial"> The server may create one or
+        several new instances of the servlet. </font><font
+        size="2" face="Courier">Servlet s = (Servlet)
+        c.newInstance();<br>
+        </font><font size="2" face="Arial">Once loaded, the
+        servlet/s stays in memory until explicitly unloaded by
+        the server.</font><font size="2" face="Courier"><br>
+        </font><font color="#FF0000" size="2" face="Arial"><strong>3.</strong></font><font
+        size="2" face="Arial"> The server builds a ServletConfig
+        object, and passes it to the </font><font size="2"
+        face="Courier">public void init(ServletConfig cf) throws
+        ServletException</font><font size="2" face="Arial">
+        method. The init( ) method is called once for each
+        instance of the servlet, and is guaranteed to finish
+        before any requests are passed to the service( ) method.<br>
+        </font><font color="#FF0000" size="2" face="Arial"><strong>4.</strong></font><font
+        size="2" face="Arial"> Because the JVM can handle
+        multi-threading, the server can spawn new threads for
+        each request received for a servlet. To share a common
+        resource across several threads or multiple instances of
+        your servlet, you can either define any shared variables
+        as static or use the </font><font size="2" face="Courier">setAttribute(
+        ), getAttribute( )</font><font size="2" face="Arial">
+        methods of the </font><font size="2" face="Courier">ServletContext</font><font
+        size="2" face="Arial"> object.<br>
+        Note: To explicitly prevent the server running multiple
+        threads of execution in your servlet code, implement the
+        'tagging' interface called </font><font size="2"
+        face="Courier">SingleThreadModel</font><font size="2"
+        face="Arial">. <br>
+        </font><font color="#FF0000" size="2" face="Arial"><strong>5.</strong></font><font
+        size="2" face="Arial"><strong> </strong>The server calls
+        the service( ) method whenever a request is made for the
+        servlet. For HttpServlets, several more specific methods
+        receive control from the default implementation of the
+        service( ) method, depending upon the HTTP method used in
+        a request (use the request.getMethod( ) call to find out
+        the method of an HttpServletRequest). All these methods
+        are defined as protected, because they are not called
+        from outside the class.<br>
+        In general it is better to override these methods when
+        processing requests in your own servlet. <br>
+        </font><table border="0" cellpadding="2">
+            <tr>
+                <td valign="top" width="10%" bgcolor="#BFFFFF"><pre>doGet( )</pre>
+                </td>
+                <td valign="top"><font size="2" face="Arial">This
+                method is called in response to an HTTP GET
+                request. By default this method returns HTTP
+                status 400 &quot;Bad Request&quot; to the client.
+                This method is often used to return an HTML
+                &lt;FORM&gt; to the user, when they click on a
+                link.</font></td>
+            </tr>
+            <tr>
+                <td valign="top" width="10%" bgcolor="#BFFFFF"><pre>doHead( )</pre>
+                </td>
+                <td valign="top"><font size="2" face="Arial">If
+                this method is not overridden, the default
+                behavior is to call the doGet( ) method. The
+                response contains only HTTP header fields.</font></td>
+            </tr>
+            <tr>
+                <td valign="top" width="10%" bgcolor="#BFFFFF"><pre>doPost( )</pre>
+                </td>
+                <td valign="top"><font size="2" face="Arial">If
+                HTTP &quot;POST&quot; requests are to be
+                supported, override this method. This method is
+                often used to handle the details submitted, when
+                the client submits the HTML &lt;FORM&gt;
+                generated by the doGet( ) method.</font></td>
+            </tr>
+            <tr>
+                <td valign="top" width="10%" bgcolor="#BFFFFF"><pre>doPut( )</pre>
+                </td>
+                <td valign="top"><font size="2" face="Arial">PUT
+                requests are used to upload data from the client
+                to the HTTP server. This method must respect all
+                the HTTP &quot;content headers&quot;. This method
+                is typically not overridden, the POST method is
+                often used instead.</font></td>
+            </tr>
+            <tr>
+                <td valign="top" width="10%" bgcolor="#BFFFFF"><pre>doDelete(&nbsp;)</pre>
+                </td>
+                <td valign="top"><font size="2" face="Arial">A
+                DELETE request from a client, can signal the
+                servlet to either delete a resource or make it
+                inaccessible. This method is typically not
+                overridden.</font></td>
+            </tr>
+        </table>
+        <p><font color="#FF0000" size="2" face="Arial"><strong>6.</strong></font><font
+        size="2" face="Arial"> Two important parameters are
+        passed to these methods. <br>
+        The first implements ServletRequest (or <strong>HttpServletRequest</strong>)
+        and encapsulates the client request details. Several
+        methods of the request object, allow you to find out
+        about the request and its' parameters :<br>
+        The second ServletResponse (or <strong>HttpServletResponse</strong>)
+        represents the response to be sent back to the client.
+        Methods such as </font><font size="2" face="Courier">setContentType(&quot;mime-type&quot;);
+        </font><font size="2" face="Arial">allow you to setup the
+        reply. <br>
+        Use the getWriter( ) method to construct a PrintWriter(
+        ), and then call the println( ) method, to output text
+        (with Unicode support for foreign character sets). Or use
+        the getOutputStream( ) method to construct a
+        ServletOutputStream( ) and call the write( ) methods to
+        send back binary data types. Always close( ) the streams
+        in a </font><font size="2" face="Courier">finally { }</font><font
+        size="2" face="Arial"> block.<br>
+        Note: Because the request - response represents a network
+        connection, IOExceptions are possible, however you should
+        not try to handle these in your servlet, allow them to be
+        thrown up to the server to handle.</font></p>
+        </td>
+    </tr>
+</table>
+
+<table border="0" cellpadding="4" cellspacing="4" width="100%">
+    <tr>
+        <td valign="top" width="10%" bgcolor="#C0C0C0"><font
+        color="#000080"><i>Related Links </i></font></td>
+        <td valign="top" width="30%" bgcolor="#C0C0C0">&nbsp;</td>
+        <td valign="top" width="30%" bgcolor="#C0C0C0"><em>Next
+        &gt; An Example Servlet .. coming soon</em></td>
+    </tr>
+</table>
+</body>
+</html>

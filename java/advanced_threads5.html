@@ -1,0 +1,144 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="7/20/2002">
+<meta name="keywords" content="Java,IO,Reader,Writer,InputStream,OutputStream,Collections,Threads,Networking">
+<meta name="description" content="The Java class libraries and advanced programming topics.">
+<title>Advanced Java</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/advanced-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader">The Object 
+              'lock'</h4></td>
+          <td align="right" valign="top" ><a href="advanced_threads6.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">Coordinating 
+            Threads <img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"><p>All objects in Java, have 
+              a single 'lock' (which they inherit from the <span class="stdCode">java.lang.Object 
+              </span>class). In fact it is better to describe the lock as a 'key'. 
+              It acts like a real physical key, there is only one, and it can 
+              be borrowed from the object (and returned) by threads of execution.</p>
+            <ul>
+              <li>Every object has a single 'key'.</li>
+              <li>In order to execute code that has been <span class="stdCode">synchronize</span>d 
+                upon an object called <span class="stdCode">obj</span>, a thread 
+                must obtain the key from <span class="stdCode">obj</span>. Claiming 
+                the key from obj, effectively removes it from obj.</li>
+              <li>If a thread is unable to claim the key from obj, when entering 
+                a synchronized method or code block, it is forced to wait (in 
+                a 'seeking lock' state) until the lock is returned to the object.</li>
+              <li>A thread automatically returns the key to the object, as soon 
+                as it leaves the synchronized method or block.
+				  </li>
+            </ul>
+                <p><font class="text">The statement <span class="stdCode">synchronized(this){} 
+                  </span> is such a common requirement in a method, that Java 
+                  allows you to shorten it to just :<br>
+                  <br>
+                  <span class="stdCode">public synchronized void sendMsg(String 
+                  s) {<br>
+                  }</span></font></p>
+                <p><font class="text">It's essential to understand, that Java's 
+                  locking mechanism usually works on a particular object instance. 
+                  The lock is taken on an instance of a class and not on the code 
+                  itself. Therefore it is quite possible for two threads to execute 
+                  the same synchronized block of code at the same time, if they 
+                  are doing so, in the context of different instances of whatever 
+                  class of object the code is synchronized upon. It is important 
+                  to choose the object to synchronize upon carefully.</font></p>
+            
+            </td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr> 
+    <td> <table border="0" cellpadding="2" cellspacing="3">
+        <tr align="left"> 
+          <td valign="top"> <p><span class="stdCaption"><font class="text">Example: 
+              The Sender -&gt; Receiver scenario</font></span></p>
+            <pre class="stdCode">//Sender runs in thread1
+class Sender implements Runnable {
+  //reference to the Receiver 
+  private Receiver r1;
+  private String s = &quot;Hi!&quot;;
+  //critical flag!
+  private boolean sent;
+               
+  public synchronized void run( ) {
+    while (true) {
+      if (!sent) {
+        sent = true;
+        r1.message = s;
+      }
+    }
+  }
+}</pre> </td>
+          <td valign="top"> <p>&nbsp;</p>
+            <pre class="stdCode">//Receiver runs in thread2
+class Receiver implements Runnable {
+  //reference to the Sender 
+  private Sender s1;
+  //the message!
+  private String message;
+               
+  public void run( ) {
+    while (true) {
+      if (sent) {
+        synchronized(s1) {
+        s1.sent = false;
+        display(message);
+      }
+    }
+  }
+}</pre></td>
+        </tr>
+      </table>
+      <p><strong>Note</strong>: Data variables cannot be <span class="stdCode">synchronize</span>d. 
+        To ensure that shared variables are thread safe :<br>
+        1. Define them as <span class="stdCode">private</span> in your class (not 
+        accessible outside the class).<br>
+        2. Ensure any updates made to the variable are through <span class="stdCode">public</span> 
+        get or set methods, that are synchronized on <span class="stdCode">this</span> 
+        (the owning object).</p>
+      <p><span class="stdCaption">figure: using an object lock to force single 
+        threading in 'critical' sections of code.</span><br>
+        <img src="images/synchronized.gif" width="698"
+        height="388"></p></td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: July 2002. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="advanced_threads6.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">Coordinating 
+      Threads <img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+</FONT> 
+</BODY>
+</HTML>

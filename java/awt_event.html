@@ -1,0 +1,159 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="author" content="gus@spiritone.com">
+<meta name="created" content="09/05/1999">
+<meta name="modified" content="7/20/2002">
+<meta name="keywords" content="Java,AWT,Abstract Windowing Toolkit">
+<meta name="description" content="Introducing the AWT.">
+<title>The Title</title>
+<link rel="StyleSheet" href="../css/standard.css" type="text/css">
+<link rel="StyleSheet" href="../css/navbar.css" type="text/css">
+</HEAD>
+
+<BODY bgcolor="#FFFFFF" topmargin="0" leftmargin="0"  onLoad="MM_preloadImages('../images/nextarrow_on.gif')">
+<FONT class="text"> 
+<!-- Next Arrow Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/next.js"></SCRIPT>
+<!-- Popup Window Script -->
+<SCRIPT language="JavaScript" type="text/javascript"
+src="../scripts/popup.js"></SCRIPT>
+<!-- Menu and Page Heading -->
+<table border="0" cellpadding="2" width="100%" name="menuTable" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top" bgcolor="#CCCCCC"> 
+      <!--AWT Table Of Contents -->
+      <SCRIPT language="JavaScript" type="text/javascript" src="../scripts/awt-toc.js">
+	</SCRIPT> </td>
+    <td align="left" valign="top"> <table border="0" cellpadding="2" width="100%" cellspacing="0">
+        <tr> 
+          <td align="left" valign="top"> <h4 class="stdPageHeader"> java.awt.Event</h4></td>
+          <td align="right" valign="top" ><a href="awt_eventhandlers.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next1','','../images/nextarrow_on.gif',1)">Event 
+            handling <img name="next1" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+          </td>
+        </tr>
+        <tr> 
+          <td align="left" valign="top" colspan="2"><p>Modern graphical user interfaces 
+              are 'event driven'. This means that programs sit around waiting 
+              until 'something' of interest happens, and then they react to it. 
+              That 'something', can be anything from the user moving the mouse 
+              pointer, to the user dismissing the whole application by closing 
+              it's window.</p>
+            <p>In Java versions before 1.1, the Abstract Windowing Toolkit has 
+              a thread of execution that tells you about everything that happens 
+              in your application or applet. It constructs an <font size="-1" face="Courier New, Courier, mono">Event</font> 
+              object that contains information about the activity taking place 
+              and passes this object to an appropriate method in the object that 
+              'owns' that area of the screen. <br>
+              The primary event method that is always invoked for every type of 
+              event has this signature : </p>
+            <pre>public boolean handleEvent(Event e) { } </pre>
+            <p>The <font size="-1" face="Courier New, Courier, mono">Component</font> class 
+              contains default behavior in this method, that calls other more 
+              specific methods, depending upon the type of the target component 
+              and type of event that occurred. The boolean return type is used 
+              to signal to the AWT whether the event has been completely 'handled' 
+              (true) or whether it should continue to be passed on up the container 
+              heirarchy (false).</p>
+            <p>Remember that the AWT makes use of <font size="-1" face="Courier New, Courier, mono">Containers</font> 
+              and <font size="-1" face="Courier New, Courier, mono">Components</font>, 
+              both of which may generate Events that need to be handled in some 
+              way. The AWT uses an elegant recursive loop to 'ripple' events outwards 
+              from the target component to the containers of that component. This 
+              means you do not have to subclass every single component in your 
+              program to handle the events in the way you want, you can put all 
+              your event handling code in the top level container (usually the 
+              Frame or Applet).</p>
+            <p>Note: The AWT does not generate events for some components such 
+              as the java.awt.Label. The newer Java 1.1 event model has a lot 
+              more event types, and uses a more efficient 'callback' mechanism 
+              for propagating events.</p></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table width="100%" border="0" cellspacing="0" cellpadding="2">
+  <tr> 
+    <td><table border="0" cellpadding="2" width="100%">
+        <tr align="left" valign="top"> 
+          <td><font class="text"><img
+        src="images/awt-old-event.gif" alt="Java 1.0 Events"
+        width="349" height="527" naturalsizeflag="3"> </font></td>
+          <td bgcolor="#FFFF80"><font class="text">The <font size="-1" face="Courier New, Courier, mono">id</font> 
+            property, can be compared to any of the number of constant values 
+            defined within the <font size="-1" face="Courier New, Courier, mono">Event</font> 
+            class, to determine what type of activity the event object represents 
+            :</font> 
+            <pre><font class="text">public boolean handleEvent(Event e) {   
+&nbsp;&nbsp;if (e.id == Event.MOUSE_DOWN) {
+&nbsp;&nbsp;&nbsp;&nbsp;//do mouse action
+&nbsp;&nbsp;}
+}</font></pre>
+            <p><font class="text">The target object handle can be used to find 
+              out if this event happened in a particular AWT component :</font></p>
+            <pre><font class="text">public boolean handleEvent(Event e) { 
+&nbsp;&nbsp;if (e.target.equals(myButton)) {
+&nbsp;&nbsp;&nbsp;&nbsp;//do event handling for myButton
+&nbsp;&nbsp;}
+}</font></pre>
+            <p><font class="text">Remember that you are comparing 2 object references 
+              here, hence the use of the equals() method. This is the preferred 
+              method for distinguishing which component generated an event, rather 
+              than testing the arg parameter.</font></p>
+            <p><font class="text">An event object contains a modifier field, that 
+              can provide information, on which mouse button was pressed, or whether 
+              the user was holding down a modifier key (Ctrl, Alt or Shift). The 
+              Event class, also defines some handy constants that allow you to 
+              test for a modifier key:&nbsp;</font></p>
+            <p><font size="-1" face="Courier New, Courier, mono" class="text">Event.clickCount</font><font class="text"> 
+              can be tested to find out if the user single or double clicked with 
+              the mouse:</font></p></td>
+        </tr>
+      </table>
+      <table border="0" cellpadding="2" width="100%">
+        <tr> 
+          <td valign="top" bgcolor="#80FFFF"><font class="text"> 
+            <applet
+        code="event1.Applet1.class" codebase="classes"
+        align="middle" width="200" height="150"
+        name="Event1Applet">
+            </applet>
+            &nbsp; </font></td>
+          <td valign="top"><font class="text">The Applet at left, uses a handleEvent(Event 
+            e) method to trap MOUSE_DOWN events. Try clicking with various modifier 
+            keys held down, try right mouse click and double click to clear the 
+            graphics area.</font> <p><font class="text"><a
+        href="event1/Applet1.java">The Applet source is here:</a></font></p></td>
+        </tr>
+      </table>
+      <table border="0" cellpadding="2" width="100%">
+        <tr> 
+          <td valign="top"><font class="text">When handling events, remember that 
+            they may need to be passed to the 'parent' class of the target, (and 
+            further to the parent's parent...and so on) because more event handling 
+            code may 'reside' at these higher inheritance levels.</font> <pre><font class="text">boolean b = super.handleEvent(e);</font></pre>
+            <p><font class="text">Some events, such as the resizing, moving or 
+              painting of a component, can be wholly handled (or ignored) by the 
+              target component itself. You do not normally have to provide methods 
+              to handle these 'internal' types of events, however if you are going 
+              to subclass one of these components, you will need to be aware of 
+              these event handling methods, and maybe override them with your 
+              own versions.</font></p></td>
+        </tr>
+      </table></td>
+  </tr>
+</table>
+<table border="0" cellpadding="2" width="100%" cellspacing="0">
+  <tr> 
+    <td align="left" valign="top"> Last Updated: July 2002. &copy;1999 Guy&nbsp;Bellingham-Smith 
+    </td>
+    <td align="right" valign="top" ><a href="awt_eventhandlers.html" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('next2','','../images/nextarrow_on.gif',1)">Event 
+      handling <img name="next2" border="0" src="../images/nextarrow_off.gif" width="40" height="24" alt="Next" title="Click here to go to the next page!"></a> 
+    </td>
+  </tr>
+</table>
+
+</FONT> 
+</BODY>
+</HTML>
